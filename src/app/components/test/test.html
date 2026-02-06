@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            @for(user of users_list; track user.firstName) {
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">
+                    {{ user.firstName }}
+                </div>
+                <div class="card-body">
+                    This user is based in {{ user.address }}
+                </div>
+                <div class="card-footer">
+                    DOB: {{ user.DOB }}
+                </div>
+            </div>
+            }
+        </div> <!-- col -->
+    </div> <!-- row -->
+</div> <!-- container -->
