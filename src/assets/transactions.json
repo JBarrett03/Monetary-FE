@@ -1,0 +1,34 @@
+[
+    {
+        "_id": {
+            "$oid": "697601450c6d295e0125f4c6"
+        },
+        "accountId": {
+            "$oid": "69754e4aa686e672b19211ac"
+        },
+        "type": "expense",
+        "amount": 10,
+        "status": "completed",
+        "description": "Food",
+        "merchant": "Tesco",
+        "category": "Food",
+        "balanceAfter": 0,
+        "createdAt": "2026-01-25T11:40:53.690358+00:00Z"
+    },
+    {
+        "_id": {
+            "$oid": "69760214f93f22f618dcbcf9"
+        },
+        "accountId": {
+            "$oid": "69754e4aa686e672b19211ac"
+        },
+        "type": "expense",
+        "amount": 200,
+        "status": "completed",
+        "description": "Rent",
+        "merchant": "Renter",
+        "category": "Rent",
+        "balanceAfter": 0,
+        "createdAt": "2026-01-25T11:44:20.110543+00:00Z"
+    }
+]

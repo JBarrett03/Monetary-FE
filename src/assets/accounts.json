@@ -1,0 +1,34 @@
+[
+    {
+        "_id": {
+            "$oid": "69754d66110865dd6a01f0bf"
+        },
+        "userId": {
+            "$oid": "697540596bd2ce0e5cf96566"
+        },
+        "accountType": "current",
+        "currency": "GBP",
+        "balance": 0,
+        "availableBalance": 0,
+        "status": "active",
+        "accountNumber": "61368135",
+        "openedAt": "2026-01-24T22:53:26.232632+00:00Z",
+        "updatedAt": "2026-01-24T22:53:26.232641+00:00Z"
+    },
+    {
+        "_id": {
+            "$oid": "69754e4aa686e672b19211ac"
+        },
+        "userId": {
+            "$oid": "697540596bd2ce0e5cf96566"
+        },
+        "accountType": "saving",
+        "currency": "USD",
+        "balance": 0,
+        "availableBalance": 0,
+        "status": "active",
+        "accountNumber": "51697806",
+        "openedAt": "2026-01-24T22:57:14.230451+00:00Z",
+        "updatedAt": "2026-01-24T22:57:14.230462+00:00Z"
+    }
+]

@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Test } from './components/test/test';
+import userData from '../assets/users.json';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,9 @@ import { Test } from './components/test/test';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('Monetary-FE');
+  ngOnInit() {
+
+    console.log(userData);
+    
+  }
 }
