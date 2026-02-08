@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user-service';
 import { CommonModule } from '@angular/common';
-import { Observable, catchError, map, switchMap } from 'rxjs';
-import { of } from 'rxjs';
 
 /**
  * The UserDetails component is responsible for displaying the details of a specific user based on the user ID provided in the route parameters. It retrieves the user data from the UserService and handles the display logic accordingly.
@@ -22,40 +20,43 @@ import { of } from 'rxjs';
 export class UserDetails implements OnInit {
 
   /**
-   * user$ is an Observable that holds the details of the user to be displayed. It is initialized by retrieving the user data from the UserService based on the user ID from the route parameters.
-   * notFound$ is an Observable that indicates whether the user was not found. It is derived from the user$ Observable and emits true if the user data is null, indicating that the user was not found.
+   * Current user data
    */
-  user$!: Observable<any>;
-
+  user_list: any = [];
   /**
-   * notFound$ is an Observable that indicates whether the user was not found. It is derived from the user$ Observable and emits true if the user data is null, indicating that the user was not found.
+   * Error message
    */
-  notFound$!: Observable<boolean>;
+  error: string | null = null;
 
   /**
    * The constructor injects the ActivatedRoute and UserService to enable access to route parameters and retrieval of user data.
    * @param route - An instance of ActivatedRoute for accessing route parameters.
    * @param userService - An instance of the UserService for making API calls to retrieve user data.
+   * @param cdr - ChangeDetectorRef for manually triggering change detection.
    */
-  constructor(private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private cdr: ChangeDetectorRef) { }
 
   /**
-   * The ngOnInit lifecycle hook is called when the component is initialized. It retrieves the user ID from the route parameters and uses the UserService to fetch the user data. The retrieved user data is then stored in the user$ Observable for display in the template. If an error occurs during data retrieval, the user$ Observable will emit null, indicating that the user was not found.
+   * Angular lifecycle hook that initializes the component.
+   * Retrieves user data based on the user ID from the route parameters.
    */
   ngOnInit() {
-    this.user$ = this.route.params.pipe(
-      switchMap((params) => {
-        const userId = params['id'];
-        return this.userService.getUser(userId).pipe(
-          catchError((error) => {
-            return of(null);
-          })
-        );
-      })
-    );
+    const userId = this.route.snapshot.paramMap.get('userId');
 
-    this.notFound$ = this.user$.pipe(
-      map((user) => !user)
-    );
+    if (!userId) {
+      this.error = 'Invalid user ID';
+      return;
+    }
+
+    this.userService.getUser(userId).subscribe({
+      next: (user) => {
+        this.user_list = [user];
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        this.error = 'Failed to load user details';
+        this.cdr.detectChanges();
+      }
+    })
   }
 }
