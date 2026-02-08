@@ -1,0 +1,39 @@
+.container-top-margin {
+  margin-top: 70px;
+}
+
+.balance-card,
+.amount-card {
+    width: 500px;
+    height: 180px;
+    padding: 16px 18px;
+    border: 1px solid #cfcfcf;
+    border-radius: 6px;
+    background-color: #ffffff;
+    box-shadow: none;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.balance-label, 
+.amount-label {
+    font-size: 20px;
+    color: #555555;
+    align-self: flex-start;
+}
+
+.balance-amount {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    font-weight: 600;
+    color: #000000;
+    letter-spacing: -0.5px;
+}

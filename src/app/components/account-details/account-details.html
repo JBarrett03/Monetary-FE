@@ -1,1 +1,14 @@
-<p>account-details works!</p>
+<div class="container container-top-margin">
+    <div class="balance-card">
+        <div class="balance-label">Balance</div>
+        <div class="balance-amount">
+            {{ account?.balance | currency: 'GBP' }}
+        </div>
+    </div>
+
+    <div class="amount-card">
+        <div class="amount-label">Amount:</div>
+        Account #: {{ account.accountNumber }}<br />
+        Currency: {{ account.currency || 'GBP' }}<br />
+    </div>
+</div>
