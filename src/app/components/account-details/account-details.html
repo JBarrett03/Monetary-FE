@@ -1,4 +1,10 @@
 <div class="container container-top-margin">
+    @if (error) {
+    <p class="text-danger">{{ error }}</p>
+    }
+
+    @if (account) {
+    Add balance to account <i class="fa fa-plus add-balance-icon" (click)="addBalance()"></i>
     <div class="balance-card">
         <div class="balance-label">Balance</div>
         <div class="balance-amount">
@@ -11,16 +17,26 @@
         Account #: {{ account.accountNumber }}<br />
         Currency: {{ account.currency || 'GBP' }}<br />
     </div>
+    }
 
-    @for (transaction of transactions; track transaction.id) {
-    <li class="list-group-item d-flex justify-content-between transaction-item transaction-spacing"
-        (click)="openTransaction(transaction._id)">
-        <div>
-            <strong>{{ transaction.description }}</strong><br />
+    @if (transactions.length > 0) {
+    <ul class="list-group list-group-flush">
+        @for (transaction of transactions; track transaction.id) {
+        <li class="list-group-item d-flex justify-content-between transaction-item transaction-spacing"
+            (click)="openTransaction(transaction._id)">
+            <span [ngClass]="{ 'text-success': transaction.amount > 0, 'text-danger': transaction.amount < 0 }">
+                - {{ transaction.amount | currency: account.currency || 'GBP' }}
+            </span>
+        </li>
+        }
+    </ul>
+    }
+
+    @if (transactions.length === 0 && account) {
+    <div class="d-flex justify-content-between align-items-center mt-5">
+        <div class="plus-minus">
+            <p class="text-muted mt-3">No transactions found for this account. Add a transaction</p>
         </div>
-        <span [ngClass]="{ 'text-success': transaction.amount > 0, 'text-danger': transaction.amount < 0 }">
-            - {{ transaction.amount | currency: account.currency || 'GBP' }}
-        </span>
-    </li>
+    </div>
     }
 </div>

@@ -78,4 +78,39 @@ export class AccountDetails implements OnInit {
     const accountId = this.route.snapshot.paramMap.get('accountId');
     this.router.navigate(['/accounts', accountId, 'transactions', transactionId]);
   }
+
+  /**
+ * Adds a new balance to the account.
+ * @returns void
+ */
+  addBalance() {
+    const userId = sessionStorage.getItem('userId');
+    const accountId = sessionStorage.getItem('accountId');
+
+    if (!userId || !accountId) {
+      return;
+    }
+
+    const amountInput = prompt('Amount to add:');
+
+    if (!amountInput) {
+      return;
+    }
+
+    const amount = Number(amountInput);
+
+    this.accountService.addBalance(userId, accountId, amount).subscribe({
+      next: () => {
+        this.accountService.getAccount(userId, accountId).subscribe({
+          next: (account) => {
+            this.account = account;
+            this.cdr.detectChanges();
+          }
+        });
+      },
+      error: () => {
+        this.error = 'Failed to add balance';
+      }
+    });
+  }
 }
