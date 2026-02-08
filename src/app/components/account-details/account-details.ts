@@ -165,4 +165,26 @@ export class AccountDetails implements OnInit {
       }
     });
   }
+
+  /**
+ * Formats a date string into a more readable format.
+ * @param dateString The date string to format.
+ * @returns The formatted date string.
+ */
+  formatTransactionDate(dateString: string): string {
+    if (!dateString) return '';
+
+    const match = dateString.match(/^(\d{4})-(\d{2})-(\d{2})/);
+
+    if (!match) return dateString;
+
+    const year = Number(match[1]);
+    const monthIndex = Number(match[2]) - 1;
+    const day = Number(match[3]);
+
+    const suffix = day >= 11 && day <= 13 ? 'th' : { 1: 'st', 2: 'nd', 3: 'rd' }[day % 10] || 'th';
+    const month = new Date(year, monthIndex).toLocaleString('en-GB', { month: 'long' });
+
+    return `${month} ${day}${suffix}`;
+  }
 }
