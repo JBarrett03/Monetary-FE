@@ -13,7 +13,7 @@
                 </div>
             </div>
             }
-            <button class="btn btn-primary" (click)="editUser()">
+            <button class="btn btn-primary" *ngIf="isLoggedIn" (click)="editUser()">
                 Edit Details
             </button>
         </div> <!-- col -->

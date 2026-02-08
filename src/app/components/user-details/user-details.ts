@@ -60,9 +60,9 @@ export class UserDetails implements OnInit {
     })
   }
 
-    /**
-   * Edits the current user's details.
-   */
+  /**
+ * Edits the current user's details.
+ */
   editUser() {
     const userId = sessionStorage.getItem('userId');
 
@@ -104,5 +104,13 @@ export class UserDetails implements OnInit {
         this.cdr.detectChanges();
       }
     })
+  }
+
+  /**
+ * Checks if the user is logged in.
+ * @returns True if the user is logged in, false otherwise.
+ */
+  get isLoggedIn(): boolean {
+    return !!sessionStorage.getItem('userId');
   }
 }
