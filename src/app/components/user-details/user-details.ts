@@ -59,4 +59,50 @@ export class UserDetails implements OnInit {
       }
     })
   }
+
+    /**
+   * Edits the current user's details.
+   */
+  editUser() {
+    const userId = sessionStorage.getItem('userId');
+
+    if (!userId) {
+      return;
+    }
+
+    const user = this.user_list[0];
+
+    const firstName = prompt('First Name:', user.firstName);
+    const lastName = prompt('Last Name:', user.lastName);
+    const email = prompt('Email:', user.email);
+    const phone = prompt('Phone:', user.phone);
+    const address = prompt('Address:', user.address);
+
+    if (firstName === null || lastName === null || email === null || phone === null || address === null) {
+      return;
+    }
+
+    const updatedUser = {
+      firstName,
+      lastName,
+      email,
+      phone,
+      address
+    };
+
+    this.userService.editUser(userId, updatedUser).subscribe({
+      next: () => {
+        this.userService.getUser(userId).subscribe({
+          next: (updated) => {
+            this.user_list = [updated];
+            this.cdr.detectChanges();
+          }
+        });
+      },
+      error: () => {
+        this.error = 'Failed to update user';
+        this.cdr.detectChanges();
+      }
+    })
+  }
 }
