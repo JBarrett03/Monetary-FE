@@ -1,7 +1,8 @@
-import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { DragDropModule, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Observable, Subject, switchMap, startWith } from 'rxjs';
 import { AccountService } from '../../services/account-service';
 
 /**
@@ -21,14 +22,14 @@ import { AccountService } from '../../services/account-service';
 export class ManageAccounts implements OnInit {
 
   /**
-   * List of accounts
+   * List of accounts observable
    */
-  accounts_list: any[] = [];
+  accounts$!: Observable<any[]>;
 
   /**
-   * List of archived accounts
+   * List of archived accounts observable
    */
-  archived_list: any[] = [];
+  archived_list$!: Observable<any[]>;
 
   /**
    * Menu open state
@@ -41,12 +42,21 @@ export class ManageAccounts implements OnInit {
   showingArchived = false;
 
   /**
+   * Subject to trigger refresh
+   */
+  private refresh$ = new Subject<void>();
+
+  /**
+   * Local copy of accounts for drag-drop
+   */
+  accounts_list: any[] = [];
+
+  /**
    * Constructor for the ManageAccounts component.
    * @param accountService Service for account operations.
-   * @param cdr Change detector reference.
    * @param router Router for navigation.
    */
-  constructor(private accountService: AccountService, private cdr: ChangeDetectorRef, private router: Router) { }
+  constructor(private accountService: AccountService, private router: Router) { }
 
   /**
    * Initializes the component and loads the list of accounts for the user.
@@ -59,11 +69,13 @@ export class ManageAccounts implements OnInit {
       return;
     }
 
-    this.accountService.getAccounts(userId).subscribe({
-      next: (accounts) => {
-        this.accounts_list = accounts;
-        this.cdr.detectChanges();
-      }
+    this.accounts$ = this.refresh$.pipe(
+      startWith(void 0),
+      switchMap(() => this.accountService.getAccounts(userId))
+    );
+
+    this.accounts$.subscribe(accounts => {
+      this.accounts_list = accounts;
     });
   }
 
@@ -86,7 +98,6 @@ export class ManageAccounts implements OnInit {
       event.previousIndex,
       event.currentIndex
     );
-    this.cdr.detectChanges();
   }
 
   /**
@@ -121,20 +132,9 @@ export class ManageAccounts implements OnInit {
   * @returns void
   */
   sortAccounts() {
-    const userId = sessionStorage.getItem('userId');
-
-    if (!userId) {
-      return;
-    }
-
     this.isReordering = true;
     this.showingArchived = false;
-    this.accountService.getAccounts(userId).subscribe({
-      next: (accounts) => {
-        this.accounts_list = accounts;
-        this.cdr.detectChanges();
-      }
-    })
+    this.refresh$.next();
   }
 
   /**
@@ -149,11 +149,6 @@ export class ManageAccounts implements OnInit {
 
     this.showingArchived = true;
     this.isReordering = false;
-    this.accountService.getArchivedAccounts(userId).subscribe({
-      next: (accounts) => {
-        this.archived_list = accounts;
-        this.cdr.detectChanges();
-      }
-    });
+    this.archived_list$ = this.accountService.getArchivedAccounts(userId);
   }
 }

@@ -1,7 +1,10 @@
 <div class="container container-top-margin">
     <div class="row">
         <div class="col-sm-12">
-            @for(user of user_list; track user.firstName) {
+            @let user = (user$ | async);
+            @if (notFound$ | async) {
+            <p class="text-danger">User not found</p>
+            } @else if (user) {
             <div class="card text-dark mb-3">
                 <div class="card-body">
                     {{user.firstName}} {{user.lastName}}<br>
@@ -13,9 +16,6 @@
                 </div>
             </div>
             }
-            <button class="btn btn-primary" *ngIf="isLoggedIn" (click)="editUser()">
-                Edit Details
-            </button>
         </div> <!-- col -->
     </div> <!-- row -->
 </div> <!-- container -->
