@@ -1,12 +1,33 @@
 <div class="container container-top-margin">
     <div class="row mb-3">
         <div class="col-sm-12">
+            <button class="btn btn-outline-secondary me-2" (click)="showArchivedAccounts()">
+                Archived accounts
+            </button>
             <button class="btn btn-outline-secondary me-2" (click)="sortAccounts()">
                 Reorder Accounts
             </button>
         </div>
     </div>
 
+    @if (showingArchived) {
+    @if (archived_list.length === 0) {
+    <p>No archived accounts found</p>
+    } @else {
+    @for (account of archived_list; track account._id) {
+    <div class="card text-muted mb-3">
+        <div class="card-header">
+            {{ account.accountType | titlecase }} account (Archived)
+        </div>
+        <div class="card-body">
+            Account #: {{ account.accountNumber }}<br />
+            Currency: {{ account.currency || 'GBP' }}<br />
+            Balance: {{ account.availableBalance | currency: 'GBP' }}
+        </div>
+    </div>
+    }
+    }
+    } @else {
     @if (isReordering) {
     <div class="row mb-3">
         <div class="col-sm-12">
@@ -21,14 +42,15 @@
         @for (account of accounts_list; track account._id) {
         <div class="card text-dark mb-3 clickable-card" cdkDrag [cdkDragDisabled]="!isReordering">
             <div class="card-header">
-                {{ account.accountType }} account
+                {{ account.accountType | titlecase }} account
             </div>
             <div class="card-body">
                 Account #: {{ account.accountNumber }}<br />
                 Currency: {{ account.currency || 'GBP' }}<br />
-                Balance: {{ account.availableBalance }}
+                Balance: {{ account.availableBalance | currency: 'GBP' }}
             </div>
         </div>
         }
     </div>
+    }
 </div>

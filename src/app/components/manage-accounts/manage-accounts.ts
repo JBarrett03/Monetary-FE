@@ -1,44 +1,57 @@
 import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
-import { AccountService } from '../../services/account-service';
+import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { DragDropModule, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { AccountService } from '../../services/account-service';
 
 /**
- * The ManageAccounts component is responsible for providing an interface for managing user accounts within the application. It serves as a placeholder component that can be expanded upon in the future to include functionality for creating, editing, and deleting user accounts. The component is decorated with the @Component decorator, which defines its selector, template URL, and style URL.
+ * ManageAccounts component
  */
 @Component({
   selector: 'app-manage-accounts',
-  imports: [RouterModule, DragDropModule],
+  standalone: true,
+  imports: [CommonModule, RouterModule, DragDropModule],
   templateUrl: './manage-accounts.html',
   styleUrl: './manage-accounts.css',
 })
 
 /**
- * The ManageAccounts component is responsible for providing an interface for managing user accounts within the application. It serves as a placeholder component that can be expanded upon in the future to include functionality for creating, editing, and deleting user accounts. The component is decorated with the @Component decorator, which defines its selector, template URL, and style URL.
+ * ManageAccounts class
  */
 export class ManageAccounts implements OnInit {
 
   /**
- * List of accounts
- */
+   * List of accounts
+   */
   accounts_list: any[] = [];
 
   /**
- * Menu open state
- */
+   * List of archived accounts
+   */
+  archived_list: any[] = [];
+
+  /**
+   * Menu open state
+   */
   isReordering = false;
 
-    /**
+  /**
    * Archived accounts open state
    */
   showingArchived = false;
 
+  /**
+   * Constructor for the ManageAccounts component.
+   * @param accountService Service for account operations.
+   * @param cdr Change detector reference.
+   * @param router Router for navigation.
+   */
   constructor(private accountService: AccountService, private cdr: ChangeDetectorRef, private router: Router) { }
 
   /**
- * Initializes the component and loads the list of accounts for the user.
- * @returns void
- */
+   * Initializes the component and loads the list of accounts for the user.
+   * @returns void
+   */
   ngOnInit() {
     const userId = sessionStorage.getItem('userId');
 
@@ -55,18 +68,18 @@ export class ManageAccounts implements OnInit {
   }
 
   /**
- * Toggles the reordering mode.
- * @returns void
- */
+   * Toggles the reordering mode.
+   * @returns void
+   */
   toggleReorder() {
     this.isReordering = !this.isReordering;
   }
 
   /**
- * Handles the drop event when reordering accounts.
- * @param event The drag and drop event containing the previous and current index of the item.
- * @returns void
- */
+   * Handles the drop event when reordering accounts.
+   * @param event The drag and drop event containing the previous and current index of the item.
+   * @returns void
+   */
   drop(event: CdkDragDrop<any[]>) {
     moveItemInArray(
       this.accounts_list,
@@ -77,9 +90,9 @@ export class ManageAccounts implements OnInit {
   }
 
   /**
- * Saves the new order of accounts after reordering.
- * @returns void
- */
+   * Saves the new order of accounts after reordering.
+   * @returns void
+   */
   saveOrder() {
     const userId = sessionStorage.getItem('userId');
 
@@ -122,5 +135,25 @@ export class ManageAccounts implements OnInit {
         this.cdr.detectChanges();
       }
     })
+  }
+
+  /**
+   * Shows archived accounts.
+   * @returns void
+   */
+  showArchivedAccounts() {
+    const userId = sessionStorage.getItem('userId');
+    if (!userId) {
+      return;
+    }
+
+    this.showingArchived = true;
+    this.isReordering = false;
+    this.accountService.getArchivedAccounts(userId).subscribe({
+      next: (accounts) => {
+        this.archived_list = accounts;
+        this.cdr.detectChanges();
+      }
+    });
   }
 }
