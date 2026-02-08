@@ -24,10 +24,9 @@ export class AccountDetails implements OnInit {
    */
   account: any | null = null;
   /**
- * List of transactions for the account
- */
+   * List of transactions for the account
+   */
   transactions: any[] = [];
-  /**
   /**
    * Error message
    */
@@ -67,22 +66,33 @@ export class AccountDetails implements OnInit {
         this.cdr.detectChanges();
       }
     });
+
+    this.accountService.getAccountTransactions(userId, accountId).subscribe({
+      next: (transactions) => {
+        this.transactions = transactions;
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        this.error = 'Could not load transactions';
+        this.cdr.detectChanges();
+      }
+    });
   }
 
   /**
- * Opens the transaction details page for a specific transaction.
- * @param transactionId The ID of the transaction to open.
- * @returns void
- */
+   * Opens the transaction details page for a specific transaction.
+   * @param transactionId The ID of the transaction to open.
+   * @returns void
+   */
   openTransaction(transactionId: string) {
     const accountId = this.route.snapshot.paramMap.get('accountId');
     this.router.navigate(['/accounts', accountId, 'transactions', transactionId]);
   }
 
   /**
- * Adds a new balance to the account.
- * @returns void
- */
+   * Adds a new balance to the account.
+   * @returns void
+   */
   addBalance() {
     const userId = sessionStorage.getItem('userId');
     const accountId = sessionStorage.getItem('accountId');
@@ -110,14 +120,15 @@ export class AccountDetails implements OnInit {
       },
       error: () => {
         this.error = 'Failed to add balance';
+        this.cdr.detectChanges();
       }
     });
   }
 
   /**
- * Adds a new transaction to the account.
- * @returns void
- */
+   * Adds a new transaction to the account.
+   * @returns void
+   */
   addTransaction() {
     const userId = sessionStorage.getItem('userId');
     const accountId = sessionStorage.getItem('accountId');
@@ -162,15 +173,16 @@ export class AccountDetails implements OnInit {
       },
       error: () => {
         this.error = 'Failed to add transaction';
+        this.cdr.detectChanges();
       }
     });
   }
 
   /**
- * Formats a date string into a more readable format.
- * @param dateString The date string to format.
- * @returns The formatted date string.
- */
+   * Formats a date string into a more readable format.
+   * @param dateString The date string to format.
+   * @returns The formatted date string.
+   */
   formatTransactionDate(dateString: string): string {
     if (!dateString) return '';
 
@@ -186,5 +198,34 @@ export class AccountDetails implements OnInit {
     const month = new Date(year, monthIndex).toLocaleString('en-GB', { month: 'long' });
 
     return `${month} ${day}${suffix}`;
+  }
+
+  /**
+   * Archives the account.
+   * @returns void
+   */
+  archiveAccount() {
+    const confirmArchive = confirm('Are you sure you want to archive this account?');
+    if (!confirmArchive) {
+      return;
+    }
+
+    const userId = sessionStorage.getItem('userId');
+    const accountId = sessionStorage.getItem('accountId');
+
+    if (!userId || !accountId) {
+      this.error = 'Invalid user or account';
+      return;
+    }
+
+    this.accountService.archiveAccount(userId, accountId).subscribe({
+      next: () => {
+        this.router.navigate(['/accounts']);
+      },
+      error: () => {
+        this.error = 'Failed to archive account';
+        this.cdr.detectChanges();
+      }
+    });
   }
 }

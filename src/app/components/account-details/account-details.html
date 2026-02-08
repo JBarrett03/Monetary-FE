@@ -4,6 +4,9 @@
     }
 
     @if (account) {
+    <button class="btn btn-outline-secondary mb-3" (click)="archiveAccount()" [disabled]="account?.balance > 0">
+        Archive Account
+    </button>
     @if (account.balance > 0) {
     <p class="text-muted">
         Account must have a zero balance to be archived

@@ -1,5 +1,47 @@
 .container-top-margin {
-  margin-top: 70px;
+    margin-top: 70px;
+}
+
+.add-balance-icon {
+    cursor: pointer;
+}
+
+.plus-minus {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.plus-minus .fa {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.plus-minus .fa:hover {
+    background-color: #f0f0f0;
+}
+
+.transaction-item {
+    cursor: pointer;
+    padding: 30px !important;
+    font-size: 24px;
+    line-height: 2;
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 4px !important;
+    background-color: #f8f9fa !important;
+}
+
+.transaction-item strong {
+    font-size: 28px;
+}
+
+.transaction-item span {
+    font-size: 24px;
 }
 
 .balance-card,
@@ -20,7 +62,7 @@
     margin-right: auto;
 }
 
-.balance-label, 
+.balance-label,
 .amount-label {
     font-size: 20px;
     color: #555555;
