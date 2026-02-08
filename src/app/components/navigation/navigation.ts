@@ -35,11 +35,19 @@ export class Navigation {
   }
 
   /**
- * Checks if the user is logged in.
- * @returns True if the user is logged in, false otherwise.
- */
+   * Checks if the user is logged in.
+   * @returns True if the user is logged in, false otherwise.
+   */
   get isLoggedIn(): boolean {
     return !!sessionStorage.getItem('userId');
+  }
+
+  /**
+   * Retrieves the current user ID from session storage.
+   * @returns The user ID or null if not found.
+   */
+  getUserId(): string | null {
+    return sessionStorage.getItem('userId');
   }
 
 }

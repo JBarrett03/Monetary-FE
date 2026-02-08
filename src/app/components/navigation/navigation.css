@@ -16,8 +16,24 @@
   justify-content: center;
 }
 
-.home-item {
-  list-style: none;
+.navbar-right {
+  flex: 0 0 auto;
+}
+
+.button-box {
+  border: 2px solid white;
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+.button-box a {
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.button-box a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .app-title {
@@ -25,4 +41,22 @@
   font-size: 40px;
   font-weight: 400;
   letter-spacing: 0.05em;
+}
+.home-item {
+  list-style: none;
+}
+
+.home-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.home-link i {
+  font-size: 20px;
+}
+
+.home-link span {
+  font-size: 12px;
 }
