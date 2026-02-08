@@ -1,18 +1,62 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 /**
- * The Login component is responsible for displaying the login interface for the application. It serves as a placeholder component that can be expanded upon in the future to include functionality for user authentication and login processes. The component is decorated with the @Component decorator, which defines its selector, template URL, and style URL.
+ * Login component for user authentication.
+ * 
+ * This component provides a login form for users to authenticate with their
+ * email and password credentials.
  */
 @Component({
+  standalone: true,
   selector: 'app-login',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-
-/**
- * The Login class defines the component logic for the login interface. Currently, it is an empty class that can be used as a starting point for implementing login functionality in the future. This component can be expanded to include methods for handling user input, validating credentials, and managing authentication state as needed.
- */
 export class Login {
+
+  /**
+   * User email address
+   */
+  email: string = '';
+
+  /**
+   * User password
+   */
+  password: string = '';
+
+  /**
+   * Constructor for the Login component.
+   * @param http HTTP client for making API requests
+   * @param router Router for navigation
+   */
+  constructor(private http: HttpClient, private router: Router) { }
+
+  /**
+   * Handles login form submission.
+   * Sends user credentials to the backend API and handles the response.
+   */
+  onSubmit() {
+    sessionStorage.clear();
+    this.http.post<any>('http://localhost:5000/api/v1.0/login', {
+      email: this.email,
+      password: this.password
+    }).subscribe({
+      next: (res) => {
+        sessionStorage.setItem('userId', res.id);
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        if (err.status === 401) {
+          alert('Invalid email or password. Please try again.');
+        } else {
+          console.log('Login error:', err);
+        }
+      }
+    });
+  }
 
 }
