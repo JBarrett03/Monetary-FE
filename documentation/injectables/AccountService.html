@@ -93,7 +93,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content component">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -103,56 +103,47 @@
 
 
 
+
+
+
+
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Components</li>
-  <li class="breadcrumb-item"
-  >
-  AccountDetails</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >AccountService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-            <a href="#info" class="nav-link active"
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
         <li class="nav-item">
-            <a href="#source" class="nav-link"
+            <a href="#source" 
+                class="nav-link"
+                
                 role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
-        </li>
-        <li class="nav-item">
-            <a href="#templateData" class="nav-link"
-                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
-        </li>
-        <li class="nav-item">
-            <a href="#tree" class="nav-link"
-                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info"><p class="comment">
-    <h3>File</h3>
-</p>
-<p class="comment">
-    <code>src/app/components/account-details/account-details.ts</code>
-</p>
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/services/account-service.ts</code>
+        </p>
 
 
-    <p class="comment">
-        <h3>Description</h3>
-    </p>
-    <p class="comment">
-        <p>The AccountDetails component is responsible for displaying the details of a specific account within the application. It serves as a placeholder for the account details section, where users can view and manage the information related to their accounts.</p>
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The AccountService is a placeholder service that is currently empty. It is decorated with the @Injectable decorator, which allows it to be injected into other components or services in the Angular application. The providedIn property is set to &#39;root&#39;, indicating that this service will be available as a singleton throughout the entire application.</p>
 
-    </p>
-
-
-
-
-<section data-compodoc="block-metadata">
-    <h3>Metadata</h3>
-    <table class="table table-sm table-hover metadata">
-        <tbody>
+            </p>
 
 
 
@@ -160,115 +151,29 @@
 
 
 
-
-
-
-
-
-            <tr>
-                <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-account-details</code></td>
-            </tr>
-
-
-
-
-
-
-            <tr>
-                <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./account-details.html</code></td>
-            </tr>
-
-
-
-            <tr>
-                <td class="col-md-3">styleUrl</td>
-                <td class="col-md-9"><code>./account-details.css</code></td>
-            </tr>
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
-
-
-
-
-
-
-
-
-
-</div>
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
 /**
- * The AccountDetails component is responsible for displaying the details of a specific account within the application. It serves as a placeholder for the account details section, where users can view and manage the information related to their accounts.
+ * The AccountService is a placeholder service that is currently empty. It is decorated with the @Injectable decorator, which allows it to be injected into other components or services in the Angular application. The providedIn property is set to &#x27;root&#x27;, indicating that this service will be available as a singleton throughout the entire application.
  */
-@Component({
-  selector: &#x27;app-account-details&#x27;,
-  imports: [],
-  templateUrl: &#x27;./account-details.html&#x27;,
-  styleUrl: &#x27;./account-details.css&#x27;,
+@Injectable({
+  providedIn: &#x27;root&#x27;,
 })
 
 /**
- * The AccountDetails class defines the component logic for the account details section of the application. Currently, it does not contain any specific functionality or properties, but it serves as a foundation for future development of account-related features and interactions within the application.
+ * The AccountService class is defined as an empty service that can be used for managing account-related functionality in the future. It is currently a placeholder and does not contain any methods or properties. This service can be expanded upon in the future to include logic for handling user accounts, authentication, or other related features as needed.
  */
-export class AccountDetails {
-
+export class AccountService {
+  
 }
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;p&gt;account-details works!&lt;/p&gt;
-</code></pre>
-    </div>
-
-
-    <div class="tab-pane fade " id="tree">
-        <div id="tree-container"></div>
-        <div class="tree-legend">
-            <div class="title">
-                <b>Legend</b>
-            </div>
-            <div>
-                <div class="color htmlelement"></div><span>Html element</span>
-            </div>
-            <div>
-                <div class="color component"></div><span>Component</span>
-            </div>
-            <div>
-                <div class="color directive"></div><span>Html element with directive</span>
-            </div>
-        </div>
-    </div>
-
-    
 </div>
-
-<script src="../js/libs/vis-network.min.js"></script>
-<script src="../js/libs/htmlparser.js"></script>
-<script src="../js/libs/deep-iterator.js"></script>
-<script>
-        var COMPONENT_TEMPLATE = '<div><p>account-details works!</p></div>'
-    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'Authbutton', 'selector': 'app-authbutton'},{'name': 'Authuser', 'selector': 'app-authuser'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'Test', 'selector': 'app-test'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'User', 'selector': 'app-user'},{'name': 'UserDetails', 'selector': 'app-user-details'}];
-    var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'AccountDetails'};
-</script>
-<script src="../js/tree.js"></script>
-
-
-
-
 
 
 
@@ -307,8 +212,8 @@ export class AccountDetails {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'AccountDetails.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'AccountService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

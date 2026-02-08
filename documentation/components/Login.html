@@ -138,6 +138,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The Login component is responsible for displaying the login interface for the application. It serves as a placeholder component that can be expanded upon in the future to include functionality for user authentication and login processes. The component is decorated with the @Component decorator, which defines its selector, template URL, and style URL.</p>
+
+    </p>
 
 
 
@@ -202,12 +209,19 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
 
+/**
+ * The Login component is responsible for displaying the login interface for the application. It serves as a placeholder component that can be expanded upon in the future to include functionality for user authentication and login processes. The component is decorated with the @Component decorator, which defines its selector, template URL, and style URL.
+ */
 @Component({
   selector: &#x27;app-login&#x27;,
   imports: [],
   templateUrl: &#x27;./login.html&#x27;,
   styleUrl: &#x27;./login.css&#x27;,
 })
+
+/**
+ * The Login class defines the component logic for the login interface. Currently, it is an empty class that can be used as a starting point for implementing login functionality in the future. This component can be expanded to include methods for handling user input, validating credentials, and managing authentication state as needed.
+ */
 export class Login {
 
 }
@@ -246,7 +260,7 @@ export class Login {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><p>login works!</p></div>'
-    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'AccountService', 'selector': 'app-account-service'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user-details'}];
+    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'Authbutton', 'selector': 'app-authbutton'},{'name': 'Authuser', 'selector': 'app-authuser'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'Test', 'selector': 'app-test'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'User', 'selector': 'app-user'},{'name': 'UserDetails', 'selector': 'app-user-details'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Login'};
 </script>

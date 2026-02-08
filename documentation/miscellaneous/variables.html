@@ -172,6 +172,12 @@
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The appConfig object is an ApplicationConfig that provides configuration for the Angular application. It includes providers for global error listeners and the router, which is configured with the defined routes for the application.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -197,10 +203,41 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[]</code>
+                        <i>Default value : </i><code>[
+
+    /**
+     * The default route (&#x27;&#x27;) renders the Home component when the user navigates to the root URL of the application.
+     */
+    {
+        path: &#x27;&#x27;,
+        component: Home
+    },
+
+    /**
+     * The &#x27;users&#x27; route renders the Test component when the user navigates to &#x27;/users&#x27;. This route is responsible for displaying a list of users with pagination functionality.
+     */
+    {
+        path: &#x27;users&#x27;,
+        component: Test
+    },
+
+    /**
+     * The &#x27;users/:id&#x27; route renders the UserDetails component when the user navigates to &#x27;/users/:id&#x27;, where &#x27;:id&#x27; is a placeholder for the user ID. This route is responsible for displaying the details of a specific user based on the provided user ID in the URL.
+     */
+    {
+        path: &#x27;users/:id&#x27;,
+        component: UserDetails
+    }
+]</code>
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The routes array defines the routing configuration for the Angular application. It specifies the paths and corresponding components that should be rendered when a user navigates to a specific route. The routes include a default route for the home component, a route for displaying a list of users, and a route for displaying details of a specific user based on the user ID.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>

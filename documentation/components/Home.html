@@ -138,6 +138,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The Home component serves as the main landing page of the application. It includes the Authbutton and Authuser components, which provide authentication functionality and display user information, respectively. The Home component is responsible for rendering the home page template and applying the associated styles.</p>
+
+    </p>
 
 
 
@@ -164,6 +171,13 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/Authbutton.html" target="_self" >Authbutton</a></code>
+                                <code><a href="../components/Authuser.html" target="_self" >Authuser</a></code>
+                </td>
+            </tr>
 
 
 
@@ -201,13 +215,22 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { Authbutton } from &#x27;../authbutton/authbutton&#x27;;
+import { Authuser } from &#x27;../authuser/authuser&#x27;;
 
+/**
+ * The Home component serves as the main landing page of the application. It includes the Authbutton and Authuser components, which provide authentication functionality and display user information, respectively. The Home component is responsible for rendering the home page template and applying the associated styles.
+ */
 @Component({
   selector: &#x27;app-home&#x27;,
-  imports: [],
+  imports: [Authbutton, Authuser],
   templateUrl: &#x27;./home.html&#x27;,
   styleUrl: &#x27;./home.css&#x27;,
 })
+
+/**
+ * The Home class defines the component logic for the home page. It does not contain any specific logic or properties, as its primary purpose is to serve as a container for the Authbutton and Authuser components and to render the home page template.
+ */
 export class Home {
 
 }
@@ -215,8 +238,12 @@ export class Home {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;p&gt;home works!&lt;/p&gt;
-</code></pre>
+        <pre class="line-numbers"><code class="language-html">&lt;h1 style&#x3D;&quot;margin-top: 70px&quot;&gt;
+    This page will contain the typical information
+&lt;/h1&gt;
+
+&lt;app-authbutton&gt;&lt;/app-authbutton&gt;
+&lt;app-authuser&gt;&lt;/app-authuser&gt;</code></pre>
     </div>
 
 
@@ -245,8 +272,8 @@ export class Home {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><p>home works!</p></div>'
-    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'AccountService', 'selector': 'app-account-service'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user-details'}];
+        var COMPONENT_TEMPLATE = '<div><h1 style="margin-top: 70px">    This page will contain the typical information</h1><app-authbutton></app-authbutton><app-authuser></app-authuser></div>'
+    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'Authbutton', 'selector': 'app-authbutton'},{'name': 'Authuser', 'selector': 'app-authuser'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'Test', 'selector': 'app-test'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'User', 'selector': 'app-user'},{'name': 'UserDetails', 'selector': 'app-user-details'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Home'};
 </script>
