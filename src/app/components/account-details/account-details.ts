@@ -24,6 +24,11 @@ export class AccountDetails implements OnInit {
    */
   account: any | null = null;
   /**
+ * List of transactions for the account
+ */
+  transactions: any[] = [];
+  /**
+  /**
    * Error message
    */
   error: string | null = null;
@@ -62,5 +67,15 @@ export class AccountDetails implements OnInit {
         this.cdr.detectChanges();
       }
     });
+  }
+
+  /**
+ * Opens the transaction details page for a specific transaction.
+ * @param transactionId The ID of the transaction to open.
+ * @returns void
+ */
+  openTransaction(transactionId: string) {
+    const accountId = this.route.snapshot.paramMap.get('accountId');
+    this.router.navigate(['/accounts', accountId, 'transactions', transactionId]);
   }
 }

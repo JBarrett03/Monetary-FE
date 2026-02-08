@@ -11,4 +11,16 @@
         Account #: {{ account.accountNumber }}<br />
         Currency: {{ account.currency || 'GBP' }}<br />
     </div>
+
+    @for (transaction of transactions; track transaction.id) {
+    <li class="list-group-item d-flex justify-content-between transaction-item transaction-spacing"
+        (click)="openTransaction(transaction._id)">
+        <div>
+            <strong>{{ transaction.description }}</strong><br />
+        </div>
+        <span [ngClass]="{ 'text-success': transaction.amount > 0, 'text-danger': transaction.amount < 0 }">
+            - {{ transaction.amount | currency: account.currency || 'GBP' }}
+        </span>
+    </li>
+    }
 </div>
