@@ -4,6 +4,11 @@
     }
 
     @if (account) {
+    @if (account.balance > 0) {
+    <p class="text-muted">
+        Account must have a zero balance to be archived
+    </p>
+    }
     Add balance to account <i class="fa fa-plus add-balance-icon" (click)="addBalance()"></i>
     <div class="balance-card">
         <div class="balance-label">Balance</div>
@@ -20,6 +25,12 @@
     }
 
     @if (transactions.length > 0) {
+    <div class="d-flex justify-content-between align-items-center mt-5">
+        <h5>Transactions:</h5>
+        <div class="plus-minus">
+            <i class="fa fa-plus" (click)="addTransaction()"></i>
+        </div>
+    </div>
     <ul class="list-group list-group-flush">
         @for (transaction of transactions; track transaction.id) {
         <li class="list-group-item d-flex justify-content-between transaction-item transaction-spacing"
@@ -36,6 +47,7 @@
     <div class="d-flex justify-content-between align-items-center mt-5">
         <div class="plus-minus">
             <p class="text-muted mt-3">No transactions found for this account. Add a transaction</p>
+            <i class="fa fa-plus" (click)="addTransaction()"></i>
         </div>
     </div>
     }

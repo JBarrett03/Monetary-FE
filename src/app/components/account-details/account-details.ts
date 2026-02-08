@@ -113,4 +113,56 @@ export class AccountDetails implements OnInit {
       }
     });
   }
+
+  /**
+ * Adds a new transaction to the account.
+ * @returns void
+ */
+  addTransaction() {
+    const userId = sessionStorage.getItem('userId');
+    const accountId = sessionStorage.getItem('accountId');
+
+    if (!userId || !accountId) {
+      this.error = 'Invalid user or account';
+      return;
+    }
+    const description = prompt('Description:');
+    const amountInput = prompt('Amount:');
+    const merchant = prompt('Merchant:');
+    const category = prompt('Category:');
+
+    if (!description || !amountInput || !merchant || !category) {
+      return;
+    }
+
+    const amount = Number(amountInput);
+
+    const transaction = {
+      type: amount >= 0 ? 'credit' : 'debit',
+      amount,
+      description,
+      merchant,
+      category
+    };
+
+    this.accountService.addTransaction(userId, accountId, transaction).subscribe({
+      next: () => {
+        this.accountService.getAccount(userId, accountId).subscribe({
+          next: (account) => {
+            this.account = account;
+
+            this.accountService.getAccountTransactions(userId, accountId).subscribe({
+              next: (transactions) => {
+                this.transactions = transactions;
+                this.cdr.detectChanges();
+              }
+            })
+          }
+        })
+      },
+      error: () => {
+        this.error = 'Failed to add transaction';
+      }
+    });
+  }
 }
