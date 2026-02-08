@@ -164,9 +164,19 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
+
+  /**
+   * Providers for the application.
+   */
   providers: [
+    provideHttpClient(),
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes)
+    provideRouter(
+      routes,
+      withRouterConfig({
+        onSameUrlNavigation: &#x27;reload&#x27;
+      })
+    )
   ]
 }</code>
                     </td>
@@ -174,7 +184,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The appConfig object is an ApplicationConfig that provides configuration for the Angular application. It includes providers for global error listeners and the router, which is configured with the defined routes for the application.</p>
+                    <div class="io-description"><p>Application configuration for the Angular app.</p>
 </div>
                 </td>
             </tr>

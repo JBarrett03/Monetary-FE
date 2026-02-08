@@ -142,7 +142,7 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>The Test component is responsible for displaying a list of users with pagination functionality. It retrieves user data from the UserService and allows navigation between pages of users. The component also manages the current page state using session storage to maintain the user&#39;s position in the pagination.</p>
+        <p>The Test component is responsible for displaying a list of all users.</p>
 
     </p>
 
@@ -166,7 +166,6 @@
             <tr>
                 <td class="col-md-3">providers</td>
                 <td class="col-md-9">
-                                <code><a href="../injectables/UserData.html" target="_self" >UserData</a></code>
                                 <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
                 </td>
             </tr>
@@ -225,9 +224,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#page" >page</a>
-                            </li>
-                            <li>
                                 <a href="#user_list" >user_list</a>
                             </li>
                         </ul>
@@ -243,13 +239,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#nextPage" >nextPage</a>
-                            </li>
-                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
-                            </li>
-                            <li>
-                                <a href="#previousPage" >previousPage</a>
                             </li>
                         </ul>
                     </td>
@@ -269,18 +259,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userData: <a href="../injectables/UserData.html" target="_self">UserData</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>)</code>
+<code>constructor(userService: <a href="../injectables/UserService.html" target="_self">UserService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/components/test/test.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/test/test.ts:25</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>The constructor injects the UserData service and UserService to enable data retrieval and management of user-related data.</p>
+                            <div class="io-description"><p>The constructor injects the UserService to enable data retrieval.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -294,24 +284,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                <tr>
-                                                        <td>userData</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/UserData.html" target="_self" >UserData</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>An instance of the UserData service for managing user-related data.</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
                                                 <tr>
                                                         <td>userService</td>
                                                   
@@ -352,45 +324,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="nextPage"></a>
-                    <span class="name">
-                        <span ><b>nextPage</b></span>
-                        <a href="#nextPage"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>nextPage()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="71"
-                                    class="link-to-prism">src/app/components/test/test.ts:71</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>The nextPage method is called when the user clicks the &quot;Next&quot; button. It checks if the current page number is less than the last page number (retrieved from the UserData service), and if so, it increments the page number, updates the session storage with the new page number, and retrieves the list of users for the new page using the UserService.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <span ><b>ngOnInit</b></span>
@@ -407,54 +340,15 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="44"
-                                    class="link-to-prism">src/app/components/test/test.ts:44</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/app/components/test/test.ts:36</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>The ngOnInit lifecycle hook is called when the component is initialized. It retrieves the current page number from session storage (if available) and uses the UserService to fetch the list of users for that page. The retrieved user data is then stored in the user_list array for display in the template.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="previousPage"></a>
-                    <span class="name">
-                        <span ><b>previousPage</b></span>
-                        <a href="#previousPage"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>previousPage()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/app/components/test/test.ts:58</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>The previousPage method is called when the user clicks the &quot;Previous&quot; button. It checks if the current page number is greater than 1, and if so, it decrements the page number, updates the session storage with the new page number, and retrieves the list of users for the new page using the UserService.</p>
+                        <div class="io-description"><p>The ngOnInit lifecycle hook is called when the component is initialized. It retrieves all users from the UserService.</p>
 </div>
 
                         <div class="io-description">
@@ -471,43 +365,6 @@
     <h3 id="inputs">
         Properties
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="page"></a>
-                    <span class="name">
-                        <span ><b>page</b></span>
-                        <a href="#page"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>1</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/components/test/test.ts:32</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>page is a number that represents the current page in the pagination. It is initialized to 1 and can be updated when navigating between pages.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -532,14 +389,13 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/test/test.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/test/test.ts:25</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>user_list is an array that holds the list of users to be displayed. It is initialized as an empty array and will be populated with user data retrieved from the UserService based on the current page number.
-page is a number that represents the current page in the pagination. It is initialized to 1 and can be updated when navigating between pages.</p>
+                    <div class="io-description"><p>user_list is an array that holds the list of users to be displayed.</p>
 </div>
                 </td>
             </tr>
@@ -553,84 +409,49 @@ page is a number that represents the current page in the pagination. It is initi
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
-import { UserData } from &#x27;../../services/user-data&#x27;;
 import { RouterModule } from &#x27;@angular/router&#x27;;
 import { UserService } from &#x27;../../services/user-service&#x27;;
 
 /**
- * The Test component is responsible for displaying a list of users with pagination functionality. It retrieves user data from the UserService and allows navigation between pages of users. The component also manages the current page state using session storage to maintain the user&#x27;s position in the pagination.
+ * The Test component is responsible for displaying a list of all users.
  */
 @Component({
   standalone: true,
   selector: &#x27;app-test&#x27;,
-  providers: [UserData, UserService],
+  providers: [UserService],
   imports: [RouterModule],
   templateUrl: &#x27;./test.html&#x27;,
   styleUrl: &#x27;./test.css&#x27;,
 })
 
 /**
- * The Test class defines the component logic for displaying a list of users with pagination. It initializes an empty user list and a page number, retrieves user data from the UserService when the component is initialized, and provides methods for navigating to the previous and next pages of users.
+ * The Test class defines the component logic for displaying a list of users. It retrieves all user data from the UserService when the component is initialized.
  */
 export class Test {
 
   /**
-   * user_list is an array that holds the list of users to be displayed. It is initialized as an empty array and will be populated with user data retrieved from the UserService based on the current page number.
-   * page is a number that represents the current page in the pagination. It is initialized to 1 and can be updated when navigating between pages.
+   * user_list is an array that holds the list of users to be displayed.
    */
   user_list: any &#x3D; [];
 
   /**
-   * page is a number that represents the current page in the pagination. It is initialized to 1 and can be updated when navigating between pages.
-   */
-  page: number &#x3D; 1;
-
-  /**
-   * The constructor injects the UserData service and UserService to enable data retrieval and management of user-related data.
-   * @param userData - An instance of the UserData service for managing user-related data.
+   * The constructor injects the UserService to enable data retrieval.
    * @param userService - An instance of the UserService for making API calls to retrieve user data.
    */
-  constructor(protected userData: UserData, private userService: UserService) { }
+  constructor(private userService: UserService) { }
 
   /**
-   * The ngOnInit lifecycle hook is called when the component is initialized. It retrieves the current page number from session storage (if available) and uses the UserService to fetch the list of users for that page. The retrieved user data is then stored in the user_list array for display in the template.
+   * The ngOnInit lifecycle hook is called when the component is initialized. It retrieves all users from the UserService.
    */
   ngOnInit() {
-    if (sessionStorage[&#x27;page&#x27;]) {
-      this.page &#x3D; Number(sessionStorage[&#x27;page&#x27;]);
-    }
-    this.userService.getUsers(this.page).subscribe(
+    this.userService.getUsers().subscribe(
       (response) &#x3D;&gt; {
         this.user_list &#x3D; response;
       }
     )
   }
 
-  /**
-   * The previousPage method is called when the user clicks the &quot;Previous&quot; button. It checks if the current page number is greater than 1, and if so, it decrements the page number, updates the session storage with the new page number, and retrieves the list of users for the new page using the UserService.
-   */
-  previousPage() {
-    if (this.page &gt; 1) {
-      this.page &#x3D; this.page - 1;
-      sessionStorage[&#x27;page&#x27;] &#x3D; this.page;
-      this.userService.getUsers(this.page).subscribe((response: any) &#x3D;&gt;{
-        this.user_list &#x3D; response;
-      })
-    }
-  }
 
-  /**
-   * The nextPage method is called when the user clicks the &quot;Next&quot; button. It checks if the current page number is less than the last page number (retrieved from the UserData service), and if so, it increments the page number, updates the session storage with the new page number, and retrieves the list of users for the new page using the UserService.
-   */
-  nextPage() {
-    if (this.page &lt; this.userData.getLastPageNumber()) {
-      this.page &#x3D; this.page + 1;
-      sessionStorage[&#x27;page&#x27;] &#x3D; this.page;
-      this.userService.getUsers(this.page).subscribe((response: any) &#x3D;&gt;{
-        this.user_list &#x3D; response;
-      })
-    }
-  }
 }</code></pre>
     </div>
 
@@ -653,17 +474,6 @@ export class Test {
             }
         &lt;/div&gt; &lt;!-- col --&gt;
     &lt;/div&gt; &lt;!-- row --&gt;
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-        &lt;div class&#x3D;&quot;col-sm-4&quot;&gt;
-            &lt;button class&#x3D;&quot;btn btn-primary&quot; (click)&#x3D;&quot;previousPage()&quot;&gt;Previous&lt;/button&gt;
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;col-sm-4 text-center align-self-center&quot;&gt;
-            Showing page {{ this.page }} of {{ this.userData.getLastPageNumber() }}
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;col-sm-4 text-end&quot;&gt;
-            &lt;button class&#x3D;&quot;btn btn-primary&quot; (click)&#x3D;&quot;nextPage()&quot;&gt;Next&lt;/button&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
 &lt;/div&gt; &lt;!-- container --&gt;</code></pre>
     </div>
 
@@ -693,7 +503,7 @@ export class Test {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container">    <div class="row">        <div class="col-sm-12">            @for(user of user_list; track user.firstName) {            <div class="card text-white bg-primary mb-3" style="cursor: pointer" [routerLink]="[\'/users\', user._id]">                <div class="card-header">                    {{ user.firstName }}                </div>                <div class="card-body">                    This user is based in {{ user.address }}                </div>                <div class="card-footer">                    DOB: {{ user.DOB }}                </div>            </div>            }        </div> <!-- col -->    </div> <!-- row -->    <div class="row">        <div class="col-sm-4">            <button class="btn btn-primary" (click)="previousPage()">Previous</button>        </div>        <div class="col-sm-4 text-center align-self-center">            Showing page {{ this.page }} of {{ this.userData.getLastPageNumber() }}        </div>        <div class="col-sm-4 text-end">            <button class="btn btn-primary" (click)="nextPage()">Next</button>        </div>    </div></div> <!-- container --></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container">    <div class="row">        <div class="col-sm-12">            @for(user of user_list; track user.firstName) {            <div class="card text-white bg-primary mb-3" style="cursor: pointer" [routerLink]="[\'/users\', user._id]">                <div class="card-header">                    {{ user.firstName }}                </div>                <div class="card-body">                    This user is based in {{ user.address }}                </div>                <div class="card-footer">                    DOB: {{ user.DOB }}                </div>            </div>            }        </div> <!-- col -->    </div> <!-- row --></div> <!-- container --></div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'Authbutton', 'selector': 'app-authbutton'},{'name': 'Authuser', 'selector': 'app-authuser'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'Test', 'selector': 'app-test'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'User', 'selector': 'app-user'},{'name': 'UserDetails', 'selector': 'app-user-details'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Test'};

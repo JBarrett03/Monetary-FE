@@ -224,10 +224,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#notFound$" >notFound$</a>
+                                <a href="#error" >error</a>
                             </li>
                             <li>
-                                <a href="#user$" >user$</a>
+                                <a href="#user_list" >user_list</a>
                             </li>
                         </ul>
                     </td>
@@ -241,6 +241,9 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                <a href="#editUser" >editUser</a>
+                            </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
@@ -262,12 +265,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>)</code>
+<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/user-details/user-details.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/user-details/user-details.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -323,6 +326,24 @@
 
                                                         </td>
                                                 </tr>
+                                                <tr>
+                                                        <td>cdr</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>ChangeDetectorRef for manually triggering change detection.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -345,6 +366,45 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="editUser"></a>
+                    <span class="name">
+                        <span ><b>editUser</b></span>
+                        <a href="#editUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editUser()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="66"
+                                    class="link-to-prism">src/app/components/user-details/user-details.ts:66</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Edits the current user&#39;s details.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <span ><b>ngOnInit</b></span>
@@ -361,15 +421,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="45"
-                                    class="link-to-prism">src/app/components/user-details/user-details.ts:45</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/app/components/user-details/user-details.ts:43</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>The ngOnInit lifecycle hook is called when the component is initialized. It retrieves the user ID from the route parameters and uses the UserService to fetch the user data. The retrieved user data is then stored in the user$ Observable for display in the template. If an error occurs during data retrieval, the user$ Observable will emit null, indicating that the user was not found.</p>
+                        <div class="io-description"><p>Angular lifecycle hook that initializes the component.
+Retrieves user data based on the user ID from the route parameters.</p>
 </div>
 
                         <div class="io-description">
@@ -390,28 +451,33 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="notFound$"></a>
+                    <a name="error"></a>
                     <span class="name">
-                        <span ><b>notFound$</b></span>
-                        <a href="#notFound$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>error</b></span>
+                        <a href="#error"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+                        <i>Type : </i>    <code>string | null</code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/user-details/user-details.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/user-details/user-details.ts:29</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>notFound$ is an Observable that indicates whether the user was not found. It is derived from the user$ Observable and emits true if the user data is null, indicating that the user was not found.</p>
+                    <div class="io-description"><p>Error message</p>
 </div>
                 </td>
             </tr>
@@ -422,29 +488,33 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="user$"></a>
+                    <a name="user_list"></a>
                     <span class="name">
-                        <span ><b>user$</b></span>
-                        <a href="#user$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>user_list</b></span>
+                        <a href="#user_list"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>Observable&lt;any&gt;</code>
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/user-details/user-details.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/user-details/user-details.ts:25</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>user$ is an Observable that holds the details of the user to be displayed. It is initialized by retrieving the user data from the UserService based on the user ID from the route parameters.
-notFound$ is an Observable that indicates whether the user was not found. It is derived from the user$ Observable and emits true if the user data is null, indicating that the user was not found.</p>
+                    <div class="io-description"><p>Current user data</p>
 </div>
                 </td>
             </tr>
@@ -457,12 +527,10 @@ notFound$ is an Observable that indicates whether the user was not found. It is 
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ChangeDetectorRef, OnInit } from &#x27;@angular/core&#x27;;
 import { ActivatedRoute } from &#x27;@angular/router&#x27;;
 import { UserService } from &#x27;../../services/user-service&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
-import { Observable, catchError, map, switchMap } from &#x27;rxjs&#x27;;
-import { of } from &#x27;rxjs&#x27;;
 
 /**
  * The UserDetails component is responsible for displaying the details of a specific user based on the user ID provided in the route parameters. It retrieves the user data from the UserService and handles the display logic accordingly.
@@ -481,70 +549,117 @@ import { of } from &#x27;rxjs&#x27;;
 export class UserDetails implements OnInit {
 
   /**
-   * user$ is an Observable that holds the details of the user to be displayed. It is initialized by retrieving the user data from the UserService based on the user ID from the route parameters.
-   * notFound$ is an Observable that indicates whether the user was not found. It is derived from the user$ Observable and emits true if the user data is null, indicating that the user was not found.
+   * Current user data
    */
-  user$!: Observable&lt;any&gt;;
-
+  user_list: any &#x3D; [];
   /**
-   * notFound$ is an Observable that indicates whether the user was not found. It is derived from the user$ Observable and emits true if the user data is null, indicating that the user was not found.
+   * Error message
    */
-  notFound$!: Observable&lt;boolean&gt;;
+  error: string | null &#x3D; null;
 
   /**
    * The constructor injects the ActivatedRoute and UserService to enable access to route parameters and retrieval of user data.
    * @param route - An instance of ActivatedRoute for accessing route parameters.
    * @param userService - An instance of the UserService for making API calls to retrieve user data.
+   * @param cdr - ChangeDetectorRef for manually triggering change detection.
    */
-  constructor(private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private cdr: ChangeDetectorRef) { }
 
   /**
-   * The ngOnInit lifecycle hook is called when the component is initialized. It retrieves the user ID from the route parameters and uses the UserService to fetch the user data. The retrieved user data is then stored in the user$ Observable for display in the template. If an error occurs during data retrieval, the user$ Observable will emit null, indicating that the user was not found.
+   * Angular lifecycle hook that initializes the component.
+   * Retrieves user data based on the user ID from the route parameters.
    */
   ngOnInit() {
-    this.user$ &#x3D; this.route.params.pipe(
-      switchMap((params) &#x3D;&gt; {
-        const userId &#x3D; params[&#x27;id&#x27;];
-        return this.userService.getUser(userId).pipe(
-          catchError((error) &#x3D;&gt; {
-            return of(null);
-          })
-        );
-      })
-    );
+    const userId &#x3D; this.route.snapshot.paramMap.get(&#x27;userId&#x27;);
 
-    this.notFound$ &#x3D; this.user$.pipe(
-      map((user) &#x3D;&gt; !user)
-    );
+    if (!userId) {
+      this.error &#x3D; &#x27;Invalid user ID&#x27;;
+      return;
+    }
+
+    this.userService.getUser(userId).subscribe({
+      next: (user) &#x3D;&gt; {
+        this.user_list &#x3D; [user];
+        this.cdr.detectChanges();
+      },
+      error: () &#x3D;&gt; {
+        this.error &#x3D; &#x27;Failed to load user details&#x27;;
+        this.cdr.detectChanges();
+      }
+    })
+  }
+
+    /**
+   * Edits the current user&#x27;s details.
+   */
+  editUser() {
+    const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
+
+    if (!userId) {
+      return;
+    }
+
+    const user &#x3D; this.user_list[0];
+
+    const firstName &#x3D; prompt(&#x27;First Name:&#x27;, user.firstName);
+    const lastName &#x3D; prompt(&#x27;Last Name:&#x27;, user.lastName);
+    const email &#x3D; prompt(&#x27;Email:&#x27;, user.email);
+    const phone &#x3D; prompt(&#x27;Phone:&#x27;, user.phone);
+    const address &#x3D; prompt(&#x27;Address:&#x27;, user.address);
+
+    if (firstName &#x3D;&#x3D;&#x3D; null || lastName &#x3D;&#x3D;&#x3D; null || email &#x3D;&#x3D;&#x3D; null || phone &#x3D;&#x3D;&#x3D; null || address &#x3D;&#x3D;&#x3D; null) {
+      return;
+    }
+
+    const updatedUser &#x3D; {
+      firstName,
+      lastName,
+      email,
+      phone,
+      address
+    };
+
+    this.userService.editUser(userId, updatedUser).subscribe({
+      next: () &#x3D;&gt; {
+        this.userService.getUser(userId).subscribe({
+          next: (updated) &#x3D;&gt; {
+            this.user_list &#x3D; [updated];
+            this.cdr.detectChanges();
+          }
+        });
+      },
+      error: () &#x3D;&gt; {
+        this.error &#x3D; &#x27;Failed to update user&#x27;;
+        this.cdr.detectChanges();
+      }
+    })
   }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container mt-5&quot;&gt;
-    @if (notFound$ | async) {
-    &lt;div class&#x3D;&quot;alert alert-danger&quot;&gt;
-        User not found.
-    &lt;/div&gt;
-    } @else {
-    @let user &#x3D; (user$ | async);
-    @if (user) {
-    &lt;div class&#x3D;&quot;card&quot;&gt;
-        &lt;div class&#x3D;&quot;card-header&quot;&gt;
-            &lt;h2&gt;{{ user.userName }}&lt;/h2&gt;
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;card-body&quot;&gt;
-            &lt;p&gt;&lt;strong&gt;Email:&lt;/strong&gt; {{ user.username }}&lt;/p&gt;
-            &lt;p&gt;&lt;strong&gt;Phone:&lt;/strong&gt; {{ user.phone }}&lt;/p&gt;
-            &lt;p&gt;&lt;strong&gt;Address:&lt;/strong&gt; {{ user.address }}&lt;/p&gt;
-            &lt;p&gt;&lt;strong&gt;Date of Birth:&lt;/strong&gt; {{ user.DOB }}&lt;/p&gt;
-            &lt;p&gt;&lt;strong&gt;Status:&lt;/strong&gt; {{ user.status }}&lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    }
-    }
-&lt;/div&gt;</code></pre>
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container container-top-margin&quot;&gt;
+    &lt;div class&#x3D;&quot;row&quot;&gt;
+        &lt;div class&#x3D;&quot;col-sm-12&quot;&gt;
+            @for(user of user_list; track user.firstName) {
+            &lt;div class&#x3D;&quot;card text-dark mb-3&quot;&gt;
+                &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                    {{user.firstName}} {{user.lastName}}&lt;br&gt;
+                    Email: {{user.email}} &lt;br&gt;
+                    Password: {{user.password}} &lt;br&gt;
+                    Phone: {{user.phone}} &lt;br&gt;
+                    Address: {{user.address}} &lt;br&gt;
+                    DOB: {{user.DOB}}
+                &lt;/div&gt;
+            &lt;/div&gt;
+            }
+            &lt;button class&#x3D;&quot;btn btn-primary&quot; (click)&#x3D;&quot;editUser()&quot;&gt;
+                Edit Details
+            &lt;/button&gt;
+        &lt;/div&gt; &lt;!-- col --&gt;
+    &lt;/div&gt; &lt;!-- row --&gt;
+&lt;/div&gt; &lt;!-- container --&gt;</code></pre>
     </div>
 
 
@@ -573,7 +688,7 @@ export class UserDetails implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container mt-5">    @if (notFound$ | async) {    <div class="alert alert-danger">        User not found.    </div>    } @else {    @let user = (user$ | async);    @if (user) {    <div class="card">        <div class="card-header">            <h2>{{ user.userName }}</h2>        </div>        <div class="card-body">            <p><strong>Email:</strong> {{ user.username }}</p>            <p><strong>Phone:</strong> {{ user.phone }}</p>            <p><strong>Address:</strong> {{ user.address }}</p>            <p><strong>Date of Birth:</strong> {{ user.DOB }}</p>            <p><strong>Status:</strong> {{ user.status }}</p>        </div>    </div>    }    }</div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12">            @for(user of user_list; track user.firstName) {            <div class="card text-dark mb-3">                <div class="card-body">                    {{user.firstName}} {{user.lastName}}<br>                    Email: {{user.email}} <br>                    Password: {{user.password}} <br>                    Phone: {{user.phone}} <br>                    Address: {{user.address}} <br>                    DOB: {{user.DOB}}                </div>            </div>            }            <button class="btn btn-primary" (click)="editUser()">                Edit Details            </button>        </div> <!-- col -->    </div> <!-- row --></div> <!-- container --></div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'Authbutton', 'selector': 'app-authbutton'},{'name': 'Authuser', 'selector': 'app-authuser'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'Test', 'selector': 'app-test'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'User', 'selector': 'app-user'},{'name': 'UserDetails', 'selector': 'app-user-details'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'UserDetails'};

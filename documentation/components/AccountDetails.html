@@ -142,11 +142,17 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>The AccountDetails component is responsible for displaying the details of a specific account within the application. It serves as a placeholder for the account details section, where users can view and manage the information related to their accounts.</p>
+        <p>AccountDetails component</p>
 
     </p>
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -170,7 +176,18 @@
                 <td class="col-md-9"><code>app-account-details</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                <code><a href="https://angular.io/api/router/RouterModule" target="_blank" >RouterModule</a></code>
+                </td>
+            </tr>
 
 
 
@@ -195,42 +212,522 @@
     </table>
 </section>
 
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#account" >account</a>
+                            </li>
+                            <li>
+                                <a href="#error" >error</a>
+                            </li>
+                            <li>
+                                <a href="#transactions" >transactions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#openTransaction" >openTransaction</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
 
 
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, accountService: <a href="../injectables/AccountService.html" target="_self">AccountService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/account-details/account-details.ts:34</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of AccountDetails component.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>ActivatedRoute for accessing route parameters.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Router for navigation.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>accountService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AccountService.html" target="_self" >AccountService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Service for account operations.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>cdr</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Change detector reference.</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Initializes the component and loads the account details and transactions.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>void</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openTransaction"></a>
+                    <span class="name">
+                        <span ><b>openTransaction</b></span>
+                        <a href="#openTransaction"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openTransaction(transactionId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Opens the transaction details page for a specific transaction.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>transactionId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The ID of the transaction to open.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>void</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="account"></a>
+                    <span class="name">
+                        <span ><b>account</b></span>
+                        <a href="#account"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/account-details/account-details.ts:25</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Account data</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="error"></a>
+                    <span class="name">
+                        <span ><b>error</b></span>
+                        <a href="#error"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/account-details/account-details.ts:34</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>/**
+Error message</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="transactions"></a>
+                    <span class="name">
+                        <span ><b>transactions</b></span>
+                        <a href="#transactions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/account-details/account-details.ts:29</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of transactions for the account</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ChangeDetectorRef } from &#x27;@angular/core&#x27;;
+import { ActivatedRoute, Router, RouterModule } from &#x27;@angular/router&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { AccountService } from &#x27;../../services/account-service&#x27;;
 
 /**
- * The AccountDetails component is responsible for displaying the details of a specific account within the application. It serves as a placeholder for the account details section, where users can view and manage the information related to their accounts.
+ * AccountDetails component
  */
 @Component({
+  standalone: true,
   selector: &#x27;app-account-details&#x27;,
-  imports: [],
+  imports: [CommonModule, RouterModule],
   templateUrl: &#x27;./account-details.html&#x27;,
   styleUrl: &#x27;./account-details.css&#x27;,
 })
 
 /**
- * The AccountDetails class defines the component logic for the account details section of the application. Currently, it does not contain any specific functionality or properties, but it serves as a foundation for future development of account-related features and interactions within the application.
+ * AccountDetails class
  */
-export class AccountDetails {
+export class AccountDetails implements OnInit {
 
-}
-</code></pre>
+  /**
+   * Account data
+   */
+  account: any | null &#x3D; null;
+  /**
+ * List of transactions for the account
+ */
+  transactions: any[] &#x3D; [];
+  /**
+  /**
+   * Error message
+   */
+  error: string | null &#x3D; null;
+
+  /**
+   * Creates an instance of AccountDetails component.
+   * @param route ActivatedRoute for accessing route parameters.
+   * @param router Router for navigation.
+   * @param accountService Service for account operations.
+   * @param cdr Change detector reference.
+   */
+  constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef) { }
+
+  /**
+   * Initializes the component and loads the account details and transactions.
+   * @returns void
+   */
+  ngOnInit() {
+    const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
+    const accountId &#x3D; this.route.snapshot.paramMap.get(&#x27;accountId&#x27;);
+
+    if (!userId || !accountId) {
+      this.error &#x3D; &#x27;Invalid user or account ID&#x27;;
+      return;
+    }
+
+    sessionStorage.setItem(&#x27;accountId&#x27;, accountId);
+
+    this.accountService.getAccount(userId, accountId).subscribe({
+      next: (account) &#x3D;&gt; {
+        this.account &#x3D; account;
+        this.cdr.detectChanges();
+      },
+      error: () &#x3D;&gt; {
+        this.error &#x3D; &#x27;Account not found&#x27;;
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+  /**
+ * Opens the transaction details page for a specific transaction.
+ * @param transactionId The ID of the transaction to open.
+ * @returns void
+ */
+  openTransaction(transactionId: string) {
+    const accountId &#x3D; this.route.snapshot.paramMap.get(&#x27;accountId&#x27;);
+    this.router.navigate([&#x27;/accounts&#x27;, accountId, &#x27;transactions&#x27;, transactionId]);
+  }
+}</code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;p&gt;account-details works!&lt;/p&gt;
-</code></pre>
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container container-top-margin&quot;&gt;
+    &lt;div class&#x3D;&quot;balance-card&quot;&gt;
+        &lt;div class&#x3D;&quot;balance-label&quot;&gt;Balance&lt;/div&gt;
+        &lt;div class&#x3D;&quot;balance-amount&quot;&gt;
+            {{ account?.balance | currency: &#x27;GBP&#x27; }}
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;amount-card&quot;&gt;
+        &lt;div class&#x3D;&quot;amount-label&quot;&gt;Amount:&lt;/div&gt;
+        Account #: {{ account.accountNumber }}&lt;br /&gt;
+        Currency: {{ account.currency || &#x27;GBP&#x27; }}&lt;br /&gt;
+    &lt;/div&gt;
+
+    @for (transaction of transactions; track transaction.id) {
+    &lt;li class&#x3D;&quot;list-group-item d-flex justify-content-between transaction-item transaction-spacing&quot;
+        (click)&#x3D;&quot;openTransaction(transaction._id)&quot;&gt;
+        &lt;div&gt;
+            &lt;strong&gt;{{ transaction.description }}&lt;/strong&gt;&lt;br /&gt;
+        &lt;/div&gt;
+        &lt;span [ngClass]&#x3D;&quot;{ &#x27;text-success&#x27;: transaction.amount &gt; 0, &#x27;text-danger&#x27;: transaction.amount &lt; 0 }&quot;&gt;
+            - {{ transaction.amount | currency: account.currency || &#x27;GBP&#x27; }}
+        &lt;/span&gt;
+    &lt;/li&gt;
+    }
+&lt;/div&gt;</code></pre>
     </div>
 
 
@@ -259,7 +756,7 @@ export class AccountDetails {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><p>account-details works!</p></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="balance-card">        <div class="balance-label">Balance</div>        <div class="balance-amount">            {{ account?.balance | currency: \'GBP\' }}        </div>    </div>    <div class="amount-card">        <div class="amount-label">Amount:</div>        Account #: {{ account.accountNumber }}<br />        Currency: {{ account.currency || \'GBP\' }}<br />    </div>    @for (transaction of transactions; track transaction.id) {    <li class="list-group-item d-flex justify-content-between transaction-item transaction-spacing"        (click)="openTransaction(transaction._id)">        <div>            <strong>{{ transaction.description }}</strong><br />        </div>        <span [ngClass]="{ \'text-success\': transaction.amount > 0, \'text-danger\': transaction.amount < 0 }">            - {{ transaction.amount | currency: account.currency || \'GBP\' }}        </span>    </li>    }</div></div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'Authbutton', 'selector': 'app-authbutton'},{'name': 'Authuser', 'selector': 'app-authuser'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'Test', 'selector': 'app-test'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'User', 'selector': 'app-user'},{'name': 'UserDetails', 'selector': 'app-user-details'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AccountDetails'};

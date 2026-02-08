@@ -1,1 +1,19 @@
-<p>accounts works!</p>
+<div class="container container-top-margin">
+    <div class="row">
+        <div class="col-sm-12">
+
+            @for (account of accounts_list; track account._id) {
+            <div class="card text-dark mb-3 clickable-card" [routerLink]="['/accounts', account._id]">
+                <div class="card-header">
+                    {{ account.accountType | titlecase }} account
+                </div>
+                <div class="card-body">
+                    Account #: {{ account.accountNumber }}<br />
+                    Currency: {{ account.currency || 'GBP' }}<br />
+                    Balance: {{ account.availableBalance | currency: 'GBP' }}
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
