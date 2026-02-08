@@ -6,18 +6,33 @@
     </div>
 
     <div class="navbar-center">
+        <ul class="navbar-nav justify-content-center" *ngIf="isLoggedIn">
             <li class="nav-item home-item">
+                <a class="nav-link home-link" [routerLink]="['/']" *ngIf="isLoggedIn" aria-label="Home">
                     <i class="fa fa-home"></i>
                     <span>Home</span>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/payments']">Payments</a><!-- This is where users will be able to send money to their various accounts -->
+                <a class="nav-link" [routerLink]="['/payments']">Payments</a>
+                <!-- This is where users will be able to send money to their various accounts -->
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/spending']">Spending</a> <!-- This is where the visualisation of data will be displayed. Also where the saving goals will be visible -->
+                <a class="nav-link" [routerLink]="['/spending']">Spending</a>
+                <!-- This is where the visualisation of data will be displayed. Also where the saving goals will be visible -->
             </li>
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/accounts']">Accounts</a>
             </li>
+        </ul>
+    </div>
+
+    <div class="navbar-right d-flex align-items-center">
+        <a class="nav-link" routerLink="/login" *ngIf="!isLoggedIn">
+            Login
+        </a>
+        <a class="nav-link" [routerLink]="['/create-account']" *ngIf="!isLoggedIn">
+            Sign Up
+        </a>
     </div>
 </div>

@@ -25,13 +25,21 @@ export class Navigation {
   /**
    * Creates an instance of Navigation.
    */
-  constructor() {}
+  constructor() { }
 
   /**
    * Initializes the component.
    */
   ngOnInit() {
     this.userId = sessionStorage.getItem('userId');
+  }
+
+  /**
+ * Checks if the user is logged in.
+ * @returns True if the user is logged in, false otherwise.
+ */
+  get isLoggedIn(): boolean {
+    return !!sessionStorage.getItem('userId');
   }
 
 }
