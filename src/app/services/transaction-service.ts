@@ -1,15 +1,40 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 /**
- * The TransactionService is a service class that is responsible for managing transaction-related data and providing methods to retrieve and manipulate transaction information. It is decorated with the @Injectable decorator, which allows it to be injected into other components or services within the Angular application. The service can be used to handle various operations related to transactions, such as fetching transaction data from an API, processing transactions, or performing any other transaction-related logic.
+ * Service for transaction-related operations.
  */
 @Injectable({
   providedIn: 'root',
 })
 
 /**
- * The TransactionService class defines the service logic for managing transaction-related data. It can include methods for retrieving transaction information, processing transactions, and any other operations related to transactions. The service is designed to be injected into other components or services within the Angular application, allowing for centralized management of transaction-related functionality.
+ * Class representing the TransactionService.
  */
 export class TransactionService {
+
+  /**
+   * Base URL for transaction operations.
+   */
+  private baseUrl = 'http://localhost:5000/api/v1.0';
+
+  /**
+   * Creates an instance of TransactionService.
+   * @param http HttpClient for making HTTP requests.
+   */
+  constructor(private http: HttpClient) {}
+
+  /**
+   * Fetch a specific transaction for a user's account from the API.
+   * @param userId The ID of the user to retrieve the transaction for
+   * @param accountId The ID of the account to retrieve the transaction for
+   * @param transactionId The ID of the transaction to retrieve
+   * @returns An observable containing the transaction data
+   */
+  getTransaction(userId: string, accountId: string, transactionId: string): Observable<any> {
+    const url = `${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions/${transactionId}`;
+    return this.http.get<any>(url);
+  }
   
 }
