@@ -1,6 +1,9 @@
 <div class="container container-top-margin">
     <div class="row">
         <div class="col-sm-12">
+            @if (accounts_list.length === 0) {
+            <p>No accounts found</p>
+            }
 
             <i class="fa fa-plus" (click)="addAccount()"></i>
 

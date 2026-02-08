@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 
 /**
- * The Accounts component is responsible for displaying the account-related information and functionality within the application. It serves as a placeholder for the accounts section of the application, where users can view and manage their account details.
+ * Accounts component
  */
 @Component({
+  standalone: true,
   selector: 'app-accounts',
   imports: [CommonModule, RouterModule],
   templateUrl: './accounts.html',
@@ -14,7 +15,7 @@ import { RouterModule, Router } from '@angular/router';
 })
 
 /**
- * The Accounts class defines the component logic for the accounts section of the application. Currently, it does not contain any specific functionality or properties, but it serves as a foundation for future development of account-related features and interactions within the application.
+ * Accounts component
  */
 export class Accounts implements OnInit {
 
@@ -24,17 +25,22 @@ export class Accounts implements OnInit {
   accounts_list: any[] = [];
 
   /**
-   * The constructor injects the AccountService for managing account-related operations, ChangeDetectorRef for manually triggering change detection, and Router for navigation purposes. These dependencies are essential for implementing the functionality of the accounts section and ensuring that the component can interact with the account data and navigate to other parts of the application as needed.
-   * @param accountService - An instance of the AccountService for managing account-related operations.
-   * @param cdr - ChangeDetectorRef for manually triggering change detection.
-   * @param router - Router for navigation purposes.
+   * Menu open state
+   */
+  menuOpen = false;
+
+  /**
+   * Creates an instance of Accounts component.
+   * @param accountService Service for account operations.
+   * @param cdr Change detector reference.
+   * @param router Router for navigation.
    */
   constructor(private accountService: AccountService, private cdr: ChangeDetectorRef, private router: Router) { }
 
   /**
- * Initializes the component and loads the list of accounts for the user.
- * @returns void
- */
+   * Initializes the component and loads the list of accounts for the user.
+   * @returns void
+   */
   ngOnInit() {
     const userId = sessionStorage.getItem('userId');
 
@@ -67,7 +73,7 @@ export class Accounts implements OnInit {
       return;
     }
 
-    const accountType = prompt('Account type (e.g. Current, Savings):');
+    const accountType = prompt('Account tpe (e.g. Current, Savings):');
     const currency = prompt('Currency (e.g. GBP, USD):');
 
     if (!accountType || !currency) {
@@ -94,6 +100,10 @@ export class Accounts implements OnInit {
     });
   }
 
+  /**
+   * Toggles the menu open state and navigates to manage-accounts.
+   * @returns void
+   */
   toggleMenu() {
     this.router.navigate(['/manage-accounts']);
   }
