@@ -2,6 +2,8 @@
     <div class="row">
         <div class="col-sm-12">
 
+            <i class="fa fa-plus" (click)="addAccount()"></i>
+
             @for (account of accounts_list; track account._id) {
             <div class="card text-dark mb-3 clickable-card" [routerLink]="['/accounts', account._id]">
                 <div class="card-header">

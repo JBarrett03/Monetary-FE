@@ -5,3 +5,7 @@
 .clickable-card {
   cursor: pointer;
 }
+
+.fa-plus {
+  cursor: pointer;
+}

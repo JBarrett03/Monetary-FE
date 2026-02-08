@@ -54,4 +54,43 @@ export class Accounts implements OnInit {
     });
   }
 
+  /**
+   * Opens the account details page for a specific account.
+   * @param accountId The ID of the account to open.
+   * @returns void
+   */
+  addAccount() {
+    const userId = sessionStorage.getItem('userId');
+
+    if (!userId) {
+      console.error('No userId found in sessionStorage');
+      return;
+    }
+
+    const accountType = prompt('Account type (e.g. Current, Savings):');
+    const currency = prompt('Currency (e.g. GBP, USD):');
+
+    if (!accountType || !currency) {
+      return;
+    }
+
+    const account = {
+      accountType,
+      currency,
+    };
+
+    this.accountService.addAccount(userId, account).subscribe({
+      next: () => {
+        this.accountService.getAccounts(userId).subscribe({
+          next: (accounts) => {
+            this.accounts_list = accounts;
+            this.cdr.detectChanges();
+          },
+        });
+      },
+      error: (err) => {
+        console.error('Failed to add account', err);
+      }
+    });
+  }
 }
