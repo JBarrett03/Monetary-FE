@@ -11,7 +11,6 @@
     </div>
 
     @if (showingArchived) {
-    @let archived_list = (archived_list$ | async) || [];
     @if (archived_list.length === 0) {
     <p>No archived accounts found</p>
     } @else {
