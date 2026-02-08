@@ -16,4 +16,4 @@ bootstrapApplication(App, {
     provideHttpClient(),
     appConfig.providers
   ]
-}).catch((err) => console.error(err));
+}).catch(() => {});

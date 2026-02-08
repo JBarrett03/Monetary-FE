@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserData } from '../../services/user-data';
+import { UserService } from '../../services/user-service';
 import { CommonModule } from '@angular/common';
+import { Observable, catchError, map, switchMap } from 'rxjs';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-user-details',
@@ -11,24 +13,28 @@ import { CommonModule } from '@angular/common';
   styleUrl: './user-details.css',
 })
 export class UserDetails implements OnInit {
-  user: any;
-  notFound: boolean = false;
+  user$!: Observable<any>;
+  notFound$!: Observable<boolean>;
 
   constructor(
     private route: ActivatedRoute,
-    private userData: UserData
+    private userService: UserService
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe((params) => {
-      const userId = params['id'];
-      const users = this.userData.getUser(userId);
-      if (users && users.length > 0) {
-        this.user = users[0];
-        this.notFound = false;
-      } else {
-        this.notFound = true;
-      }
-    });
+    this.user$ = this.route.params.pipe(
+      switchMap((params) => {
+        const userId = params['id'];
+        return this.userService.getUser(userId).pipe(
+          catchError((error) => {
+            return of(null);
+          })
+        );
+      })
+    );
+
+    this.notFound$ = this.user$.pipe(
+      map((user) => !user)
+    );
   }
 }
