@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { Authbutton } from '../authbutton/authbutton';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [Authbutton],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
