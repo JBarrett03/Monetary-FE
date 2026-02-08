@@ -1,18 +1,91 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../../services/user-service';
 
 /**
- * The CreateAccount component is responsible for providing a user interface for creating a new account within the application. It serves as a placeholder for the account creation functionality, where users can input their details and submit the form to create a new account.
+ * Component for creating a new user account.
  */
 @Component({
+  standalone: true,
   selector: 'app-create-account',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './create-account.html',
   styleUrl: './create-account.css',
 })
 
 /**
- * The CreateAccount class defines the component logic for the account creation section of the application. Currently, it does not contain any specific functionality or properties, but it serves as a foundation for future development of account creation features and interactions within the application.
+ * Class representing the CreateAccount component.
  */
 export class CreateAccount {
+
+  /**
+   * User's first name.
+   */
+  firstName: string = '';
+
+  /**
+   * User's last name.
+   */
+  lastName: string = '';
+
+  /**
+   * User's email address.
+   */
+  email: string = '';
+
+  /**
+   * User's password.
+   */
+  password: string = '';
+
+  /**
+   * User's phone number.
+   */
+  phone: string = '';
+
+  /**
+   * User's address.
+   */
+  address: string = '';
+
+  /**
+   * User's date of birth.
+   */
+  DOB: string = '';
+
+  /**
+   * Creates an instance of CreateAccount.
+   * @param userService Service for user operations.
+   * @param router Router for navigation.
+   */
+  constructor(private userService: UserService, private router: Router) { }
+
+  /**
+   * Submits the account creation form.
+   */
+  onSubmit() {
+    const new_user = {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      password: this.password,
+      phone: this.phone,
+      address: this.address,
+      DOB: this.DOB
+    };
+
+    this.userService.createUser(new_user).subscribe({
+      next: (res: any) => {
+        sessionStorage.clear();
+        sessionStorage.setItem('userId', res.id)
+        sessionStorage.setItem('isLoggedIn', 'true');
+        this.router.navigate(['/accounts']);
+      },
+      error: err => {
+        console.error(err);
+      }
+    });
+  }
 
 }
