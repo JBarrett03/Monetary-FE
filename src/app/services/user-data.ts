@@ -14,6 +14,16 @@ export class UserData {
     return userData.slice(pageStart, pageEnd);
   }
 
+  getUser(id :any) {
+    let dataToReturn: any[] = [];
+    userData.forEach((user) => {
+      if (user._id.$oid == id) {
+        dataToReturn.push(user);
+      }
+    })
+    return dataToReturn;
+  }
+
   getLastPageNumber() {
     return Math.ceil(userData.length / this.pageSize);
   }

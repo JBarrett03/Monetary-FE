@@ -1,1 +1,22 @@
-<p>user-details works!</p>
+<div class="container mt-5">
+  @if (notFound) {
+    <div class="alert alert-danger">
+      User not found.
+    </div>
+  } @else {
+    <div class="card">
+      <div class="card-header">
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+      </div>
+      <div class="card-body">
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone:</strong> {{ user.phone }}</p>
+        <p><strong>Address:</strong> {{ user.address }}</p>
+        <p><strong>Date of Birth:</strong> {{ user.DOB }}</p>
+        <p><strong>Status:</strong> {{ user.status }}</p>
+        <p><strong>Email Verified:</strong> {{ user.emailVerified ? 'Yes' : 'No' }}</p>
+        <p><strong>Phone Verified:</strong> {{ user.phoneVerified ? 'Yes' : 'No' }}</p>
+      </div>
+    </div>
+  }
+</div>

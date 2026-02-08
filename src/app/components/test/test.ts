@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { UserData } from '../../services/user-data';
+import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-test',
   providers: [UserData],
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './test.html',
   styleUrl: './test.css',
 })

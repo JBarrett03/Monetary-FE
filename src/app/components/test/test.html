@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-12">
             @for(user of user_list; track user.firstName) {
-            <div class="card text-white bg-primary mb-3">
+            <div class="card text-white bg-primary mb-3" style="cursor: pointer" [routerLink]="['/users', user._id.$oid]">
                 <div class="card-header">
                     {{ user.firstName }}
                 </div>
