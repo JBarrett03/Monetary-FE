@@ -142,11 +142,17 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>The Accounts component is responsible for displaying the account-related information and functionality within the application. It serves as a placeholder for the accounts section of the application, where users can view and manage their account details.</p>
+        <p>Accounts component</p>
 
     </p>
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -170,7 +176,18 @@
                 <td class="col-md-9"><code>app-accounts</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                <code><a href="https://angular.io/api/router/RouterModule" target="_blank" >RouterModule</a></code>
+                </td>
+            </tr>
 
 
 
@@ -195,42 +212,510 @@
     </table>
 </section>
 
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#accounts_list" >accounts_list</a>
+                            </li>
+                            <li>
+                                <a href="#menuOpen" >menuOpen</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addAccount" >addAccount</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#toggleMenu" >toggleMenu</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
 
 
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(accountService: <a href="../injectables/AccountService.html" target="_self">AccountService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/accounts/accounts.ts:30</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of Accounts component.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>accountService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AccountService.html" target="_self" >AccountService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Service for account operations.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>cdr</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Change detector reference.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Router for navigation.</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addAccount"></a>
+                    <span class="name">
+                        <span ><b>addAccount</b></span>
+                        <a href="#addAccount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addAccount()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Opens the account details page for a specific account.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>void</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="44"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Initializes the component and loads the list of accounts for the user.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>void</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleMenu"></a>
+                    <span class="name">
+                        <span ><b>toggleMenu</b></span>
+                        <a href="#toggleMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleMenu()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:107</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Toggles the menu open state and navigates to manage-accounts.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>void</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="accounts_list"></a>
+                    <span class="name">
+                        <span ><b>accounts_list</b></span>
+                        <a href="#accounts_list"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/accounts/accounts.ts:25</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of accounts</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="menuOpen"></a>
+                    <span class="name">
+                        <span ><b>menuOpen</b></span>
+                        <a href="#menuOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/accounts/accounts.ts:30</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Menu open state</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ChangeDetectorRef } from &#x27;@angular/core&#x27;;
+import { AccountService } from &#x27;../../services/account-service&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { RouterModule, Router } from &#x27;@angular/router&#x27;;
 
 /**
- * The Accounts component is responsible for displaying the account-related information and functionality within the application. It serves as a placeholder for the accounts section of the application, where users can view and manage their account details.
+ * Accounts component
  */
 @Component({
+  standalone: true,
   selector: &#x27;app-accounts&#x27;,
-  imports: [],
+  imports: [CommonModule, RouterModule],
   templateUrl: &#x27;./accounts.html&#x27;,
   styleUrl: &#x27;./accounts.css&#x27;,
 })
 
 /**
- * The Accounts class defines the component logic for the accounts section of the application. Currently, it does not contain any specific functionality or properties, but it serves as a foundation for future development of account-related features and interactions within the application.
+ * Accounts component
  */
-export class Accounts {
+export class Accounts implements OnInit {
 
-}
-</code></pre>
+  /**
+   * List of accounts
+   */
+  accounts_list: any[] &#x3D; [];
+
+  /**
+   * Menu open state
+   */
+  menuOpen &#x3D; false;
+
+  /**
+   * Creates an instance of Accounts component.
+   * @param accountService Service for account operations.
+   * @param cdr Change detector reference.
+   * @param router Router for navigation.
+   */
+  constructor(private accountService: AccountService, private cdr: ChangeDetectorRef, private router: Router) { }
+
+  /**
+   * Initializes the component and loads the list of accounts for the user.
+   * @returns void
+   */
+  ngOnInit() {
+    const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
+
+    if (!userId) {
+      return;
+    }
+
+    this.accountService.getAccounts(userId).subscribe({
+      next: (accounts) &#x3D;&gt; {
+        this.accounts_list &#x3D; accounts;
+        this.cdr.detectChanges();
+      },
+      error: (err) &#x3D;&gt; {
+        console.error(&#x27;Failed to load accounts&#x27;, err);
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+  /**
+   * Opens the account details page for a specific account.
+   * @param accountId The ID of the account to open.
+   * @returns void
+   */
+  addAccount() {
+    const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
+
+    if (!userId) {
+      console.error(&#x27;No userId found in sessionStorage&#x27;);
+      return;
+    }
+
+    const accountType &#x3D; prompt(&#x27;Account tpe (e.g. Current, Savings):&#x27;);
+    const currency &#x3D; prompt(&#x27;Currency (e.g. GBP, USD):&#x27;);
+
+    if (!accountType || !currency) {
+      return;
+    }
+
+    const account &#x3D; {
+      accountType,
+      currency,
+    };
+
+    this.accountService.addAccount(userId, account).subscribe({
+      next: () &#x3D;&gt; {
+        this.accountService.getAccounts(userId).subscribe({
+          next: (accounts) &#x3D;&gt; {
+            this.accounts_list &#x3D; accounts;
+            this.cdr.detectChanges();
+          },
+        });
+      },
+      error: (err) &#x3D;&gt; {
+        console.error(&#x27;Failed to add account&#x27;, err);
+      }
+    });
+  }
+
+  /**
+   * Toggles the menu open state and navigates to manage-accounts.
+   * @returns void
+   */
+  toggleMenu() {
+    this.router.navigate([&#x27;/manage-accounts&#x27;]);
+  }
+}</code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;p&gt;accounts works!&lt;/p&gt;
-</code></pre>
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container container-top-margin&quot;&gt;
+    &lt;div class&#x3D;&quot;row&quot;&gt;
+        &lt;div class&#x3D;&quot;col-sm-12&quot;&gt;
+            @if (accounts_list.length &#x3D;&#x3D;&#x3D; 0) {
+            &lt;p&gt;No accounts found&lt;/p&gt;
+            }
+
+            &lt;i class&#x3D;&quot;fa fa-plus&quot; (click)&#x3D;&quot;addAccount()&quot;&gt;&lt;/i&gt;
+
+            &lt;div class&#x3D;&quot;menu-icon&quot; [class.change]&#x3D;&quot;menuOpen&quot; (click)&#x3D;&quot;toggleMenu()&quot;&gt;
+                Manage
+            &lt;/div&gt;
+
+            @for (account of accounts_list; track account._id) {
+            &lt;div class&#x3D;&quot;card text-dark mb-3 clickable-card&quot; [routerLink]&#x3D;&quot;[&#x27;/accounts&#x27;, account._id]&quot;&gt;
+                &lt;div class&#x3D;&quot;card-header&quot;&gt;
+                    {{ account.accountType | titlecase }} account
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;card-body&quot;&gt;
+                    Account #: {{ account.accountNumber }}&lt;br /&gt;
+                    Currency: {{ account.currency || &#x27;GBP&#x27; }}&lt;br /&gt;
+                    Balance: {{ account.availableBalance | currency: &#x27;GBP&#x27; }}
+                &lt;/div&gt;
+            &lt;/div&gt;
+            }
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
     </div>
 
 
@@ -259,7 +744,7 @@ export class Accounts {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><p>accounts works!</p></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12">            @if (accounts_list.length === 0) {            <p>No accounts found</p>            }            <i class="fa fa-plus" (click)="addAccount()"></i>            <div class="menu-icon" [class.change]="menuOpen" (click)="toggleMenu()">                Manage            </div>            @for (account of accounts_list; track account._id) {            <div class="card text-dark mb-3 clickable-card" [routerLink]="[\'/accounts\', account._id]">                <div class="card-header">                    {{ account.accountType | titlecase }} account                </div>                <div class="card-body">                    Account #: {{ account.accountNumber }}<br />                    Currency: {{ account.currency || \'GBP\' }}<br />                    Balance: {{ account.availableBalance | currency: \'GBP\' }}                </div>            </div>            }        </div>    </div></div></div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'Authbutton', 'selector': 'app-authbutton'},{'name': 'Authuser', 'selector': 'app-authuser'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'Test', 'selector': 'app-test'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'User', 'selector': 'app-user'},{'name': 'UserDetails', 'selector': 'app-user-details'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Accounts'};

@@ -1,1 +1,34 @@
-<p>manage-accounts works!</p>
+<div class="container container-top-margin">
+    <div class="row mb-3">
+        <div class="col-sm-12">
+            <button class="btn btn-outline-secondary me-2" (click)="sortAccounts()">
+                Reorder Accounts
+            </button>
+        </div>
+    </div>
+
+    @if (isReordering) {
+    <div class="row mb-3">
+        <div class="col-sm-12">
+            <button class="btn btn-success" (click)="saveOrder()">
+                Save
+            </button>
+        </div>
+    </div>
+    }
+    <div cdkDropList [cdkDropListData]="accounts_list" [cdkDropListDisabled]="!isReordering"
+        (cdkDropListDropped)="drop($event)" class="accounts-list">
+        @for (account of accounts_list; track account._id) {
+        <div class="card text-dark mb-3 clickable-card" cdkDrag [cdkDragDisabled]="!isReordering">
+            <div class="card-header">
+                {{ account.accountType }} account
+            </div>
+            <div class="card-body">
+                Account #: {{ account.accountNumber }}<br />
+                Currency: {{ account.currency || 'GBP' }}<br />
+                Balance: {{ account.availableBalance }}
+            </div>
+        </div>
+        }
+    </div>
+</div>
