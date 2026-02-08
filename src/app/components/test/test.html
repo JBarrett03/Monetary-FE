@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            @for(user of user_list; track user.firstName) {
+            <div class="card text-white bg-primary mb-3" style="cursor: pointer" [routerLink]="['/users', user._id]">
+                <div class="card-header">
+                    {{ user.firstName }}
+                </div>
+                <div class="card-body">
+                    This user is based in {{ user.address }}
+                </div>
+                <div class="card-footer">
+                    DOB: {{ user.DOB }}
+                </div>
+            </div>
+            }
+        </div> <!-- col -->
+    </div> <!-- row -->
+    <div class="row">
+        <div class="col-sm-4">
+            <button class="btn btn-primary" (click)="previousPage()">Previous</button>
+        </div>
+        <div class="col-sm-4 text-center align-self-center">
+            Showing page {{ this.page }} of {{ this.userData.getLastPageNumber() }}
+        </div>
+        <div class="col-sm-4 text-end">
+            <button class="btn btn-primary" (click)="nextPage()">Next</button>
+        </div>
+    </div>
+</div> <!-- container -->
