@@ -2,40 +2,68 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 /**
- * The UserService class provides methods for fetching user data from a backend API.
+ * Service for user-related operations.
  */
 @Injectable({
   providedIn: 'root',
 })
 
 /**
- * The UserService class is responsible for making HTTP requests to the backend API to retrieve user data.
+ * Class representing the UserService.
  */
 export class UserService {
 
   /**
-   * The constructor injects the HttpClient service, which is used to make HTTP requests to the backend API.
-   * @param http The HttpClient instance used for making HTTP requests.
+   * API URL for user operations.
    */
-  constructor(private http: HttpClient) {}
+  private apiUrl = 'http://localhost:5000/api/v1.0/users';
 
   /**
-   * The getUsers method retrieves all users from the backend API.
-   * @returns An Observable that emits the response from the API containing all users.
+   * Creates an instance of UserService.
+   * @param http HttpClient for making HTTP requests.
+   */
+  constructor(private http: HttpClient) { }
+
+  /**
+   * Fetch all users from the API.
+   * @returns An observable containing all users
    */
   getUsers() {
-    return this.http.get<any>('http://localhost:5000/api/v1.0/users');
+    return this.http.get<any>(this.apiUrl);
   }
 
   /**
-   * The getUser method retrieves the details of a specific user by their ID from the backend API.
-   * It takes a user ID as an argument and returns an Observable that emits the response from the API.
-   * @param id The ID of the user to retrieve.
-   * @returns An Observable that emits the response from the API containing the details of the specified user.
+   * Fetch a user by their ID from the API.
+   * @param id The ID of the user to retrieve
+   * @returns An observable containing the user data
    */
   getUser(id: any) {
     return this.http.get<any>('http://localhost:5000/api/v1.0/users/' + id);
   }
 
-}
+  /**
+ * Creates a new user.
+ * @param user User data to be created.
+ * @returns Observable of the HTTP response.
+ */
+  createUser(user: any) {
+    return this.http.post(this.apiUrl, user);
+  }
 
+  /**
+ * Edits an existing user's details.
+ * @param userId The ID of the user to be edited.
+ * @param updatedUser The updated user data.
+ * @returns Observable of the HTTP response.
+ */
+  editUser(userId: string, updatedUser: { firstName: string, lastName: string, email: string, phone: string, address: string }) {
+    const formData = new FormData();
+    formData.append('firstName', updatedUser.firstName);
+    formData.append('lastName', updatedUser.lastName);
+    formData.append('email', updatedUser.email);
+    formData.append('phone', updatedUser.phone);
+    formData.append('address', updatedUser.address);
+
+    return this.http.put(`${this.apiUrl}/${userId}`, formData);
+  }
+}
