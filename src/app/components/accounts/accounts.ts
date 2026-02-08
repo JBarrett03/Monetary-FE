@@ -93,4 +93,8 @@ export class Accounts implements OnInit {
       }
     });
   }
+
+  toggleMenu() {
+    this.router.navigate(['/manage-accounts']);
+  }
 }

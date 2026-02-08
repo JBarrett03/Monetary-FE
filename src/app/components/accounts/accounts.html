@@ -4,6 +4,10 @@
 
             <i class="fa fa-plus" (click)="addAccount()"></i>
 
+            <div class="menu-icon" [class.change]="menuOpen" (click)="toggleMenu()">
+                Manage
+            </div>
+
             @for (account of accounts_list; track account._id) {
             <div class="card text-dark mb-3 clickable-card" [routerLink]="['/accounts', account._id]">
                 <div class="card-header">

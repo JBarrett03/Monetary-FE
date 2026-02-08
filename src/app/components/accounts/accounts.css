@@ -9,3 +9,9 @@
 .fa-plus {
   cursor: pointer;
 }
+
+.menu-icon { 
+  display: inline-block;
+  cursor: pointer;
+  margin-left: 645px;
+}
