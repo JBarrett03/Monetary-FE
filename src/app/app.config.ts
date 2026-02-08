@@ -1,13 +1,24 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withRouterConfig } from '@angular/router';
 import { routes } from './app.routes';
+import { provideHttpClient } from '@angular/common/http';
 
 /**
- * The appConfig object is an ApplicationConfig that provides configuration for the Angular application. It includes providers for global error listeners and the router, which is configured with the defined routes for the application.
+ * Application configuration for the Angular app.
  */
 export const appConfig: ApplicationConfig = {
+
+  /**
+   * Providers for the application.
+   */
   providers: [
+    provideHttpClient(),
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes)
+    provideRouter(
+      routes,
+      withRouterConfig({
+        onSameUrlNavigation: 'reload'
+      })
+    )
   ]
 };
