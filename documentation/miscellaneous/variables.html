@@ -214,29 +214,75 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>[
-
     /**
-     * The default route (&#x27;&#x27;) renders the Home component when the user navigates to the root URL of the application.
+     * Home route.
      */
     {
         path: &#x27;&#x27;,
         component: Home
     },
-
     /**
-     * The &#x27;users&#x27; route renders the Test component when the user navigates to &#x27;/users&#x27;. This route is responsible for displaying a list of users with pagination functionality.
+     * Login route.
      */
     {
-        path: &#x27;users&#x27;,
-        component: Test
+        path: &#x27;login&#x27;,
+        component: Login
     },
-
     /**
-     * The &#x27;users/:id&#x27; route renders the UserDetails component when the user navigates to &#x27;/users/:id&#x27;, where &#x27;:id&#x27; is a placeholder for the user ID. This route is responsible for displaying the details of a specific user based on the provided user ID in the URL.
+     * Create account route.
      */
     {
-        path: &#x27;users/:id&#x27;,
+        path: &#x27;create-account&#x27;,
+        component: CreateAccount
+    },
+    /**
+     * Accounts route.
+     */
+    {
+        path: &#x27;accounts&#x27;,
+        component: Accounts
+    },
+    /**
+     * Account details route.
+     */
+    {
+        path: &#x27;accounts/:accountId&#x27;,
+        component: AccountDetails
+    },
+    /**
+     * Transaction details route.
+     */
+    {
+        path: &#x27;accounts/:accountId/transactions/:transactionId&#x27;,
+        component: TransactionDetails
+    },
+    /**
+     * User details route.
+     */
+    {
+        path: &#x27;user-details/:userId&#x27;,
         component: UserDetails
+    },
+    /**
+     * Payments route.
+     */
+    {
+        path: &#x27;payments&#x27;,
+        component: Payments
+    },
+    /**
+     * Spending route.
+     */
+    {
+        path: &#x27;spending&#x27;,
+        component: Spending
+    },
+    /**
+     * Manage accounts route.
+     */
+    {
+        path: &#x27;manage-accounts&#x27;,
+        component: ManageAccounts
     }
 ]</code>
                     </td>
@@ -244,7 +290,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The routes array defines the routing configuration for the Angular application. It specifies the paths and corresponding components that should be rendered when a user navigates to a specific route. The routes include a default route for the home component, a route for displaying a list of users, and a route for displaying details of a specific user based on the user ID.</p>
+                    <div class="io-description"><p>Routes for the application.</p>
 </div>
                 </td>
             </tr>

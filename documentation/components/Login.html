@@ -142,9 +142,9 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Login component for user authentication.</p>
-<p>This component provides a login form for users to authenticate with their
-email and password credentials.</p>
+        <p>Login component for user authentication.
+This component provides a form for users to enter their email and password,
+and handles the login process by communicating with the backend API.</p>
 
     </p>
 
@@ -263,7 +263,7 @@ email and password credentials.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/login/login.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/login/login.ts:34</a></div>
                             </td>
                         </tr>
 
@@ -353,8 +353,8 @@ email and password credentials.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="42"
-                                    class="link-to-prism">src/app/components/login/login.ts:42</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/app/components/login/login.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -403,7 +403,7 @@ Sends user credentials to the backend API and handles the response.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/components/login/login.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/login/login.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -440,7 +440,7 @@ Sends user credentials to the backend API and handles the response.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/login/login.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/login/login.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -466,9 +466,8 @@ import { Router } from &#x27;@angular/router&#x27;;
 
 /**
  * Login component for user authentication.
- * 
- * This component provides a login form for users to authenticate with their
- * email and password credentials.
+ * This component provides a form for users to enter their email and password,
+ * and handles the login process by communicating with the backend API.
  */
 @Component({
   standalone: true,
@@ -477,6 +476,12 @@ import { Router } from &#x27;@angular/router&#x27;;
   templateUrl: &#x27;./login.html&#x27;,
   styleUrl: &#x27;./login.css&#x27;,
 })
+
+/**
+ * The Login class represents the logic for the login component.
+ * It manages user input for email and password, and handles form submission
+ * to authenticate the user with the backend API.
+ */
 export class Login {
 
   /**
@@ -566,7 +571,7 @@ export class Login {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div>    <form (ngSubmit)="onSubmit()">        <label for="email">Email:</label>        <input type="text" id="email" [(ngModel)]="email" name="email" placeholder="Enter your email" required>        <label for="password">Password:</label>        <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="Enter your password"            required>        <button type="submit">Login</button>    </form></div></div>'
-    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'Authbutton', 'selector': 'app-authbutton'},{'name': 'Authuser', 'selector': 'app-authuser'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'Test', 'selector': 'app-test'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'User', 'selector': 'app-user'},{'name': 'UserDetails', 'selector': 'app-user-details'}];
+    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user-details'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Login'};
 </script>
