@@ -512,7 +512,8 @@ export class Login {
       password: this.password
     }).subscribe({
       next: (res) &#x3D;&gt; {
-        sessionStorage.setItem(&#x27;userId&#x27;, res.id);
+        sessionStorage.setItem(&#x27;userId&#x27;, res.userId);
+        sessionStorage.setItem(&#x27;token&#x27;, res.token);
         this.router.navigate([&#x27;/&#x27;]);
       },
       error: (err) &#x3D;&gt; {
@@ -571,7 +572,7 @@ export class Login {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div>    <form (ngSubmit)="onSubmit()">        <label for="email">Email:</label>        <input type="text" id="email" [(ngModel)]="email" name="email" placeholder="Enter your email" required>        <label for="password">Password:</label>        <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="Enter your password"            required>        <button type="submit">Login</button>    </form></div></div>'
-    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user-details'}];
+    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Login'};
 </script>

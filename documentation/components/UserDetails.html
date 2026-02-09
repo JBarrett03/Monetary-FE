@@ -142,7 +142,9 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>The UserDetails component is responsible for displaying the details of a specific user based on the user ID provided in the route parameters. It retrieves the user data from the UserService and handles the display logic accordingly.</p>
+        <p>UserDetails component for displaying individual user details.</p>
+<p>This component retrieves and displays user information based on the user ID
+provided in the route parameters.</p>
 
     </p>
 
@@ -173,7 +175,7 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-user-details</code></td>
+                <td class="col-md-9"><code>app-user</code></td>
             </tr>
 
             <tr>
@@ -245,6 +247,9 @@
                                 <a href="#editUser" >editUser</a>
                             </li>
                             <li>
+                                <a href="#logout" >logout</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                         </ul>
@@ -279,18 +284,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
+<code>constructor(userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/user-details/user-details.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/user-details/user-details.ts:28</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>The constructor injects the ActivatedRoute and UserService to enable access to route parameters and retrieval of user data.</p>
+                            <div class="io-description"><p>Constructor for the User component.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -305,24 +310,6 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>route</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <ul>
-<li>An instance of ActivatedRoute for accessing route parameters.</li>
-</ul>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
                                                         <td>userService</td>
                                                   
                                                         <td>
@@ -334,9 +321,39 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <ul>
-<li>An instance of the UserService for making API calls to retrieve user data.</li>
-</ul>
+                                                                <p>Service for retrieving user data</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Activated route for accessing route parameters</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Router for navigation</p>
 
                                                         </td>
                                                 </tr>
@@ -352,10 +369,6 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <ul>
-<li>ChangeDetectorRef for manually triggering change detection.</li>
-</ul>
-
                                                         </td>
                                                 </tr>
                                         </tbody>
@@ -396,8 +409,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="66"
-                                    class="link-to-prism">src/app/components/user-details/user-details.ts:66</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/components/user-details/user-details.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -411,6 +424,75 @@
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logout"></a>
+                    <span class="name">
+                        <span ><b>logout</b></span>
+                        <a href="#logout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logout(event?: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="111"
+                                    class="link-to-prism">src/app/components/user-details/user-details.ts:111</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Logs out the current user.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -435,8 +517,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/app/components/user-details/user-details.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="42"
+                                    class="link-to-prism">src/app/components/user-details/user-details.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -485,7 +567,7 @@ Retrieves user data based on the user ID from the route parameters.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/user-details/user-details.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/user-details/user-details.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -522,7 +604,7 @@ Retrieves user data based on the user ID from the route parameters.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/user-details/user-details.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/components/user-details/user-details.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -557,7 +639,7 @@ Retrieves user data based on the user ID from the route parameters.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/components/user-details/user-details.ts:113</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/components/user-details/user-details.ts:123</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -582,24 +664,23 @@ Retrieves user data based on the user ID from the route parameters.</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ChangeDetectorRef, OnInit } from &#x27;@angular/core&#x27;;
-import { ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
 import { UserService } from &#x27;../../services/user-service&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 
 /**
- * The UserDetails component is responsible for displaying the details of a specific user based on the user ID provided in the route parameters. It retrieves the user data from the UserService and handles the display logic accordingly.
+ * UserDetails component for displaying individual user details.
+ * 
+ * This component retrieves and displays user information based on the user ID
+ * provided in the route parameters.
  */
 @Component({
-  selector: &#x27;app-user-details&#x27;,
-  standalone: true,
-  imports: [CommonModule],
+  selector: &#x27;app-user&#x27;,
   templateUrl: &#x27;./user-details.html&#x27;,
   styleUrl: &#x27;./user-details.css&#x27;,
+  standalone: true,
+  imports: [CommonModule]
 })
-
-/**
- * The UserDetails class defines the component logic for displaying user details. It initializes an empty user list and retrieves the user data based on the user ID from the route parameters when the component is initialized.
- */
 export class UserDetails implements OnInit {
 
   /**
@@ -612,12 +693,12 @@ export class UserDetails implements OnInit {
   error: string | null &#x3D; null;
 
   /**
-   * The constructor injects the ActivatedRoute and UserService to enable access to route parameters and retrieval of user data.
-   * @param route - An instance of ActivatedRoute for accessing route parameters.
-   * @param userService - An instance of the UserService for making API calls to retrieve user data.
-   * @param cdr - ChangeDetectorRef for manually triggering change detection.
+   * Constructor for the User component.
+   * @param userService Service for retrieving user data
+   * @param route Activated route for accessing route parameters
+   * @param router Router for navigation
    */
-  constructor(private route: ActivatedRoute, private userService: UserService, private cdr: ChangeDetectorRef) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private cdr: ChangeDetectorRef) { }
 
   /**
    * Angular lifecycle hook that initializes the component.
@@ -644,8 +725,8 @@ export class UserDetails implements OnInit {
   }
 
   /**
- * Edits the current user&#x27;s details.
- */
+   * Edits the current user&#x27;s details.
+   */
   editUser() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
 
@@ -690,12 +771,24 @@ export class UserDetails implements OnInit {
   }
 
   /**
- * Checks if the user is logged in.
- * @returns True if the user is logged in, false otherwise.
+ * Logs out the current user.
  */
+  logout(event?: Event): void {
+    if (event) {
+      event.preventDefault();
+    }
+    sessionStorage.clear();
+    this.router.navigate([&#x27;/login&#x27;]);
+  }
+
+  /**
+   * Checks if the user is logged in.
+   * @returns True if the user is logged in, false otherwise.
+   */
   get isLoggedIn(): boolean {
     return !!sessionStorage.getItem(&#x27;userId&#x27;);
   }
+
 }
 </code></pre>
     </div>
@@ -719,6 +812,9 @@ export class UserDetails implements OnInit {
             &lt;button class&#x3D;&quot;btn btn-primary&quot; *ngIf&#x3D;&quot;isLoggedIn&quot; (click)&#x3D;&quot;editUser()&quot;&gt;
                 Edit Details
             &lt;/button&gt;
+            &lt;div class&#x3D;&quot;button-box&quot; *ngIf&#x3D;&quot;isLoggedIn&quot;&gt;
+                &lt;a href&#x3D;&quot;#&quot; (click)&#x3D;&quot;logout($event)&quot;&gt;Log out&lt;/a&gt;
+            &lt;/div&gt;
         &lt;/div&gt; &lt;!-- col --&gt;
     &lt;/div&gt; &lt;!-- row --&gt;
 &lt;/div&gt; &lt;!-- container --&gt;</code></pre>
@@ -750,8 +846,8 @@ export class UserDetails implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12">            @for(user of user_list; track user.firstName) {            <div class="card text-dark mb-3">                <div class="card-body">                    {{user.firstName}} {{user.lastName}}<br>                    Email: {{user.email}} <br>                    Password: {{user.password}} <br>                    Phone: {{user.phone}} <br>                    Address: {{user.address}} <br>                    DOB: {{user.DOB}}                </div>            </div>            }            <button class="btn btn-primary" *ngIf="isLoggedIn" (click)="editUser()">                Edit Details            </button>        </div> <!-- col -->    </div> <!-- row --></div> <!-- container --></div>'
-    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user-details'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12">            @for(user of user_list; track user.firstName) {            <div class="card text-dark mb-3">                <div class="card-body">                    {{user.firstName}} {{user.lastName}}<br>                    Email: {{user.email}} <br>                    Password: {{user.password}} <br>                    Phone: {{user.phone}} <br>                    Address: {{user.address}} <br>                    DOB: {{user.DOB}}                </div>            </div>            }            <button class="btn btn-primary" *ngIf="isLoggedIn" (click)="editUser()">                Edit Details            </button>            <div class="button-box" *ngIf="isLoggedIn">                <a href="#" (click)="logout($event)">Log out</a>            </div>        </div> <!-- col -->    </div> <!-- row --></div> <!-- container --></div>'
+    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'UserDetails'};
 </script>

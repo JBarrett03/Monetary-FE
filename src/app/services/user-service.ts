@@ -38,7 +38,7 @@ export class UserService {
    * @returns An observable containing the user data
    */
   getUser(id: any) {
-    return this.http.get<any>('http://localhost:5000/api/v1.0/users/' + id);
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
   /**
@@ -57,13 +57,6 @@ export class UserService {
  * @returns Observable of the HTTP response.
  */
   editUser(userId: string, updatedUser: { firstName: string, lastName: string, email: string, phone: string, address: string }) {
-    const formData = new FormData();
-    formData.append('firstName', updatedUser.firstName);
-    formData.append('lastName', updatedUser.lastName);
-    formData.append('email', updatedUser.email);
-    formData.append('phone', updatedUser.phone);
-    formData.append('address', updatedUser.address);
-
-    return this.http.put(`${this.apiUrl}/${userId}`, formData);
+    return this.http.put(`${this.apiUrl}/${userId}`, updatedUser);
   }
 }

@@ -466,8 +466,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">src/app/components/accounts/accounts.ts:107</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="106"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:106</a></div>
                         </td>
                     </tr>
 
@@ -646,11 +646,10 @@ export class Accounts implements OnInit {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
 
     if (!userId) {
-      console.error(&#x27;No userId found in sessionStorage&#x27;);
       return;
     }
 
-    const accountType &#x3D; prompt(&#x27;Account tpe (e.g. Current, Savings):&#x27;);
+    const accountType &#x3D; prompt(&#x27;Account type (e.g. Current, Savings):&#x27;);
     const currency &#x3D; prompt(&#x27;Currency (e.g. GBP, USD):&#x27;);
 
     if (!accountType || !currency) {
@@ -695,10 +694,15 @@ export class Accounts implements OnInit {
             &lt;p&gt;No accounts found&lt;/p&gt;
             }
 
-            &lt;i class&#x3D;&quot;fa fa-plus&quot; (click)&#x3D;&quot;addAccount()&quot;&gt;&lt;/i&gt;
-
-            &lt;div class&#x3D;&quot;menu-icon&quot; [class.change]&#x3D;&quot;menuOpen&quot; (click)&#x3D;&quot;toggleMenu()&quot;&gt;
-                Manage
+            &lt;div class&#x3D;&quot;row mb-3&quot;&gt;
+                &lt;div class&#x3D;&quot;col-sm-12&quot;&gt;
+                    &lt;button class&#x3D;&quot;btn btn-outline-secondary me-2&quot; (click)&#x3D;&quot;addAccount()&quot;&gt;
+                        Add Account
+                    &lt;/button&gt;
+                    &lt;button class&#x3D;&quot;btn btn-outline-secondary&quot; (click)&#x3D;&quot;toggleMenu()&quot;&gt;
+                        Manage
+                    &lt;/button&gt;
+                &lt;/div&gt;
             &lt;/div&gt;
 
             @for (account of accounts_list; track account._id) {
@@ -744,8 +748,8 @@ export class Accounts implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12">            @if (accounts_list.length === 0) {            <p>No accounts found</p>            }            <i class="fa fa-plus" (click)="addAccount()"></i>            <div class="menu-icon" [class.change]="menuOpen" (click)="toggleMenu()">                Manage            </div>            @for (account of accounts_list; track account._id) {            <div class="card text-dark mb-3 clickable-card" [routerLink]="[\'/accounts\', account._id]">                <div class="card-header">                    {{ account.accountType | titlecase }} account                </div>                <div class="card-body">                    Account #: {{ account.accountNumber }}<br />                    Currency: {{ account.currency || \'GBP\' }}<br />                    Balance: {{ account.availableBalance | currency: \'GBP\' }}                </div>            </div>            }        </div>    </div></div></div>'
-    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user-details'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12">            @if (accounts_list.length === 0) {            <p>No accounts found</p>            }            <div class="row mb-3">                <div class="col-sm-12">                    <button class="btn btn-outline-secondary me-2" (click)="addAccount()">                        Add Account                    </button>                    <button class="btn btn-outline-secondary" (click)="toggleMenu()">                        Manage                    </button>                </div>            </div>            @for (account of accounts_list; track account._id) {            <div class="card text-dark mb-3 clickable-card" [routerLink]="[\'/accounts\', account._id]">                <div class="card-header">                    {{ account.accountType | titlecase }} account                </div>                <div class="card-body">                    Account #: {{ account.accountNumber }}<br />                    Currency: {{ account.currency || \'GBP\' }}<br />                    Balance: {{ account.availableBalance | currency: \'GBP\' }}                </div>            </div>            }        </div>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Accounts'};
 </script>
