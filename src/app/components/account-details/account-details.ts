@@ -1,7 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { AccountService } from '../../services/account-service';
+import { FilterPipe } from '../../pipes/filter-pipe';
 
 /**
  * AccountDetails component
@@ -9,7 +11,7 @@ import { AccountService } from '../../services/account-service';
 @Component({
   standalone: true,
   selector: 'app-account-details',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule, FilterPipe],
   templateUrl: './account-details.html',
   styleUrl: './account-details.css',
 })
@@ -31,6 +33,16 @@ export class AccountDetails implements OnInit {
    * Error message
    */
   error: string | null = null;
+
+  /**
+   * Search category for filtering transactions
+   */
+  searchCategory: string = '';
+
+  /**
+   * Show filter options
+   */
+  showFilter: boolean = false;
 
   /**
    * Creates an instance of AccountDetails component.
@@ -227,5 +239,13 @@ export class AccountDetails implements OnInit {
         this.cdr.detectChanges();
       }
     });
+  }
+
+  /**
+   * Toggles the filter options for transactions.
+   * @returns void
+   */
+  toggleFilter() {
+    this.showFilter = !this.showFilter;
   }
 }
