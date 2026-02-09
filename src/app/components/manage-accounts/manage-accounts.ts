@@ -106,14 +106,16 @@ export class ManageAccounts implements OnInit {
     }));
 
     this.accountService.saveAccountOrder(userId, updatedOrder).subscribe({
-      error: (err) => {
-        console.error('Failed to save account order', err);
-      },
-      complete: () => {
+      next: () => {
         this.isReordering = false;
-        this.router.navigate(['/accounts']);
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/accounts']);
+        });
+      },
+      error: (err) => {
+        console.error('Failed to save account order', err)
       }
-    });
+    })
   }
 
   /**

@@ -117,7 +117,7 @@ export class AccountService {
    * @returns An observable containing the HTTP response
    */
   saveAccountOrder(userId: string, order: { accountId: string, order: number }[]) {
-    return this.http.put(`${this.baseUrl}/users/${userId}/accounts/order`, order
+    return this.http.put(`${this.baseUrl}/users/${userId}/accounts/order-accounts`, order
     );
   }
 
