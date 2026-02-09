@@ -41,6 +41,11 @@ export class ManageAccounts implements OnInit {
   showingArchived = false;
 
   /**
+   * Currently open menu for an account
+   */
+  openMenu: string | null = null;
+
+  /**
    * Constructor for the ManageAccounts component.
    * @param accountService Service for account operations.
    * @param cdr Change detector reference.
@@ -146,6 +151,44 @@ export class ManageAccounts implements OnInit {
       next: (accounts) => {
         this.archived_list = accounts;
         this.cdr.detectChanges();
+      }
+    });
+  }
+
+  /**
+   * Toggles the menu for a specific account.
+   * @param accountId The ID of the account to toggle the menu for.
+   * @returns void
+   */
+  toggleMenu(accountId: string) {
+    this.openMenu = this.openMenu === accountId ? null : accountId;
+  }
+
+  /**
+   * Restores an archived account.
+   * @param accountId The ID of the account to be restored.
+   * @return voids
+   */
+  restoreArchivedAccount(accountId: string) {
+    const userId = sessionStorage.getItem('userId');
+    if (!userId) {
+      return;
+    }
+
+    this.accountService.restoreArchivedAccount(userId, accountId).subscribe({
+      next: () => {
+        this.archived_list = this.archived_list.filter(acc => acc._id !== accountId);
+        this.openMenu = null;
+
+        this.accountService.getAccounts(userId).subscribe({
+          next: (accounts) => {
+            this.accounts_list = accounts;
+            this.cdr.detectChanges();
+          }
+        });
+      },
+      error: (err) => {
+        console.error('Failed to restore archived account', err);
       }
     });
   }

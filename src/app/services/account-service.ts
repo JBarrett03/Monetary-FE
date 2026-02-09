@@ -140,4 +140,14 @@ export class AccountService {
     return this.http.get<any[]>(`${this.baseUrl}/users/${userId}/accounts/archived`);
   }
 
+  /**
+   * Restore an archived account for a user via the API.
+   * @param userId The ID of the user to restore the account for
+   * @param accountId The ID of the account to be restored
+   * @returns An observable containing the HTTP response
+   */
+  restoreArchivedAccount(userId: string, accountId: string) {
+    return this.http.put(`${this.baseUrl}/users/${userId}/accounts/${accountId}/restore`, {});
+  }
+
 }
