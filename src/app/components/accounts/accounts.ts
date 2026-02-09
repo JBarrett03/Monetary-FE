@@ -69,11 +69,10 @@ export class Accounts implements OnInit {
     const userId = sessionStorage.getItem('userId');
 
     if (!userId) {
-      console.error('No userId found in sessionStorage');
       return;
     }
 
-    const accountType = prompt('Account tpe (e.g. Current, Savings):');
+    const accountType = prompt('Account type (e.g. Current, Savings):');
     const currency = prompt('Currency (e.g. GBP, USD):');
 
     if (!accountType || !currency) {

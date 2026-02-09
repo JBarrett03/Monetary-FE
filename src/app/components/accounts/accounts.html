@@ -5,10 +5,15 @@
             <p>No accounts found</p>
             }
 
-            <i class="fa fa-plus" (click)="addAccount()"></i>
-
-            <div class="menu-icon" [class.change]="menuOpen" (click)="toggleMenu()">
-                Manage
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <button class="btn btn-outline-secondary me-2" (click)="addAccount()">
+                        Add Account
+                    </button>
+                    <button class="btn btn-outline-secondary" (click)="toggleMenu()">
+                        Manage
+                    </button>
+                </div>
             </div>
 
             @for (account of accounts_list; track account._id) {
