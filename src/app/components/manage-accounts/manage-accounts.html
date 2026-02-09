@@ -36,7 +36,6 @@
             </button>
         </div>
     </div>
-    }
     <div cdkDropList [cdkDropListData]="accounts_list" [cdkDropListDisabled]="!isReordering"
         (cdkDropListDropped)="drop($event)" class="accounts-list">
         @for (account of accounts_list; track account._id) {
@@ -52,5 +51,8 @@
         </div>
         }
     </div>
+    } @else {
+    <p>Click "Reorder Accounts" to manage your accounts or "Archived accounts" to view archived accounts.</p>
+    }
     }
 </div>

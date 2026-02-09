@@ -49,22 +49,11 @@ export class ManageAccounts implements OnInit {
   constructor(private accountService: AccountService, private cdr: ChangeDetectorRef, private router: Router) { }
 
   /**
-   * Initializes the component and loads the list of accounts for the user.
+   * Initializes the component.
    * @returns void
    */
   ngOnInit() {
-    const userId = sessionStorage.getItem('userId');
-
-    if (!userId) {
-      return;
-    }
-
-    this.accountService.getAccounts(userId).subscribe({
-      next: (accounts) => {
-        this.accounts_list = accounts;
-        this.cdr.detectChanges();
-      }
-    });
+    // Accounts will be loaded when user clicks "Reorder Accounts" or "Archived accounts"
   }
 
   /**
@@ -131,6 +120,7 @@ export class ManageAccounts implements OnInit {
 
     this.isReordering = true;
     this.showingArchived = false;
+    this.cdr.detectChanges();
     this.accountService.getAccounts(userId).subscribe({
       next: (accounts) => {
         this.accounts_list = accounts;
@@ -151,6 +141,7 @@ export class ManageAccounts implements OnInit {
 
     this.showingArchived = true;
     this.isReordering = false;
+    this.cdr.detectChanges();
     this.accountService.getArchivedAccounts(userId).subscribe({
       next: (accounts) => {
         this.archived_list = accounts;
