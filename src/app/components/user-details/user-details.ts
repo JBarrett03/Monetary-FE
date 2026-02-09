@@ -1,22 +1,21 @@
 import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user-service';
 import { CommonModule } from '@angular/common';
 
 /**
- * The UserDetails component is responsible for displaying the details of a specific user based on the user ID provided in the route parameters. It retrieves the user data from the UserService and handles the display logic accordingly.
+ * UserDetails component for displaying individual user details.
+ * 
+ * This component retrieves and displays user information based on the user ID
+ * provided in the route parameters.
  */
 @Component({
-  selector: 'app-user-details',
-  standalone: true,
-  imports: [CommonModule],
+  selector: 'app-user',
   templateUrl: './user-details.html',
   styleUrl: './user-details.css',
+  standalone: true,
+  imports: [CommonModule]
 })
-
-/**
- * The UserDetails class defines the component logic for displaying user details. It initializes an empty user list and retrieves the user data based on the user ID from the route parameters when the component is initialized.
- */
 export class UserDetails implements OnInit {
 
   /**
@@ -29,12 +28,12 @@ export class UserDetails implements OnInit {
   error: string | null = null;
 
   /**
-   * The constructor injects the ActivatedRoute and UserService to enable access to route parameters and retrieval of user data.
-   * @param route - An instance of ActivatedRoute for accessing route parameters.
-   * @param userService - An instance of the UserService for making API calls to retrieve user data.
-   * @param cdr - ChangeDetectorRef for manually triggering change detection.
+   * Constructor for the User component.
+   * @param userService Service for retrieving user data
+   * @param route Activated route for accessing route parameters
+   * @param router Router for navigation
    */
-  constructor(private route: ActivatedRoute, private userService: UserService, private cdr: ChangeDetectorRef) { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private cdr: ChangeDetectorRef) { }
 
   /**
    * Angular lifecycle hook that initializes the component.
@@ -61,8 +60,8 @@ export class UserDetails implements OnInit {
   }
 
   /**
- * Edits the current user's details.
- */
+   * Edits the current user's details.
+   */
   editUser() {
     const userId = sessionStorage.getItem('userId');
 
@@ -107,10 +106,22 @@ export class UserDetails implements OnInit {
   }
 
   /**
- * Checks if the user is logged in.
- * @returns True if the user is logged in, false otherwise.
+ * Logs out the current user.
  */
+  logout(event?: Event): void {
+    if (event) {
+      event.preventDefault();
+    }
+    sessionStorage.clear();
+    this.router.navigate(['/login']);
+  }
+
+  /**
+   * Checks if the user is logged in.
+   * @returns True if the user is logged in, false otherwise.
+   */
   get isLoggedIn(): boolean {
     return !!sessionStorage.getItem('userId');
   }
+
 }
