@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../../services/account-service';
 import { FilterPipe } from '../../pipes/filter-pipe';
+import { TRANSACTION_CATEGORIES } from '../../constants/transaction-categories';
 
 /**
  * AccountDetails component
@@ -43,6 +44,21 @@ export class AccountDetails implements OnInit {
    * Show filter options
    */
   showFilter: boolean = false;
+
+  /**
+   * List of transaction categories
+   */
+  categories = TRANSACTION_CATEGORIES;
+
+  /**
+   * Custom category for filtering transactions
+   */
+  customCategory: string = '';
+
+  /**
+   * Selected category for filtering transactions
+   */
+  selectedCategory: string = '';
 
   /**
    * Creates an instance of AccountDetails component.
@@ -247,5 +263,18 @@ export class AccountDetails implements OnInit {
    */
   toggleFilter() {
     this.showFilter = !this.showFilter;
+
+    if (!this.showFilter) {
+      this.selectedCategory = '';
+      this.customCategory = '';
+    }
+  }
+
+  /**
+   * Gets the effective category for filtering transactions, which is either the selected category or the custom category.
+   * @returns The effective category for filtering transactions.
+   */
+  get effectiveCategory(): string {
+    return this.customCategory || this.selectedCategory;
   }
 }

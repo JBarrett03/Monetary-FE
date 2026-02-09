@@ -37,8 +37,17 @@
             </button>
 
             @if (showFilter) {
-            <input type="search" class="form-control form-control-sm w-25" placeholder="Search by category"
-                [(ngModel)]="searchCategory">
+                <div class="d-flex gap-2 align-items-center">
+                    <select class="form-select form-select-sm w-25" [(ngModel)]="selectedCategory" (change)="customCategory = ''">
+                        <option value="">All Categories:</option>
+                        @for (category of categories; track category) {
+                            <option [value]="category">
+                                {{ category }}
+                            </option>
+                        }
+                    </select>
+                    <input type="search" class="form-control form-control-sm w-25" placeholder="Enter category..." [(ngModel)]="customCategory" (input)="selectedCategory = ''"/>
+                </div>
             }
         </div>
         <div class="plus-minus">
@@ -46,7 +55,7 @@
         </div>
     </div>
     <ul class="list-group list-group-flush">
-        @for (transaction of transactions | filter: searchCategory; track transaction._id) {
+        @for (transaction of transactions | filter: effectiveCategory; track transaction._id) {
         <li class="list-group-item d-flex justify-content-between transaction-item transaction-spacing"
             (click)="openTransaction(transaction._id)">
             <div>
