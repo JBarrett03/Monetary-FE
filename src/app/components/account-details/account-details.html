@@ -60,6 +60,7 @@
             (click)="openTransaction(transaction._id)">
             <div>
                 {{ transaction.description }}<br />
+                {{ transaction.category }}<br />
                 <p>{{ formatTransactionDate(transaction.createdAt) }}</p>
             </div>
             <span [ngClass]="{
