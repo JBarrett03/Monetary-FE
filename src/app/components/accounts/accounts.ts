@@ -100,10 +100,19 @@ export class Accounts implements OnInit {
   }
 
   /**
-   * Toggles the menu open state and navigates to manage-accounts.
+   * Toggles the menu open state.
    * @returns void
    */
   toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  /**
+   * Navigates to manage accounts page and closes the menu.
+   * @returns void
+   */
+  goToManageAccounts() {
+    this.toggleMenu();
     this.router.navigate(['/manage-accounts']);
   }
 }

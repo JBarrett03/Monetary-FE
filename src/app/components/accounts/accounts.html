@@ -7,12 +7,19 @@
 
             <div class="row mb-3">
                 <div class="col-sm-12">
-                    <button class="btn btn-outline-secondary me-2" (click)="addAccount()">
-                        Add Account
+                    <button class="kebab-btn" (click)="toggleMenu()">
+                        <i class="fa fa-ellipsis-v"></i>
                     </button>
-                    <button class="btn btn-outline-secondary" (click)="toggleMenu()">
-                        Manage
-                    </button>
+                    @if (menuOpen) {
+                    <div class="menu-dropdown">
+                        <button class="btn btn-outline-secondary me-2 w-100" (click)="addAccount(); toggleMenu()">
+                            <i class="fa fa-plus"></i> Add Account
+                        </button>
+                        <button class="btn btn-outline-secondary w-100" (click)="goToManageAccounts()">
+                            <i class="fa fa-cog"></i> Manage
+                        </button>
+                    </div>
+                    }
                 </div>
             </div>
 
