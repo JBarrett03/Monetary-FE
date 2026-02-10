@@ -61,8 +61,8 @@ export class Accounts implements OnInit {
   }
 
   /**
-   * Opens the account details page for a specific account.
-   * @param accountId The ID of the account to open.
+   * Adds a new account for the user.
+   * Prompts for account type and currency, then creates the account via the service.
    * @returns void
    */
   addAccount() {

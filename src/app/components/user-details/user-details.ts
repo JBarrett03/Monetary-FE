@@ -19,7 +19,7 @@ import { CommonModule } from '@angular/common';
 export class UserDetails implements OnInit {
 
   /**
-   * Current user data
+   * Current user data (stored as array with single user object).
    */
   user_list: any = [];
   /**

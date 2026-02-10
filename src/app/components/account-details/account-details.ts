@@ -41,12 +41,12 @@ export class AccountDetails implements OnInit {
   showFilter: boolean = false;
 
   /**
-   * List of transaction categories
+   * List of available transaction categories for filtering.
    */
   categories = TRANSACTION_CATEGORIES;
 
   /**
-   * Custom category for filtering transactions
+   * Custom search term for filtering transactions by category or description.
    */
   customCategory: string = '';
 
@@ -264,8 +264,9 @@ export class AccountDetails implements OnInit {
   }
 
   /**
-   * Gets the effective category for filtering transactions, which is either the selected category or the custom category.
-   * @returns The effective category for filtering transactions.
+   * Gets the effective search term for filtering transactions.
+   * Uses custom search term if provided, otherwise uses selected category.
+   * @returns The effective category or search term for filtering transactions.
    */
   get effectiveCategory(): string {
     return this.customCategory || this.selectedCategory;

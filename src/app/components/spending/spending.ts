@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 
 /**
- * The Spending component is responsible for displaying the spending-related information and functionality within the application. It serves as a placeholder for the spending section of the application, where users can view and manage their spending details.
+ * Spending component - placeholder for spending analytics features.
+ * This component is intended for displaying spending summaries, charts, and analysis.
+ * Currently serves as a foundation for future development.
  */
 @Component({
   selector: 'app-spending',
@@ -11,7 +13,8 @@ import { Component } from '@angular/core';
 })
 
 /**
- * The Spending class defines the component logic for the spending section of the application. Currently, it does not contain any specific functionality or properties, but it serves as a foundation for future development of spending-related features and interactions within the application.
+ * Spending class - the component logic for the spending page.
+ * To be implemented with spending analysis and visualization features.
  */
 export class Spending {
 

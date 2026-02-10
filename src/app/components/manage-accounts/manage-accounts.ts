@@ -31,7 +31,7 @@ export class ManageAccounts implements OnInit {
   archived_list: any[] = [];
 
   /**
-   * Menu open state
+   * Flag indicating if the component is in reordering mode.
    */
   isReordering = false;
 
@@ -43,8 +43,14 @@ export class ManageAccounts implements OnInit {
   /**
    * Currently open menu for an account
    */
+  /**
+   * Currently open menu ID for an account (kebab menu).
+   */
   openMenu: string | null = null;
 
+  /**
+   * Flag indicating if the sort options dropdown is visible.
+   */
   showSortOptions: boolean = false;
 
   sortOptions: 'balanceAsc' | 'balanceDesc' | 'openedAtAsc' | 'openedAtDesc' | 'updatedAtAsc' | 'updatedAtDesc' | null = null;
@@ -118,7 +124,8 @@ export class ManageAccounts implements OnInit {
 
   /**
    * Applies the selected sort option to the accounts list.
-   * @param option The sort option to apply (e.g., 'balanceAsc', 'balanceDesc').
+   * Currently supports sorting by balance (ascending or descending).
+   * @param option The sort option to apply ('balanceAsc' or 'balanceDesc').
    * @returns void
    */
   applySort(option: 'balanceAsc' | 'balanceDesc' | 'openedAtAsc' | 'openedAtDesc' | 'updatedAtAsc' | 'updatedAtDesc') {
@@ -141,9 +148,9 @@ export class ManageAccounts implements OnInit {
   }
 
   /**
-  * Sorts accounts.
-  * @returns void
-  */
+   * Enables reordering mode and loads accounts from the service.
+   * @returns void
+   */
   sortAccounts() {
     const userId = sessionStorage.getItem('userId');
 
@@ -184,8 +191,8 @@ export class ManageAccounts implements OnInit {
   }
 
   /**
-   * Toggles the menu for a specific account.
-   * @param accountId The ID of the account to toggle the menu for.
+   * Toggles the kebab menu visibility for a specific account.
+   * @param accountId The ID of the account whose menu should be toggled.
    * @returns void
    */
   toggleMenu(accountId: string) {
@@ -193,9 +200,9 @@ export class ManageAccounts implements OnInit {
   }
 
   /**
-   * Restores an archived account.
+   * Restores an archived account back to the active accounts list.
    * @param accountId The ID of the account to be restored.
-   * @return voids
+   * @returns void
    */
   restoreArchivedAccount(accountId: string) {
     const userId = sessionStorage.getItem('userId');

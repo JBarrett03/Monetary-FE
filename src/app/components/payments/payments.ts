@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 
 /**
- * The Payments component is responsible for displaying the payment-related information and functionality within the application. It serves as a placeholder for the payments section of the application, where users can view and manage their payment details.
+ * Payments component - placeholder for payment processing features.
+ * This component is intended for handling user payments, transfers, and payment history.
+ * Currently serves as a foundation for future development.
  */
 @Component({
   selector: 'app-payments',
@@ -11,7 +13,8 @@ import { Component } from '@angular/core';
 })
 
 /**
- * The Payments class defines the component logic for the payments section of the application. Currently, it does not contain any specific functionality or properties, but it serves as a foundation for future development of payment-related features and interactions within the application.
+ * Payments class - the component logic for the payments page.
+ * To be implemented with payment processing and transfer features.
  */
 export class Payments {
 
