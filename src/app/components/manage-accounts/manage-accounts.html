@@ -77,11 +77,6 @@
                 Currency: {{ account.currency || 'GBP' }}<br />
                 Balance: {{ account.availableBalance | currency: 'GBP' }}
             </div>
-            @if (showBalanceBox) {
-                <div class="balance-sort-box">
-                    {{ account.availableBalance | currency: 'GBP' }}
-                </div>
-            }
         </div>
         }
     </div>

@@ -18,21 +18,9 @@ import { CommonModule } from '@angular/common';
 export class Navigation {
 
   /**
-   * Current user ID
-   */
-  userId: string | null = null;
-
-  /**
    * Creates an instance of Navigation.
    */
   constructor() { }
-
-  /**
-   * Initializes the component.
-   */
-  ngOnInit() {
-    this.userId = sessionStorage.getItem('userId');
-  }
 
   /**
    * Checks if the user is logged in.

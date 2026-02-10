@@ -45,8 +45,6 @@ export class ManageAccounts implements OnInit {
    */
   openMenu: string | null = null;
 
-  showBalanceBox: boolean = false;
-
   showSortOptions: boolean = false;
 
   sortOptions: 'balanceAsc' | 'balanceDesc' | 'openedAtAsc' | 'openedAtDesc' | 'updatedAtAsc' | 'updatedAtDesc' | null = null;
@@ -65,14 +63,6 @@ export class ManageAccounts implements OnInit {
    */
   ngOnInit() {
     // Accounts will be loaded when user clicks "Reorder Accounts" or "Archived accounts"
-  }
-
-  /**
-   * Toggles the reordering mode.
-   * @returns void
-   */
-  toggleReorder() {
-    this.isReordering = !this.isReordering;
   }
 
   /**

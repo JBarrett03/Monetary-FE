@@ -36,11 +36,6 @@ export class AccountDetails implements OnInit {
   error: string | null = null;
 
   /**
-   * Search category for filtering transactions
-   */
-  searchCategory: string = '';
-
-  /**
    * Show filter options
    */
   showFilter: boolean = false;
