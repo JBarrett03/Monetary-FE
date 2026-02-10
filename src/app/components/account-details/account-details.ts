@@ -77,9 +77,6 @@ export class AccountDetails implements OnInit {
     const userId = sessionStorage.getItem('userId');
     const accountId = this.route.snapshot.paramMap.get('accountId');
 
-    console.log('Account Details - userId:', userId);
-    console.log('Account Details - accountId:', accountId);
-
     if (!userId || !accountId) {
       this.error = 'Invalid user or account ID';
       return;
@@ -89,12 +86,10 @@ export class AccountDetails implements OnInit {
 
     this.accountService.getAccount(userId, accountId).subscribe({
       next: (account) => {
-        console.log('Account loaded:', account);
         this.account = account;
         this.cdr.detectChanges();
       },
       error: (err) => {
-        console.error('Error loading account:', err);
         this.error = 'Account not found';
         this.cdr.detectChanges();
       }
@@ -102,12 +97,10 @@ export class AccountDetails implements OnInit {
 
     this.accountService.getAccountTransactions(userId, accountId).subscribe({
       next: (transactions) => {
-        console.log('Transactions loaded:', transactions);
         this.transactions = transactions;
         this.cdr.detectChanges();
       },
       error: (err) => {
-        console.error('Error loading transactions:', err);
         this.error = 'Could not load transactions';
         this.cdr.detectChanges();
       }
