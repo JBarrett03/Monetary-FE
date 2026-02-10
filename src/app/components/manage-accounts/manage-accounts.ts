@@ -45,6 +45,8 @@ export class ManageAccounts implements OnInit {
    */
   openMenu: string | null = null;
 
+  showBalanceBox: boolean = false;
+
   /**
    * Constructor for the ManageAccounts component.
    * @param accountService Service for account operations.
@@ -110,6 +112,20 @@ export class ManageAccounts implements OnInit {
         console.error('Failed to save account order', err)
       }
     })
+  }
+
+  sortByBalance() {
+    this.showBalanceBox = !this.showBalanceBox;
+
+    if (!this.showBalanceBox) {
+      return;
+    }
+
+
+    this.accounts_list = [...this.accounts_list].sort(
+      (a, b) => (b.balance ?? 0) - (a.balance ?? 0)
+    );
+    this.cdr.detectChanges();
   }
 
   /**
