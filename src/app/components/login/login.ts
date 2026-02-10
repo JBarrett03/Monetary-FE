@@ -51,7 +51,7 @@ export class Login {
       password: this.password
     }).subscribe({
       next: (res) => {
-        sessionStorage.setItem('userId', res.userId);
+        sessionStorage.setItem('userId', res.id);
         sessionStorage.setItem('token', res.token);
         this.router.navigate(['/']);
       },

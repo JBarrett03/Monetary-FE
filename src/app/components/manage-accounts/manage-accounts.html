@@ -49,9 +49,20 @@
             <button class="btn btn-success me-2" (click)="saveOrder()">
                 Save
             </button>
-            <button class="btn btn-outline-secondary" (click)="sortByBalance()">
+            <button class="btn btn-outline-secondary" (click)="toggleSortOptions()">
+                <i class="fa fa-sort"></i>
                 Sort
             </button>
+            @if (showSortOptions) {
+            <div class="sort-options mt-2">
+                <button class="btn btn-sm btn-outline-primary me-2" (click)="applySort('balanceAsc')">
+                    Balance ↑
+                </button>
+                <button class="btn btn-sm btn-outline-primary me-2" (click)="applySort('balanceDesc')">
+                    Balance ↓
+                </button>
+            </div>
+            }
         </div>
     </div>
     <div cdkDropList [cdkDropListData]="accounts_list" [cdkDropListDisabled]="!isReordering"
@@ -68,7 +79,7 @@
             </div>
             @if (showBalanceBox) {
                 <div class="balance-sort-box">
-                    {{ account.balance | currency: 'GBP' }}
+                    {{ account.availableBalance | currency: 'GBP' }}
                 </div>
             }
         </div>

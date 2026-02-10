@@ -47,6 +47,10 @@ export class ManageAccounts implements OnInit {
 
   showBalanceBox: boolean = false;
 
+  showSortOptions: boolean = false;
+
+  sortOptions: 'balanceAsc' | 'balanceDesc' | 'openedAtAsc' | 'openedAtDesc' | 'updatedAtAsc' | 'updatedAtDesc' | null = null;
+
   /**
    * Constructor for the ManageAccounts component.
    * @param accountService Service for account operations.
@@ -114,17 +118,35 @@ export class ManageAccounts implements OnInit {
     })
   }
 
-  sortByBalance() {
-    this.showBalanceBox = !this.showBalanceBox;
+  /**
+   * Toggles the display of sort options.
+   * @returns void
+   */
+  toggleSortOptions() {
+    this.showSortOptions = !this.showSortOptions;
+  }
 
-    if (!this.showBalanceBox) {
-      return;
+  /**
+   * Applies the selected sort option to the accounts list.
+   * @param option The sort option to apply (e.g., 'balanceAsc', 'balanceDesc').
+   * @returns void
+   */
+  applySort(option: 'balanceAsc' | 'balanceDesc' | 'openedAtAsc' | 'openedAtDesc' | 'updatedAtAsc' | 'updatedAtDesc') {
+    this.sortOptions = option;
+
+    switch (option) {
+      case 'balanceAsc':
+        this.accounts_list = [...this.accounts_list].sort(
+          (a,b) => (a.availableBalance ?? 0) - (b.availableBalance ?? 0)
+        );
+        break;
+
+      case 'balanceDesc':
+        this.accounts_list = [...this.accounts_list].sort(
+          (a,b) => (b.availableBalance ?? 0) - (a.availableBalance ?? 0)
+        );
+        break;
     }
-
-
-    this.accounts_list = [...this.accounts_list].sort(
-      (a, b) => (b.balance ?? 0) - (a.balance ?? 0)
-    );
     this.cdr.detectChanges();
   }
 
