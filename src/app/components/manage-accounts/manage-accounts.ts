@@ -128,19 +128,38 @@ export class ManageAccounts implements OnInit {
    * @param option The sort option to apply ('balanceAsc' or 'balanceDesc').
    * @returns void
    */
-  applySort(option: 'balanceAsc' | 'balanceDesc' | 'openedAtAsc' | 'openedAtDesc' | 'updatedAtAsc' | 'updatedAtDesc') {
+  applySort(option: 'balanceAsc' | 'balanceDesc' | 'openedAtAsc' | 'openedAtDesc') {
     this.sortOptions = option;
+
+    const toTime = (value?: string): number => {
+      if (!value) return 0;
+      const normalized = value.replace(/Z$/, '');
+      const time = new Date(normalized).getTime();
+      return isNaN(time) ? 0 : time;
+    };
 
     switch (option) {
       case 'balanceAsc':
         this.accounts_list = [...this.accounts_list].sort(
-          (a,b) => (a.availableBalance ?? 0) - (b.availableBalance ?? 0)
+          (a, b) => (a.availableBalance ?? 0) - (b.availableBalance ?? 0)
         );
         break;
 
       case 'balanceDesc':
         this.accounts_list = [...this.accounts_list].sort(
-          (a,b) => (b.availableBalance ?? 0) - (a.availableBalance ?? 0)
+          (a, b) => (b.availableBalance ?? 0) - (a.availableBalance ?? 0)
+        );
+        break;
+
+      case 'openedAtAsc':
+        this.accounts_list = [...this.accounts_list].sort(
+          (a, b) => toTime(a.openedAt) - toTime(b.openedAt)
+        );
+        break;
+
+      case 'openedAtDesc':
+        this.accounts_list = [...this.accounts_list].sort(
+          (a, b) => toTime(b.openedAt) - toTime(a.openedAt)
         );
         break;
     }
