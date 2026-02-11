@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { DragDropModule, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -18,7 +18,7 @@ import { AccountService } from '../../services/account-service';
 /**
  * ManageAccounts class
  */
-export class ManageAccounts implements OnInit {
+export class ManageAccounts {
 
   /**
    * List of accounts
@@ -41,9 +41,6 @@ export class ManageAccounts implements OnInit {
   showingArchived = false;
 
   /**
-   * Currently open menu for an account
-   */
-  /**
    * Currently open menu ID for an account (kebab menu).
    */
   openMenu: string | null = null;
@@ -65,14 +62,6 @@ export class ManageAccounts implements OnInit {
    * @param router Router for navigation.
    */
   constructor(private accountService: AccountService, private cdr: ChangeDetectorRef, private router: Router) { }
-
-  /**
-   * Initializes the component.
-   * @returns void
-   */
-  ngOnInit() {
-    // Accounts will be loaded when user clicks "Reorder Accounts" or "Archived accounts"
-  }
 
   /**
    * Handles the drop event when reordering accounts.

@@ -32,7 +32,7 @@ export class AccountService {
    */
   getAccounts(userId: string): Observable<any[]> {
     const url = `${this.baseUrl}/users/${userId}/accounts`;
-    return this.http.get<any[]>(url)
+    return this.http.get<any[]>(url);
   }
 
   /**

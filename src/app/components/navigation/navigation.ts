@@ -18,11 +18,6 @@ import { CommonModule } from '@angular/common';
 export class Navigation {
 
   /**
-   * Creates an instance of Navigation.
-   */
-  constructor() { }
-
-  /**
    * Checks if the user is logged in.
    * @returns True if the user is logged in, false otherwise.
    */
