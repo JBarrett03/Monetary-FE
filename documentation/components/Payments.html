@@ -172,6 +172,10 @@ Currently serves as a foundation for future development.</p>
                 <td class="col-md-9"><code>app-payments</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
 
 
 
@@ -198,6 +202,31 @@ Currently serves as a foundation for future development.</p>
 </section>
 
 
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/payments/payments.ts:19</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor for the Payments component.
+Currently empty, but can be used for dependency injection and initialization in the future.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
 
@@ -210,7 +239,6 @@ Currently serves as a foundation for future development.</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
-
 /**
  * Payments component - placeholder for payment processing features.
  * This component is intended for handling user payments, transfers, and payment history.
@@ -218,6 +246,7 @@ Currently serves as a foundation for future development.</p>
  */
 @Component({
   selector: &#x27;app-payments&#x27;,
+  standalone: true,
   imports: [],
   templateUrl: &#x27;./payments.html&#x27;,
   styleUrl: &#x27;./payments.css&#x27;,
@@ -229,12 +258,17 @@ Currently serves as a foundation for future development.</p>
  */
 export class Payments {
 
+  /**
+   * Constructor for the Payments component.
+   * Currently empty, but can be used for dependency injection and initialization in the future.
+   */
+  constructor() { }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">This is the page where users will be able to add money to an account</code></pre>
+        <pre class="line-numbers"><code class="language-html"></code></pre>
     </div>
 
 
@@ -263,7 +297,7 @@ export class Payments {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>This is the page where users will be able to add money to an account</div>'
+        var COMPONENT_TEMPLATE = '<div></div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Payments'};

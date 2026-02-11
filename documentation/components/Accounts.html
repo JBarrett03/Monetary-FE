@@ -249,6 +249,10 @@
                                 <a href="#goToManageAccounts" >goToManageAccounts</a>
                             </li>
                             <li>
+                                <a href="#maskAccountNumber" >maskAccountNumber</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
@@ -383,8 +387,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="68"
-                                    class="link-to-prism">src/app/components/accounts/accounts.ts:68</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -427,8 +431,8 @@ Prompts for account type and currency, then creates the account via the service.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="114"
-                                    class="link-to-prism">src/app/components/accounts/accounts.ts:114</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:103</a></div>
                         </td>
                     </tr>
 
@@ -454,8 +458,84 @@ Prompts for account type and currency, then creates the account via the service.
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="maskAccountNumber"></a>
+                    <span class="name">
+                        <span ><b>maskAccountNumber</b></span>
+                        <a href="#maskAccountNumber"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>maskAccountNumber(accountNumber: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:113</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Masks the account number for display purposes.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>accountNumber</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The full account number.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The masked account number.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
+                            <span class="modifier">Async</span>
                         <span ><b>ngOnInit</b></span>
                         <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -463,7 +543,8 @@ Prompts for account type and currency, then creates the account via the service.
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnInit()</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
                 </td>
             </tr>
 
@@ -482,7 +563,7 @@ Prompts for account type and currency, then creates the account via the service.
 </div>
 
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
                             <div class="io-description">
@@ -513,8 +594,8 @@ Prompts for account type and currency, then creates the account via the service.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="106"
-                                    class="link-to-prism">src/app/components/accounts/accounts.ts:106</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -665,7 +746,7 @@ export class Accounts implements OnInit {
    * Initializes the component and loads the list of accounts for the user.
    * @returns void
    */
-  ngOnInit() {
+  async ngOnInit() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
 
     if (!userId) {
@@ -679,7 +760,6 @@ export class Accounts implements OnInit {
       },
       error: (err) &#x3D;&gt; {
         console.error(&#x27;Failed to load accounts&#x27;, err);
-        this.cdr.detectChanges();
       }
     });
   }
@@ -692,21 +772,14 @@ export class Accounts implements OnInit {
   addAccount() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
 
-    if (!userId) {
-      return;
-    }
+    if (!userId) return;
 
     const accountType &#x3D; prompt(&#x27;Account type (e.g. Current, Savings):&#x27;);
     const currency &#x3D; prompt(&#x27;Currency (e.g. GBP, USD):&#x27;);
 
-    if (!accountType || !currency) {
-      return;
-    }
+    if (!accountType || !currency) return;
 
-    const account &#x3D; {
-      accountType,
-      currency,
-    };
+    const account &#x3D; { accountType, currency };
 
     this.accountService.addAccount(userId, account).subscribe({
       next: () &#x3D;&gt; {
@@ -717,9 +790,6 @@ export class Accounts implements OnInit {
           },
         });
       },
-      error: (err) &#x3D;&gt; {
-        console.error(&#x27;Failed to add account&#x27;, err);
-      }
     });
   }
 
@@ -738,6 +808,19 @@ export class Accounts implements OnInit {
   goToManageAccounts() {
     this.toggleMenu();
     this.router.navigate([&#x27;/manage-accounts&#x27;]);
+  }
+
+  /**
+   * Masks the account number for display purposes.
+   * @param accountNumber The full account number.
+   * @returns The masked account number.
+   */
+  maskAccountNumber(accountNumber: string): string {
+    if (!accountNumber) return &#x27;•••• •••• •••• ••••&#x27;;
+
+    const clean &#x3D; accountNumber.replace(/\s/g, &#x27;&#x27;);
+    const last4 &#x3D; clean.slice(-4);
+    return &#x60;•••• •••• •••• ${last4}&#x60;;
   }
 }</code></pre>
     </div>
@@ -769,20 +852,23 @@ export class Accounts implements OnInit {
             &lt;/div&gt;
 
             @for (account of accounts_list; track account._id) {
-            &lt;div class&#x3D;&quot;card text-dark mb-3 clickable-card&quot; [routerLink]&#x3D;&quot;[&#x27;/accounts&#x27;, account._id]&quot;&gt;
-                &lt;div class&#x3D;&quot;card-header&quot;&gt;
-                    {{ account.accountType | titlecase }} account
+                &lt;div class&#x3D;&quot;card-preview mb-3 clickable-card&quot; [routerLink]&#x3D;&quot;[&#x27;/accounts&#x27;, account._id]&quot;&gt;
+                    &lt;div class&#x3D;&quot;brand&quot;&gt;
+                        {{ account.accountType | uppercase }}
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;number&quot;&gt;
+                        {{ maskAccountNumber(account.accountNumber) }}
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;expiry&quot;&gt;
+                        {{ account.currency || &#x27;GBP&#x27; }}
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;balance&quot;&gt;
+                        {{ account.availableBalance | currency: (account.currency || &#x27;GBP&#x27;) }}
+                    &lt;/div&gt;
                 &lt;/div&gt;
-                &lt;div class&#x3D;&quot;card-body&quot;&gt;
-                    Account #: {{ account.accountNumber }}&lt;br /&gt;
-                    Currency: {{ account.currency || &#x27;GBP&#x27; }}&lt;br /&gt;
-                    Balance: {{ account.availableBalance | currency: &#x27;GBP&#x27; }}
-                &lt;/div&gt;
-            &lt;/div&gt;
             }
         &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+    &lt;/div&gt;</code></pre>
     </div>
 
 
@@ -811,7 +897,7 @@ export class Accounts implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12">            @if (accounts_list.length === 0) {            <p>No accounts found</p>            }            <div class="row mb-3">                <div class="col-sm-12">                    <button class="kebab-btn" (click)="toggleMenu()">                        <i class="fa fa-ellipsis-v"></i>                    </button>                    @if (menuOpen) {                    <div class="menu-dropdown">                        <button class="btn btn-outline-secondary me-2 w-100" (click)="addAccount(); toggleMenu()">                            <i class="fa fa-plus"></i> Add Account                        </button>                        <button class="btn btn-outline-secondary w-100" (click)="goToManageAccounts()">                            <i class="fa fa-cog"></i> Manage                        </button>                    </div>                    }                </div>            </div>            @for (account of accounts_list; track account._id) {            <div class="card text-dark mb-3 clickable-card" [routerLink]="[\'/accounts\', account._id]">                <div class="card-header">                    {{ account.accountType | titlecase }} account                </div>                <div class="card-body">                    Account #: {{ account.accountNumber }}<br />                    Currency: {{ account.currency || \'GBP\' }}<br />                    Balance: {{ account.availableBalance | currency: \'GBP\' }}                </div>            </div>            }        </div>    </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12">            @if (accounts_list.length === 0) {            <p>No accounts found</p>            }            <div class="row mb-3">                <div class="col-sm-12">                    <button class="kebab-btn" (click)="toggleMenu()">                        <i class="fa fa-ellipsis-v"></i>                    </button>                    @if (menuOpen) {                    <div class="menu-dropdown">                        <button class="btn btn-outline-secondary me-2 w-100" (click)="addAccount(); toggleMenu()">                            <i class="fa fa-plus"></i> Add Account                        </button>                        <button class="btn btn-outline-secondary w-100" (click)="goToManageAccounts()">                            <i class="fa fa-cog"></i> Manage                        </button>                    </div>                    }                </div>            </div>            @for (account of accounts_list; track account._id) {                <div class="card-preview mb-3 clickable-card" [routerLink]="[\'/accounts\', account._id]">                    <div class="brand">                        {{ account.accountType | uppercase }}                    </div>                    <div class="number">                        {{ maskAccountNumber(account.accountNumber) }}                    </div>                    <div class="expiry">                        {{ account.currency || \'GBP\' }}                    </div>                    <div class="balance">                        {{ account.availableBalance | currency: (account.currency || \'GBP\') }}                    </div>                </div>            }        </div>    </div></div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Accounts'};

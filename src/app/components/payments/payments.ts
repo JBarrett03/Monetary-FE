@@ -12,10 +12,6 @@ import { Component } from '@angular/core';
   styleUrl: './payments.css',
 })
 
-/**
- * Payments class - the component logic for the payments page.
- * To be implemented with payment processing and transfer features.
- */
 export class Payments {
 
   constructor() { }

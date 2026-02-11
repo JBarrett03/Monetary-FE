@@ -1272,7 +1272,7 @@ export class AccountService {
    */
   getAccounts(userId: string): Observable&lt;any[]&gt; {
     const url &#x3D; &#x60;${this.baseUrl}/users/${userId}/accounts&#x60;;
-    return this.http.get&lt;any[]&gt;(url)
+    return this.http.get&lt;any[]&gt;(url);
   }
 
   /**

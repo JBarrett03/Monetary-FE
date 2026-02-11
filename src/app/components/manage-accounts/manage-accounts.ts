@@ -5,7 +5,8 @@ import { DragDropModule, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-
 import { AccountService } from '../../services/account-service';
 
 /**
- * ManageAccounts component
+ * Manage Accounts component allows users to reorder, sort, and restore archived accounts.
+ * Features include drag-and-drop reordering, sorting by balance or opened date, and restoring archived accounts.
  */
 @Component({
   selector: 'app-manage-accounts',
@@ -14,10 +15,6 @@ import { AccountService } from '../../services/account-service';
   templateUrl: './manage-accounts.html',
   styleUrl: './manage-accounts.css',
 })
-
-/**
- * ManageAccounts class
- */
 export class ManageAccounts {
 
   /**
@@ -64,9 +61,8 @@ export class ManageAccounts {
   constructor(private accountService: AccountService, private cdr: ChangeDetectorRef, private router: Router) { }
 
   /**
-   * Handles the drop event when reordering accounts.
-   * @param event The drag and drop event containing the previous and current index of the item.
-   * @returns void
+   * Handles the drop event when reordering accounts via drag and drop.
+   * @param event The drag and drop event containing the previous and current index.
    */
   drop(event: CdkDragDrop<any[]>) {
     moveItemInArray(
@@ -78,8 +74,7 @@ export class ManageAccounts {
   }
 
   /**
-   * Saves the new order of accounts after reordering.
-   * @returns void
+   * Saves the new account order after reordering and navigates back to accounts page.
    */
   saveOrder() {
     const userId = sessionStorage.getItem('userId');
@@ -107,8 +102,7 @@ export class ManageAccounts {
   }
 
   /**
-   * Toggles the display of sort options.
-   * @returns void
+   * Toggles the visibility of the sort options dropdown.
    */
   toggleSortOptions() {
     this.showSortOptions = !this.showSortOptions;
@@ -116,9 +110,8 @@ export class ManageAccounts {
 
   /**
    * Applies the selected sort option to the accounts list.
-   * Currently supports sorting by balance (ascending or descending).
-   * @param option The sort option to apply ('balanceAsc' or 'balanceDesc').
-   * @returns void
+   * Supports sorting by balance or opened date in ascending or descending order.
+   * @param option The sort option to apply.
    */
   applySort(option: 'balanceAsc' | 'balanceDesc' | 'openedAtAsc' | 'openedAtDesc') {
     this.sortOptions = option;
@@ -159,8 +152,7 @@ export class ManageAccounts {
   }
 
   /**
-   * Enables reordering mode and loads accounts from the service.
-   * @returns void
+   * Enables reordering mode and loads accounts for reordering.
    */
   sortAccounts() {
     const userId = sessionStorage.getItem('userId');
@@ -181,8 +173,7 @@ export class ManageAccounts {
   }
 
   /**
-   * Shows archived accounts.
-   * @returns void
+   * Switches to displaying archived accounts instead of active accounts.
    */
   showArchivedAccounts() {
     const userId = sessionStorage.getItem('userId');
@@ -204,7 +195,6 @@ export class ManageAccounts {
   /**
    * Toggles the kebab menu visibility for a specific account.
    * @param accountId The ID of the account whose menu should be toggled.
-   * @returns void
    */
   toggleMenu(accountId: string) {
     this.openMenu = this.openMenu === accountId ? null : accountId;
@@ -212,8 +202,7 @@ export class ManageAccounts {
 
   /**
    * Restores an archived account back to the active accounts list.
-   * @param accountId The ID of the account to be restored.
-   * @returns void
+   * @param accountId The ID of the account to restore.
    */
   restoreArchivedAccount(accountId: string) {
     const userId = sessionStorage.getItem('userId');
@@ -239,6 +228,11 @@ export class ManageAccounts {
     });
   }
 
+  /**
+   * Masks an account number for secure display, showing only the last 4 digits.
+   * @param accountNumber The account number to mask.
+   * @returns A masked account number string.
+   */
   maskAccountNumber(accountNumber: string): string {
     if (!accountNumber) return '•••• •••• •••• ••••';
 

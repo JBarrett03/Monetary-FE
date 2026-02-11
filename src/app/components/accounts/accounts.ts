@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 
 /**
- * Accounts component
+ * Accounts component displays all user accounts as Stripe-styled cards.
+ * Users can view account details, add new accounts, and navigate to the manage accounts page.
  */
 @Component({
   standalone: true,
@@ -13,10 +14,6 @@ import { RouterModule, Router } from '@angular/router';
   templateUrl: './accounts.html',
   styleUrl: './accounts.css',
 })
-
-/**
- * Accounts component
- */
 export class Accounts implements OnInit {
 
   /**
@@ -39,7 +36,6 @@ export class Accounts implements OnInit {
 
   /**
    * Initializes the component and loads the list of accounts for the user.
-   * @returns void
    */
   async ngOnInit() {
     const userId = sessionStorage.getItem('userId');
@@ -61,8 +57,7 @@ export class Accounts implements OnInit {
 
   /**
    * Adds a new account for the user.
-   * Prompts for account type and currency, then creates the account via the service.
-   * @returns void
+   * Prompts the user for account type and currency, then creates the account via the service.
    */
   addAccount() {
     const userId = sessionStorage.getItem('userId');
@@ -89,22 +84,30 @@ export class Accounts implements OnInit {
   }
 
   /**
-   * Toggles the menu open state.
-   * @returns void
+   * Toggles the kebab menu visibility for adding and managing accounts.
    */
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
 
   /**
-   * Navigates to manage accounts page and closes the menu.
-   * @returns void
+   * Navigates to the manage accounts page and closes the menu.
    */
   goToManageAccounts() {
     this.toggleMenu();
     this.router.navigate(['/manage-accounts']);
   }
 
+  /**
+   * Masks the account number for display purposes.
+   * @param accountNumber The full account number.
+   * @returns The masked account number.
+   */
+  /**
+   * Masks an account number for secure display, showing only the last 4 digits.
+   * @param accountNumber The account number to mask.
+   * @returns A masked account number string.
+   */
   maskAccountNumber(accountNumber: string): string {
     if (!accountNumber) return '•••• •••• •••• ••••';
 
