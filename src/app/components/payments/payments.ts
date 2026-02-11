@@ -104,7 +104,11 @@ export class Payments implements OnInit {
    * Navigates to the accounts page.
    * @returns void
    */
-  goToAccounts() {
+  goToAccounts(event?: Event) {
+    if (event) {
+      event.stopPropagation();
+    }
+    console.log('Navigating to accounts...');
     this.router.navigate(['/accounts']);
   }
 
