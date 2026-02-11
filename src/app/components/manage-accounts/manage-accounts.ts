@@ -249,4 +249,12 @@ export class ManageAccounts implements OnInit {
       }
     });
   }
+
+  maskAccountNumber(accountNumber: string): string {
+    if (!accountNumber) return '•••• •••• •••• ••••';
+
+    const clean = accountNumber.replace(/\s/g, '');
+    const last4 = clean.slice(-4);
+    return `•••• •••• •••• ${last4}`;
+  }
 }
