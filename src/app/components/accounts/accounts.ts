@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AccountService } from '../../services/account-service';
-import { CommonModule, UpperCasePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { loadStripe, StripeCardElement } from '@stripe/stripe-js';
@@ -13,7 +13,7 @@ import { RouterUpgradeInitializer } from '@angular/router/upgrade';
 @Component({
   standalone: true,
   selector: 'app-accounts',
-  imports: [CommonModule, RouterModule, UpperCasePipe],
+  imports: [CommonModule, RouterModule],
   templateUrl: './accounts.html',
   styleUrl: './accounts.css',
 })
@@ -36,10 +36,10 @@ export class Accounts implements OnInit {
   stripePromise = loadStripe('pk_test_51SzPZRRbAdc196bvjhyhoH9wDafvymCQLd6FKlIsFfmwpHSEfCpxjunxCa7u8YnfgeYaGNBUvIiCPNvbD9laVluD00XckoBEY6');
 
   card!: StripeCardElement;
-
   cardBrand: string = 'card';
-
   cardComplete: boolean = false;
+  accountNumber: string = '';
+  maskedAccountNumber: string = '';
 
   /**
    * Creates an instance of Accounts component.
@@ -70,6 +70,20 @@ export class Accounts implements OnInit {
         console.error('Failed to load accounts', err);
       }
     });
+
+    if (userId) {
+      this.accountService.getAccounts(userId).subscribe({
+        next: (accounts) => {
+          if (accounts && accounts.length > 0) {
+            this.accountNumber = accounts[0].accountNumber;
+            this.cdr.detectChanges();
+          }
+        },
+        error: (err) => {
+          console.error('Failed to load account number', err);
+        }
+      });
+    }
 
     const stripe = await this.stripePromise;
     if (!stripe) return;
@@ -108,7 +122,7 @@ export class Accounts implements OnInit {
       )
     );
 
-    const result = await stripe.confirmCardPayment(
+    const result = await stripe?.confirmCardPayment(
       res.clientSecret,
       {
         payment_method: {
@@ -119,7 +133,6 @@ export class Accounts implements OnInit {
 
     if (result.paymentIntent?.status === 'succeeded') {
       console.log('Payment successful!', result.paymentIntent.id);
-      alert('Payment successful');
     }
   }
 
