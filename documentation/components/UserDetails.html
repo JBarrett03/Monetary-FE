@@ -610,7 +610,7 @@ Retrieves user data based on the user ID from the route parameters.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Current user data</p>
+                    <div class="io-description"><p>Current user data (stored as array with single user object).</p>
 </div>
                 </td>
             </tr>
@@ -684,7 +684,7 @@ import { CommonModule } from &#x27;@angular/common&#x27;;
 export class UserDetails implements OnInit {
 
   /**
-   * Current user data
+   * Current user data (stored as array with single user object).
    */
   user_list: any &#x3D; [];
   /**

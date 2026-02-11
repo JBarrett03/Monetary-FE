@@ -512,7 +512,7 @@ export class Login {
       password: this.password
     }).subscribe({
       next: (res) &#x3D;&gt; {
-        sessionStorage.setItem(&#x27;userId&#x27;, res.userId);
+        sessionStorage.setItem(&#x27;userId&#x27;, res.id);
         sessionStorage.setItem(&#x27;token&#x27;, res.token);
         this.router.navigate([&#x27;/&#x27;]);
       },

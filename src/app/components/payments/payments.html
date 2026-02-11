@@ -1,1 +1,15 @@
-This is the page where users will be able to add money to an account
+<div class="card-preview" [class.complete]="cardComplete">
+    <div class="brand">{{ cardBrand | uppercase }}</div>
+
+    <div class="number">•••• •••• •••• ••••</div>
+
+    <div class="expiry">MM / YY</div>
+</div>
+
+<div class="stripe-input">
+    <div id="card-element"></div>
+</div>
+
+<button (click)="pay()" [disabled]="!cardComplete">
+    Pay
+</button>

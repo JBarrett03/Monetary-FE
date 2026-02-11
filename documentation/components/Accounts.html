@@ -246,6 +246,9 @@
                                 <a href="#addAccount" >addAccount</a>
                             </li>
                             <li>
+                                <a href="#goToManageAccounts" >goToManageAccounts</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
@@ -388,7 +391,51 @@
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Opens the account details page for a specific account.</p>
+                        <div class="io-description"><p>Adds a new account for the user.
+Prompts for account type and currency, then creates the account via the service.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>void</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goToManageAccounts"></a>
+                    <span class="name">
+                        <span ><b>goToManageAccounts</b></span>
+                        <a href="#goToManageAccounts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goToManageAccounts()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="114"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:114</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Navigates to manage accounts page and closes the menu.</p>
 </div>
 
                         <div class="io-description">
@@ -474,7 +521,7 @@
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Toggles the menu open state and navigates to manage-accounts.</p>
+                        <div class="io-description"><p>Toggles the menu open state.</p>
 </div>
 
                         <div class="io-description">
@@ -638,8 +685,8 @@ export class Accounts implements OnInit {
   }
 
   /**
-   * Opens the account details page for a specific account.
-   * @param accountId The ID of the account to open.
+   * Adds a new account for the user.
+   * Prompts for account type and currency, then creates the account via the service.
    * @returns void
    */
   addAccount() {
@@ -677,10 +724,19 @@ export class Accounts implements OnInit {
   }
 
   /**
-   * Toggles the menu open state and navigates to manage-accounts.
+   * Toggles the menu open state.
    * @returns void
    */
   toggleMenu() {
+    this.menuOpen &#x3D; !this.menuOpen;
+  }
+
+  /**
+   * Navigates to manage accounts page and closes the menu.
+   * @returns void
+   */
+  goToManageAccounts() {
+    this.toggleMenu();
     this.router.navigate([&#x27;/manage-accounts&#x27;]);
   }
 }</code></pre>
@@ -696,12 +752,19 @@ export class Accounts implements OnInit {
 
             &lt;div class&#x3D;&quot;row mb-3&quot;&gt;
                 &lt;div class&#x3D;&quot;col-sm-12&quot;&gt;
-                    &lt;button class&#x3D;&quot;btn btn-outline-secondary me-2&quot; (click)&#x3D;&quot;addAccount()&quot;&gt;
-                        Add Account
+                    &lt;button class&#x3D;&quot;kebab-btn&quot; (click)&#x3D;&quot;toggleMenu()&quot;&gt;
+                        &lt;i class&#x3D;&quot;fa fa-ellipsis-v&quot;&gt;&lt;/i&gt;
                     &lt;/button&gt;
-                    &lt;button class&#x3D;&quot;btn btn-outline-secondary&quot; (click)&#x3D;&quot;toggleMenu()&quot;&gt;
-                        Manage
-                    &lt;/button&gt;
+                    @if (menuOpen) {
+                    &lt;div class&#x3D;&quot;menu-dropdown&quot;&gt;
+                        &lt;button class&#x3D;&quot;btn btn-outline-secondary me-2 w-100&quot; (click)&#x3D;&quot;addAccount(); toggleMenu()&quot;&gt;
+                            &lt;i class&#x3D;&quot;fa fa-plus&quot;&gt;&lt;/i&gt; Add Account
+                        &lt;/button&gt;
+                        &lt;button class&#x3D;&quot;btn btn-outline-secondary w-100&quot; (click)&#x3D;&quot;goToManageAccounts()&quot;&gt;
+                            &lt;i class&#x3D;&quot;fa fa-cog&quot;&gt;&lt;/i&gt; Manage
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                    }
                 &lt;/div&gt;
             &lt;/div&gt;
 
@@ -748,7 +811,7 @@ export class Accounts implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12">            @if (accounts_list.length === 0) {            <p>No accounts found</p>            }            <div class="row mb-3">                <div class="col-sm-12">                    <button class="btn btn-outline-secondary me-2" (click)="addAccount()">                        Add Account                    </button>                    <button class="btn btn-outline-secondary" (click)="toggleMenu()">                        Manage                    </button>                </div>            </div>            @for (account of accounts_list; track account._id) {            <div class="card text-dark mb-3 clickable-card" [routerLink]="[\'/accounts\', account._id]">                <div class="card-header">                    {{ account.accountType | titlecase }} account                </div>                <div class="card-body">                    Account #: {{ account.accountNumber }}<br />                    Currency: {{ account.currency || \'GBP\' }}<br />                    Balance: {{ account.availableBalance | currency: \'GBP\' }}                </div>            </div>            }        </div>    </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12">            @if (accounts_list.length === 0) {            <p>No accounts found</p>            }            <div class="row mb-3">                <div class="col-sm-12">                    <button class="kebab-btn" (click)="toggleMenu()">                        <i class="fa fa-ellipsis-v"></i>                    </button>                    @if (menuOpen) {                    <div class="menu-dropdown">                        <button class="btn btn-outline-secondary me-2 w-100" (click)="addAccount(); toggleMenu()">                            <i class="fa fa-plus"></i> Add Account                        </button>                        <button class="btn btn-outline-secondary w-100" (click)="goToManageAccounts()">                            <i class="fa fa-cog"></i> Manage                        </button>                    </div>                    }                </div>            </div>            @for (account of accounts_list; track account._id) {            <div class="card text-dark mb-3 clickable-card" [routerLink]="[\'/accounts\', account._id]">                <div class="card-header">                    {{ account.accountType | titlecase }} account                </div>                <div class="card-body">                    Account #: {{ account.accountNumber }}<br />                    Currency: {{ account.currency || \'GBP\' }}<br />                    Balance: {{ account.availableBalance | currency: \'GBP\' }}                </div>            </div>            }        </div>    </div></div></div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Accounts'};

@@ -145,8 +145,9 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>FilterPipe is an Angular pipe that filters an array of transactions based on a search category.
-It transforms the input array by returning only those transactions whose category includes the search term.</p>
+                <p>FilterPipe is an Angular pipe that filters an array of transactions based on a search term.
+It performs a case-insensitive partial match on the transaction category field.
+If no search term is provided, returns all transactions unfiltered.</p>
 
             </p>
 
@@ -192,8 +193,8 @@ It transforms the input array by returning only those transactions whose categor
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/app/pipes/filter-pipe.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="19"
+                                    class="link-to-prism">src/app/pipes/filter-pipe.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -260,8 +261,9 @@ It transforms the input array by returning only those transactions whose categor
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Pipe, PipeTransform } from &#x27;@angular/core&#x27;;
 
 /**
- * FilterPipe is an Angular pipe that filters an array of transactions based on a search category.
- * It transforms the input array by returning only those transactions whose category includes the search term.
+ * FilterPipe is an Angular pipe that filters an array of transactions based on a search term.
+ * It performs a case-insensitive partial match on the transaction category field.
+ * If no search term is provided, returns all transactions unfiltered.
  */
 @Pipe({
   name: &#x27;filter&#x27;,
@@ -269,8 +271,9 @@ It transforms the input array by returning only those transactions whose categor
 })
 
 /**
- * The FilterPipe class implements the PipeTransform interface and defines the transform method.
- * The transform method takes an array of transactions and a search category as input, and returns a filtered array of transactions.
+ * The FilterPipe class implements the PipeTransform interface.
+ * The transform method takes an array of transactions and a search term, returning only transactions
+ * whose category contains the search term (case-insensitive).
  */
 export class FilterPipe implements PipeTransform {
   transform(transactions: any[], searchCategory: string): any[] {

@@ -53,7 +53,10 @@ export class ManageAccounts implements OnInit {
    */
   showSortOptions: boolean = false;
 
-  sortOptions: 'balanceAsc' | 'balanceDesc' | 'openedAtAsc' | 'openedAtDesc' | 'updatedAtAsc' | 'updatedAtDesc' | null = null;
+  /**
+   * Currently applied sort option.
+   */
+  sortOptions: 'balanceAsc' | 'balanceDesc' | 'openedAtAsc' | 'openedAtDesc' | null = null;
 
   /**
    * Constructor for the ManageAccounts component.
