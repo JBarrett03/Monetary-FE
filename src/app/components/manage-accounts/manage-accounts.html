@@ -17,7 +17,7 @@
     } @else {
 
     @for (account of archived_list; track account._id) {
-    <div class="card-preview mb-3">
+    <div class="stripe-card mb-3 clickable-card">
         <div class="kebab-wrapper">
             <button class="kebab-btn" (click)="toggleMenu(account._id); $event.stopPropagation()">
                 <i class="fa fa-ellipsis-v"></i>
@@ -31,17 +31,24 @@
             </div>
             }
         </div>
-        <div class="brand">
-            {{ account.accountType | uppercase }}
+        <div class="stripe-card-top">
+            <div class="chip"></div>
+            <div class="card-brand">
+                {{ cardBrand | uppercase }}
+            </div>
         </div>
-        <div class="number">
+        <div class="card-number">
             {{ maskAccountNumber(account.accountNumber) }}
         </div>
-        <div class="expiry">
-            {{ account.currency || 'GBP' }}
-        </div>
-        <div class="balance">
-            {{ account.availableBalance | currency: (account.currency || 'GBP') }}
+        <div class="stripe-card-bottom">
+            <div class="card-holder">
+                {{ account.accountType | uppercase }}<br>
+                {{ account.availableBalance | currency: (account.currency || 'GBP') }}<br>
+                {{ firstName }} {{ lastName }}
+            </div>
+            <div class="expiry">
+                MM / YY
+            </div>
         </div>
     </div>
     }
@@ -78,18 +85,25 @@
     <div cdkDropList [cdkDropListData]="accounts_list" [cdkDropListDisabled]="!isReordering"
         (cdkDropListDropped)="drop($event)" class="accounts-list">
         @for (account of accounts_list; track account._id) {
-        <div class="card-preview mb-3 clickable-card" cdkDrag [cdkDragDisabled]="!isReordering">
-            <div class="brand">
-                {{ account.accountType | uppercase }}
+        <div class="stripe-card mb-3 clickable-card" cdkDrag [cdkDragDisabled]="!isReordering">
+            <div class="stripe-card-top">
+                <div class="chip"></div>
+                <div class="card-brand">
+                    {{ cardBrand | uppercase }}
+                </div>
             </div>
-            <div class="number">
+            <div class="card-number">
                 {{ maskAccountNumber(account.accountNumber) }}
             </div>
-            <div class="expiry">
-                {{ account.currency || 'GBP' }}
-            </div>
-            <div class="balance">
-                {{ account.availableBalance | currency: (account.currency || 'GBP') }}
+            <div class="stripe-card-bottom">
+                <div class="card-holder">
+                    {{ account.accountType | uppercase }}<br>
+                    {{ account.availableBalance | currency: (account.currency || 'GBP') }}<br>
+                    {{ firstName }} {{ lastName }}
+                </div>
+                <div class="expiry">
+                    MM / YY
+                </div>
             </div>
         </div>
         }

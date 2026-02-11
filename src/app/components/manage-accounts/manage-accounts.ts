@@ -1,8 +1,9 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { DragDropModule, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AccountService } from '../../services/account-service';
+import { UserService } from '../../services/user-service';
 
 /**
  * Manage Accounts component allows users to reorder, sort, and restore archived accounts.
@@ -15,7 +16,7 @@ import { AccountService } from '../../services/account-service';
   templateUrl: './manage-accounts.html',
   styleUrl: './manage-accounts.css',
 })
-export class ManageAccounts {
+export class ManageAccounts implements OnInit {
 
   /**
    * List of accounts
@@ -53,12 +54,54 @@ export class ManageAccounts {
   sortOptions: 'balanceAsc' | 'balanceDesc' | 'openedAtAsc' | 'openedAtDesc' | null = null;
 
   /**
+   * Customer's first name
+   */
+  firstName: string = '';
+
+  /**
+   * Customer's last name
+   */
+  lastName: string = '';
+
+  /**
+   * Payment card brand
+   */
+  cardBrand: string = '';
+
+  /**
    * Constructor for the ManageAccounts component.
    * @param accountService Service for account operations.
+   * @param userService Service for user operations.
    * @param cdr Change detector reference.
    * @param router Router for navigation.
    */
-  constructor(private accountService: AccountService, private cdr: ChangeDetectorRef, private router: Router) { }
+  constructor(private accountService: AccountService, private userService: UserService, private cdr: ChangeDetectorRef, private router: Router) { }
+
+  /**
+   * Angular lifecycle hook that runs when the component is initialized.
+   * Loads the user details and active accounts list.
+   */
+  ngOnInit() {
+    const userId = sessionStorage.getItem('userId');
+    if (!userId) {
+      return;
+    }
+
+    this.userService.getUser(userId).subscribe({
+      next: (user) => {
+        this.firstName = user.firstName;
+        this.lastName = user.lastName;
+        this.cdr.detectChanges();
+      }
+    });
+
+    this.accountService.getAccounts(userId).subscribe({
+      next: (accounts) => {
+        this.accounts_list = accounts;
+        this.cdr.detectChanges();
+      }
+    });
+  }
 
   /**
    * Handles the drop event when reordering accounts via drag and drop.

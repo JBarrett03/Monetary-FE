@@ -62,78 +62,77 @@
     min-width: 110px;
 }
 
-.card-preview {
-    width: 360px;
-    height: 200px;
-    padding: 20px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #1a1f71, #3b82f6);
-    color: white;
-    font-family: Inter, system-ui, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 16px;
-    transition: opacity 0.2s ease;
-    position: relative;
+.stripe-card {
+  width: 360px;
+  height: 210px;
+  padding: 22px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #1c1f3f, #2f3b87);
+  color: white;
+  font-family: 'Inter', system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  transition: transform 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
 }
 
-.card-preview.complete {
-    opacity: 1;
+.stripe-card:hover {
+  transform: translateY(-6px);
 }
 
-.brand {
-    font-size: 14px;
-    letter-spacing: 1px;
+.stripe-card.complete {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 
-.number {
-    font-size: 20px;
-    letter-spacing: 2px;
+.chip {
+  width: 42px;
+  height: 30px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #d4af37, #f6e27f);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.expiry {
-    font-size: 14px;
+.stripe-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.stripe-input {
-    max-width: 360px;
-    padding: 12px;
-    border: 1px solid #e6ebf1;
-    border-radius: 8px;
-    margin-bottom: 12px;
+.card-brand {
+  font-size: 14px;
+  letter-spacing: 1px;
+  opacity: 0.9;
 }
 
-button {
-    padding: 10px 16px;
-    border-radius: 8px;
-    background: #3b82f6;
-    color: white;
-    border: none;
-    cursor: pointer;
+.card-number {
+  font-size: 20px;
+  letter-spacing: 3px;
+  font-weight: 500;
 }
 
-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+.stripe-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
-.card-preview:hover {
-    transform: translateY(-4px);
+.card-holder {
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 
-.card-preview .brand {
-    font-size: 14px;
-    opacity: 0.8;
+.stripe-card .expiry {
+  font-size: 14px;
+  opacity: 0.85;
 }
 
-.card-preview .number {
-    font-size: 20px;
-    letter-spacing: 2px;
-    margin-top: 15px 0;
-}
-
-.card-preview .balance {
-    font-size: 18px;
-    font-weight: 600;
+.stripe-card .balance {
+  font-size: 18px;
+  font-weight: 600;
 }

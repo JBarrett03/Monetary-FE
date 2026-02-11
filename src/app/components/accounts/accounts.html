@@ -1,6 +1,6 @@
 <div class="container container-top-margin">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 d-flex flex-column align-items-center">
             @if (accounts_list.length === 0) {
             <p>No accounts found</p>
             }
@@ -40,6 +40,7 @@
                 <div class="stripe-card-bottom">
                     <div class="card-holder">
                         {{ account.accountType | uppercase }}<br>
+                        {{ account.availableBalance | currency: (account.currency || 'GBP') }}<br>
                         {{ firstName }} {{ lastName }}
                     </div>
                     <div class="expiry">

@@ -59,7 +59,6 @@ export class Accounts implements OnInit {
       return;
     }
 
-    // Load user details to get first and last name
     this.userService.getUser(userId).subscribe({
       next: (user) => {
         this.firstName = user.firstName || '';
@@ -71,7 +70,6 @@ export class Accounts implements OnInit {
       }
     });
 
-    // Load accounts
     this.accountService.getAccounts(userId).subscribe({
       next: (accounts) => {
         this.accounts_list = accounts;
