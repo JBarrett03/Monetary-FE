@@ -1,7 +1,7 @@
-<div class="card-preview" [class.complete]="cardComplete">
+<div class="card-preview" [class.complete]="cardComplete" (click)="goToAccounts()" style="cursor: pointer;">
     <div class="brand">{{ cardBrand | uppercase }}</div>
 
-    <div class="number">•••• •••• •••• ••••</div>
+    <div class="number">{{ maskedAccountNumber }}</div>
 
     <div class="expiry">MM / YY</div>
 </div>

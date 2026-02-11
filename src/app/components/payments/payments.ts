@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { UpperCasePipe } from '@angular/common';
 import { loadStripe, StripeCardElement } from '@stripe/stripe-js';
 import { firstValueFrom } from 'rxjs';
+import { AccountService } from '../../services/account-service';
 /**
  * Payments component - placeholder for payment processing features.
  * This component is intended for handling user payments, transfers, and payment history.
@@ -27,10 +29,25 @@ export class Payments implements OnInit {
   card!: StripeCardElement;
   cardBrand: string = 'card';
   cardComplete: boolean = false;
+  accountNumber: string = '';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router, private accountService: AccountService) { }
 
   async ngOnInit() {
+    const userId = sessionStorage.getItem('userId');
+    if (userId) {
+      this.accountService.getAccounts(userId).subscribe({
+        next: (accounts) => {
+          if (accounts && accounts.length > 0) {
+            this.accountNumber = accounts[0].accountNumber;
+          }
+        },
+        error: (err) => {
+          console.error('Failed to load account number', err);
+        }
+      });
+    }
+
     const stripe = await this.stripePromise;
     if (!stripe) return;
 
@@ -80,5 +97,23 @@ export class Payments implements OnInit {
     if (result.paymentIntent?.status === 'succeeded') {
       console.log('Payment successful!', result.paymentIntent.id);
     }
+  }
+
+  /**
+   * Navigates to the accounts page.
+   * @returns void
+   */
+  goToAccounts() {
+    this.router.navigate(['/accounts']);
+  }
+
+  get maskedAccountNumber(): string {
+    if (!this.accountNumber) {
+      return '•••• •••• •••• ••••';
+    }
+
+    const cleanNumber = this.accountNumber.replace(/\s/g, '');
+    const last4 = cleanNumber.slice(-4);
+    return `•••• •••• •••• ${last4}`;
   }
 }
