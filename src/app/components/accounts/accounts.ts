@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AccountService } from '../../services/account-service';
+import { UserService } from '../../services/user-service';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 
@@ -27,15 +28,29 @@ export class Accounts implements OnInit {
   menuOpen = false;
 
   /**
+   * Customer's first name
+   */
+  firstName: string = '';
+
+  /**
+   * Customer's last name
+   */
+  lastName: string = '';
+
+  cardBrand: string = '';
+  cardComplete: boolean = false;
+
+  /**
    * Creates an instance of Accounts component.
    * @param accountService Service for account operations.
+   * @param userService Service for user operations.
    * @param cdr Change detector reference.
    * @param router Router for navigation.
    */
-  constructor(private accountService: AccountService, private cdr: ChangeDetectorRef, private router: Router) { }
+  constructor(private accountService: AccountService, private userService: UserService, private cdr: ChangeDetectorRef, private router: Router) { }
 
   /**
-   * Initializes the component and loads the list of accounts for the user.
+   * Initializes the component and loads the list of accounts and user details.
    */
   async ngOnInit() {
     const userId = sessionStorage.getItem('userId');
@@ -44,6 +59,19 @@ export class Accounts implements OnInit {
       return;
     }
 
+    // Load user details to get first and last name
+    this.userService.getUser(userId).subscribe({
+      next: (user) => {
+        this.firstName = user.firstName || '';
+        this.lastName = user.lastName || '';
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Failed to load user details', err);
+      }
+    });
+
+    // Load accounts
     this.accountService.getAccounts(userId).subscribe({
       next: (accounts) => {
         this.accounts_list = accounts;
