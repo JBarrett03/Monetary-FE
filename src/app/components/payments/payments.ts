@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { UpperCasePipe } from '@angular/common';
+import { CommonModule, UpperCasePipe } from '@angular/common';
 import { loadStripe, StripeCardElement } from '@stripe/stripe-js';
 import { firstValueFrom } from 'rxjs';
 import { AccountService } from '../../services/account-service';
@@ -13,7 +13,7 @@ import { AccountService } from '../../services/account-service';
 @Component({
   selector: 'app-payments',
   standalone: true,
-  imports: [UpperCasePipe],
+  imports: [CommonModule, UpperCasePipe],
   templateUrl: './payments.html',
   styleUrl: './payments.css',
 })
@@ -30,6 +30,7 @@ export class Payments implements OnInit {
   cardBrand: string = 'card';
   cardComplete: boolean = false;
   accountNumber: string = '';
+  maskedAccountNumber: string = '';
 
   constructor(private http: HttpClient, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef) { }
 
@@ -98,27 +99,5 @@ export class Payments implements OnInit {
     if (result.paymentIntent?.status === 'succeeded') {
       console.log('Payment successful!', result.paymentIntent.id);
     }
-  }
-
-  /**
-   * Navigates to the accounts page.
-   * @returns void
-   */
-  goToAccounts(event?: Event) {
-    if (event) {
-      event.stopPropagation();
-    }
-    console.log('Navigating to accounts...');
-    this.router.navigate(['/accounts']);
-  }
-
-  get maskedAccountNumber(): string {
-    if (!this.accountNumber) {
-      return '•••• •••• •••• ••••';
-    }
-
-    const cleanNumber = this.accountNumber.replace(/\s/g, '');
-    const last4 = cleanNumber.slice(-4);
-    return `•••• •••• •••• ${last4}`;
   }
 }

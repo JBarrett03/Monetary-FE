@@ -52,3 +52,32 @@ button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
+
+.card-preview {
+    background: linear-gradient(135deg, #1e1e2f, #2a2a45);
+    color: white;
+    border-radius: 16px;
+    padding: 20px;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.card-preview:hover {
+    transform: translateY(-4px);
+}
+
+.card-preview .brand {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.card-preview .number {
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-top: 15px 0;
+}
+
+.card-preview .balance {
+    font-size: 18px;
+    font-weight: 600;
+}

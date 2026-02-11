@@ -24,14 +24,18 @@
             </div>
 
             @for (account of accounts_list; track account._id) {
-            <div class="card text-dark mb-3 clickable-card" [routerLink]="['/accounts', account._id]">
-                <div class="card-header">
-                    {{ account.accountType | titlecase }} account
-                </div>
-                <div class="card-body">
-                    Account #: {{ account.accountNumber }}<br />
-                    Currency: {{ account.currency || 'GBP' }}<br />
-                    Balance: {{ account.availableBalance | currency: 'GBP' }}
+            <div class="card-preview mb-3 clickable-card" [routerLink]="['/accounts', account._id]"
+                style="cursor: pointer;">
+                <div class="stripe-card-preview" [class.complete]="cardComplete">
+                    <div class="brand">
+                        {{ cardBrand | uppercase }}
+                    </div>
+                    <div class="number">
+                        •••• •••• •••• ••••
+                    </div>
+                    <div class="expiry">
+                        MM / YY
+                    </div>
                 </div>
             </div>
             }
