@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UpperCasePipe } from '@angular/common';
@@ -31,7 +31,7 @@ export class Payments implements OnInit {
   cardComplete: boolean = false;
   accountNumber: string = '';
 
-  constructor(private http: HttpClient, private router: Router, private accountService: AccountService) { }
+  constructor(private http: HttpClient, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef) { }
 
   async ngOnInit() {
     const userId = sessionStorage.getItem('userId');
@@ -40,6 +40,7 @@ export class Payments implements OnInit {
         next: (accounts) => {
           if (accounts && accounts.length > 0) {
             this.accountNumber = accounts[0].accountNumber;
+            this.cdr.detectChanges();
           }
         },
         error: (err) => {
