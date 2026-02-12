@@ -61,9 +61,9 @@ export class AccountDetails implements OnInit {
 
   budgetPeriod: string = '';
 
-  customBudgetStartDate: string = '';
+  startDate: string = '';
 
-  customBudgetEndDate: string = '';
+  endDate: string = '';
 
   /**
    * Creates an instance of AccountDetails component.
@@ -302,16 +302,16 @@ export class AccountDetails implements OnInit {
     const budget = {
       amount: this.budgetAmount,
       period: this.budgetPeriod,
-      customBudgetStartDate: this.budgetPeriod === 'custom' ? this.customBudgetStartDate : null,
-      customBudgetEndDate: this.budgetPeriod === 'custom' ? this.customBudgetEndDate : null
+      startDate: this.budgetPeriod === 'custom' ? this.startDate : null,
+      endDate: this.budgetPeriod === 'custom' ? this.endDate : null
     };
 
     this.accountService.setBudget(userId, accountId, budget).subscribe({
       next: () => {
         this.showBudgetForm = false;
         this.budgetAmount = null;
-        this.customBudgetStartDate = '';
-        this.customBudgetEndDate = '';
+        this.startDate = '';
+        this.endDate = '';
 
         this.accountService.getAccount(userId, accountId).subscribe(account => {
           this.account = account;
