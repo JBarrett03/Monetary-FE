@@ -149,6 +149,13 @@ export class AccountService {
     return this.http.put(`${this.baseUrl}/users/${userId}/accounts/${accountId}/restore`, {});
   }
 
+  /**
+   * Set the budget for a specific account of a user via the API.
+   * @param userId The ID of the user to set the budget for
+   * @param accountId The ID of the account to set the budget for
+   * @param budget The budget data to be set for the account
+   * @return An observable containing the HTTP response
+   */
   setBudget(userId: string, accountId: string, budget: any) {
     return this.http.post(`http://localhost:5000/api/v1.0/users/${userId}/accounts/${accountId}/budget`, budget);
   }

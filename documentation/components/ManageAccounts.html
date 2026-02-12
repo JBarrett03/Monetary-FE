@@ -142,11 +142,18 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>ManageAccounts component</p>
+        <p>Manage Accounts component allows users to reorder, sort, and restore archived accounts.
+Features include drag-and-drop reordering, sorting by balance or opened date, and restoring archived accounts.</p>
 
     </p>
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -226,7 +233,16 @@
                                 <a href="#archived_list" >archived_list</a>
                             </li>
                             <li>
+                                <a href="#cardBrand" >cardBrand</a>
+                            </li>
+                            <li>
+                                <a href="#firstName" >firstName</a>
+                            </li>
+                            <li>
                                 <a href="#isReordering" >isReordering</a>
+                            </li>
+                            <li>
+                                <a href="#lastName" >lastName</a>
                             </li>
                             <li>
                                 <a href="#openMenu" >openMenu</a>
@@ -260,6 +276,9 @@
                             </li>
                             <li>
                                 <a href="#maskAccountNumber" >maskAccountNumber</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
                                 <a href="#restoreArchivedAccount" >restoreArchivedAccount</a>
@@ -297,12 +316,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(accountService: <a href="../injectables/AccountService.html" target="_self">AccountService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(accountService: <a href="../injectables/AccountService.html" target="_self">AccountService</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:69</a></div>
                             </td>
                         </tr>
 
@@ -335,6 +354,22 @@
                                                     
                                                         <td>
                                                                 <p>Service for account operations.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Service for user operations.</p>
 
                                                         </td>
                                                 </tr>
@@ -408,8 +443,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="123"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:123</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="159"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:159</a></div>
                         </td>
                     </tr>
 
@@ -417,7 +452,7 @@
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Applies the selected sort option to the accounts list.
-Currently supports sorting by balance (ascending or descending).</p>
+Supports sorting by balance or opened date in ascending or descending order.</p>
 </div>
 
                             <div class="io-description">
@@ -445,7 +480,7 @@ Currently supports sorting by balance (ascending or descending).</p>
 
 
                                             <td>
-                                                    <p>The sort option to apply (&#39;balanceAsc&#39; or &#39;balanceDesc&#39;).</p>
+                                                    <p>The sort option to apply.</p>
 
                                             </td>
                                         </tr>
@@ -457,8 +492,7 @@ Currently supports sorting by balance (ascending or descending).</p>
 
                         </div>
                             <div class="io-description">
-                                <p>void</p>
-
+                                
                             </div>
                 </td>
             </tr>
@@ -484,15 +518,15 @@ Currently supports sorting by balance (ascending or descending).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="71"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:71</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="110"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:110</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Handles the drop event when reordering accounts.</p>
+                        <div class="io-description"><p>Handles the drop event when reordering accounts via drag and drop.</p>
 </div>
 
                             <div class="io-description">
@@ -520,7 +554,7 @@ Currently supports sorting by balance (ascending or descending).</p>
 
 
                                             <td>
-                                                    <p>The drag and drop event containing the previous and current index of the item.</p>
+                                                    <p>The drag and drop event containing the previous and current index.</p>
 
                                             </td>
                                         </tr>
@@ -532,8 +566,7 @@ Currently supports sorting by balance (ascending or descending).</p>
 
                         </div>
                             <div class="io-description">
-                                <p>void</p>
-
+                                
                             </div>
                 </td>
             </tr>
@@ -559,15 +592,15 @@ Currently supports sorting by balance (ascending or descending).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="247"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:247</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="279"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:279</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Archives an active account, moving it to the archived accounts list.</p>
+                        <div class="io-description"><p>Masks an account number for secure display, showing only the last 4 digits.</p>
 </div>
 
                             <div class="io-description">
@@ -579,6 +612,7 @@ Currently supports sorting by balance (ascending or descending).</p>
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -593,6 +627,10 @@ Currently supports sorting by balance (ascending or descending).</p>
                                             </td>
 
 
+                                            <td>
+                                                    <p>The account number to mask.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -602,9 +640,49 @@ Currently supports sorting by balance (ascending or descending).</p>
 
                         </div>
                             <div class="io-description">
-                                <p>voids</p>
+                                <p>A masked account number string.</p>
 
                             </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Angular lifecycle hook that runs when the component is initialized.
+Loads the user details and active accounts list.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -629,8 +707,8 @@ Currently supports sorting by balance (ascending or descending).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="218"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:218</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="250"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:250</a></div>
                         </td>
                     </tr>
 
@@ -665,7 +743,7 @@ Currently supports sorting by balance (ascending or descending).</p>
 
 
                                             <td>
-                                                    <p>The ID of the account to be restored.</p>
+                                                    <p>The ID of the account to restore.</p>
 
                                             </td>
                                         </tr>
@@ -677,8 +755,7 @@ Currently supports sorting by balance (ascending or descending).</p>
 
                         </div>
                             <div class="io-description">
-                                <p>void</p>
-
+                                
                             </div>
                 </td>
             </tr>
@@ -704,25 +781,21 @@ Currently supports sorting by balance (ascending or descending).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="84"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:84</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="122"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:122</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Saves the new order of accounts after reordering.</p>
+                        <div class="io-description"><p>Saves the new account order after reordering and navigates back to accounts page.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -747,25 +820,21 @@ Currently supports sorting by balance (ascending or descending).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="187"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:187</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="221"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:221</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Shows archived accounts.</p>
+                        <div class="io-description"><p>Switches to displaying archived accounts instead of active accounts.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -790,25 +859,21 @@ Currently supports sorting by balance (ascending or descending).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="165"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:165</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="200"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:200</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Enables reordering mode and loads accounts from the service.</p>
+                        <div class="io-description"><p>Enables reordering mode and loads accounts for reordering.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -833,8 +898,8 @@ Currently supports sorting by balance (ascending or descending).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="209"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:209</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="242"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:242</a></div>
                         </td>
                     </tr>
 
@@ -881,8 +946,7 @@ Currently supports sorting by balance (ascending or descending).</p>
 
                         </div>
                             <div class="io-description">
-                                <p>void</p>
-
+                                
                             </div>
                 </td>
             </tr>
@@ -908,25 +972,21 @@ Currently supports sorting by balance (ascending or descending).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="113"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:113</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="150"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:150</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Toggles the display of sort options.</p>
+                        <div class="io-description"><p>Toggles the visibility of the sort options dropdown.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -961,7 +1021,7 @@ Currently supports sorting by balance (ascending or descending).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -998,13 +1058,87 @@ Currently supports sorting by balance (ascending or descending).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:29</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>List of archived accounts</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cardBrand"></a>
+                    <span class="name">
+                        <span ><b>cardBrand</b></span>
+                        <a href="#cardBrand"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:69</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Payment card brand</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="firstName"></a>
+                    <span class="name">
+                        <span ><b>firstName</b></span>
+                        <a href="#firstName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:59</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Customer&#39;s first name</p>
 </div>
                 </td>
             </tr>
@@ -1035,13 +1169,50 @@ Currently supports sorting by balance (ascending or descending).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:34</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Flag indicating if the component is in reordering mode.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lastName"></a>
+                    <span class="name">
+                        <span ><b>lastName</b></span>
+                        <a href="#lastName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:64</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Customer&#39;s last name</p>
 </div>
                 </td>
             </tr>
@@ -1072,7 +1243,7 @@ Currently supports sorting by balance (ascending or descending).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -1109,7 +1280,7 @@ Currently supports sorting by balance (ascending or descending).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -1146,7 +1317,7 @@ Currently supports sorting by balance (ascending or descending).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -1183,7 +1354,7 @@ Currently supports sorting by balance (ascending or descending).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -1202,14 +1373,16 @@ Currently supports sorting by balance (ascending or descending).</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ChangeDetectorRef } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ChangeDetectorRef, OnInit } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { RouterModule, Router } from &#x27;@angular/router&#x27;;
 import { DragDropModule, CdkDragDrop, moveItemInArray } from &#x27;@angular/cdk/drag-drop&#x27;;
 import { AccountService } from &#x27;../../services/account-service&#x27;;
+import { UserService } from &#x27;../../services/user-service&#x27;;
 
 /**
- * ManageAccounts component
+ * Manage Accounts component allows users to reorder, sort, and restore archived accounts.
+ * Features include drag-and-drop reordering, sorting by balance or opened date, and restoring archived accounts.
  */
 @Component({
   selector: &#x27;app-manage-accounts&#x27;,
@@ -1218,11 +1391,7 @@ import { AccountService } from &#x27;../../services/account-service&#x27;;
   templateUrl: &#x27;./manage-accounts.html&#x27;,
   styleUrl: &#x27;./manage-accounts.css&#x27;,
 })
-
-/**
- * ManageAccounts class
- */
-export class ManageAccounts {
+export class ManageAccounts implements OnInit {
 
   /**
    * List of accounts
@@ -1260,17 +1429,58 @@ export class ManageAccounts {
   sortOptions: &#x27;balanceAsc&#x27; | &#x27;balanceDesc&#x27; | &#x27;openedAtAsc&#x27; | &#x27;openedAtDesc&#x27; | null &#x3D; null;
 
   /**
+   * Customer&#x27;s first name
+   */
+  firstName: string &#x3D; &#x27;&#x27;;
+
+  /**
+   * Customer&#x27;s last name
+   */
+  lastName: string &#x3D; &#x27;&#x27;;
+
+  /**
+   * Payment card brand
+   */
+  cardBrand: string &#x3D; &#x27;&#x27;;
+
+  /**
    * Constructor for the ManageAccounts component.
    * @param accountService Service for account operations.
+   * @param userService Service for user operations.
    * @param cdr Change detector reference.
    * @param router Router for navigation.
    */
-  constructor(private accountService: AccountService, private cdr: ChangeDetectorRef, private router: Router) { }
+  constructor(private accountService: AccountService, private userService: UserService, private cdr: ChangeDetectorRef, private router: Router) { }
 
   /**
-   * Handles the drop event when reordering accounts.
-   * @param event The drag and drop event containing the previous and current index of the item.
-   * @returns void
+   * Angular lifecycle hook that runs when the component is initialized.
+   * Loads the user details and active accounts list.
+   */
+  ngOnInit() {
+    const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
+    if (!userId) {
+      return;
+    }
+
+    this.userService.getUser(userId).subscribe({
+      next: (user) &#x3D;&gt; {
+        this.firstName &#x3D; user.firstName;
+        this.lastName &#x3D; user.lastName;
+        this.cdr.detectChanges();
+      }
+    });
+
+    this.accountService.getAccounts(userId).subscribe({
+      next: (accounts) &#x3D;&gt; {
+        this.accounts_list &#x3D; accounts;
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+  /**
+   * Handles the drop event when reordering accounts via drag and drop.
+   * @param event The drag and drop event containing the previous and current index.
    */
   drop(event: CdkDragDrop&lt;any[]&gt;) {
     moveItemInArray(
@@ -1282,8 +1492,7 @@ export class ManageAccounts {
   }
 
   /**
-   * Saves the new order of accounts after reordering.
-   * @returns void
+   * Saves the new account order after reordering and navigates back to accounts page.
    */
   saveOrder() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
@@ -1311,8 +1520,7 @@ export class ManageAccounts {
   }
 
   /**
-   * Toggles the display of sort options.
-   * @returns void
+   * Toggles the visibility of the sort options dropdown.
    */
   toggleSortOptions() {
     this.showSortOptions &#x3D; !this.showSortOptions;
@@ -1320,9 +1528,8 @@ export class ManageAccounts {
 
   /**
    * Applies the selected sort option to the accounts list.
-   * Currently supports sorting by balance (ascending or descending).
-   * @param option The sort option to apply (&#x27;balanceAsc&#x27; or &#x27;balanceDesc&#x27;).
-   * @returns void
+   * Supports sorting by balance or opened date in ascending or descending order.
+   * @param option The sort option to apply.
    */
   applySort(option: &#x27;balanceAsc&#x27; | &#x27;balanceDesc&#x27; | &#x27;openedAtAsc&#x27; | &#x27;openedAtDesc&#x27;) {
     this.sortOptions &#x3D; option;
@@ -1363,8 +1570,7 @@ export class ManageAccounts {
   }
 
   /**
-   * Enables reordering mode and loads accounts from the service.
-   * @returns void
+   * Enables reordering mode and loads accounts for reordering.
    */
   sortAccounts() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
@@ -1385,8 +1591,7 @@ export class ManageAccounts {
   }
 
   /**
-   * Shows archived accounts.
-   * @returns void
+   * Switches to displaying archived accounts instead of active accounts.
    */
   showArchivedAccounts() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
@@ -1408,7 +1613,6 @@ export class ManageAccounts {
   /**
    * Toggles the kebab menu visibility for a specific account.
    * @param accountId The ID of the account whose menu should be toggled.
-   * @returns void
    */
   toggleMenu(accountId: string) {
     this.openMenu &#x3D; this.openMenu &#x3D;&#x3D;&#x3D; accountId ? null : accountId;
@@ -1416,8 +1620,7 @@ export class ManageAccounts {
 
   /**
    * Restores an archived account back to the active accounts list.
-   * @param accountId The ID of the account to be restored.
-   * @returns void
+   * @param accountId The ID of the account to restore.
    */
   restoreArchivedAccount(accountId: string) {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
@@ -1444,9 +1647,9 @@ export class ManageAccounts {
   }
 
   /**
-   * Archives an active account, moving it to the archived accounts list.
-   * @param accountId The ID of the account to be archived.
-   * @return voids
+   * Masks an account number for secure display, showing only the last 4 digits.
+   * @param accountNumber The account number to mask.
+   * @returns A masked account number string.
    */
   maskAccountNumber(accountNumber: string): string {
     if (!accountNumber) return &#x27;•••• •••• •••• ••••&#x27;;
@@ -1478,7 +1681,7 @@ export class ManageAccounts {
     } @else {
 
     @for (account of archived_list; track account._id) {
-    &lt;div class&#x3D;&quot;card-preview mb-3&quot;&gt;
+    &lt;div class&#x3D;&quot;stripe-card mb-3 clickable-card&quot;&gt;
         &lt;div class&#x3D;&quot;kebab-wrapper&quot;&gt;
             &lt;button class&#x3D;&quot;kebab-btn&quot; (click)&#x3D;&quot;toggleMenu(account._id); $event.stopPropagation()&quot;&gt;
                 &lt;i class&#x3D;&quot;fa fa-ellipsis-v&quot;&gt;&lt;/i&gt;
@@ -1492,17 +1695,24 @@ export class ManageAccounts {
             &lt;/div&gt;
             }
         &lt;/div&gt;
-        &lt;div class&#x3D;&quot;brand&quot;&gt;
-            {{ account.accountType | uppercase }}
+        &lt;div class&#x3D;&quot;stripe-card-top&quot;&gt;
+            &lt;div class&#x3D;&quot;chip&quot;&gt;&lt;/div&gt;
+            &lt;div class&#x3D;&quot;card-brand&quot;&gt;
+                {{ cardBrand | uppercase }}
+            &lt;/div&gt;
         &lt;/div&gt;
-        &lt;div class&#x3D;&quot;number&quot;&gt;
+        &lt;div class&#x3D;&quot;card-number&quot;&gt;
             {{ maskAccountNumber(account.accountNumber) }}
         &lt;/div&gt;
-        &lt;div class&#x3D;&quot;expiry&quot;&gt;
-            {{ account.currency || &#x27;GBP&#x27; }}
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;balance&quot;&gt;
-            {{ account.availableBalance | currency: (account.currency || &#x27;GBP&#x27;) }}
+        &lt;div class&#x3D;&quot;stripe-card-bottom&quot;&gt;
+            &lt;div class&#x3D;&quot;card-holder&quot;&gt;
+                {{ account.accountType | uppercase }}&lt;br&gt;
+                {{ account.availableBalance | currency: (account.currency || &#x27;GBP&#x27;) }}&lt;br&gt;
+                {{ firstName }} {{ lastName }}
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;expiry&quot;&gt;
+                MM / YY
+            &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
     }
@@ -1539,18 +1749,25 @@ export class ManageAccounts {
     &lt;div cdkDropList [cdkDropListData]&#x3D;&quot;accounts_list&quot; [cdkDropListDisabled]&#x3D;&quot;!isReordering&quot;
         (cdkDropListDropped)&#x3D;&quot;drop($event)&quot; class&#x3D;&quot;accounts-list&quot;&gt;
         @for (account of accounts_list; track account._id) {
-        &lt;div class&#x3D;&quot;card-preview mb-3 clickable-card&quot; cdkDrag [cdkDragDisabled]&#x3D;&quot;!isReordering&quot;&gt;
-            &lt;div class&#x3D;&quot;brand&quot;&gt;
-                {{ account.accountType | uppercase }}
+        &lt;div class&#x3D;&quot;stripe-card mb-3 clickable-card&quot; cdkDrag [cdkDragDisabled]&#x3D;&quot;!isReordering&quot;&gt;
+            &lt;div class&#x3D;&quot;stripe-card-top&quot;&gt;
+                &lt;div class&#x3D;&quot;chip&quot;&gt;&lt;/div&gt;
+                &lt;div class&#x3D;&quot;card-brand&quot;&gt;
+                    {{ cardBrand | uppercase }}
+                &lt;/div&gt;
             &lt;/div&gt;
-            &lt;div class&#x3D;&quot;number&quot;&gt;
+            &lt;div class&#x3D;&quot;card-number&quot;&gt;
                 {{ maskAccountNumber(account.accountNumber) }}
             &lt;/div&gt;
-            &lt;div class&#x3D;&quot;expiry&quot;&gt;
-                {{ account.currency || &#x27;GBP&#x27; }}
-            &lt;/div&gt;
-            &lt;div class&#x3D;&quot;balance&quot;&gt;
-                {{ account.availableBalance | currency: (account.currency || &#x27;GBP&#x27;) }}
+            &lt;div class&#x3D;&quot;stripe-card-bottom&quot;&gt;
+                &lt;div class&#x3D;&quot;card-holder&quot;&gt;
+                    {{ account.accountType | uppercase }}&lt;br&gt;
+                    {{ account.availableBalance | currency: (account.currency || &#x27;GBP&#x27;) }}&lt;br&gt;
+                    {{ firstName }} {{ lastName }}
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;expiry&quot;&gt;
+                    MM / YY
+                &lt;/div&gt;
             &lt;/div&gt;
         &lt;/div&gt;
         }
@@ -1588,7 +1805,7 @@ export class ManageAccounts {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row mb-3">        <div class="col-sm-12">            <button class="btn btn-outline-secondary me-2" (click)="showArchivedAccounts()">                Archived accounts            </button>            <button class="btn btn-outline-secondary me-2" (click)="sortAccounts()">                Reorder Accounts            </button>        </div>    </div>    @if (showingArchived) {    @if (archived_list.length === 0) {    <p>No archived accounts found</p>    } @else {    @for (account of archived_list; track account._id) {    <div class="card-preview mb-3">        <div class="kebab-wrapper">            <button class="kebab-btn" (click)="toggleMenu(account._id); $event.stopPropagation()">                <i class="fa fa-ellipsis-v"></i>            </button>            @if (openMenu === account._id) {            <div class="kebab-menu">                <button (click)="restoreArchivedAccount(account._id)">                    Restore Account                </button>            </div>            }        </div>        <div class="brand">            {{ account.accountType | uppercase }}        </div>        <div class="number">            {{ maskAccountNumber(account.accountNumber) }}        </div>        <div class="expiry">            {{ account.currency || \'GBP\' }}        </div>        <div class="balance">            {{ account.availableBalance | currency: (account.currency || \'GBP\') }}        </div>    </div>    }    }    } @else {    @if (isReordering) {    <div class="row mb-3">        <div class="col-sm-12">            <button class="btn btn-success me-2" (click)="saveOrder()">                Save            </button>            <button class="btn btn-outline-secondary" (click)="toggleSortOptions()">                <i class="fa fa-sort"></i>                Sort            </button>            @if (showSortOptions) {            <div class="sort-options mt-2">                <button class="btn btn-sm btn-outline-primary me-2" (click)="applySort(\'balanceAsc\')">                    Balance ↑                </button>                <button class="btn btn-sm btn-outline-primary me-2" (click)="applySort(\'balanceDesc\')">                    Balance ↓                </button>                <button class="btn btn-sm btn-outline-primary me-2" (click)="applySort(\'openedAtAsc\')">                    Opened At ↑                </button>                <button class="btn btn-sm btn-outline-primary me-2" (click)="applySort(\'openedAtDesc\')">                    Opened At ↓                </button>            </div>            }        </div>    </div>    <div cdkDropList [cdkDropListData]="accounts_list" [cdkDropListDisabled]="!isReordering"        (cdkDropListDropped)="drop($event)" class="accounts-list">        @for (account of accounts_list; track account._id) {        <div class="card-preview mb-3 clickable-card" cdkDrag [cdkDragDisabled]="!isReordering">            <div class="brand">                {{ account.accountType | uppercase }}            </div>            <div class="number">                {{ maskAccountNumber(account.accountNumber) }}            </div>            <div class="expiry">                {{ account.currency || \'GBP\' }}            </div>            <div class="balance">                {{ account.availableBalance | currency: (account.currency || \'GBP\') }}            </div>        </div>        }    </div>    } @else {    <p>Click "Reorder Accounts" to manage your accounts or "Archived accounts" to view archived accounts.</p>    }    }</div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row mb-3">        <div class="col-sm-12">            <button class="btn btn-outline-secondary me-2" (click)="showArchivedAccounts()">                Archived accounts            </button>            <button class="btn btn-outline-secondary me-2" (click)="sortAccounts()">                Reorder Accounts            </button>        </div>    </div>    @if (showingArchived) {    @if (archived_list.length === 0) {    <p>No archived accounts found</p>    } @else {    @for (account of archived_list; track account._id) {    <div class="stripe-card mb-3 clickable-card">        <div class="kebab-wrapper">            <button class="kebab-btn" (click)="toggleMenu(account._id); $event.stopPropagation()">                <i class="fa fa-ellipsis-v"></i>            </button>            @if (openMenu === account._id) {            <div class="kebab-menu">                <button (click)="restoreArchivedAccount(account._id)">                    Restore Account                </button>            </div>            }        </div>        <div class="stripe-card-top">            <div class="chip"></div>            <div class="card-brand">                {{ cardBrand | uppercase }}            </div>        </div>        <div class="card-number">            {{ maskAccountNumber(account.accountNumber) }}        </div>        <div class="stripe-card-bottom">            <div class="card-holder">                {{ account.accountType | uppercase }}<br>                {{ account.availableBalance | currency: (account.currency || \'GBP\') }}<br>                {{ firstName }} {{ lastName }}            </div>            <div class="expiry">                MM / YY            </div>        </div>    </div>    }    }    } @else {    @if (isReordering) {    <div class="row mb-3">        <div class="col-sm-12">            <button class="btn btn-success me-2" (click)="saveOrder()">                Save            </button>            <button class="btn btn-outline-secondary" (click)="toggleSortOptions()">                <i class="fa fa-sort"></i>                Sort            </button>            @if (showSortOptions) {            <div class="sort-options mt-2">                <button class="btn btn-sm btn-outline-primary me-2" (click)="applySort(\'balanceAsc\')">                    Balance ↑                </button>                <button class="btn btn-sm btn-outline-primary me-2" (click)="applySort(\'balanceDesc\')">                    Balance ↓                </button>                <button class="btn btn-sm btn-outline-primary me-2" (click)="applySort(\'openedAtAsc\')">                    Opened At ↑                </button>                <button class="btn btn-sm btn-outline-primary me-2" (click)="applySort(\'openedAtDesc\')">                    Opened At ↓                </button>            </div>            }        </div>    </div>    <div cdkDropList [cdkDropListData]="accounts_list" [cdkDropListDisabled]="!isReordering"        (cdkDropListDropped)="drop($event)" class="accounts-list">        @for (account of accounts_list; track account._id) {        <div class="stripe-card mb-3 clickable-card" cdkDrag [cdkDragDisabled]="!isReordering">            <div class="stripe-card-top">                <div class="chip"></div>                <div class="card-brand">                    {{ cardBrand | uppercase }}                </div>            </div>            <div class="card-number">                {{ maskAccountNumber(account.accountNumber) }}            </div>            <div class="stripe-card-bottom">                <div class="card-holder">                    {{ account.accountType | uppercase }}<br>                    {{ account.availableBalance | currency: (account.currency || \'GBP\') }}<br>                    {{ firstName }} {{ lastName }}                </div>                <div class="expiry">                    MM / YY                </div>            </div>        </div>        }    </div>    } @else {    <p>Click "Reorder Accounts" to manage your accounts or "Archived accounts" to view archived accounts.</p>    }    }</div></div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'ManageAccounts'};

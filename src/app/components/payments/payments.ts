@@ -14,5 +14,8 @@ import { Component } from '@angular/core';
 
 export class Payments {
 
+  /**
+   * Constructor for Payments component. Currently does not perform any initialization. 
+  */
   constructor() { }
 }

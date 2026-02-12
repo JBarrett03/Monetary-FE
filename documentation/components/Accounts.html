@@ -142,7 +142,8 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Accounts component</p>
+        <p>Accounts component displays all user accounts as Stripe-styled cards.
+Users can view account details, add new accounts, and navigate to the manage accounts page.</p>
 
     </p>
 
@@ -228,6 +229,18 @@
                                 <a href="#accounts_list" >accounts_list</a>
                             </li>
                             <li>
+                                <a href="#cardBrand" >cardBrand</a>
+                            </li>
+                            <li>
+                                <a href="#cardComplete" >cardComplete</a>
+                            </li>
+                            <li>
+                                <a href="#firstName" >firstName</a>
+                            </li>
+                            <li>
+                                <a href="#lastName" >lastName</a>
+                            </li>
+                            <li>
                                 <a href="#menuOpen" >menuOpen</a>
                             </li>
                         </ul>
@@ -276,12 +289,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(accountService: <a href="../injectables/AccountService.html" target="_self">AccountService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(accountService: <a href="../injectables/AccountService.html" target="_self">AccountService</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/accounts/accounts.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/accounts/accounts.ts:48</a></div>
                             </td>
                         </tr>
 
@@ -314,6 +327,22 @@
                                                     
                                                         <td>
                                                                 <p>Service for account operations.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Service for user operations.</p>
 
                                                         </td>
                                                 </tr>
@@ -387,8 +416,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="67"
-                                    class="link-to-prism">src/app/components/accounts/accounts.ts:67</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -396,17 +425,13 @@
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Adds a new account for the user.
-Prompts for account type and currency, then creates the account via the service.</p>
+Prompts the user for account type and currency, then creates the account via the service.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -431,25 +456,21 @@ Prompts for account type and currency, then creates the account via the service.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="103"
-                                    class="link-to-prism">src/app/components/accounts/accounts.ts:103</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:129</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Navigates to manage accounts page and closes the menu.</p>
+                        <div class="io-description"><p>Navigates to the manage accounts page and closes the menu.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -474,15 +495,15 @@ Prompts for account type and currency, then creates the account via the service.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="113"
-                                    class="link-to-prism">src/app/components/accounts/accounts.ts:113</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="139"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:139</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Masks the account number for display purposes.</p>
+                        <div class="io-description"><p>Masks an account number for secure display, showing only the last 4 digits.</p>
 </div>
 
                             <div class="io-description">
@@ -510,7 +531,7 @@ Prompts for account type and currency, then creates the account via the service.
 
 
                                             <td>
-                                                    <p>The full account number.</p>
+                                                    <p>The account number to mask.</p>
 
                                             </td>
                                         </tr>
@@ -522,7 +543,7 @@ Prompts for account type and currency, then creates the account via the service.
 
                         </div>
                             <div class="io-description">
-                                <p>The masked account number.</p>
+                                <p>A masked account number string.</p>
 
                             </div>
                 </td>
@@ -551,25 +572,21 @@ Prompts for account type and currency, then creates the account via the service.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="44"
-                                    class="link-to-prism">src/app/components/accounts/accounts.ts:44</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:62</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Initializes the component and loads the list of accounts for the user.</p>
+                        <div class="io-description"><p>Initializes the component and loads the list of accounts and user details.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -594,25 +611,21 @@ Prompts for account type and currency, then creates the account via the service.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="95"
-                                    class="link-to-prism">src/app/components/accounts/accounts.ts:95</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="122"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:122</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Toggles the menu open state.</p>
+                        <div class="io-description"><p>Toggles the kebab menu visibility for adding and managing accounts.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -647,13 +660,161 @@ Prompts for account type and currency, then creates the account via the service.
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/accounts/accounts.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/accounts/accounts.ts:23</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>List of accounts</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cardBrand"></a>
+                    <span class="name">
+                        <span ><b>cardBrand</b></span>
+                        <a href="#cardBrand"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/accounts/accounts.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Card brand for display purposes (e.g., Visa, MasterCard)</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cardComplete"></a>
+                    <span class="name">
+                        <span ><b>cardComplete</b></span>
+                        <a href="#cardComplete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/accounts/accounts.ts:48</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indicates whether the card information is complete for display purposes.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="firstName"></a>
+                    <span class="name">
+                        <span ><b>firstName</b></span>
+                        <a href="#firstName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/accounts/accounts.ts:33</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Customer&#39;s first name</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lastName"></a>
+                    <span class="name">
+                        <span ><b>lastName</b></span>
+                        <a href="#lastName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/accounts/accounts.ts:38</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Customer&#39;s last name</p>
 </div>
                 </td>
             </tr>
@@ -684,7 +845,7 @@ Prompts for account type and currency, then creates the account via the service.
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/accounts/accounts.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/accounts/accounts.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -705,11 +866,13 @@ Prompts for account type and currency, then creates the account via the service.
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ChangeDetectorRef } from &#x27;@angular/core&#x27;;
 import { AccountService } from &#x27;../../services/account-service&#x27;;
+import { UserService } from &#x27;../../services/user-service&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { RouterModule, Router } from &#x27;@angular/router&#x27;;
 
 /**
- * Accounts component
+ * Accounts component displays all user accounts as Stripe-styled cards.
+ * Users can view account details, add new accounts, and navigate to the manage accounts page.
  */
 @Component({
   standalone: true,
@@ -718,10 +881,6 @@ import { RouterModule, Router } from &#x27;@angular/router&#x27;;
   templateUrl: &#x27;./accounts.html&#x27;,
   styleUrl: &#x27;./accounts.css&#x27;,
 })
-
-/**
- * Accounts component
- */
 export class Accounts implements OnInit {
 
   /**
@@ -735,16 +894,36 @@ export class Accounts implements OnInit {
   menuOpen &#x3D; false;
 
   /**
+   * Customer&#x27;s first name
+   */
+  firstName: string &#x3D; &#x27;&#x27;;
+
+  /**
+   * Customer&#x27;s last name
+   */
+  lastName: string &#x3D; &#x27;&#x27;;
+
+  /**
+   * Card brand for display purposes (e.g., Visa, MasterCard)
+   */
+  cardBrand: string &#x3D; &#x27;&#x27;;
+
+  /**
+   * Indicates whether the card information is complete for display purposes.
+   */
+  cardComplete: boolean &#x3D; false;
+
+  /**
    * Creates an instance of Accounts component.
    * @param accountService Service for account operations.
+   * @param userService Service for user operations.
    * @param cdr Change detector reference.
    * @param router Router for navigation.
    */
-  constructor(private accountService: AccountService, private cdr: ChangeDetectorRef, private router: Router) { }
+  constructor(private accountService: AccountService, private userService: UserService, private cdr: ChangeDetectorRef, private router: Router) { }
 
   /**
-   * Initializes the component and loads the list of accounts for the user.
-   * @returns void
+   * Initializes the component and loads the list of accounts and user details.
    */
   async ngOnInit() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
@@ -752,6 +931,17 @@ export class Accounts implements OnInit {
     if (!userId) {
       return;
     }
+
+    this.userService.getUser(userId).subscribe({
+      next: (user) &#x3D;&gt; {
+        this.firstName &#x3D; user.firstName || &#x27;&#x27;;
+        this.lastName &#x3D; user.lastName || &#x27;&#x27;;
+        this.cdr.detectChanges();
+      },
+      error: (err) &#x3D;&gt; {
+        console.error(&#x27;Failed to load user details&#x27;, err);
+      }
+    });
 
     this.accountService.getAccounts(userId).subscribe({
       next: (accounts) &#x3D;&gt; {
@@ -766,8 +956,7 @@ export class Accounts implements OnInit {
 
   /**
    * Adds a new account for the user.
-   * Prompts for account type and currency, then creates the account via the service.
-   * @returns void
+   * Prompts the user for account type and currency, then creates the account via the service.
    */
   addAccount() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
@@ -794,16 +983,14 @@ export class Accounts implements OnInit {
   }
 
   /**
-   * Toggles the menu open state.
-   * @returns void
+   * Toggles the kebab menu visibility for adding and managing accounts.
    */
   toggleMenu() {
     this.menuOpen &#x3D; !this.menuOpen;
   }
 
   /**
-   * Navigates to manage accounts page and closes the menu.
-   * @returns void
+   * Navigates to the manage accounts page and closes the menu.
    */
   goToManageAccounts() {
     this.toggleMenu();
@@ -811,9 +998,9 @@ export class Accounts implements OnInit {
   }
 
   /**
-   * Masks the account number for display purposes.
-   * @param accountNumber The full account number.
-   * @returns The masked account number.
+   * Masks an account number for secure display, showing only the last 4 digits.
+   * @param accountNumber The account number to mask.
+   * @returns A masked account number string.
    */
   maskAccountNumber(accountNumber: string): string {
     if (!accountNumber) return &#x27;•••• •••• •••• ••••&#x27;;
@@ -828,7 +1015,7 @@ export class Accounts implements OnInit {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container container-top-margin&quot;&gt;
     &lt;div class&#x3D;&quot;row&quot;&gt;
-        &lt;div class&#x3D;&quot;col-sm-12&quot;&gt;
+        &lt;div class&#x3D;&quot;col-sm-12 d-flex flex-column align-items-center&quot;&gt;
             @if (accounts_list.length &#x3D;&#x3D;&#x3D; 0) {
             &lt;p&gt;No accounts found&lt;/p&gt;
             }
@@ -852,20 +1039,30 @@ export class Accounts implements OnInit {
             &lt;/div&gt;
 
             @for (account of accounts_list; track account._id) {
-                &lt;div class&#x3D;&quot;card-preview mb-3 clickable-card&quot; [routerLink]&#x3D;&quot;[&#x27;/accounts&#x27;, account._id]&quot;&gt;
-                    &lt;div class&#x3D;&quot;brand&quot;&gt;
-                        {{ account.accountType | uppercase }}
-                    &lt;/div&gt;
-                    &lt;div class&#x3D;&quot;number&quot;&gt;
-                        {{ maskAccountNumber(account.accountNumber) }}
-                    &lt;/div&gt;
-                    &lt;div class&#x3D;&quot;expiry&quot;&gt;
-                        {{ account.currency || &#x27;GBP&#x27; }}
-                    &lt;/div&gt;
-                    &lt;div class&#x3D;&quot;balance&quot;&gt;
-                        {{ account.availableBalance | currency: (account.currency || &#x27;GBP&#x27;) }}
+            &lt;div class&#x3D;&quot;stripe-card mb-3 clickable-card&quot; [routerLink]&#x3D;&quot;[&#x27;/accounts&#x27;, account._id]&quot;
+                [class.complete]&#x3D;&quot;cardComplete&quot;&gt;
+                &lt;div class&#x3D;&quot;stripe-card-top&quot;&gt;
+                    &lt;div class&#x3D;&quot;chip&quot;&gt;&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;card-brand&quot;&gt;
+                        {{ cardBrand | uppercase }}
                     &lt;/div&gt;
                 &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;card-number&quot;&gt;
+                    {{ maskAccountNumber(account.accountNumber) }}
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;stripe-card-bottom&quot;&gt;
+                    &lt;div class&#x3D;&quot;card-holder&quot;&gt;
+                        {{ account.accountType | uppercase }}&lt;br&gt;
+                        {{ account.availableBalance | currency: (account.currency || &#x27;GBP&#x27;) }}&lt;br&gt;
+                        {{ firstName }} {{ lastName }}
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;expiry&quot;&gt;
+                        MM / YY
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
             }
         &lt;/div&gt;
     &lt;/div&gt;</code></pre>
@@ -897,7 +1094,7 @@ export class Accounts implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12">            @if (accounts_list.length === 0) {            <p>No accounts found</p>            }            <div class="row mb-3">                <div class="col-sm-12">                    <button class="kebab-btn" (click)="toggleMenu()">                        <i class="fa fa-ellipsis-v"></i>                    </button>                    @if (menuOpen) {                    <div class="menu-dropdown">                        <button class="btn btn-outline-secondary me-2 w-100" (click)="addAccount(); toggleMenu()">                            <i class="fa fa-plus"></i> Add Account                        </button>                        <button class="btn btn-outline-secondary w-100" (click)="goToManageAccounts()">                            <i class="fa fa-cog"></i> Manage                        </button>                    </div>                    }                </div>            </div>            @for (account of accounts_list; track account._id) {                <div class="card-preview mb-3 clickable-card" [routerLink]="[\'/accounts\', account._id]">                    <div class="brand">                        {{ account.accountType | uppercase }}                    </div>                    <div class="number">                        {{ maskAccountNumber(account.accountNumber) }}                    </div>                    <div class="expiry">                        {{ account.currency || \'GBP\' }}                    </div>                    <div class="balance">                        {{ account.availableBalance | currency: (account.currency || \'GBP\') }}                    </div>                </div>            }        </div>    </div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12 d-flex flex-column align-items-center">            @if (accounts_list.length === 0) {            <p>No accounts found</p>            }            <div class="row mb-3">                <div class="col-sm-12">                    <button class="kebab-btn" (click)="toggleMenu()">                        <i class="fa fa-ellipsis-v"></i>                    </button>                    @if (menuOpen) {                    <div class="menu-dropdown">                        <button class="btn btn-outline-secondary me-2 w-100" (click)="addAccount(); toggleMenu()">                            <i class="fa fa-plus"></i> Add Account                        </button>                        <button class="btn btn-outline-secondary w-100" (click)="goToManageAccounts()">                            <i class="fa fa-cog"></i> Manage                        </button>                    </div>                    }                </div>            </div>            @for (account of accounts_list; track account._id) {            <div class="stripe-card mb-3 clickable-card" [routerLink]="[\'/accounts\', account._id]"                [class.complete]="cardComplete">                <div class="stripe-card-top">                    <div class="chip"></div>                    <div class="card-brand">                        {{ cardBrand | uppercase }}                    </div>                </div>                <div class="card-number">                    {{ maskAccountNumber(account.accountNumber) }}                </div>                <div class="stripe-card-bottom">                    <div class="card-holder">                        {{ account.accountType | uppercase }}<br>                        {{ account.availableBalance | currency: (account.currency || \'GBP\') }}<br>                        {{ firstName }} {{ lastName }}                    </div>                    <div class="expiry">                        MM / YY                    </div>                </div>            </div>            }        </div>    </div></div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Accounts'};

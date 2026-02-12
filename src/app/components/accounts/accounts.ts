@@ -37,7 +37,14 @@ export class Accounts implements OnInit {
    */
   lastName: string = '';
 
+  /**
+   * Card brand for display purposes (e.g., Visa, MasterCard)
+   */
   cardBrand: string = '';
+
+  /**
+   * Indicates whether the card information is complete for display purposes.
+   */
   cardComplete: boolean = false;
 
   /**
@@ -124,11 +131,6 @@ export class Accounts implements OnInit {
     this.router.navigate(['/manage-accounts']);
   }
 
-  /**
-   * Masks the account number for display purposes.
-   * @param accountNumber The full account number.
-   * @returns The masked account number.
-   */
   /**
    * Masks an account number for secure display, showing only the last 4 digits.
    * @param accountNumber The account number to mask.

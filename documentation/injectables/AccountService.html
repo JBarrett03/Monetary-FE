@@ -205,6 +205,9 @@
                             <li>
                                 <a href="#saveAccountOrder" >saveAccountOrder</a>
                             </li>
+                            <li>
+                                <a href="#setBudget" >setBudget</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -1188,6 +1191,113 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setBudget"></a>
+                    <span class="name">
+                        <span ><b>setBudget</b></span>
+                        <a href="#setBudget"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setBudget(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, accountId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, budget: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="159"
+                                    class="link-to-prism">src/app/services/account-service.ts:159</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Set the budget for a specific account of a user via the API.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The ID of the user to set the budget for</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>accountId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The ID of the account to set the budget for</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>budget</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The budget data to be set for the account</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable containing the HTTP response</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
             <section data-compodoc="block-properties">
     
@@ -1387,6 +1497,17 @@ export class AccountService {
    */
   restoreArchivedAccount(userId: string, accountId: string) {
     return this.http.put(&#x60;${this.baseUrl}/users/${userId}/accounts/${accountId}/restore&#x60;, {});
+  }
+
+  /**
+   * Set the budget for a specific account of a user via the API.
+   * @param userId The ID of the user to set the budget for
+   * @param accountId The ID of the account to set the budget for
+   * @param budget The budget data to be set for the account
+   * @return An observable containing the HTTP response
+   */
+  setBudget(userId: string, accountId: string, budget: any) {
+    return this.http.post(&#x60;http://localhost:5000/api/v1.0/users/${userId}/accounts/${accountId}/budget&#x60;, budget);
   }
 
 }
