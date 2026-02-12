@@ -4,9 +4,17 @@
     }
 
     @if (account) {
-    <button class="btn btn-outline-secondary mb-3" (click)="archiveAccount()" [disabled]="account?.balance > 0">
-        Archive Account
-    </button>
+    <div class="d-flex gap-2 mb-3">
+        <button class="btn btn-outline-secondary" (click)="archiveAccount()" [disabled]="account?.balance > 0">
+            Archive Account
+        </button>
+
+        @if (account?.accountType === 'savings') {
+        <button class="btn btn-outline-secondary" (click)="addBudget()">
+            {{ showBudgetForm ? 'Cancel' : 'Set Budget' }}
+        </button>
+        }
+    </div>
 
     <div class="balance-card">
         @if (account?.budget) {
@@ -31,10 +39,6 @@
     </div>
 
     @if (account?.accountType === 'savings') {
-    <button class="btn btn-outline-secondary mb-3" (click)="addBudget()">
-        {{ showBudgetForm ? 'Cancel' : 'Set Budget' }}
-    </button>
-
     @if (showBudgetForm) {
     <div class="card p-3 mb-3">
         <div class="mb-3">
