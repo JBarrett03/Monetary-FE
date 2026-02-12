@@ -149,4 +149,8 @@ export class AccountService {
     return this.http.put(`${this.baseUrl}/users/${userId}/accounts/${accountId}/restore`, {});
   }
 
+  setBudget(userId: string, accountId: string, budget: any) {
+    return this.http.post(`http://localhost:5000/api/v1.0/users/${userId}/accounts/${accountId}/budget`, budget);
+  }
+
 }

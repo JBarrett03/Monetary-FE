@@ -16,6 +16,55 @@
         </div>
     </div>
 
+    @if (account?.accountType === 'savings') {
+    <button class="btn btn-outline-secondary mb-3" (click)="addBudget()">
+        {{ showBudgetForm ? 'Cancel' : 'Set Budget' }}
+    </button>
+
+    @if (showBudgetForm) {
+    <div class="card p-3 mb-3">
+        <div class="mb-3">
+            <label class="form-label">Budget Amount:</label>
+            <input type="number" class="form-control" [(ngModel)]="budgetAmount" name="budgetAmount">
+        </div>
+        <div class="mb-3">
+            <label class="form-label d-block">Budget Period:</label>
+            <div class="btn-group w-100">
+                <button class="btn" [class.btn-primary]="budgetPeriod === 'weekly'"
+                    [class.btn-outline-primary]="budgetPeriod !== 'weekly'" (click)="selectBudgetPeriod('weekly')">
+                    Weekly
+                </button>
+                <button class="btn" [class.btn-primary]="budgetPeriod === 'monthly'"
+                    [class.btn-outline-primary]="budgetPeriod !== 'monthly'" (click)="selectBudgetPeriod('monthly')">
+                    Monthly
+                </button>
+                <button class="btn" [class.btn-primary]="budgetPeriod === 'annual'"
+                    [class.btn-outline-primary]="budgetPeriod !== 'annual'" (click)="selectBudgetPeriod('annual')">
+                    Annually
+                </button>
+                <button class="btn" [class.btn-primary]="budgetPeriod === 'custom'"
+                    [class.btn-outline-primary]="budgetPeriod !== 'custom'" (click)="selectBudgetPeriod('custom')">
+                    Custom
+                </button>
+            </div>
+        </div>
+
+        @if (budgetPeriod === 'custom') {
+        <div class="mb-3">
+            <label class="form-label">Start Date</label>
+            <input type="date" class="form-control" [(ngModel)]="customBudgetStartDate" name="customBudgetStartDate">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">End Date</label>
+            <input type="date" class="form-control" [(ngModel)]="customBudgetEndDate" name="customBudgetEndDate">
+        </div>
+        }
+        <button class="btn btn-success w-100" (click)="submitBudget()">
+            Save Budget
+        </button>
+    </div>
+    }
+    }
     <div class="amount-card">
         <div class="amount-label">Amount:</div>
         Account #: {{ account.accountNumber }}<br />
@@ -33,17 +82,19 @@
             </button>
 
             @if (showFilter) {
-                <div class="d-flex gap-2 align-items-center">
-                    <select class="form-select form-select-sm w-25" [(ngModel)]="selectedCategory" (change)="customCategory = ''">
-                        <option value="">All Categories:</option>
-                        @for (category of categories; track category) {
-                            <option [value]="category">
-                                {{ category }}
-                            </option>
-                        }
-                    </select>
-                    <input type="search" class="form-control form-control-sm w-25" placeholder="Enter category..." [(ngModel)]="customCategory" (input)="selectedCategory = ''"/>
-                </div>
+            <div class="d-flex gap-2 align-items-center">
+                <select class="form-select form-select-sm w-25" [(ngModel)]="selectedCategory"
+                    (change)="customCategory = ''">
+                    <option value="">All Categories:</option>
+                    @for (category of categories; track category) {
+                    <option [value]="category">
+                        {{ category }}
+                    </option>
+                    }
+                </select>
+                <input type="search" class="form-control form-control-sm w-25" placeholder="Enter category..."
+                    [(ngModel)]="customCategory" (input)="selectedCategory = ''" />
+            </div>
             }
         </div>
         <div class="plus-minus">

@@ -55,6 +55,16 @@ export class AccountDetails implements OnInit {
    */
   selectedCategory: string = '';
 
+  showBudgetForm: boolean = false;
+
+  budgetAmount: number | null = null;
+
+  budgetPeriod: string = '';
+
+  customBudgetStartDate: string = '';
+
+  customBudgetEndDate: string = '';
+
   /**
    * Creates an instance of AccountDetails component.
    * @param route ActivatedRoute for accessing route parameters.
@@ -270,5 +280,47 @@ export class AccountDetails implements OnInit {
    */
   get effectiveCategory(): string {
     return this.customCategory || this.selectedCategory;
+  }
+
+  addBudget() {
+    this.showBudgetForm = !this.showBudgetForm;
+  }
+
+  selectBudgetPeriod(period: string) {
+    this.budgetPeriod = period;
+  }
+
+  submitBudget() {
+    const userId = sessionStorage.getItem('userId');
+    const accountId = sessionStorage.getItem('accountId');
+
+    if (!userId || !accountId) {
+      this.error = 'Invalid user or account';
+      return;
+    }
+
+    const budget = {
+      amount: this.budgetAmount,
+      period: this.budgetPeriod,
+      customBudgetStartDate: this.budgetPeriod === 'custom' ? this.customBudgetStartDate : null,
+      customBudgetEndDate: this.budgetPeriod === 'custom' ? this.customBudgetEndDate : null
+    };
+
+    this.accountService.setBudget(userId, accountId, budget).subscribe({
+      next: () => {
+        this.showBudgetForm = false;
+        this.budgetAmount = null;
+        this.customBudgetStartDate = '';
+        this.customBudgetEndDate = '';
+
+        this.accountService.getAccount(userId, accountId).subscribe(account => {
+          this.account = account;
+          this.cdr.detectChanges();
+        });
+      },
+      error: () => {
+        this.error = 'Failed to set budget';
+      }
+    });
   }
 }
