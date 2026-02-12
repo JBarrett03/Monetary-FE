@@ -8,12 +8,26 @@
         Archive Account
     </button>
 
-    Add balance to account <i class="fa fa-plus add-balance-icon" (click)="addBalance()"></i>
     <div class="balance-card">
-        <div class="balance-label">Balance</div>
-        <div class="balance-amount">
-            {{ account?.balance | currency: 'GBP' }}
-        </div>
+        @if (account?.budget) {
+            <div class="balance-label">
+                Budget ({{ account.budget.period | titlecase }})
+            </div>
+
+            <div class="balance-amount">
+                <span class="fw-bold">
+                    {{ account.budgetSpent | currency: 'GBP' }}
+                </span>
+                <div class="text-muted fs-6">
+                    out of {{ account.budget.amount | currency: 'GBP' }}
+                </div>
+            </div>
+        } @else {
+            <div class="balance-label">Balance</div>
+            <div class="balance-amount">
+                {{ account?.balance | currency: 'GBP' }}
+            </div>
+        }
     </div>
 
     @if (account?.accountType === 'savings') {
