@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AccountService } from '../../services/account-service';
 import { FilterPipe } from '../../pipes/filter-pipe';
 import { TRANSACTION_CATEGORIES } from '../../constants/transaction-categories';
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 /**
  * AccountDetails component
  * Displays detailed information about a single account, including its balance,
@@ -16,7 +16,7 @@ import { TRANSACTION_CATEGORIES } from '../../constants/transaction-categories';
 @Component({
   standalone: true,
   selector: 'app-account-details',
-  imports: [CommonModule, RouterModule, FormsModule, FilterPipe],
+  imports: [CommonModule, RouterModule, FormsModule, FilterPipe, MatProgressBarModule],
   templateUrl: './account-details.html',
   styleUrl: './account-details.css',
 })
@@ -389,6 +389,33 @@ export class AccountDetails implements OnInit {
         this.error = 'Failed to set budget';
       }
     });
+  }
+
+  /**
+   * Calculates the percentage of the budget that has been spent based on the current account balance.
+   * If no budget is set, returns 0. Otherwise, divides the account balance by the budget amount
+   * and multiplies by 100 to get a percentage. Caps the returned value at 100% to avoid overflow.
+   * @returns The percentage of the budget that has been spent (0-100)
+   */
+  get budgetProgress(): number {
+    if (!this.account?.budget?.amount) return 0;
+
+    const balance = this.account.balance || 0;
+    const budgetAmount = this.account.budget.amount;
+
+    const percentage = (balance / budgetAmount) * 100;
+    return Math.min(percentage, 100);
+  }
+
+  /**
+   * Determines if the account balance has exceeded the set budget.
+   * Compares the current account balance against the budget amount.
+   * Returns true if the balance exceeds the budget, false otherwise. If no budget is set, returns false.
+   * @returns boolean indicating whether the budget has been exceeded
+   */
+  get isBudgetExceeded(): boolean {
+    if (!this.account?.budget?.amount) return false;
+    return (this.account.balance || 0) > this.account.budget.amount;
   }
 
   /**

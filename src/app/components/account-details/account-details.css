@@ -103,3 +103,12 @@ input {
     max-width: 90%;
     border-radius: 10px;
 }
+
+::ng-deep .mat-mdc-progress-bar {
+    height: 14px;
+    border-radius: 8px;
+}
+
+::ng-deep .mat-mdc-progress-bar-buffer {
+    background-color: #e9ecef !important;
+}
