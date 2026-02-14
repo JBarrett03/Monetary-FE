@@ -157,7 +157,17 @@ export class AccountService {
    * @return An observable containing the HTTP response
    */
   setBudget(userId: string, accountId: string, budget: any) {
-    return this.http.post(`http://localhost:5000/api/v1.0/users/${userId}/accounts/${accountId}/budget`, budget);
+    return this.http.post(`${this.baseUrl}/users/${userId}/accounts/${accountId}/budget`, budget);
+  }
+
+  /**
+   * Fetch an account by its account number from the API.
+   * @param userId The ID of the user to retrieve the account for
+   * @param accountNumber The account number to retrieve the account for
+   * @returns An observable containing the account data
+   */
+  getAccountByNumber(userId: string, accountNumber: string) {
+    return this.http.get<any>(`${this.baseUrl}/users/${userId}/accounts/by-number/${accountNumber}`);
   }
 
 }

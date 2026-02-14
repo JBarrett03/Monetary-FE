@@ -142,7 +142,11 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>AccountDetails component</p>
+        <p>AccountDetails component
+Displays detailed information about a single account, including its balance,
+transactions, and budget settings. Users can view transactions, add new transactions,
+manage budgets, and archive accounts. Supports filtering and searching transactions
+by category.</p>
 
     </p>
 
@@ -188,6 +192,7 @@
                                 <code><a href="https://angular.io/api/router/RouterModule" target="_blank" >RouterModule</a></code>
                                 <code><a href="https://angular.io/api/forms/FormsModule" target="_blank" >FormsModule</a></code>
                             <code>FilterPipe</code>
+                            <code>MatProgressBarModule</code>
                 </td>
             </tr>
 
@@ -275,9 +280,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#addBalance" >addBalance</a>
-                            </li>
-                            <li>
                                 <a href="#addBudget" >addBudget</a>
                             </li>
                             <li>
@@ -285,6 +287,9 @@
                             </li>
                             <li>
                                 <a href="#archiveAccount" >archiveAccount</a>
+                            </li>
+                            <li>
+                                <a href="#closeBudgetForm" >closeBudgetForm</a>
                             </li>
                             <li>
                                 <a href="#formatTransactionDate" >formatTransactionDate</a>
@@ -323,6 +328,12 @@
                                 <li>
                                     <a href="#effectiveCategory" >effectiveCategory</a>
                                 </li>
+                                <li>
+                                    <a href="#budgetProgress" >budgetProgress</a>
+                                </li>
+                                <li>
+                                    <a href="#isBudgetExceeded" >isBudgetExceeded</a>
+                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -341,13 +352,13 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/components/account-details/account-details.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/components/account-details/account-details.ts:99</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Creates an instance of AccountDetails component.</p>
+                            <div class="io-description"><p>Creates an instance of the AccountDetails component.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -373,7 +384,7 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>ActivatedRoute for accessing route parameters.</p>
+                                                                <p>ActivatedRoute - Used to extract the accountId from the current route parameters</p>
 
                                                         </td>
                                                 </tr>
@@ -389,7 +400,7 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Router for navigation.</p>
+                                                                <p>Router - Used to navigate between routes (e.g., to transaction details or back to accounts list)</p>
 
                                                         </td>
                                                 </tr>
@@ -405,7 +416,7 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Service for account operations.</p>
+                                                                <p>AccountService - Service for fetching and managing account data, transactions, and budgets</p>
 
                                                         </td>
                                                 </tr>
@@ -421,7 +432,7 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Change detector reference.</p>
+                                                                <p>ChangeDetectorRef - Reference to manually trigger change detection when needed</p>
 
                                                         </td>
                                                 </tr>
@@ -447,49 +458,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="addBalance"></a>
-                    <span class="name">
-                        <span ><b>addBalance</b></span>
-                        <a href="#addBalance"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>addBalance()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="146"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:146</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Adds a new balance to the account.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="addBudget"></a>
                     <span class="name">
                         <span ><b>addBudget</b></span>
@@ -506,15 +474,15 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="306"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:306</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="300"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:300</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Toggles the display of the budget form.</p>
+                        <div class="io-description"><p>Toggles the visibility of the budget form.</p>
 </div>
 
                         <div class="io-description">
@@ -549,15 +517,18 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="182"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:182</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="168"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:168</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Adds a new transaction to the account.</p>
+                        <div class="io-description"><p>Prompts the user for transaction details and adds a new transaction to the account.
+Collects description, amount, and merchant information from the user via prompts.
+Automatically determines transaction type (credit/debit) based on the amount sign.
+Updates both account balance and transaction list on success.</p>
 </div>
 
                         <div class="io-description">
@@ -592,15 +563,62 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="255"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:255</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="245"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:245</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Archives the account.</p>
+                        <div class="io-description"><p>Archives the current account after confirming with the user.
+Displays a confirmation dialog to ensure the user intentionally wants to archive.
+Only allows archiving if the account balance is zero. On success, navigates back
+to the accounts list. On failure, displays an error message.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>void</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeBudgetForm"></a>
+                    <span class="name">
+                        <span ><b>closeBudgetForm</b></span>
+                        <a href="#closeBudgetForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeBudgetForm()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="387"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:387</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Closes the budget form without saving any changes.
+Resets the form fields to their default states.</p>
 </div>
 
                         <div class="io-description">
@@ -635,15 +653,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="234"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:234</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="221"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:221</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Formats a date string into a more readable format.</p>
+                        <div class="io-description"><p>Converts an ISO date string into a human-readable format with proper ordinal suffix.
+Example: &quot;2025-02-12&quot; becomes &quot;February 12th&quot;</p>
 </div>
 
                             <div class="io-description">
@@ -671,7 +690,7 @@
 
 
                                             <td>
-                                                    <p>The date string to format.</p>
+                                                    <p>The date string to format (ISO 8601 format: YYYY-MM-DD hh:mm:ss)</p>
 
                                             </td>
                                         </tr>
@@ -683,7 +702,7 @@
 
                         </div>
                             <div class="io-description">
-                                <p>The formatted date string.</p>
+                                <p>The formatted date string with month name and day with ordinal suffix (e.g., &quot;February 12th&quot;)</p>
 
                             </div>
                 </td>
@@ -710,15 +729,18 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="98"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:98</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="117"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:117</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Initializes the component and loads the account details and transactions.</p>
+                        <div class="io-description"><p>Angular lifecycle hook called after the component is initialized.
+Fetches the userId from session storage and accountId from route parameters,
+then loads both the account details and its associated transactions from the service.
+Sets appropriate error messages if data cannot be loaded.</p>
 </div>
 
                         <div class="io-description">
@@ -753,15 +775,15 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="137"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:137</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="156"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:156</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Opens the transaction details page for a specific transaction.</p>
+                        <div class="io-description"><p>Navigates to the details page for the specified transaction.</p>
 </div>
 
                             <div class="io-description">
@@ -789,7 +811,7 @@
 
 
                                             <td>
-                                                    <p>The ID of the transaction to open.</p>
+                                                    <p>The unique identifier of the transaction to display</p>
 
                                             </td>
                                         </tr>
@@ -828,15 +850,15 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="315"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:315</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="309"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:309</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Selects the budget period for the account budget.</p>
+                        <div class="io-description"><p>Updates the selected budget period.</p>
 </div>
 
                             <div class="io-description">
@@ -864,7 +886,7 @@
 
 
                                             <td>
-                                                    <p>The budget period to select (e.g., &#39;weekly&#39;, &#39;monthly&#39;, &#39;annual&#39;, &#39;custom&#39;).</p>
+                                                    <p>The budget period to set (&#39;weekly&#39;, &#39;monthly&#39;, &#39;annual&#39;, or &#39;custom&#39;)</p>
 
                                             </td>
                                         </tr>
@@ -903,17 +925,19 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="325"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:325</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="321"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:321</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Submits the budget information for the account to the server.
-Validates the user and account information, constructs the budget object, and sends it to the server via the AccountService.
-Handles the response by updating the account information or displaying an error message.</p>
+                        <div class="io-description"><p>Submits the budget form and saves the budget to the account.
+Validates that user and account IDs are available, constructs a budget object
+with the appropriate date fields based on the selected period, and sends it to
+the AccountService. On success, clears the form and reloads account data.
+On failure, displays an error message.</p>
 </div>
 
                         <div class="io-description">
@@ -948,15 +972,17 @@ Handles the response by updating the account information or displaying an error 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="284"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:284</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="276"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:276</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Toggles the filter options for transactions.</p>
+                        <div class="io-description"><p>Toggles the visibility of the transaction filter UI.
+When hiding the filter, also clears any active filter selections
+(selected category and custom search term).</p>
 </div>
 
                         <div class="io-description">
@@ -1001,13 +1027,14 @@ Handles the response by updating the account information or displaying an error 
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/account-details/account-details.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/account-details/account-details.ts:33</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Account data</p>
+                    <div class="io-description"><p>The account object containing account information such as balance, account number,
+currency, and account type (e.g., &#39;savings&#39;, &#39;checking&#39;). Null until account data is loaded.</p>
 </div>
                 </td>
             </tr>
@@ -1038,13 +1065,14 @@ Handles the response by updating the account information or displaying an error 
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/components/account-details/account-details.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/components/account-details/account-details.ts:81</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Budget amount for the account budget.</p>
+                    <div class="io-description"><p>The monetary amount for the budget. Set by user in the budget form.
+Null until user enters a value.</p>
 </div>
                 </td>
             </tr>
@@ -1075,13 +1103,14 @@ Handles the response by updating the account information or displaying an error 
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/components/account-details/account-details.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/components/account-details/account-details.ts:87</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Budget period for the account budget (e.g., &#39;weekly&#39;, &#39;monthly&#39;, &#39;annual&#39;, &#39;custom&#39;).</p>
+                    <div class="io-description"><p>The period over which the budget applies. Valid values are &#39;weekly&#39;, &#39;monthly&#39;,
+&#39;annual&#39;, or &#39;custom&#39;. When set to &#39;custom&#39;, startDate and endDate are used.</p>
 </div>
                 </td>
             </tr>
@@ -1112,13 +1141,14 @@ Handles the response by updating the account information or displaying an error 
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/account-details/account-details.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/components/account-details/account-details.ts:57</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>List of available transaction categories for filtering.</p>
+                    <div class="io-description"><p>List of all available transaction categories imported from the constants file.
+Used to populate the category dropdown filter in the UI.</p>
 </div>
                 </td>
             </tr>
@@ -1149,13 +1179,14 @@ Handles the response by updating the account information or displaying an error 
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/account-details/account-details.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/components/account-details/account-details.ts:63</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Custom search term for filtering transactions by category or description.</p>
+                    <div class="io-description"><p>User-entered custom search term for filtering transactions by category or description.
+Takes precedence over the selected category dropdown when populated.</p>
 </div>
                 </td>
             </tr>
@@ -1186,14 +1217,14 @@ Handles the response by updating the account information or displaying an error 
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/components/account-details/account-details.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/components/account-details/account-details.ts:99</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>End date for custom budget period (used when budgetPeriod is &#39;custom&#39;).
-Format: &#39;YYYY-MM-DD&#39;</p>
+                    <div class="io-description"><p>The end date for a custom budget period. Only used when budgetPeriod is set to &#39;custom&#39;.
+Format: ISO 8601 date string (YYYY-MM-DD)</p>
 </div>
                 </td>
             </tr>
@@ -1224,13 +1255,14 @@ Format: &#39;YYYY-MM-DD&#39;</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/components/account-details/account-details.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/account-details/account-details.ts:45</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Error message</p>
+                    <div class="io-description"><p>Error message displayed to the user when operations fail or data cannot be loaded.
+Null when no error is present.</p>
 </div>
                 </td>
             </tr>
@@ -1261,13 +1293,14 @@ Format: &#39;YYYY-MM-DD&#39;</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/components/account-details/account-details.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/components/account-details/account-details.ts:69</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Selected category for filtering transactions</p>
+                    <div class="io-description"><p>Category selected from the dropdown menu for filtering transactions.
+Cleared when user inputs a custom search term.</p>
 </div>
                 </td>
             </tr>
@@ -1298,13 +1331,14 @@ Format: &#39;YYYY-MM-DD&#39;</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/account-details/account-details.ts:61</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/components/account-details/account-details.ts:75</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Show budget form for setting account budget.</p>
+                    <div class="io-description"><p>Controls visibility of the budget form. When true, displays form for entering
+budget amount, period selection, and optional custom date range.</p>
 </div>
                 </td>
             </tr>
@@ -1335,13 +1369,14 @@ Format: &#39;YYYY-MM-DD&#39;</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/account-details/account-details.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/account-details/account-details.ts:51</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Show filter options</p>
+                    <div class="io-description"><p>Controls the visibility of the transaction filter UI. When true, displays category
+dropdown and custom search input for filtering transactions.</p>
 </div>
                 </td>
             </tr>
@@ -1372,14 +1407,14 @@ Format: &#39;YYYY-MM-DD&#39;</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/components/account-details/account-details.ts:77</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/components/account-details/account-details.ts:93</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Start date for custom budget period (used when budgetPeriod is &#39;custom&#39;).
-Format: &#39;YYYY-MM-DD&#39;</p>
+                    <div class="io-description"><p>The start date for a custom budget period. Only used when budgetPeriod is set to &#39;custom&#39;.
+Format: ISO 8601 date string (YYYY-MM-DD)</p>
 </div>
                 </td>
             </tr>
@@ -1410,13 +1445,14 @@ Format: &#39;YYYY-MM-DD&#39;</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/components/account-details/account-details.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/account-details/account-details.ts:39</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>List of transactions for the account</p>
+                    <div class="io-description"><p>Array of transaction objects associated with this account. Each transaction contains
+details such as type (credit/debit), amount, description, merchant, and timestamp.</p>
 </div>
                 </td>
             </tr>
@@ -1445,19 +1481,95 @@ Format: &#39;YYYY-MM-DD&#39;</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="298" class="link-to-prism">src/app/components/account-details/account-details.ts:298</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="292" class="link-to-prism">src/app/components/account-details/account-details.ts:292</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Gets the effective search term for filtering transactions.
-Uses custom search term if provided, otherwise uses selected category.</p>
+                                <div class="io-description"><p>Getter that returns the active filter term for transactions.
+Prioritizes the custom search term if user has entered one,
+otherwise returns the selected category from the dropdown.
+Used by the filter pipe to display matching transactions.</p>
 </div>
 
                                 <div>
                                 </div>
                                 <div class="io-description">
                                     <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="budgetProgress"></a>
+                        <span class="name"><b>budgetProgress</b><a href="#budgetProgress"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>budgetProgress()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="361" class="link-to-prism">src/app/components/account-details/account-details.ts:361</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Calculates the percentage of the budget that has been spent based on the current account balance.
+If no budget is set, returns 0. Otherwise, divides the account balance by the budget amount
+and multiplies by 100 to get a percentage. Caps the returned value at 100% to avoid overflow.</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isBudgetExceeded"></a>
+                        <span class="name"><b>isBudgetExceeded</b><a href="#isBudgetExceeded"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>isBudgetExceeded()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="377" class="link-to-prism">src/app/components/account-details/account-details.ts:377</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Determines if the account balance has exceeded the set budget.
+Compares the current account balance against the budget amount.
+Returns true if the balance exceeds the budget, false otherwise. If no budget is set, returns false.</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                                 </div>
                         </td>
@@ -1477,94 +1589,113 @@ import { FormsModule } from &#x27;@angular/forms&#x27;;
 import { AccountService } from &#x27;../../services/account-service&#x27;;
 import { FilterPipe } from &#x27;../../pipes/filter-pipe&#x27;;
 import { TRANSACTION_CATEGORIES } from &#x27;../../constants/transaction-categories&#x27;;
-
+import { MatProgressBarModule } from &#x27;@angular/material/progress-bar&#x27;;
 /**
  * AccountDetails component
+ * Displays detailed information about a single account, including its balance,
+ * transactions, and budget settings. Users can view transactions, add new transactions,
+ * manage budgets, and archive accounts. Supports filtering and searching transactions
+ * by category.
  */
 @Component({
   standalone: true,
   selector: &#x27;app-account-details&#x27;,
-  imports: [CommonModule, RouterModule, FormsModule, FilterPipe],
+  imports: [CommonModule, RouterModule, FormsModule, FilterPipe, MatProgressBarModule],
   templateUrl: &#x27;./account-details.html&#x27;,
   styleUrl: &#x27;./account-details.css&#x27;,
 })
 
 /**
- * AccountDetails class
+ * Component class for managing and displaying account details
  */
 export class AccountDetails implements OnInit {
 
   /**
-   * Account data
+   * The account object containing account information such as balance, account number,
+   * currency, and account type (e.g., &#x27;savings&#x27;, &#x27;checking&#x27;). Null until account data is loaded.
    */
   account: any | null &#x3D; null;
+
   /**
-   * List of transactions for the account
+   * Array of transaction objects associated with this account. Each transaction contains
+   * details such as type (credit/debit), amount, description, merchant, and timestamp.
    */
   transactions: any[] &#x3D; [];
+
   /**
-   * Error message
+   * Error message displayed to the user when operations fail or data cannot be loaded.
+   * Null when no error is present.
    */
   error: string | null &#x3D; null;
 
   /**
-   * Show filter options
+   * Controls the visibility of the transaction filter UI. When true, displays category
+   * dropdown and custom search input for filtering transactions.
    */
   showFilter: boolean &#x3D; false;
 
   /**
-   * List of available transaction categories for filtering.
+   * List of all available transaction categories imported from the constants file.
+   * Used to populate the category dropdown filter in the UI.
    */
   categories &#x3D; TRANSACTION_CATEGORIES;
 
   /**
-   * Custom search term for filtering transactions by category or description.
+   * User-entered custom search term for filtering transactions by category or description.
+   * Takes precedence over the selected category dropdown when populated.
    */
   customCategory: string &#x3D; &#x27;&#x27;;
 
   /**
-   * Selected category for filtering transactions
+   * Category selected from the dropdown menu for filtering transactions.
+   * Cleared when user inputs a custom search term.
    */
   selectedCategory: string &#x3D; &#x27;&#x27;;
 
   /**
-   * Show budget form for setting account budget.
+   * Controls visibility of the budget form. When true, displays form for entering
+   * budget amount, period selection, and optional custom date range.
    */
   showBudgetForm: boolean &#x3D; false;
 
   /**
-   * Budget amount for the account budget.
+   * The monetary amount for the budget. Set by user in the budget form.
+   * Null until user enters a value.
    */
   budgetAmount: number | null &#x3D; null;
 
   /**
-   * Budget period for the account budget (e.g., &#x27;weekly&#x27;, &#x27;monthly&#x27;, &#x27;annual&#x27;, &#x27;custom&#x27;).
+   * The period over which the budget applies. Valid values are &#x27;weekly&#x27;, &#x27;monthly&#x27;,
+   * &#x27;annual&#x27;, or &#x27;custom&#x27;. When set to &#x27;custom&#x27;, startDate and endDate are used.
    */
   budgetPeriod: string &#x3D; &#x27;&#x27;;
 
   /**
-   * Start date for custom budget period (used when budgetPeriod is &#x27;custom&#x27;).
-   * Format: &#x27;YYYY-MM-DD&#x27;
+   * The start date for a custom budget period. Only used when budgetPeriod is set to &#x27;custom&#x27;.
+   * Format: ISO 8601 date string (YYYY-MM-DD)
    */
   startDate: string &#x3D; &#x27;&#x27;;
 
   /**
-   * End date for custom budget period (used when budgetPeriod is &#x27;custom&#x27;).
-   * Format: &#x27;YYYY-MM-DD&#x27;
+   * The end date for a custom budget period. Only used when budgetPeriod is set to &#x27;custom&#x27;.
+   * Format: ISO 8601 date string (YYYY-MM-DD)
    */
   endDate: string &#x3D; &#x27;&#x27;;
 
   /**
-   * Creates an instance of AccountDetails component.
-   * @param route ActivatedRoute for accessing route parameters.
-   * @param router Router for navigation.
-   * @param accountService Service for account operations.
-   * @param cdr Change detector reference.
+   * Creates an instance of the AccountDetails component.
+   * @param route ActivatedRoute - Used to extract the accountId from the current route parameters
+   * @param router Router - Used to navigate between routes (e.g., to transaction details or back to accounts list)
+   * @param accountService AccountService - Service for fetching and managing account data, transactions, and budgets
+   * @param cdr ChangeDetectorRef - Reference to manually trigger change detection when needed
    */
   constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef) { }
 
   /**
-   * Initializes the component and loads the account details and transactions.
+   * Angular lifecycle hook called after the component is initialized.
+   * Fetches the userId from session storage and accountId from route parameters,
+   * then loads both the account details and its associated transactions from the service.
+   * Sets appropriate error messages if data cannot be loaded.
    * @returns void
    */
   ngOnInit() {
@@ -1602,8 +1733,8 @@ export class AccountDetails implements OnInit {
   }
 
   /**
-   * Opens the transaction details page for a specific transaction.
-   * @param transactionId The ID of the transaction to open.
+   * Navigates to the details page for the specified transaction.
+   * @param transactionId The unique identifier of the transaction to display
    * @returns void
    */
   openTransaction(transactionId: string) {
@@ -1612,43 +1743,10 @@ export class AccountDetails implements OnInit {
   }
 
   /**
-   * Adds a new balance to the account.
-   * @returns void
-   */
-  addBalance() {
-    const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
-    const accountId &#x3D; sessionStorage.getItem(&#x27;accountId&#x27;);
-
-    if (!userId || !accountId) {
-      return;
-    }
-
-    const amountInput &#x3D; prompt(&#x27;Amount to add:&#x27;);
-
-    if (!amountInput) {
-      return;
-    }
-
-    const amount &#x3D; Number(amountInput);
-
-    this.accountService.addBalance(userId, accountId, amount).subscribe({
-      next: () &#x3D;&gt; {
-        this.accountService.getAccount(userId, accountId).subscribe({
-          next: (account) &#x3D;&gt; {
-            this.account &#x3D; account;
-            this.cdr.detectChanges();
-          }
-        });
-      },
-      error: () &#x3D;&gt; {
-        this.error &#x3D; &#x27;Failed to add balance&#x27;;
-        this.cdr.detectChanges();
-      }
-    });
-  }
-
-  /**
-   * Adds a new transaction to the account.
+   * Prompts the user for transaction details and adds a new transaction to the account.
+   * Collects description, amount, and merchant information from the user via prompts.
+   * Automatically determines transaction type (credit/debit) based on the amount sign.
+   * Updates both account balance and transaction list on success.
    * @returns void
    */
   addTransaction() {
@@ -1699,9 +1797,10 @@ export class AccountDetails implements OnInit {
   }
 
   /**
-   * Formats a date string into a more readable format.
-   * @param dateString The date string to format.
-   * @returns The formatted date string.
+   * Converts an ISO date string into a human-readable format with proper ordinal suffix.
+   * Example: &quot;2025-02-12&quot; becomes &quot;February 12th&quot;
+   * @param dateString The date string to format (ISO 8601 format: YYYY-MM-DD hh:mm:ss)
+   * @returns The formatted date string with month name and day with ordinal suffix (e.g., &quot;February 12th&quot;)
    */
   formatTransactionDate(dateString: string): string {
     if (!dateString) return &#x27;&#x27;;
@@ -1721,7 +1820,10 @@ export class AccountDetails implements OnInit {
   }
 
   /**
-   * Archives the account.
+   * Archives the current account after confirming with the user.
+   * Displays a confirmation dialog to ensure the user intentionally wants to archive.
+   * Only allows archiving if the account balance is zero. On success, navigates back
+   * to the accounts list. On failure, displays an error message.
    * @returns void
    */
   archiveAccount() {
@@ -1750,7 +1852,9 @@ export class AccountDetails implements OnInit {
   }
 
   /**
-   * Toggles the filter options for transactions.
+   * Toggles the visibility of the transaction filter UI.
+   * When hiding the filter, also clears any active filter selections
+   * (selected category and custom search term).
    * @returns void
    */
   toggleFilter() {
@@ -1763,36 +1867,40 @@ export class AccountDetails implements OnInit {
   }
 
   /**
-   * Gets the effective search term for filtering transactions.
-   * Uses custom search term if provided, otherwise uses selected category.
-   * @returns The effective category or search term for filtering transactions.
+   * Getter that returns the active filter term for transactions.
+   * Prioritizes the custom search term if user has entered one,
+   * otherwise returns the selected category from the dropdown.
+   * Used by the filter pipe to display matching transactions.
+   * @returns The effective category or custom search term to filter transactions by
    */
   get effectiveCategory(): string {
     return this.customCategory || this.selectedCategory;
   }
 
   /**
-   * Toggles the display of the budget form.
-   * @returns void 
-  */
+   * Toggles the visibility of the budget form.
+   * @returns void
+   */
   addBudget() {
     this.showBudgetForm &#x3D; !this.showBudgetForm;
   }
 
   /**
-   * Selects the budget period for the account budget.
-   * @param period The budget period to select (e.g., &#x27;weekly&#x27;, &#x27;monthly&#x27;, &#x27;annual&#x27;, &#x27;custom&#x27;).
-   * @return void
+   * Updates the selected budget period.
+   * @param period The budget period to set (&#x27;weekly&#x27;, &#x27;monthly&#x27;, &#x27;annual&#x27;, or &#x27;custom&#x27;)
+   * @returns void
    */
   selectBudgetPeriod(period: string) {
     this.budgetPeriod &#x3D; period;
   }
 
   /**
-   * Submits the budget information for the account to the server.
-   * Validates the user and account information, constructs the budget object, and sends it to the server via the AccountService.
-   * Handles the response by updating the account information or displaying an error message.
-   * @return void
+   * Submits the budget form and saves the budget to the account.
+   * Validates that user and account IDs are available, constructs a budget object
+   * with the appropriate date fields based on the selected period, and sends it to
+   * the AccountService. On success, clears the form and reloads account data.
+   * On failure, displays an error message.
+   * @returns void
    */
   submitBudget() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
@@ -1827,6 +1935,42 @@ export class AccountDetails implements OnInit {
       }
     });
   }
+
+  /**
+   * Calculates the percentage of the budget that has been spent based on the current account balance.
+   * If no budget is set, returns 0. Otherwise, divides the account balance by the budget amount
+   * and multiplies by 100 to get a percentage. Caps the returned value at 100% to avoid overflow.
+   * @returns The percentage of the budget that has been spent (0-100)
+   */
+  get budgetProgress(): number {
+    if (!this.account?.budget?.amount) return 0;
+
+    const balance &#x3D; this.account.balance || 0;
+    const budgetAmount &#x3D; this.account.budget.amount;
+
+    const percentage &#x3D; (balance / budgetAmount) * 100;
+    return Math.min(percentage, 100);
+  }
+
+  /**
+   * Determines if the account balance has exceeded the set budget.
+   * Compares the current account balance against the budget amount.
+   * Returns true if the balance exceeds the budget, false otherwise. If no budget is set, returns false.
+   * @returns boolean indicating whether the budget has been exceeded
+   */
+  get isBudgetExceeded(): boolean {
+    if (!this.account?.budget?.amount) return false;
+    return (this.account.balance || 0) &gt; this.account.budget.amount;
+  }
+
+  /**
+   * Closes the budget form without saving any changes.
+   * Resets the form fields to their default states.
+   * @returns void
+   */
+  closeBudgetForm() {
+    this.showBudgetForm &#x3D; false;
+  }
 }</code></pre>
     </div>
 
@@ -1837,64 +1981,85 @@ export class AccountDetails implements OnInit {
     }
 
     @if (account) {
-    &lt;button class&#x3D;&quot;btn btn-outline-secondary mb-3&quot; (click)&#x3D;&quot;archiveAccount()&quot; [disabled]&#x3D;&quot;account?.balance &gt; 0&quot;&gt;
-        Archive Account
-    &lt;/button&gt;
+    &lt;div class&#x3D;&quot;d-flex gap-2 mb-3&quot;&gt;
+        &lt;button class&#x3D;&quot;btn btn-outline-secondary&quot; (click)&#x3D;&quot;archiveAccount()&quot; [disabled]&#x3D;&quot;account?.balance &gt; 0&quot;&gt;
+            Archive Account
+        &lt;/button&gt;
 
-    Add balance to account &lt;i class&#x3D;&quot;fa fa-plus add-balance-icon&quot; (click)&#x3D;&quot;addBalance()&quot;&gt;&lt;/i&gt;
+        @if (account?.accountType &#x3D;&#x3D;&#x3D; &#x27;savings&#x27;) {
+        &lt;button class&#x3D;&quot;btn btn-outline-secondary&quot; (click)&#x3D;&quot;addBudget()&quot;&gt;
+            {{ showBudgetForm ? &#x27;Cancel&#x27; : &#x27;Set Budget&#x27; }}
+        &lt;/button&gt;
+        }
+    &lt;/div&gt;
+
     &lt;div class&#x3D;&quot;balance-card&quot;&gt;
+        @if (account?.budget) {
+        &lt;div class&#x3D;&quot;balance-label&quot;&gt;
+            Budget ({{ account.budget.period | titlecase }})
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;balance-amount&quot;&gt;
+            &lt;span class&#x3D;&quot;fw-bold&quot;&gt;
+                {{ account.balance | currency: account.currency || &#x27;GBP&#x27; }} / {{ account.budget.amount | currency: &#x27;GBP&#x27; }}
+            &lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;mat-progress-bar class&#x3D;&quot;mt-3&quot; mode&#x3D;&quot;determinate&quot; [value]&#x3D;&quot;budgetProgress&quot;
+            [color]&#x3D;&quot;isBudgetExceeded ? &#x27;warn&#x27; : &#x27;primary&#x27;&quot;&gt;&lt;/mat-progress-bar&gt;
+        } @else {
         &lt;div class&#x3D;&quot;balance-label&quot;&gt;Balance&lt;/div&gt;
         &lt;div class&#x3D;&quot;balance-amount&quot;&gt;
             {{ account?.balance | currency: &#x27;GBP&#x27; }}
         &lt;/div&gt;
+        }
     &lt;/div&gt;
 
     @if (account?.accountType &#x3D;&#x3D;&#x3D; &#x27;savings&#x27;) {
-    &lt;button class&#x3D;&quot;btn btn-outline-secondary mb-3&quot; (click)&#x3D;&quot;addBudget()&quot;&gt;
-        {{ showBudgetForm ? &#x27;Cancel&#x27; : &#x27;Set Budget&#x27; }}
-    &lt;/button&gt;
-
     @if (showBudgetForm) {
-    &lt;div class&#x3D;&quot;card p-3 mb-3&quot;&gt;
-        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
-            &lt;label class&#x3D;&quot;form-label&quot;&gt;Budget Amount:&lt;/label&gt;
-            &lt;input type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; [(ngModel)]&#x3D;&quot;budgetAmount&quot; name&#x3D;&quot;budgetAmount&quot;&gt;
-        &lt;/div&gt;
-        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
-            &lt;label class&#x3D;&quot;form-label d-block&quot;&gt;Budget Period:&lt;/label&gt;
-            &lt;div class&#x3D;&quot;btn-group w-100&quot;&gt;
-                &lt;button class&#x3D;&quot;btn&quot; [class.btn-primary]&#x3D;&quot;budgetPeriod &#x3D;&#x3D;&#x3D; &#x27;weekly&#x27;&quot;
-                    [class.btn-outline-primary]&#x3D;&quot;budgetPeriod !&#x3D;&#x3D; &#x27;weekly&#x27;&quot; (click)&#x3D;&quot;selectBudgetPeriod(&#x27;weekly&#x27;)&quot;&gt;
-                    Weekly
-                &lt;/button&gt;
-                &lt;button class&#x3D;&quot;btn&quot; [class.btn-primary]&#x3D;&quot;budgetPeriod &#x3D;&#x3D;&#x3D; &#x27;monthly&#x27;&quot;
-                    [class.btn-outline-primary]&#x3D;&quot;budgetPeriod !&#x3D;&#x3D; &#x27;monthly&#x27;&quot; (click)&#x3D;&quot;selectBudgetPeriod(&#x27;monthly&#x27;)&quot;&gt;
-                    Monthly
-                &lt;/button&gt;
-                &lt;button class&#x3D;&quot;btn&quot; [class.btn-primary]&#x3D;&quot;budgetPeriod &#x3D;&#x3D;&#x3D; &#x27;annual&#x27;&quot;
-                    [class.btn-outline-primary]&#x3D;&quot;budgetPeriod !&#x3D;&#x3D; &#x27;annual&#x27;&quot; (click)&#x3D;&quot;selectBudgetPeriod(&#x27;annual&#x27;)&quot;&gt;
-                    Annually
-                &lt;/button&gt;
-                &lt;button class&#x3D;&quot;btn&quot; [class.btn-primary]&#x3D;&quot;budgetPeriod &#x3D;&#x3D;&#x3D; &#x27;custom&#x27;&quot;
-                    [class.btn-outline-primary]&#x3D;&quot;budgetPeriod !&#x3D;&#x3D; &#x27;custom&#x27;&quot; (click)&#x3D;&quot;selectBudgetPeriod(&#x27;custom&#x27;)&quot;&gt;
-                    Custom
-                &lt;/button&gt;
+    &lt;div class&#x3D;&quot;overlay&quot; (click)&#x3D;&quot;closeBudgetForm()&quot;&gt;
+        &lt;div class&#x3D;&quot;modal-card card p-3&quot; (click)&#x3D;&quot;$event.stopPropagation()&quot;&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                &lt;label class&#x3D;&quot;form-label&quot;&gt;Budget Amount:&lt;/label&gt;
+                &lt;input type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; [(ngModel)]&#x3D;&quot;budgetAmount&quot; name&#x3D;&quot;budgetAmount&quot;&gt;
             &lt;/div&gt;
-        &lt;/div&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                &lt;label class&#x3D;&quot;form-label d-block&quot;&gt;Budget Period:&lt;/label&gt;
+                &lt;div class&#x3D;&quot;btn-group w-100&quot;&gt;
+                    &lt;button class&#x3D;&quot;btn&quot; [class.btn-primary]&#x3D;&quot;budgetPeriod &#x3D;&#x3D;&#x3D; &#x27;weekly&#x27;&quot;
+                        [class.btn-outline-primary]&#x3D;&quot;budgetPeriod !&#x3D;&#x3D; &#x27;weekly&#x27;&quot; (click)&#x3D;&quot;selectBudgetPeriod(&#x27;weekly&#x27;)&quot;&gt;
+                        Weekly
+                    &lt;/button&gt;
+                    &lt;button class&#x3D;&quot;btn&quot; [class.btn-primary]&#x3D;&quot;budgetPeriod &#x3D;&#x3D;&#x3D; &#x27;monthly&#x27;&quot;
+                        [class.btn-outline-primary]&#x3D;&quot;budgetPeriod !&#x3D;&#x3D; &#x27;monthly&#x27;&quot;
+                        (click)&#x3D;&quot;selectBudgetPeriod(&#x27;monthly&#x27;)&quot;&gt;
+                        Monthly
+                    &lt;/button&gt;
+                    &lt;button class&#x3D;&quot;btn&quot; [class.btn-primary]&#x3D;&quot;budgetPeriod &#x3D;&#x3D;&#x3D; &#x27;annual&#x27;&quot;
+                        [class.btn-outline-primary]&#x3D;&quot;budgetPeriod !&#x3D;&#x3D; &#x27;annual&#x27;&quot; (click)&#x3D;&quot;selectBudgetPeriod(&#x27;annual&#x27;)&quot;&gt;
+                        Annually
+                    &lt;/button&gt;
+                    &lt;button class&#x3D;&quot;btn&quot; [class.btn-primary]&#x3D;&quot;budgetPeriod &#x3D;&#x3D;&#x3D; &#x27;custom&#x27;&quot;
+                        [class.btn-outline-primary]&#x3D;&quot;budgetPeriod !&#x3D;&#x3D; &#x27;custom&#x27;&quot; (click)&#x3D;&quot;selectBudgetPeriod(&#x27;custom&#x27;)&quot;&gt;
+                        Custom
+                    &lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
 
-        @if (budgetPeriod &#x3D;&#x3D;&#x3D; &#x27;custom&#x27;) {
-        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
-            &lt;label class&#x3D;&quot;form-label&quot;&gt;Start Date&lt;/label&gt;
-            &lt;input type&#x3D;&quot;date&quot; class&#x3D;&quot;form-control&quot; [(ngModel)]&#x3D;&quot;startDate&quot; name&#x3D;&quot;startDate&quot;&gt;
+            @if (budgetPeriod &#x3D;&#x3D;&#x3D; &#x27;custom&#x27;) {
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                &lt;label class&#x3D;&quot;form-label&quot;&gt;Start Date&lt;/label&gt;
+                &lt;input type&#x3D;&quot;date&quot; class&#x3D;&quot;form-control&quot; [(ngModel)]&#x3D;&quot;startDate&quot; name&#x3D;&quot;startDate&quot;&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+                &lt;label class&#x3D;&quot;form-label&quot;&gt;End Date&lt;/label&gt;
+                &lt;input type&#x3D;&quot;date&quot; class&#x3D;&quot;form-control&quot; [(ngModel)]&#x3D;&quot;endDate&quot; name&#x3D;&quot;endDate&quot;&gt;
+            &lt;/div&gt;
+            }
+            &lt;button class&#x3D;&quot;btn btn-success w-100&quot; (click)&#x3D;&quot;submitBudget()&quot;&gt;
+                Save Budget
+            &lt;/button&gt;
         &lt;/div&gt;
-        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
-            &lt;label class&#x3D;&quot;form-label&quot;&gt;End Date&lt;/label&gt;
-            &lt;input type&#x3D;&quot;date&quot; class&#x3D;&quot;form-control&quot; [(ngModel)]&#x3D;&quot;endDate&quot; name&#x3D;&quot;endDate&quot;&gt;
-        &lt;/div&gt;
-        }
-        &lt;button class&#x3D;&quot;btn btn-success w-100&quot; (click)&#x3D;&quot;submitBudget()&quot;&gt;
-            Save Budget
-        &lt;/button&gt;
     &lt;/div&gt;
     }
     }
@@ -1991,7 +2156,7 @@ export class AccountDetails implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    @if (error) {    <p class="text-danger">{{ error }}</p>    }    @if (account) {    <button class="btn btn-outline-secondary mb-3" (click)="archiveAccount()" [disabled]="account?.balance > 0">        Archive Account    </button>    Add balance to account <i class="fa fa-plus add-balance-icon" (click)="addBalance()"></i>    <div class="balance-card">        <div class="balance-label">Balance</div>        <div class="balance-amount">            {{ account?.balance | currency: \'GBP\' }}        </div>    </div>    @if (account?.accountType === \'savings\') {    <button class="btn btn-outline-secondary mb-3" (click)="addBudget()">        {{ showBudgetForm ? \'Cancel\' : \'Set Budget\' }}    </button>    @if (showBudgetForm) {    <div class="card p-3 mb-3">        <div class="mb-3">            <label class="form-label">Budget Amount:</label>            <input type="number" class="form-control" [(ngModel)]="budgetAmount" name="budgetAmount">        </div>        <div class="mb-3">            <label class="form-label d-block">Budget Period:</label>            <div class="btn-group w-100">                <button class="btn" [class.btn-primary]="budgetPeriod === \'weekly\'"                    [class.btn-outline-primary]="budgetPeriod !== \'weekly\'" (click)="selectBudgetPeriod(\'weekly\')">                    Weekly                </button>                <button class="btn" [class.btn-primary]="budgetPeriod === \'monthly\'"                    [class.btn-outline-primary]="budgetPeriod !== \'monthly\'" (click)="selectBudgetPeriod(\'monthly\')">                    Monthly                </button>                <button class="btn" [class.btn-primary]="budgetPeriod === \'annual\'"                    [class.btn-outline-primary]="budgetPeriod !== \'annual\'" (click)="selectBudgetPeriod(\'annual\')">                    Annually                </button>                <button class="btn" [class.btn-primary]="budgetPeriod === \'custom\'"                    [class.btn-outline-primary]="budgetPeriod !== \'custom\'" (click)="selectBudgetPeriod(\'custom\')">                    Custom                </button>            </div>        </div>        @if (budgetPeriod === \'custom\') {        <div class="mb-3">            <label class="form-label">Start Date</label>            <input type="date" class="form-control" [(ngModel)]="startDate" name="startDate">        </div>        <div class="mb-3">            <label class="form-label">End Date</label>            <input type="date" class="form-control" [(ngModel)]="endDate" name="endDate">        </div>        }        <button class="btn btn-success w-100" (click)="submitBudget()">            Save Budget        </button>    </div>    }    }    <div class="amount-card">        <div class="amount-label">Amount:</div>        Account #: {{ account.accountNumber }}<br />        Currency: {{ account.currency || \'GBP\' }}<br />    </div>    }    @if (transactions.length > 0) {    <div class="d-flex justify-content-between align-items-center mt-5">        <h5>Transactions:</h5>        <div class="d-flex align-items-center gap-2">            <button class="btn btn-outline-primary btn-sm" (click)="toggleFilter()">                <i class="fa" [ngClass]="showFilter ? \'fa-times\' : \'fa-filter\'"></i>                {{ showFilter ? \'Close Filter\' : \'Filter\' }}            </button>            @if (showFilter) {            <div class="d-flex gap-2 align-items-center">                <select class="form-select form-select-sm w-25" [(ngModel)]="selectedCategory"                    (change)="customCategory = \'\'">                    <option value="">All Categories:</option>                    @for (category of categories; track category) {                    <option [value]="category">                        {{ category }}                    </option>                    }                </select>                <input type="search" class="form-control form-control-sm w-25" placeholder="Enter category..."                    [(ngModel)]="customCategory" (input)="selectedCategory = \'\'" />            </div>            }        </div>        <div class="plus-minus">            <i class="fa fa-plus" (click)="addTransaction()"></i>        </div>    </div>    <ul class="list-group list-group-flush">        @for (transaction of transactions | filter: effectiveCategory; track transaction._id) {        <li class="list-group-item d-flex justify-content-between transaction-item transaction-spacing"            (click)="openTransaction(transaction._id)">            <div>                {{ transaction.description }}<br />                {{ transaction.category }}<br />                <p>{{ formatTransactionDate(transaction.createdAt) }}</p>            </div>            <span [ngClass]="{                        \'text-success\': transaction.type === \'credit\',                        \'text-danger\': transaction.type === \'debit\'                    }">                {{ transaction.amount | currency: account.currency || \'GBP\' }}            </span>        </li>        }    </ul>    }    @if (transactions.length === 0 && account) {    <div class="d-flex justify-content-between align-items-center mt-5">        <div class="plus-minus">            <p class="text-muted mt-3">No transactions found for this account. Add a transaction</p>            <i class="fa fa-plus" (click)="addTransaction()"></i>        </div>    </div>    }</div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    @if (error) {    <p class="text-danger">{{ error }}</p>    }    @if (account) {    <div class="d-flex gap-2 mb-3">        <button class="btn btn-outline-secondary" (click)="archiveAccount()" [disabled]="account?.balance > 0">            Archive Account        </button>        @if (account?.accountType === \'savings\') {        <button class="btn btn-outline-secondary" (click)="addBudget()">            {{ showBudgetForm ? \'Cancel\' : \'Set Budget\' }}        </button>        }    </div>    <div class="balance-card">        @if (account?.budget) {        <div class="balance-label">            Budget ({{ account.budget.period | titlecase }})        </div>        <div class="balance-amount">            <span class="fw-bold">                {{ account.balance | currency: account.currency || \'GBP\' }} / {{ account.budget.amount | currency: \'GBP\' }}            </span>        </div>        <mat-progress-bar class="mt-3" mode="determinate" [value]="budgetProgress"            [color]="isBudgetExceeded ? \'warn\' : \'primary\'"></mat-progress-bar>        } @else {        <div class="balance-label">Balance</div>        <div class="balance-amount">            {{ account?.balance | currency: \'GBP\' }}        </div>        }    </div>    @if (account?.accountType === \'savings\') {    @if (showBudgetForm) {    <div class="overlay" (click)="closeBudgetForm()">        <div class="modal-card card p-3" (click)="$event.stopPropagation()">            <div class="mb-3">                <label class="form-label">Budget Amount:</label>                <input type="number" class="form-control" [(ngModel)]="budgetAmount" name="budgetAmount">            </div>            <div class="mb-3">                <label class="form-label d-block">Budget Period:</label>                <div class="btn-group w-100">                    <button class="btn" [class.btn-primary]="budgetPeriod === \'weekly\'"                        [class.btn-outline-primary]="budgetPeriod !== \'weekly\'" (click)="selectBudgetPeriod(\'weekly\')">                        Weekly                    </button>                    <button class="btn" [class.btn-primary]="budgetPeriod === \'monthly\'"                        [class.btn-outline-primary]="budgetPeriod !== \'monthly\'"                        (click)="selectBudgetPeriod(\'monthly\')">                        Monthly                    </button>                    <button class="btn" [class.btn-primary]="budgetPeriod === \'annual\'"                        [class.btn-outline-primary]="budgetPeriod !== \'annual\'" (click)="selectBudgetPeriod(\'annual\')">                        Annually                    </button>                    <button class="btn" [class.btn-primary]="budgetPeriod === \'custom\'"                        [class.btn-outline-primary]="budgetPeriod !== \'custom\'" (click)="selectBudgetPeriod(\'custom\')">                        Custom                    </button>                </div>            </div>            @if (budgetPeriod === \'custom\') {            <div class="mb-3">                <label class="form-label">Start Date</label>                <input type="date" class="form-control" [(ngModel)]="startDate" name="startDate">            </div>            <div class="mb-3">                <label class="form-label">End Date</label>                <input type="date" class="form-control" [(ngModel)]="endDate" name="endDate">            </div>            }            <button class="btn btn-success w-100" (click)="submitBudget()">                Save Budget            </button>        </div>    </div>    }    }    <div class="amount-card">        <div class="amount-label">Amount:</div>        Account #: {{ account.accountNumber }}<br />        Currency: {{ account.currency || \'GBP\' }}<br />    </div>    }    @if (transactions.length > 0) {    <div class="d-flex justify-content-between align-items-center mt-5">        <h5>Transactions:</h5>        <div class="d-flex align-items-center gap-2">            <button class="btn btn-outline-primary btn-sm" (click)="toggleFilter()">                <i class="fa" [ngClass]="showFilter ? \'fa-times\' : \'fa-filter\'"></i>                {{ showFilter ? \'Close Filter\' : \'Filter\' }}            </button>            @if (showFilter) {            <div class="d-flex gap-2 align-items-center">                <select class="form-select form-select-sm w-25" [(ngModel)]="selectedCategory"                    (change)="customCategory = \'\'">                    <option value="">All Categories:</option>                    @for (category of categories; track category) {                    <option [value]="category">                        {{ category }}                    </option>                    }                </select>                <input type="search" class="form-control form-control-sm w-25" placeholder="Enter category..."                    [(ngModel)]="customCategory" (input)="selectedCategory = \'\'" />            </div>            }        </div>        <div class="plus-minus">            <i class="fa fa-plus" (click)="addTransaction()"></i>        </div>    </div>    <ul class="list-group list-group-flush">        @for (transaction of transactions | filter: effectiveCategory; track transaction._id) {        <li class="list-group-item d-flex justify-content-between transaction-item transaction-spacing"            (click)="openTransaction(transaction._id)">            <div>                {{ transaction.description }}<br />                {{ transaction.category }}<br />                <p>{{ formatTransactionDate(transaction.createdAt) }}</p>            </div>            <span [ngClass]="{                        \'text-success\': transaction.type === \'credit\',                        \'text-danger\': transaction.type === \'debit\'                    }">                {{ transaction.amount | currency: account.currency || \'GBP\' }}            </span>        </li>        }    </ul>    }    @if (transactions.length === 0 && account) {    <div class="d-flex justify-content-between align-items-center mt-5">        <div class="plus-minus">            <p class="text-muted mt-3">No transactions found for this account. Add a transaction</p>            <i class="fa fa-plus" (click)="addTransaction()"></i>        </div>    </div>    }</div></div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AccountDetails'};

@@ -149,6 +149,12 @@ Currently serves as a foundation for future development.</p>
     </p>
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -177,6 +183,13 @@ Currently serves as a foundation for future development.</p>
                 <td class="col-md-9"><code>true</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                <code><a href="https://angular.io/api/forms/FormsModule" target="_blank" >FormsModule</a></code>
+                </td>
+            </tr>
 
 
 
@@ -201,6 +214,68 @@ Currently serves as a foundation for future development.</p>
     </table>
 </section>
 
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#account" >account</a>
+                            </li>
+                            <li>
+                                <a href="#amountToAdd" >amountToAdd</a>
+                            </li>
+                            <li>
+                                <a href="#confirmAccountNumber" >confirmAccountNumber</a>
+                            </li>
+                            <li>
+                                <a href="#error" >error</a>
+                            </li>
+                            <li>
+                                <a href="#showAddBalanceForm" >showAddBalanceForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addBalance" >addBalance</a>
+                            </li>
+                            <li>
+                                <a href="#closeBalanceForm" >closeBalanceForm</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#openBalanceForm" >openBalanceForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
 
     <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
@@ -208,12 +283,12 @@ Currently serves as a foundation for future development.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor()</code>
+<code>constructor(accountService: <a href="../injectables/AccountService.html" target="_self">AccountService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/components/payments/payments.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/payments/payments.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -221,6 +296,44 @@ Currently serves as a foundation for future development.</p>
                     <td class="col-md-4">
                             <div class="io-description"><p>Constructor for Payments component. Currently does not perform any initialization.</p>
 </div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>accountService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AccountService.html" target="_self" >AccountService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cdr</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
                     </td>
                 </tr>
             </tbody>
@@ -231,13 +344,379 @@ Currently serves as a foundation for future development.</p>
 
 
 
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addBalance"></a>
+                    <span class="name">
+                        <span ><b>addBalance</b></span>
+                        <a href="#addBalance"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addBalance()</code>
+                </td>
+            </tr>
 
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="97"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:97</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Adds balance to the user&#39;s account after validating the input. Checks if the user and account IDs are present,
+verifies that the confirmed account number matches the actual account number, and ensures that the amount to add is valid.
+If validation passes, it calls the AccountService to add the balance and updates the account information on success. Displays error messages for any validation or operation failures.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeBalanceForm"></a>
+                    <span class="name">
+                        <span ><b>closeBalanceForm</b></span>
+                        <a href="#closeBalanceForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeBalanceForm()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="88"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Closes the form for adding balance to the user&#39;s account. Hides the form without making any changes to the account or input fields.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Lifecycle hook that is called after the component has been initialized. It retrieves the user ID and account ID from session storage,
+then uses the AccountService to fetch the account details. If successful, it stores the account information in the component&#39;s state.
+If either the user ID or account ID is missing, it simply returns without attempting to fetch data.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openBalanceForm"></a>
+                    <span class="name">
+                        <span ><b>openBalanceForm</b></span>
+                        <a href="#openBalanceForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openBalanceForm()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Opens the form for adding balance to the user&#39;s account. Resets the confirmation account number and amount to add fields to their default states.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="account"></a>
+                    <span class="name">
+                        <span ><b>account</b></span>
+                        <a href="#account"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/payments/payments.ts:30</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The account object containing account information such as balance, account number,
+currency, and account type (e.g., &#39;savings&#39;, &#39;checking&#39;). Null until account data is loaded.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="amountToAdd"></a>
+                    <span class="name">
+                        <span ><b>amountToAdd</b></span>
+                        <a href="#amountToAdd"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/payments/payments.ts:55</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The amount entered by the user to add to their account balance.
+This should be a positive number. Initially set to null until the user inputs a value.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmAccountNumber"></a>
+                    <span class="name">
+                        <span ><b>confirmAccountNumber</b></span>
+                        <a href="#confirmAccountNumber"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/payments/payments.ts:49</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The account number entered by the user to confirm their identity before adding balance.
+This should match the actual account number of the user&#39;s account for validation to succeed.
+Initially set to an empty string until the user inputs a value.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="error"></a>
+                    <span class="name">
+                        <span ><b>error</b></span>
+                        <a href="#error"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/components/payments/payments.ts:36</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Error message displayed to the user when operations fail or data cannot be loaded.
+Null when no error is present.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showAddBalanceForm"></a>
+                    <span class="name">
+                        <span ><b>showAddBalanceForm</b></span>
+                        <a href="#showAddBalanceForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/payments/payments.ts:42</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Boolean flag indicating whether the form for adding balance to the account is currently visible.
+Initially set to false, meaning the form is hidden until the user chooses to open it.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { AccountService } from &#x27;../../services/account-service&#x27;;
+import { ChangeDetectorRef } from &#x27;@angular/core&#x27;;
 /**
  * Payments component - placeholder for payment processing features.
  * This component is intended for handling user payments, transfers, and payment history.
@@ -246,23 +725,142 @@ Currently serves as a foundation for future development.</p>
 @Component({
   selector: &#x27;app-payments&#x27;,
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: &#x27;./payments.html&#x27;,
   styleUrl: &#x27;./payments.css&#x27;,
 })
 
-export class Payments {
+export class Payments implements OnInit {
 
   /**
    * Constructor for Payments component. Currently does not perform any initialization. 
   */
-  constructor() { }
+  constructor(private accountService: AccountService, private cdr: ChangeDetectorRef) { }
+
+  /**
+ * The account object containing account information such as balance, account number,
+ * currency, and account type (e.g., &#x27;savings&#x27;, &#x27;checking&#x27;). Null until account data is loaded.
+ */
+  account: any | null &#x3D; null;
+
+  /**
+ * Error message displayed to the user when operations fail or data cannot be loaded.
+ * Null when no error is present.
+ */
+  error: string | null &#x3D; null;
+
+  /**
+   * Boolean flag indicating whether the form for adding balance to the account is currently visible.
+   * Initially set to false, meaning the form is hidden until the user chooses to open it.
+   */
+  showAddBalanceForm: boolean &#x3D; false;
+
+  /**
+ * The account number entered by the user to confirm their identity before adding balance.
+ * This should match the actual account number of the user&#x27;s account for validation to succeed.
+ * Initially set to an empty string until the user inputs a value.
+ */
+  confirmAccountNumber: string &#x3D; &#x27;&#x27;;
+
+  /**
+ * The amount entered by the user to add to their account balance.
+ * This should be a positive number. Initially set to null until the user inputs a value.
+ */
+  amountToAdd: number | null &#x3D; null;
+
+  /**
+ * Lifecycle hook that is called after the component has been initialized. It retrieves the user ID and account ID from session storage,
+ * then uses the AccountService to fetch the account details. If successful, it stores the account information in the component&#x27;s state.
+ * If either the user ID or account ID is missing, it simply returns without attempting to fetch data.
+ */
+  ngOnInit() {
+    const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
+    const accountId &#x3D; sessionStorage.getItem(&#x27;accountId&#x27;);
+
+    if (!userId || !accountId) {
+      return;
+    }
+
+    this.accountService.getAccount(userId, accountId).subscribe({
+      next: (account) &#x3D;&gt; {
+        this.account &#x3D; account;
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+  /**
+ * Opens the form for adding balance to the user&#x27;s account. Resets the confirmation account number and amount to add fields to their default states.
+ */
+  openBalanceForm() {
+    this.showAddBalanceForm &#x3D; true;
+  }
+
+  /**
+ * Closes the form for adding balance to the user&#x27;s account. Hides the form without making any changes to the account or input fields.
+ */
+  closeBalanceForm() {
+    this.showAddBalanceForm &#x3D; false;
+  }
+
+  /**
+ * Adds balance to the user&#x27;s account after validating the input. Checks if the user and account IDs are present,
+ * verifies that the confirmed account number matches the actual account number, and ensures that the amount to add is valid.
+ * If validation passes, it calls the AccountService to add the balance and updates the account information on success. Displays error messages for any validation or operation failures.
+ */
+  addBalance() {
+    const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
+
+    if (!userId) {
+      return;
+    }
+
+    this.accountService.getAccountByNumber(userId, this.confirmAccountNumber).subscribe({
+      next: (account) &#x3D;&gt; {
+        const payeeAccountId &#x3D; account._id;
+        this.accountService.addBalance(userId, payeeAccountId, this.amountToAdd!).subscribe({
+          next: () &#x3D;&gt; {
+            this.showAddBalanceForm &#x3D; false;
+            this.confirmAccountNumber &#x3D; &#x27;&#x27;;
+            this.amountToAdd &#x3D; null;
+            this.error &#x3D; null;
+          },
+          error: () &#x3D;&gt; {
+            this.error &#x3D; &#x27;Failed to add balance&#x27;;
+          }
+        });
+      },
+      error: () &#x3D;&gt; {
+        this.error &#x3D; &#x27;Account number not found&#x27;;
+      }
+    });
+  }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html"></code></pre>
+        <pre class="line-numbers"><code class="language-html">&lt;button class&#x3D;&quot;btn btn-success w-100&quot; (click)&#x3D;&quot;openBalanceForm()&quot;&gt;
+    Add Balance
+&lt;/button&gt;
+@if (showAddBalanceForm) {
+&lt;div class&#x3D;&quot;overlay&quot; (click)&#x3D;&quot;closeBalanceForm()&quot;&gt;
+    &lt;div class&#x3D;&quot;modal-card card p-3&quot; (click)&#x3D;&quot;$event.stopPropagation()&quot;&gt;
+
+        &lt;h5 class&#x3D;&quot;mb-3&quot;&gt;Add Balance&lt;/h5&gt;
+
+        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+            &lt;label class&#x3D;&quot;form-label&quot;&gt;Confirm Account Number&lt;/label&gt;
+            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; [(ngModel)]&#x3D;&quot;confirmAccountNumber&quot; name&#x3D;&quot;confirmAccountNumber&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+            &lt;label class&#x3D;&quot;form-label&quot;&gt;Amount to add&lt;/label&gt;
+            &lt;input type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; [(ngModel)]&#x3D;&quot;amountToAdd&quot; name&#x3D;&quot;amountToAdd&quot;&gt;
+        &lt;/div&gt;
+        &lt;button class&#x3D;&quot;btn btn-primary w-100&quot; (click)&#x3D;&quot;addBalance()&quot;&gt;Confirm Add Balance&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+}</code></pre>
     </div>
 
 
@@ -291,7 +889,7 @@ export class Payments {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div></div>'
+        var COMPONENT_TEMPLATE = '<div><button class="btn btn-success w-100" (click)="openBalanceForm()">    Add Balance</button>@if (showAddBalanceForm) {<div class="overlay" (click)="closeBalanceForm()">    <div class="modal-card card p-3" (click)="$event.stopPropagation()">        <h5 class="mb-3">Add Balance</h5>        <div class="mb-3">            <label class="form-label">Confirm Account Number</label>            <input type="text" class="form-control" [(ngModel)]="confirmAccountNumber" name="confirmAccountNumber">        </div>        <div class="mb-3">            <label class="form-label">Amount to add</label>            <input type="number" class="form-control" [(ngModel)]="amountToAdd" name="amountToAdd">        </div>        <button class="btn btn-primary w-100" (click)="addBalance()">Confirm Add Balance</button>    </div></div>}</div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Payments'};

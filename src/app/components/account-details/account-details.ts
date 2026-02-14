@@ -159,45 +159,6 @@ export class AccountDetails implements OnInit {
   }
 
   /**
-   * Prompts the user for an amount and adds it to the current account balance.
-   * Retrieves the userId and accountId from session storage, then sends a request
-   * to the AccountService. On success, updates the account details. On failure,
-   * displays an error message.
-   * @returns void
-   */
-  addBalance() {
-    const userId = sessionStorage.getItem('userId');
-    const accountId = sessionStorage.getItem('accountId');
-
-    if (!userId || !accountId) {
-      return;
-    }
-
-    const amountInput = prompt('Amount to add:');
-
-    if (!amountInput) {
-      return;
-    }
-
-    const amount = Number(amountInput);
-
-    this.accountService.addBalance(userId, accountId, amount).subscribe({
-      next: () => {
-        this.accountService.getAccount(userId, accountId).subscribe({
-          next: (account) => {
-            this.account = account;
-            this.cdr.detectChanges();
-          }
-        });
-      },
-      error: () => {
-        this.error = 'Failed to add balance';
-        this.cdr.detectChanges();
-      }
-    });
-  }
-
-  /**
    * Prompts the user for transaction details and adds a new transaction to the account.
    * Collects description, amount, and merchant information from the user via prompts.
    * Automatically determines transaction type (credit/debit) based on the amount sign.
