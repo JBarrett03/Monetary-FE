@@ -390,4 +390,13 @@ export class AccountDetails implements OnInit {
       }
     });
   }
+
+  /**
+   * Closes the budget form without saving any changes.
+   * Resets the form fields to their default states.
+   * @returns void
+   */
+  closeBudgetForm() {
+    this.showBudgetForm = false;
+  }
 }
