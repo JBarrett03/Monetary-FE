@@ -1,17 +1,33 @@
-<div *ngIf="defaultAccount" class="balance-card">
-    <h4>Default Card:</h4>
+<div class="container container-top-margin">
+    <div class="row">
+        <div class="col-sm-12 d-flex flex-column align-items-center">
 
-    <div>
-        {{ defaultAccount.accountType | titlecase }}
-    </div>
-    <div>
-        {{ defaultAccount.accountNumber }}
-    </div>
-    <div>
-        {{ defaultAccount.balance | currency: defaultAccount.currency }}
-    </div>
-</div>
+            <div *ngIf="defaultAccount" class="stripe-card mb-3 clickable-card"
+                [routerLink]="['/accounts', defaultAccount._id]">
+                <div class="stripe-card-top">
+                    <div class="chip"></div>
+                    <div class="card-brand">
+                        {{ cardBrand | uppercase }}
+                    </div>
+                </div>
+                <div class="card-number">
+                    {{ maskAccountNumber(defaultAccount.accountNumber) }}
+                </div>
 
-<div *ngIf="error">
-    {{ error }}
+                <div class="stripe-card-bottom">
+                    <div class="card-holder">
+                        {{ defaultAccount.accountType | uppercase }}<br>
+                        {{ defaultAccount.availableBalance | currency: (defaultAccount.currency || 'GBP') }}<br>
+                        {{ firstName }} {{ lastName }}
+                    </div>
+                    <div class="expiry">
+                        MM / YY
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!defaultAccount">
+                <p>No default account set</p>
+            </div>
+        </div>
+    </div>
 </div>

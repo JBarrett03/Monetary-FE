@@ -274,21 +274,21 @@ export class AccountDetails implements OnInit {
    * @returns void
    */
   setAsDefault() {
-    console.log('Setting account as default');
     const userId = sessionStorage.getItem('userId');
     const accountId = sessionStorage.getItem('accountId');
-
 
     if (!userId || !accountId) {
       return;
     }
 
+    this.account.isDefault = true;
+
     this.accountService.setDefaultAccount(userId, accountId).subscribe({
-      next: (res) => {
-        console.log("success", res);
+      next: () => {
+        // already updated locally
       },
-      error: (err) => {
-        console.error("error", err);
+      error: () => {
+        this.error = 'Failed to set default account';
       }
     })
   }

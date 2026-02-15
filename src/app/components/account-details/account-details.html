@@ -8,8 +8,9 @@
         <button class="btn btn-outline-secondary" (click)="archiveAccount()" [disabled]="account?.balance > 0">
             Archive Account
         </button>
-        <button class="btn btn-outline-primary" (click)="setAsDefault()" [disabled]="account?.isDefault">
-            {{ account?.isDefault ? 'Default Account' : 'Set as Default' }}
+        <button class="btn" [ngClass]="account?.isDefault ? 'btn-success' : 'btn-outline-primary'"
+            (click)="setAsDefault()" [disabled]="account?.isDefault">
+            {{ account?.isDefault ? 'Default Account ✓' : 'Set as Default' }}
         </button>
 
         @if (account?.accountType === 'savings') {
@@ -27,7 +28,8 @@
 
         <div class="balance-amount">
             <span class="fw-bold">
-                {{ account.balance | currency: account.currency || 'GBP' }} / {{ account.budget.amount | currency: 'GBP' }}
+                {{ account.balance | currency: account.currency || 'GBP' }} / {{ account.budget.amount | currency: 'GBP'
+                }}
             </span>
         </div>
 
