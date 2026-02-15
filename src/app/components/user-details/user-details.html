@@ -1,23 +1,24 @@
-<div class="container mt-5">
-    @if (notFound$ | async) {
-    <div class="alert alert-danger">
-        User not found.
-    </div>
-    } @else {
-    @let user = (user$ | async);
-    @if (user) {
-    <div class="card">
-        <div class="card-header">
-            <h2>{{ user.userName }}</h2>
-        </div>
-        <div class="card-body">
-            <p><strong>Email:</strong> {{ user.username }}</p>
-            <p><strong>Phone:</strong> {{ user.phone }}</p>
-            <p><strong>Address:</strong> {{ user.address }}</p>
-            <p><strong>Date of Birth:</strong> {{ user.DOB }}</p>
-            <p><strong>Status:</strong> {{ user.status }}</p>
-        </div>
-    </div>
-    }
-    }
-</div>
+<div class="container container-top-margin">
+    <div class="row">
+        <div class="col-sm-12">
+            @for(user of user_list; track user.firstName) {
+            <div class="card text-dark mb-3">
+                <div class="card-body">
+                    {{user.firstName}} {{user.lastName}}<br>
+                    Email: {{user.email}} <br>
+                    Password: {{user.password}} <br>
+                    Phone: {{user.phone}} <br>
+                    Address: {{user.address}} <br>
+                    DOB: {{user.DOB}}
+                </div>
+            </div>
+            }
+            <button class="btn btn-primary" *ngIf="isLoggedIn" (click)="editUser()">
+                Edit Details
+            </button>
+            <div class="button-box" *ngIf="isLoggedIn">
+                <a href="#" (click)="logout($event)">Log out</a>
+            </div>
+        </div> <!-- col -->
+    </div> <!-- row -->
+</div> <!-- container -->

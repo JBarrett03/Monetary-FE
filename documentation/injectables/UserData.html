@@ -93,7 +93,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content miscellaneous-variables">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -107,250 +107,263 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Miscellaneous</li>
-  <li class="breadcrumb-item">Variables</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >UserData</li>
 </ol>
 
-<section data-compodoc="block-index">
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/services/user-data.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The UserData service is responsible for managing user-related data and providing methods to retrieve user information from a static JSON file.</p>
+
+            </p>
+
+
+
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getUser" >getUser</a>
+                            </li>
+                            <li>
+                                <a href="#getUsers" >getUsers</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
             <tr>
                 <td class="col-md-4">
-                    <ul class="index-list">
-                        <li>
-                            <a href="#appConfig" title="src/app/app.config.ts" ><b>appConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#routes" title="src/app/app.routes.ts" ><b>routes</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#TRANSACTION_CATEGORIES" title="src/app/constants/transaction-categories.ts" ><b>TRANSACTION_CATEGORIES</b>&nbsp;&nbsp;&nbsp;(src/.../transaction-categories.ts)</a>
-                        </li>
-                    </ul>
+                    <a name="getUser"></a>
+                    <span class="name">
+                        <span ><b>getUser</b></span>
+                        <a href="#getUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getUser(id: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/services/user-data.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>The getUser method retrieves the details of a specific user based on the provided user ID. It iterates through the user data array and checks for a user object that matches the provided ID. If a matching user is found, it is added to the dataToReturn array, which is then returned as the result.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>A value representing the unique identifier of the user to be retrieved.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{}</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An array containing the user object that matches the provided ID, or an empty array if no matching user is found.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUsers"></a>
+                    <span class="name">
+                        <span ><b>getUsers</b></span>
+                        <a href="#getUsers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getUsers()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="20"
+                                    class="link-to-prism">src/app/services/user-data.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>The getUsers method retrieves all users from the static data.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An array of all user objects.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
 
-    <h3>src/app/app.config.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="appConfig"></a>
-                    <span class="name">
-                        <span ><b>appConfig</b></span>
-                        <a href="#appConfig"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../components/App.html" target="_self" >ApplicationConfig</a></code>
+    </div>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>{
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import userData from &#x27;../../assets/users.json&#x27;;
+
+/**
+ * The UserData service is responsible for managing user-related data and providing methods to retrieve user information from a static JSON file.
+ */
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+
+/**
+ * The UserData class defines the service logic for managing user-related data. It provides methods for retrieving users from the static users.json file.
+ */
+export class UserData {
 
   /**
-   * Providers for the application.
+   * The getUsers method retrieves all users from the static data.
+   * @returns An array of all user objects.
    */
-  providers: [
-    provideHttpClient(),
-    provideRouter(
-      routes,
-      withRouterConfig({
-        onSameUrlNavigation: &#x27;reload&#x27;
-      })
-    )
-  ]
-}</code>
-                    </td>
-                </tr>
+  getUsers() {
+    return userData;
+  }
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Application configuration for the Angular app.</p>
+  /**
+   * The getUser method retrieves the details of a specific user based on the provided user ID. It iterates through the user data array and checks for a user object that matches the provided ID. If a matching user is found, it is added to the dataToReturn array, which is then returned as the result.
+   * @param id - A value representing the unique identifier of the user to be retrieved.
+   * @returns An array containing the user object that matches the provided ID, or an empty array if no matching user is found.
+   */
+  getUser(id :any) {
+    let dataToReturn: any[] &#x3D; [];
+    userData.forEach((user) &#x3D;&gt; {
+      if (user._id.$oid &#x3D;&#x3D; id) {
+        dataToReturn.push(user);
+      }
+    })
+    return dataToReturn;
+  }
+
+
+}
+</code></pre>
+    </div>
+
 </div>
-                </td>
-            </tr>
 
-        </tbody>
-    </table>
-</section>
-    <h3>src/app/app.routes.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="routes"></a>
-                    <span class="name">
-                        <span ><b>routes</b></span>
-                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/router/Routes" target="_blank" >Routes</a></code>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>[
-    /**
-     * Home route.
-     */
-    {
-        path: &#x27;&#x27;,
-        component: Home
-    },
-    /**
-     * Login route.
-     */
-    {
-        path: &#x27;login&#x27;,
-        component: Login
-    },
-    /**
-     * Create account route.
-     */
-    {
-        path: &#x27;create-account&#x27;,
-        component: CreateAccount
-    },
-    /**
-     * Accounts route.
-     */
-    {
-        path: &#x27;accounts&#x27;,
-        component: Accounts
-    },
-    /**
-     * Account details route.
-     */
-    {
-        path: &#x27;accounts/:accountId&#x27;,
-        component: AccountDetails
-    },
-    /**
-     * Transaction details route.
-     */
-    {
-        path: &#x27;accounts/:accountId/transactions/:transactionId&#x27;,
-        component: TransactionDetails
-    },
-    /**
-     * User details route.
-     */
-    {
-        path: &#x27;user-details/:userId&#x27;,
-        component: UserDetails
-    },
-    /**
-     * Payments route.
-     */
-    {
-        path: &#x27;payments&#x27;,
-        component: Payments
-    },
-    /**
-     * Spending route.
-     */
-    {
-        path: &#x27;spending&#x27;,
-        component: Spending
-    },
-    /**
-     * Manage accounts route.
-     */
-    {
-        path: &#x27;manage-accounts&#x27;,
-        component: ManageAccounts
-    }
-]</code>
-                    </td>
-                </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Routes for the application.</p>
-</div>
-                </td>
-            </tr>
 
-        </tbody>
-    </table>
-</section>
-    <h3>src/app/constants/transaction-categories.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="TRANSACTION_CATEGORIES"></a>
-                    <span class="name">
-                        <span ><b>TRANSACTION_CATEGORIES</b></span>
-                        <a href="#TRANSACTION_CATEGORIES"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>unknown</code>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>[
-    &#x27;Groceries&#x27;,
-    &#x27;Dining&#x27;,
-    &#x27;Rent&#x27;,
-    &#x27;Utilities&#x27;,
-    &#x27;Transport&#x27;,
-    &#x27;Shopping&#x27;,
-    &#x27;Entertainment&#x27;,
-    &#x27;Health&#x27;,
-    &#x27;Travel&#x27;,
-    &#x27;Subscriptions&#x27;,
-    &#x27;Income&#x27;,
-    &#x27;Transfers&#x27;,
-    &#x27;Miscellaneous&#x27;
-] as const</code>
-                    </td>
-                </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>This file defines a constant array of transaction categories used in the application.
-Each category represents a type of transaction that users can classify their expenses or income under.
-The categories are defined as a tuple of string literals to ensure type safety when used throughout the app.</p>
-</div>
-                </td>
-            </tr>
 
-        </tbody>
-    </table>
-</section>
+
+
+
 
 
 
@@ -379,8 +392,8 @@ The categories are defined as a tuple of string literals to ensure type safety w
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
-            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'UserData.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

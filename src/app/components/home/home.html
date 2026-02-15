@@ -1,6 +1,33 @@
-<h1 style="margin-top: 70px">
-    This page will contain the typical information
-</h1>
+<div class="container container-top-margin">
+    <div class="row">
+        <div class="col-sm-12 d-flex flex-column align-items-center">
 
-<app-authbutton></app-authbutton>
-<app-authuser></app-authuser>
+            <div *ngIf="defaultAccount" class="stripe-card mb-3 clickable-card"
+                [routerLink]="['/accounts', defaultAccount._id]">
+                <div class="stripe-card-top">
+                    <div class="chip"></div>
+                    <div class="card-brand">
+                        {{ cardBrand | uppercase }}
+                    </div>
+                </div>
+                <div class="card-number">
+                    {{ maskAccountNumber(defaultAccount.accountNumber) }}
+                </div>
+
+                <div class="stripe-card-bottom">
+                    <div class="card-holder">
+                        {{ defaultAccount.accountType | uppercase }}<br>
+                        {{ defaultAccount.availableBalance | currency: (defaultAccount.currency || 'GBP') }}<br>
+                        {{ firstName }} {{ lastName }}
+                    </div>
+                    <div class="expiry">
+                        MM / YY
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!defaultAccount">
+                <p>No default account set</p>
+            </div>
+        </div>
+    </div>
+</div>

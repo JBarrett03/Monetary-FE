@@ -1,1 +1,53 @@
-<p>accounts works!</p>
+<div class="container container-top-margin">
+    <div class="row">
+        <div class="col-sm-12 d-flex flex-column align-items-center">
+            @if (accounts_list.length === 0) {
+            <p>No accounts found</p>
+            }
+
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <button class="kebab-btn" (click)="toggleMenu()">
+                        <i class="fa fa-ellipsis-v"></i>
+                    </button>
+                    @if (menuOpen) {
+                    <div class="menu-dropdown">
+                        <button class="btn btn-outline-secondary me-2 w-100" (click)="addAccount(); toggleMenu()">
+                            <i class="fa fa-plus"></i> Add Account
+                        </button>
+                        <button class="btn btn-outline-secondary w-100" (click)="goToManageAccounts()">
+                            <i class="fa fa-cog"></i> Manage
+                        </button>
+                    </div>
+                    }
+                </div>
+            </div>
+
+            @for (account of accounts_list; track account._id) {
+            <div class="stripe-card mb-3 clickable-card" [routerLink]="['/accounts', account._id]"
+                [class.complete]="cardComplete">
+                <div class="stripe-card-top">
+                    <div class="chip"></div>
+                    <div class="card-brand">
+                        {{ cardBrand | uppercase }}
+                    </div>
+                </div>
+
+                <div class="card-number">
+                    {{ maskAccountNumber(account.accountNumber) }}
+                </div>
+
+                <div class="stripe-card-bottom">
+                    <div class="card-holder">
+                        {{ account.accountType | uppercase }}<br>
+                        {{ account.availableBalance | currency: (account.currency || 'GBP') }}<br>
+                        {{ firstName }} {{ lastName }}
+                    </div>
+                    <div class="expiry">
+                        MM / YY
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>

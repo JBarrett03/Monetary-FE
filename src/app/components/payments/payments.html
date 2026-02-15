@@ -1,1 +1,21 @@
-<p>payments works!</p>
+<button class="btn btn-success w-100" (click)="openBalanceForm()">
+    Add Balance
+</button>
+@if (showAddBalanceForm) {
+<div class="overlay" (click)="closeBalanceForm()">
+    <div class="modal-card card p-3" (click)="$event.stopPropagation()">
+
+        <h5 class="mb-3">Add Balance</h5>
+
+        <div class="mb-3">
+            <label class="form-label">Confirm Account Number</label>
+            <input type="text" class="form-control" [(ngModel)]="confirmAccountNumber" name="confirmAccountNumber">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Amount to add</label>
+            <input type="number" class="form-control" [(ngModel)]="amountToAdd" name="amountToAdd">
+        </div>
+        <button class="btn btn-primary w-100" (click)="addBalance()">Confirm Add Balance</button>
+    </div>
+</div>
+}

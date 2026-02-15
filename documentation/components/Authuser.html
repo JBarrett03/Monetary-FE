@@ -107,7 +107,7 @@
   <li class="breadcrumb-item">Components</li>
   <li class="breadcrumb-item"
   >
-  Home</li>
+  Authuser</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -134,7 +134,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/components/home/home.ts</code>
+    <code>src/app/components/authuser/authuser.ts</code>
 </p>
 
 
@@ -142,8 +142,7 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Home component - the landing page displayed to unauthenticated users.
-Provides information about the application and links to login and create account.</p>
+        <p>The Authuser component is responsible for displaying the authenticated user&#39;s information. It uses the AuthService from the Auth0 Angular SDK to access the user&#39;s authentication state and details. The component&#39;s template can display user information such as name, email, and profile picture when the user is authenticated.</p>
 
     </p>
 
@@ -168,24 +167,31 @@ Provides information about the application and links to login and create account
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-home</code></td>
+                <td class="col-md-9"><code>app-authuser</code></td>
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/common/AsyncPipe" target="_blank" >AsyncPipe</a></code>
+                                <code><a href="https://angular.io/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                </td>
+            </tr>
 
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./home.html</code></td>
+                <td class="col-md-9"><code>./authuser.html</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">styleUrl</td>
-                <td class="col-md-9"><code>./home.css</code></td>
+                <td class="col-md-9"><code>./authuser.css</code></td>
             </tr>
 
 
@@ -197,6 +203,63 @@ Provides information about the application and links to login and create account
 </section>
 
 
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(auth: AuthService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/authuser/authuser.ts:19</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>The constructor injects the AuthService to enable access to the user&#39;s authentication state and details. This allows the component to display user information in the template when the user is authenticated.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>auth</td>
+                                                  
+                                                        <td>
+                                                                    <code>AuthService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>An instance of the AuthService for accessing authentication state and user details.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
 
@@ -209,29 +272,44 @@ Provides information about the application and links to login and create account
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { AuthService } from &#x27;@auth0/auth0-angular&#x27;;
+import { AsyncPipe } from &#x27;@angular/common&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
 
 /**
- * Home component - the landing page displayed to unauthenticated users.
- * Provides information about the application and links to login and create account.
+ * The Authuser component is responsible for displaying the authenticated user&#x27;s information. It uses the AuthService from the Auth0 Angular SDK to access the user&#x27;s authentication state and details. The component&#x27;s template can display user information such as name, email, and profile picture when the user is authenticated.
  */
 @Component({
-  selector: &#x27;app-home&#x27;,
-  imports: [],
-  templateUrl: &#x27;./home.html&#x27;,
-  styleUrl: &#x27;./home.css&#x27;,
+  selector: &#x27;app-authuser&#x27;,
+  imports: [AsyncPipe, CommonModule],
+  templateUrl: &#x27;./authuser.html&#x27;,
+  styleUrl: &#x27;./authuser.css&#x27;,
 })
 
 /**
- * Home class - the component logic for the home/landing page.
+ * The Authuser class defines the component logic for displaying the authenticated user&#x27;s information. It injects the AuthService to access the user&#x27;s authentication state and details, which can be used in the component&#x27;s template to display relevant user information when the user is authenticated.
  */
-export class Home {
+export class Authuser {
+
+  /**
+   * The constructor injects the AuthService to enable access to the user&#x27;s authentication state and details. This allows the component to display user information in the template when the user is authenticated.
+   * @param auth - An instance of the AuthService for accessing authentication state and user details.
+   */
+  constructor(protected auth: AuthService) {}
 
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">This page will contain the typical information</code></pre>
+        <pre class="line-numbers"><code class="language-html">&lt;h3 style&#x3D;&quot;margin-top: 30px&quot;&gt;
+    Current User Details
+&lt;/h3&gt;
+
+&lt;ul *ngIf&#x3D;&quot;auth.user$ | async as user&quot;&gt;
+    &lt;li&gt;{{ user[&#x27;name&#x27;] }}&lt;/li&gt;
+    &lt;li&gt;{{ user[&#x27;email&#x27;] }}&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
     </div>
 
 
@@ -260,10 +338,10 @@ export class Home {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>This page will contain the typical information</div>'
-    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
+        var COMPONENT_TEMPLATE = '<div><h3 style="margin-top: 30px">    Current User Details</h3><ul *ngIf="auth.user$ | async as user">    <li>{{ user[\'name\'] }}</li>    <li>{{ user[\'email\'] }}</li></ul></div>'
+    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'Authbutton', 'selector': 'app-authbutton'},{'name': 'Authuser', 'selector': 'app-authuser'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'Test', 'selector': 'app-test'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'User', 'selector': 'app-user'},{'name': 'UserDetails', 'selector': 'app-user-details'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'Home'};
+    var ACTUAL_COMPONENT = {'name': 'Authuser'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -309,7 +387,7 @@ export class Home {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'Home.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'Authuser.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

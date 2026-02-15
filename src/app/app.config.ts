@@ -1,11 +1,23 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
-
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter, withRouterConfig } from '@angular/router';
 import { routes } from './app.routes';
+import { provideHttpClient } from '@angular/common/http';
 
+/**
+ * Application configuration for the Angular app.
+ */
 export const appConfig: ApplicationConfig = {
+
+  /**
+   * Providers for the application.
+   */
   providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideRouter(routes)
+    provideHttpClient(),
+    provideRouter(
+      routes,
+      withRouterConfig({
+        onSameUrlNavigation: 'reload'
+      })
+    )
   ]
 };

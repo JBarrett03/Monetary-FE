@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Deltha&display=swap');
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-left {
+  flex: 0 0 auto;
+}
+
+.navbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-right {
+  flex: 0 0 auto;
+}
+
+.button-box {
+  border: 2px solid white;
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+.button-box a {
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.button-box a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.app-title {
+  font-family: 'Deltha', sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+.home-item {
+  list-style: none;
+}
+
+.home-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.home-link i {
+  font-size: 20px;
+}
+
+.home-link span {
+  font-size: 12px;
+}

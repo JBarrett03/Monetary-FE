@@ -1,0 +1,114 @@
+.container-top-margin {
+    margin-top: 70px;
+}
+
+.add-balance-icon {
+    cursor: pointer;
+}
+
+.plus-minus {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.plus-minus .fa {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.plus-minus .fa:hover {
+    background-color: #f0f0f0;
+}
+
+.transaction-item {
+    cursor: pointer;
+    padding: 30px !important;
+    font-size: 24px;
+    line-height: 2;
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 4px !important;
+    background-color: #f8f9fa !important;
+}
+
+.transaction-item strong {
+    font-size: 28px;
+}
+
+.transaction-item span {
+    font-size: 24px;
+}
+
+.balance-card,
+.amount-card {
+    width: 500px;
+    height: 180px;
+    padding: 16px 18px;
+    border: 1px solid #cfcfcf;
+    border-radius: 6px;
+    background-color: #ffffff;
+    box-shadow: none;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.balance-label,
+.amount-label {
+    font-size: 20px;
+    color: #555555;
+    align-self: flex-start;
+}
+
+.balance-amount {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: 600;
+    color: #000000;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+}
+
+input {
+    transition: all 0.2s ease-in-out;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+}
+
+.modal-card {
+    width: 400px;
+    max-width: 90%;
+    border-radius: 10px;
+}
+
+::ng-deep .mat-mdc-progress-bar {
+    height: 14px;
+    border-radius: 8px;
+}
+
+::ng-deep .mat-mdc-progress-bar-buffer {
+    background-color: #e9ecef !important;
+}

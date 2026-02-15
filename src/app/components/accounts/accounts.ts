@@ -1,11 +1,136 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { AccountService } from '../../services/account-service';
+import { UserService } from '../../services/user-service';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Router } from '@angular/router';
 
+/**
+ * Accounts component displays all user accounts as Stripe-styled cards.
+ * Users can view account details, add new accounts, and navigate to the manage accounts page.
+ */
 @Component({
+  standalone: true,
   selector: 'app-accounts',
-  imports: [],
+  imports: [CommonModule, RouterModule],
   templateUrl: './accounts.html',
   styleUrl: './accounts.css',
 })
-export class Accounts {
+export class Accounts implements OnInit {
 
+  /**
+   * List of accounts
+   */
+  accounts_list: any[] = [];
+
+  /**
+   * Menu open state
+   */
+  menuOpen = false;
+
+  /**
+   * Customer's first name
+   */
+  firstName: string = '';
+
+  /**
+   * Customer's last name
+   */
+  lastName: string = '';
+
+  /**
+   * Creates an instance of Accounts component.
+   * @param accountService Service for account operations.
+   * @param userService Service for user operations.
+   * @param cdr Change detector reference.
+   * @param router Router for navigation.
+   */
+  constructor(private accountService: AccountService, private userService: UserService, private cdr: ChangeDetectorRef, private router: Router) { }
+
+  /**
+   * Initializes the component and loads the list of accounts and user details.
+   */
+  ngOnInit() {
+    const userId = sessionStorage.getItem('userId');
+
+    if (!userId) {
+      return;
+    }
+
+    this.userService.getUser(userId).subscribe({
+      next: (user) => {
+        this.firstName = user.firstName || '';
+        this.lastName = user.lastName || '';
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Failed to load user details', err);
+      }
+    });
+
+    this.accountService.getAccounts(userId).subscribe({
+      next: (accounts) => {
+        this.accounts_list = accounts;
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Failed to load accounts', err);
+      }
+    });
+  }
+
+  /**
+   * Adds a new account for the user.
+   * Prompts the user for account type and currency, then creates the account via the service.
+   */
+  addAccount() {
+    const userId = sessionStorage.getItem('userId');
+
+    if (!userId) return;
+
+    const accountType = prompt('Account type (e.g. Current, Savings):');
+    const currency = prompt('Currency (e.g. GBP, USD):');
+
+    if (!accountType || !currency) return;
+
+    const account = { accountType, currency };
+
+    this.accountService.addAccount(userId, account).subscribe({
+      next: () => {
+        this.accountService.getAccounts(userId).subscribe({
+          next: (accounts) => {
+            this.accounts_list = accounts;
+            this.cdr.detectChanges();
+          },
+        });
+      },
+    });
+  }
+
+  /**
+   * Toggles the kebab menu visibility for adding and managing accounts.
+   */
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  /**
+   * Navigates to the manage accounts page and closes the menu.
+   */
+  goToManageAccounts() {
+    this.toggleMenu();
+    this.router.navigate(['/manage-accounts']);
+  }
+
+  /**
+   * Masks an account number for secure display, showing only the last 4 digits.
+   * @param accountNumber The account number to mask.
+   * @returns A masked account number string.
+   */
+  maskAccountNumber(accountNumber: string): string {
+    if (!accountNumber) return '•••• •••• •••• ••••';
+
+    const clean = accountNumber.replace(/\s/g, '');
+    const last4 = clean.slice(-4);
+    return `•••• •••• •••• ${last4}`;
+  }
 }

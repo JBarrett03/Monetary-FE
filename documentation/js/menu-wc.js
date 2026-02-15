@@ -63,9 +63,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/Accounts.html" data-type="entity-link" >Accounts</a>
                             </li>
                             <li class="link">
-                                <a href="components/AccountService.html" data-type="entity-link" >AccountService</a>
-                            </li>
-                            <li class="link">
                                 <a href="components/App.html" data-type="entity-link" >App</a>
                             </li>
                             <li class="link">
@@ -106,10 +103,26 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
+                                    <a href="injectables/AccountService.html" data-type="entity-link" >AccountService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/TransactionService.html" data-type="entity-link" >TransactionService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/UserService.html" data-type="entity-link" >UserService</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#pipes-links"' :
+                                'data-bs-target="#xs-pipes-links"' }>
+                                <span class="icon ion-md-add"></span>
+                                <span>Pipes</span>
+                                <span class="icon ion-ios-arrow-down"></span>
+                            </div>
+                            <ul class="links collapse " ${ isNormalMode ? 'id="pipes-links"' : 'id="xs-pipes-links"' }>
+                                <li class="link">
+                                    <a href="pipes/FilterPipe.html" data-type="entity-link" >FilterPipe</a>
                                 </li>
                             </ul>
                         </li>

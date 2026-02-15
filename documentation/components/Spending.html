@@ -138,6 +138,15 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Spending component - placeholder for spending analytics features.
+This component is intended for displaying spending summaries, charts, and analysis.
+Currently serves as a foundation for future development.</p>
+
+    </p>
 
 
 
@@ -202,12 +211,22 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
 
+/**
+ * Spending component - placeholder for spending analytics features.
+ * This component is intended for displaying spending summaries, charts, and analysis.
+ * Currently serves as a foundation for future development.
+ */
 @Component({
   selector: &#x27;app-spending&#x27;,
   imports: [],
   templateUrl: &#x27;./spending.html&#x27;,
   styleUrl: &#x27;./spending.css&#x27;,
 })
+
+/**
+ * Spending class - the component logic for the spending page.
+ * To be implemented with spending analysis and visualization features.
+ */
 export class Spending {
 
 }
@@ -215,8 +234,8 @@ export class Spending {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;p&gt;spending works!&lt;/p&gt;
-</code></pre>
+        <pre class="line-numbers"><code class="language-html">Savings
+Spending</code></pre>
     </div>
 
 
@@ -245,8 +264,8 @@ export class Spending {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><p>spending works!</p></div>'
-    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'AccountService', 'selector': 'app-account-service'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user-details'}];
+        var COMPONENT_TEMPLATE = '<div>SavingsSpending</div>'
+    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Spending'};
 </script>
