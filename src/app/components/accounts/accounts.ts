@@ -38,16 +38,6 @@ export class Accounts implements OnInit {
   lastName: string = '';
 
   /**
-   * Card brand for display purposes (e.g., Visa, MasterCard)
-   */
-  cardBrand: string = '';
-
-  /**
-   * Indicates whether the card information is complete for display purposes.
-   */
-  cardComplete: boolean = false;
-
-  /**
    * Creates an instance of Accounts component.
    * @param accountService Service for account operations.
    * @param userService Service for user operations.
@@ -59,7 +49,7 @@ export class Accounts implements OnInit {
   /**
    * Initializes the component and loads the list of accounts and user details.
    */
-  async ngOnInit() {
+  ngOnInit() {
     const userId = sessionStorage.getItem('userId');
 
     if (!userId) {

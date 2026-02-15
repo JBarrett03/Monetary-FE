@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../../services/account-service';
-import { ChangeDetectorRef } from '@angular/core';
 /**
  * Payments component - placeholder for payment processing features.
  * This component is intended for handling user payments, transfers, and payment history.

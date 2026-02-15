@@ -25,14 +25,6 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   /**
-   * Fetch all users from the API.
-   * @returns An observable containing all users
-   */
-  getUsers() {
-    return this.http.get<any>(this.apiUrl);
-  }
-
-  /**
    * Fetch a user by their ID from the API.
    * @param id The ID of the user to retrieve
    * @returns An observable containing the user data
