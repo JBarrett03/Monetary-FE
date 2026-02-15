@@ -170,4 +170,22 @@ export class AccountService {
     return this.http.get<any>(`${this.baseUrl}/users/${userId}/accounts/by-number/${accountNumber}`);
   }
 
+  /**
+   * Set a specific account as the default account for a user via the API.
+   * @param userId The ID of the user to set the default account for
+   * @param accountId The ID of the account to be set as default
+   * @returns An observable containing the HTTP response
+   */
+  setDefaultAccount(userId: string, accountId: string) {
+    return this.http.put(`${this.baseUrl}/users/${userId}/accounts/${accountId}/set-default`, {});
+  }
+
+  /**
+   * Fetch the default account for a user from the API.
+   * @param userId The ID of the user to retrieve the default account for
+   * @returns An observable containing the default account data
+   */
+  getDefaultAccount(userId: string) {
+    return this.http.get<any>(`${this.baseUrl}/users/${userId}/accounts/default`);
+  }
 }

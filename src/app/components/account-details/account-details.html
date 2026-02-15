@@ -8,6 +8,9 @@
         <button class="btn btn-outline-secondary" (click)="archiveAccount()" [disabled]="account?.balance > 0">
             Archive Account
         </button>
+        <button class="btn btn-outline-primary" (click)="setAsDefault()" [disabled]="account?.isDefault">
+            {{ account?.isDefault ? 'Default Account' : 'Set as Default' }}
+        </button>
 
         @if (account?.accountType === 'savings') {
         <button class="btn btn-outline-secondary" (click)="addBudget()">

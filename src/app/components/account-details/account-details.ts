@@ -268,6 +268,32 @@ export class AccountDetails implements OnInit {
   }
 
   /**
+   * Sets the current account as the default account for the user.
+   * Sends a request to the AccountService to update the default account setting.
+   * On success, updates the local account state to reflect the change. On failure, displays an error message.
+   * @returns void
+   */
+  setAsDefault() {
+    console.log('Setting account as default');
+    const userId = sessionStorage.getItem('userId');
+    const accountId = sessionStorage.getItem('accountId');
+
+
+    if (!userId || !accountId) {
+      return;
+    }
+
+    this.accountService.setDefaultAccount(userId, accountId).subscribe({
+      next: (res) => {
+        console.log("success", res);
+      },
+      error: (err) => {
+        console.error("error", err);
+      }
+    })
+  }
+
+  /**
    * Toggles the visibility of the transaction filter UI.
    * When hiding the filter, also clears any active filter selections
    * (selected category and custom search term).
