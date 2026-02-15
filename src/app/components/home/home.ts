@@ -44,6 +44,11 @@ export class Home implements OnInit {
   lastName: string = '';
 
   /**
+   * Card brand for display purposes (e.g., Visa, MasterCard)
+   */
+  cardBrand: string = '';
+
+  /**
    * Constructor for the Home component. It injects the AccountService to allow fetching account data from the API.
    * @param accountService The service used to interact with account-related API endpoints.
    * @param cdr ChangeDetectorRef - Reference to manually trigger change detection when needed

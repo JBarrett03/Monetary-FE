@@ -9,6 +9,7 @@ import { TransactionDetails } from './components/transaction-details/transaction
 import { Payments } from './components/payments/payments';
 import { Spending } from './components/spending/spending';
 import { ManageAccounts } from './components/manage-accounts/manage-accounts';
+import { TestUserService } from './components/test-user-service/test-user-service';
 
 /**
  * Routes for the application.
@@ -83,5 +84,12 @@ export const routes: Routes = [
     {
         path: 'manage-accounts',
         component: ManageAccounts
+    },
+    /**
+     * Test user service route.
+     */
+    {
+        path: 'test',
+        component: TestUserService
     }
 ];

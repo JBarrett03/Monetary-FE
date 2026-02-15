@@ -64,6 +64,11 @@ export class ManageAccounts implements OnInit {
   lastName: string = '';
 
   /**
+   * Card brand for display purposes (e.g., Visa, MasterCard)
+   */
+  cardBrand: string = '';
+
+  /**
    * Constructor for the ManageAccounts component.
    * @param accountService Service for account operations.
    * @param userService Service for user operations.
