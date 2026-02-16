@@ -1,6 +1,15 @@
 <button class="btn btn-success w-100" (click)="openBalanceForm()">
     Add Balance
 </button>
+<h5 class="mt-4" *ngIf="recentPayees.length > 0">Recent Payees</h5>
+
+<div *ngIf="recentPayees.length > 0">
+    <div class="card p-2 mb-2" *ngFor="let payee of recentPayees">
+        <strong>{{ payee.accountNumber }}</strong><br>
+        {{ payee.firstName }} {{ payee.lastName }}
+        {{ payee.accountType }} - {{ payee.currency }}
+    </div>
+</div>
 @if (showAddBalanceForm) {
 <div class="overlay" (click)="closeBalanceForm()">
     <div class="modal-card card p-3" (click)="$event.stopPropagation()">
@@ -9,13 +18,16 @@
 
         <div class="mb-3">
             <label class="form-label">Confirm Account Number</label>
-            <input type="text" class="form-control" [(ngModel)]="confirmAccountNumber" name="confirmAccountNumber">
+            <input type="text" class="form-control" [(ngModel)]="confirmAccountNumber" name="confirmAccountNumber"
+                required>
         </div>
         <div class="mb-3">
             <label class="form-label">Amount to add</label>
-            <input type="number" class="form-control" [(ngModel)]="amountToAdd" name="amountToAdd">
+            <input type="number" class="form-control" [(ngModel)]="amountToAdd" name="amountToAdd" required>
         </div>
-        <button class="btn btn-primary w-100" (click)="addBalance()">Confirm Add Balance</button>
+        <button type="button" class="btn btn-primary w-100" (click)="$event.stopPropagation(); addBalance()" [disabled]="!confirmAccountNumber || !amountToAdd">
+            Confirm Add Balance
+        </button>
     </div>
 </div>
 }

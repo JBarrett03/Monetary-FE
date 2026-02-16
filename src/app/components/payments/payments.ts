@@ -54,6 +54,12 @@ export class Payments implements OnInit {
   amountToAdd: number | null = null;
 
   /**
+   * List of recent payees for the user. This can be used to display a history of recent transactions or frequent transfer recipients.
+   * Initially set to an empty array until data is loaded from the API.
+   */
+  recentPayees: any[] = [];
+
+  /**
  * Lifecycle hook that is called after the component has been initialized. It retrieves the user ID and account ID from session storage,
  * then uses the AccountService to fetch the account details. If successful, it stores the account information in the component's state.
  * If either the user ID or account ID is missing, it simply returns without attempting to fetch data.
@@ -64,6 +70,11 @@ export class Payments implements OnInit {
 
     if (!userId || !accountId) {
       return;
+    }
+
+    const storedPayees = localStorage.getItem(`recentPayees_${userId}`);
+    if (storedPayees) {
+      this.recentPayees = JSON.parse(storedPayees);
     }
 
     this.accountService.getAccount(userId, accountId).subscribe({
@@ -100,23 +111,44 @@ export class Payments implements OnInit {
       return;
     }
 
+    if (!this.confirmAccountNumber || !this.amountToAdd || this.amountToAdd <= 0) {
+      this.error = 'Please enter a valid account number and amount';
+      this.cdr.detectChanges();
+      return;
+    }
+
     this.accountService.getAccountByNumber(userId, this.confirmAccountNumber).subscribe({
       next: (account) => {
         const payeeAccountId = account._id;
+
         this.accountService.addBalance(userId, payeeAccountId, this.amountToAdd!).subscribe({
           next: () => {
+            const exists = this.recentPayees.find(p => p._id === payeeAccountId);
+
+            if (!exists) {
+              this.recentPayees.unshift(account);
+            }
+
+            if (this.recentPayees.length > 5) {
+              this.recentPayees.pop();
+            }
+
+            localStorage.setItem(`recentPayees_${userId}`, JSON.stringify(this.recentPayees));
             this.showAddBalanceForm = false;
             this.confirmAccountNumber = '';
             this.amountToAdd = null;
             this.error = null;
+            this.cdr.detectChanges();
           },
           error: () => {
             this.error = 'Failed to add balance';
+            this.cdr.detectChanges();
           }
         });
       },
       error: () => {
         this.error = 'Account number not found';
+        this.cdr.detectChanges();
       }
     });
   }
