@@ -159,10 +159,11 @@ export class AccountService {
    * Fetch an account by its account number from the API.
    * @param userId The ID of the user to retrieve the account for
    * @param accountNumber The account number to retrieve the account for
+   * @param sortCode The sort code to retrieve the account for
    * @returns An observable containing the account data
    */
-  getAccountByNumber(userId: string, accountNumber: string) {
-    return this.http.get<any>(`${this.baseUrl}/users/${userId}/accounts/by-number/${accountNumber}`);
+  getAccountByNumber(userId: string, accountNumber: string, sortCode: string) {
+    return this.http.get<any>(`${this.baseUrl}/users/${userId}/accounts/by-number/${accountNumber}?sortCode=${sortCode}`);
   }
 
   /**

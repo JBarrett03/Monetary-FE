@@ -46,6 +46,13 @@ export class Payments implements OnInit {
  * Initially set to an empty string until the user inputs a value.
  */
   confirmAccountNumber: string = '';
+  
+  /**
+ * The sort code entered by the user to confirm their identity before adding balance.
+ * This should match the actual sort code of the user's account for validation to succeed.
+ * Initially set to an empty string until the user inputs a value.
+ */
+  confirmSortCode: string = '';
 
   /**
  * The amount entered by the user to add to their account balance.
@@ -111,13 +118,13 @@ export class Payments implements OnInit {
       return;
     }
 
-    if (!this.confirmAccountNumber || !this.amountToAdd || this.amountToAdd <= 0) {
-      this.error = 'Please enter a valid account number and amount';
+    if (!this.confirmAccountNumber || !this.confirmSortCode || !this.amountToAdd || this.amountToAdd <= 0) {
+      this.error = 'Please enter a valid account number, sort code, and amount';
       this.cdr.detectChanges();
       return;
     }
 
-    this.accountService.getAccountByNumber(userId, this.confirmAccountNumber).subscribe({
+    this.accountService.getAccountByNumber(userId, this.confirmAccountNumber, this.confirmSortCode).subscribe({
       next: (account) => {
         const payeeAccountId = account._id;
 

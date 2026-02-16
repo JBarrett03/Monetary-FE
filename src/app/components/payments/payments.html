@@ -8,7 +8,7 @@
         <strong>{{ payee.accountNumber }}</strong><br>
         {{ payee.firstName }} {{ payee.lastName }}
         {{ payee.accountType }} - {{ payee.currency }}
-        Sort Code: {{ payee.sortCode }}
+        Sort Code: {{ payee.sortCode || '-' }}
     </div>
 </div>
 @if (showAddBalanceForm) {
@@ -18,15 +18,20 @@
         <h5 class="mb-3">Add Balance</h5>
 
         <div class="mb-3">
-            <label class="form-label">Confirm Account Number</label>
+            <label class="form-label">Account Number</label>
             <input type="text" class="form-control" [(ngModel)]="confirmAccountNumber" name="confirmAccountNumber"
-                required>
+                placeholder="NNNN-NNNN-NNNN-NNNN" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Sort Code</label>
+            <input type="text" class="form-control" [(ngModel)]="confirmSortCode" name="confirmSortCode" placeholder="NN-NN-NN">
         </div>
         <div class="mb-3">
             <label class="form-label">Amount to add</label>
             <input type="number" class="form-control" [(ngModel)]="amountToAdd" name="amountToAdd" required>
         </div>
-        <button type="button" class="btn btn-primary w-100" (click)="$event.stopPropagation(); addBalance()" [disabled]="!confirmAccountNumber || !amountToAdd">
+        <button type="button" class="btn btn-primary w-100" (click)="$event.stopPropagation(); addBalance()"
+            [disabled]="!confirmAccountNumber || !amountToAdd">
             Confirm Add Balance
         </button>
     </div>
