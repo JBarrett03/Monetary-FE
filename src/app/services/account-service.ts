@@ -54,12 +54,7 @@ export class AccountService {
    */
   addAccount(userId: string, account: { accountType: string, currency: string }): Observable<any> {
     const url = `${this.baseUrl}/users/${userId}/accounts`;
-
-    const formData = new FormData();
-    formData.append('accountType', account.accountType);
-    formData.append('currency', account.currency);
-
-    return this.http.post<any>(url, formData);
+    return this.http.post<any>(url, account);
   }
 
   /**
