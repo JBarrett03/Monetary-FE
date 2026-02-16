@@ -1,2 +1,25 @@
-Savings
-Spending
+<div class="toggle-container">
+    <button class="toggle-btn" [class.active]="activeView === 'savings'" (click)="showSavings()">
+        Savings
+    </button>
+    <button class="toggle-btn" [class.active]="activeView === 'spent'" (click)="showSpent()">
+        Spending
+    </button>
+</div>
+
+<div class="slide-panel" [class.open]="activeView !== null">
+    <div class="panel-header">
+        <button class="close-btn" (click)="closeView()">X</button>
+    </div>
+
+    <div class="panel-content">
+        <div *ngIf="activeView === 'savings'">
+            <h2>Savings Clicked</h2>
+        </div>
+        <div *ngIf="activeView === 'spent'">
+            <h2>Spending Clicked</h2>
+        </div>
+        <button class="btn btn-primary mt-4">Export Data</button>
+    </div>
+    <div class="overlay" *ngIf="activeView" (click)="closeView()"></div>
+</div>
