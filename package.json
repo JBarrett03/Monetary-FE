@@ -37,6 +37,8 @@
     "@stripe/stripe-js": "^8.7.0",
     "bootstrap": "^5.3.8",
     "compodoc": "^0.0.41",
+    "highcharts": "^12.5.0",
+    "highcharts-angular": "^5.4.0",
     "jquery": "^4.0.0",
     "ng-circle-progress": "^1.7.1",
     "rxjs": "~7.8.0",

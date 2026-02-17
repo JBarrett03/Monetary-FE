@@ -46,7 +46,7 @@ export class Payments implements OnInit {
  * Initially set to an empty string until the user inputs a value.
  */
   confirmAccountNumber: string = '';
-  
+
   /**
  * The sort code entered by the user to confirm their identity before adding balance.
  * This should match the actual sort code of the user's account for validation to succeed.
@@ -113,8 +113,9 @@ export class Payments implements OnInit {
  */
   addBalance() {
     const userId = sessionStorage.getItem('userId');
+    const accountId = sessionStorage.getItem('accountId');
 
-    if (!userId) {
+    if (!userId || !accountId) {
       return;
     }
 
@@ -130,6 +131,11 @@ export class Payments implements OnInit {
 
         this.accountService.addBalance(userId, payeeAccountId, this.amountToAdd!).subscribe({
           next: () => {
+            this.accountService.getAccount(userId, accountId).subscribe(updatedAccount => {
+              this.account = updatedAccount;
+              this.cdr.detectChanges();
+            });
+
             const exists = this.recentPayees.find(p => p._id === payeeAccountId);
 
             if (!exists) {
@@ -141,14 +147,16 @@ export class Payments implements OnInit {
             }
 
             localStorage.setItem(`recentPayees_${userId}`, JSON.stringify(this.recentPayees));
+
             this.showAddBalanceForm = false;
             this.confirmAccountNumber = '';
+            this.confirmSortCode = '';
             this.amountToAdd = null;
             this.error = null;
             this.cdr.detectChanges();
           },
           error: () => {
-            this.error = 'Failed to add balance';
+            this.error = 'Account number not found';
             this.cdr.detectChanges();
           }
         });
