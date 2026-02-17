@@ -167,4 +167,52 @@ export class Payments implements OnInit {
       }
     });
   }
+
+  /**
+   * Formats the confirmAccountNumber input by removing spaces and inserting dashes every 4 characters for better readability.
+   * This method is called on every input event for the confirmAccountNumber field to ensure consistent formatting as the user types.
+   */
+  formatAccountNumber() {
+    if (!this.confirmAccountNumber) {
+      return;
+    }
+
+    let digits = this.confirmAccountNumber.replace(/\D/g, '');
+    digits = digits.slice(0, 16);
+
+    let formatted = '';
+
+    for (let i = 0; i < digits.length; i++) {
+      if (i > 0 && i % 4 === 0) {
+        formatted += '-';
+      }
+      formatted += digits[i];
+    }
+
+    this.confirmAccountNumber = formatted;
+  }
+
+  /**
+   * Formats the confirmSortCode input by removing non-digit characters and inserting dashes every 2 characters for better readability.
+   * This method is called on every input event for the confirmSortCode field to ensure consistent formatting as the user types.
+   */
+  formatSortCode() {
+    if (!this.confirmSortCode) {
+      return;
+    }
+
+    let digits = this.confirmSortCode.replace(/\D/g, '');
+    digits = digits.slice(0, 6);
+
+    let formatted = '';
+
+    for (let i = 0; i < digits.length; i++) {
+      if (i > 0 && i % 2 === 0) {
+        formatted += '-';
+      }
+      formatted += digits[i];
+    }
+
+    this.confirmSortCode = formatted;
+  }
 }
