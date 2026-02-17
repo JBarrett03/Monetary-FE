@@ -184,9 +184,6 @@
                             <li>
                                 <a href="#getUser" >getUser</a>
                             </li>
-                            <li>
-                                <a href="#getUsers" >getUsers</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -280,8 +277,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="49"
-                                    class="link-to-prism">src/app/services/user-service.ts:49</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/app/services/user-service.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -355,8 +352,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="59"
-                                    class="link-to-prism">src/app/services/user-service.ts:59</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/services/user-service.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -446,8 +443,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/app/services/user-service.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/app/services/user-service.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -495,49 +492,6 @@
                         </div>
                             <div class="io-description">
                                 <p>An observable containing the user data</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getUsers"></a>
-                    <span class="name">
-                        <span ><b>getUsers</b></span>
-                        <a href="#getUsers"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getUsers()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/app/services/user-service.ts:31</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Fetch all users from the API.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>An observable containing all users</p>
 
                             </div>
                 </td>
@@ -619,14 +573,6 @@ export class UserService {
    * @param http HttpClient for making HTTP requests.
    */
   constructor(private http: HttpClient) { }
-
-  /**
-   * Fetch all users from the API.
-   * @returns An observable containing all users
-   */
-  getUsers() {
-    return this.http.get&lt;any&gt;(this.apiUrl);
-  }
 
   /**
    * Fetch a user by their ID from the API.

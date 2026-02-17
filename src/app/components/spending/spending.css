@@ -53,9 +53,3 @@
 .panel-content {
     padding: 30px;
 }
-
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.3);
-}

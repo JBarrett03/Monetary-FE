@@ -148,6 +148,12 @@ Provides information about the application and links to login and create account
     </p>
 
 
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -171,7 +177,18 @@ Provides information about the application and links to login and create account
                 <td class="col-md-9"><code>app-home</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                                <code><a href="https://angular.io/api/router/RouterModule" target="_blank" >RouterModule</a></code>
+                </td>
+            </tr>
 
 
 
@@ -196,27 +213,474 @@ Provides information about the application and links to login and create account
     </table>
 </section>
 
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cardBrand" >cardBrand</a>
+                            </li>
+                            <li>
+                                <a href="#defaultAccount" >defaultAccount</a>
+                            </li>
+                            <li>
+                                <a href="#error" >error</a>
+                            </li>
+                            <li>
+                                <a href="#firstName" >firstName</a>
+                            </li>
+                            <li>
+                                <a href="#lastName" >lastName</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#maskAccountNumber" >maskAccountNumber</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
 
 
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(accountService: <a href="../injectables/AccountService.html" target="_self">AccountService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/home/home.ts:49</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor for the Home component. It injects the AccountService to allow fetching account data from the API.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>accountService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AccountService.html" target="_self" >AccountService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>The service used to interact with account-related API endpoints.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>cdr</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>ChangeDetectorRef - Reference to manually trigger change detection when needed</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="maskAccountNumber"></a>
+                    <span class="name">
+                        <span ><b>maskAccountNumber</b></span>
+                        <a href="#maskAccountNumber"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>maskAccountNumber(accountNumber: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/components/home/home.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Utility method to mask the account number for display purposes. It replaces all but the last 4 digits with &#39;••••&#39;.
+If the account number is not available, it returns a placeholder string.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>accountNumber</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The full account number to be masked.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A masked version of the account number for display.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/components/home/home.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Lifecycle hook that is called after the component has been initialized. It retrieves the user ID from session storage,
+then uses the AccountService to fetch the default account details. If successful, it stores the account information in the component&#39;s state.
+If there is an error (such as no default account set), it sets an appropriate error message.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cardBrand"></a>
+                    <span class="name">
+                        <span ><b>cardBrand</b></span>
+                        <a href="#cardBrand"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/home/home.ts:49</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Card brand for display purposes (e.g., Visa, MasterCard)</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="defaultAccount"></a>
+                    <span class="name">
+                        <span ><b>defaultAccount</b></span>
+                        <a href="#defaultAccount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/home/home.ts:28</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The default account for the user, if available. This will be displayed on the home page if the user is logged in.
+It contains account information such as balance, account number, currency, and account type.
+Initially set to null until the account data is loaded from the API.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="error"></a>
+                    <span class="name">
+                        <span ><b>error</b></span>
+                        <a href="#error"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/home/home.ts:34</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Error message to display if there is an issue loading the default account. This could occur if the user has no default account set.
+Initially set to null until an error occurs.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="firstName"></a>
+                    <span class="name">
+                        <span ><b>firstName</b></span>
+                        <a href="#firstName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/home/home.ts:39</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Customer&#39;s first name</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lastName"></a>
+                    <span class="name">
+                        <span ><b>lastName</b></span>
+                        <a href="#lastName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/components/home/home.ts:44</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Customer&#39;s last name</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
-
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { AccountService } from &#x27;../../services/account-service&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { RouterModule } from &#x27;@angular/router&#x27;;
+import { ChangeDetectorRef } from &#x27;@angular/core&#x27;;
 /**
  * Home component - the landing page displayed to unauthenticated users.
  * Provides information about the application and links to login and create account.
  */
 @Component({
   selector: &#x27;app-home&#x27;,
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: &#x27;./home.html&#x27;,
   styleUrl: &#x27;./home.css&#x27;,
 })
@@ -224,14 +688,118 @@ Provides information about the application and links to login and create account
 /**
  * Home class - the component logic for the home/landing page.
  */
-export class Home {
+export class Home implements OnInit {
+
+  /**
+   * The default account for the user, if available. This will be displayed on the home page if the user is logged in.
+   * It contains account information such as balance, account number, currency, and account type.
+   * Initially set to null until the account data is loaded from the API.
+   */
+  defaultAccount: any &#x3D; null;
+
+  /**
+   * Error message to display if there is an issue loading the default account. This could occur if the user has no default account set.
+   * Initially set to null until an error occurs.
+   */
+  error: string | null &#x3D; null;
+
+  /**
+ * Customer&#x27;s first name
+ */
+  firstName: string &#x3D; &#x27;&#x27;;
+
+  /**
+   * Customer&#x27;s last name
+   */
+  lastName: string &#x3D; &#x27;&#x27;;
+
+  /**
+   * Card brand for display purposes (e.g., Visa, MasterCard)
+   */
+  cardBrand: string &#x3D; &#x27;&#x27;;
+
+  /**
+   * Constructor for the Home component. It injects the AccountService to allow fetching account data from the API.
+   * @param accountService The service used to interact with account-related API endpoints.
+   * @param cdr ChangeDetectorRef - Reference to manually trigger change detection when needed
+   */
+  constructor(private accountService: AccountService, private cdr: ChangeDetectorRef) { }
+
+  /**
+   * Lifecycle hook that is called after the component has been initialized. It retrieves the user ID from session storage,
+   * then uses the AccountService to fetch the default account details. If successful, it stores the account information in the component&#x27;s state.
+   * If there is an error (such as no default account set), it sets an appropriate error message.
+   */
+  ngOnInit() {
+    const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
+
+    if (!userId) {
+      return;
+    }
+
+    this.accountService.getDefaultAccount(userId).subscribe({
+      next: (account) &#x3D;&gt; {
+        this.defaultAccount &#x3D; account;
+        this.cdr.detectChanges();
+      },
+      error: () &#x3D;&gt; {
+        this.error &#x3D; &#x27;No default account set. Please set a default account in your account settings.&#x27;;
+      }
+    });
+  }
+
+  /**
+   * Utility method to mask the account number for display purposes. It replaces all but the last 4 digits with &#x27;••••&#x27;.
+   * If the account number is not available, it returns a placeholder string.
+   * @param accountNumber The full account number to be masked.
+   * @returns A masked version of the account number for display.
+   */
+  maskAccountNumber(accountNumber: string): string {
+    if (!accountNumber) return &#x27;•••• •••• •••• ••••&#x27;;
+
+    const clean &#x3D; accountNumber.replace(/\s/g, &#x27;&#x27;);
+    const last4 &#x3D; clean.slice(-4);
+    return &#x60;•••• •••• •••• ${last4}&#x60;;
+  }
 
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">This page will contain the typical information</code></pre>
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container container-top-margin&quot;&gt;
+    &lt;div class&#x3D;&quot;row&quot;&gt;
+        &lt;div class&#x3D;&quot;col-sm-12 d-flex flex-column align-items-center&quot;&gt;
+
+            &lt;div *ngIf&#x3D;&quot;defaultAccount&quot; class&#x3D;&quot;stripe-card mb-3 clickable-card&quot;
+                [routerLink]&#x3D;&quot;[&#x27;/accounts&#x27;, defaultAccount._id]&quot;&gt;
+                &lt;div class&#x3D;&quot;stripe-card-top&quot;&gt;
+                    &lt;div class&#x3D;&quot;chip&quot;&gt;&lt;/div&gt;
+                    &lt;div class&#x3D;&quot;card-brand&quot;&gt;
+                        {{ cardBrand | uppercase }}
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;card-number&quot;&gt;
+                    {{ maskAccountNumber(defaultAccount.accountNumber) }}
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;stripe-card-bottom&quot;&gt;
+                    &lt;div class&#x3D;&quot;card-holder&quot;&gt;
+                        {{ defaultAccount.accountType | uppercase }}&lt;br&gt;
+                        {{ defaultAccount.availableBalance | currency: (defaultAccount.currency || &#x27;GBP&#x27;) }}&lt;br&gt;
+                        Sort Code: {{ defaultAccount.sortCode }}&lt;br&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;expiry&quot;&gt;
+                        MM / YY
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div *ngIf&#x3D;&quot;!defaultAccount&quot;&gt;
+                &lt;p&gt;No default account set&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
     </div>
 
 
@@ -260,8 +828,8 @@ export class Home {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>This page will contain the typical information</div>'
-    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12 d-flex flex-column align-items-center">            <div *ngIf="defaultAccount" class="stripe-card mb-3 clickable-card"                [routerLink]="[\'/accounts\', defaultAccount._id]">                <div class="stripe-card-top">                    <div class="chip"></div>                    <div class="card-brand">                        {{ cardBrand | uppercase }}                    </div>                </div>                <div class="card-number">                    {{ maskAccountNumber(defaultAccount.accountNumber) }}                </div>                <div class="stripe-card-bottom">                    <div class="card-holder">                        {{ defaultAccount.accountType | uppercase }}<br>                        {{ defaultAccount.availableBalance | currency: (defaultAccount.currency || \'GBP\') }}<br>                        Sort Code: {{ defaultAccount.sortCode }}<br>                    </div>                    <div class="expiry">                        MM / YY                    </div>                </div>            </div>            <div *ngIf="!defaultAccount">                <p>No default account set</p>            </div>        </div>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TestUserService', 'selector': 'app-test-user-service'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Home'};
 </script>

@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AccountService } from '../../services/account-service';
+import * as Highcharts from 'highcharts';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 /**
  * Spending component - placeholder for spending analytics features.
@@ -7,7 +11,8 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'app-spending',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, HighchartsChartModule],
   templateUrl: './spending.html',
   styleUrl: './spending.css',
 })
@@ -19,10 +24,33 @@ import { Component } from '@angular/core';
 export class Spending {
 
   /**
+ * Constructor for Spending component. Currently does not perform any initialization. 
+ */
+  constructor(private accountService: AccountService) { }
+
+  /**
    * The active view for spending analytics, which can be 'savings', 'spent', or null (no view).
    * This variable controls which spending analytics view is currently displayed to the user.
    */
   activeView: 'savings' | 'spent' | null = null;
+
+  /**
+   * Highcharts instance for rendering charts in the spending analytics views.
+   * This is used to create and display charts based on the user's spending data.
+   */
+  Highcharts: typeof Highcharts = Highcharts;
+
+  /**
+   * Chart options for configuring the appearance and data of the Highcharts charts.
+   * This object will be populated with the appropriate configuration when loading the savings chart.
+   */
+  chartOptions: Highcharts.Options = {};
+
+  chartRef: Highcharts.Chart | null = null;
+
+  chartCallback: Highcharts.ChartCallbackFunction = (chart) => {
+    this.chartRef = chart;
+  }
 
   /**
    * Method to show the savings view, which displays analytics related to money saved.
@@ -30,6 +58,13 @@ export class Spending {
    */
   showSavings() {
     this.activeView = 'savings';
+    setTimeout(() => {
+      this.loadSavingsChart();
+
+      if (this.chartRef) {
+        this.chartRef.reflow();
+      }
+    }, 450);
   }
 
   /**
@@ -46,6 +81,51 @@ export class Spending {
    */
   closeView() {
     this.activeView = null;
+  }
+
+  loadSavingsChart() {
+    const userId = sessionStorage.getItem('userId');
+    const accountId = sessionStorage.getItem('accountId');
+
+    if (!userId || !accountId) {
+      return;
+    }
+
+    this.accountService.getAccount(userId, accountId).subscribe(account => {
+      if (!account.budget) return;
+
+      const totalBudget = account.budget.amount;
+      const spent = account.budgetSpent || 0;
+      const remaining = account.budgetRemaining || totalBudget;
+
+      this.chartOptions = {
+        chart: {
+          type: 'pie'
+        },
+        title: {
+          text: 'Savings Budget Overview'
+        },
+        tooltip: {
+          pointFormat: '<b>{point.percentage:.1f}%</b> ({point.y:.2f})'
+        },
+        plotOptions: {
+          pie: {
+            innerSize: '60%',
+            dataLabels: {
+              enabled: true,
+              format: '{point.name}: {point.y:.2f}'
+            }
+          }
+        },
+        series: [{
+          type: 'pie',
+          data: [
+            { name: 'Spent', y: spent, color: '#e53935' },
+            { name: 'Remaining', y: remaining, color: '#43a047' }
+          ]
+        }]
+      };
+    });
   }
 
 }

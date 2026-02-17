@@ -265,7 +265,6 @@ Users can view account details, add new accounts, and navigate to the manage acc
                                 <a href="#maskAccountNumber" >maskAccountNumber</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
@@ -556,7 +555,6 @@ Prompts the user for account type and currency, then creates the account via the
                 <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
-                            <span class="modifier">Async</span>
                         <span ><b>ngOnInit</b></span>
                         <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -564,8 +562,7 @@ Prompts the user for account type and currency, then creates the account via the
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>ngOnInit()</code>
+<code>ngOnInit()</code>
                 </td>
             </tr>
 
@@ -584,7 +581,7 @@ Prompts the user for account type and currency, then creates the account via the
 </div>
 
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
                 </td>
@@ -925,7 +922,7 @@ export class Accounts implements OnInit {
   /**
    * Initializes the component and loads the list of accounts and user details.
    */
-  async ngOnInit() {
+  ngOnInit() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
 
     if (!userId) {
@@ -1056,7 +1053,8 @@ export class Accounts implements OnInit {
                     &lt;div class&#x3D;&quot;card-holder&quot;&gt;
                         {{ account.accountType | uppercase }}&lt;br&gt;
                         {{ account.availableBalance | currency: (account.currency || &#x27;GBP&#x27;) }}&lt;br&gt;
-                        {{ firstName }} {{ lastName }}
+                        Sort Code: {{ account.sortCode }}&lt;br&gt;
+                        {{ account.firstName }} {{ account.lastName }}
                     &lt;/div&gt;
                     &lt;div class&#x3D;&quot;expiry&quot;&gt;
                         MM / YY
@@ -1094,8 +1092,8 @@ export class Accounts implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12 d-flex flex-column align-items-center">            @if (accounts_list.length === 0) {            <p>No accounts found</p>            }            <div class="row mb-3">                <div class="col-sm-12">                    <button class="kebab-btn" (click)="toggleMenu()">                        <i class="fa fa-ellipsis-v"></i>                    </button>                    @if (menuOpen) {                    <div class="menu-dropdown">                        <button class="btn btn-outline-secondary me-2 w-100" (click)="addAccount(); toggleMenu()">                            <i class="fa fa-plus"></i> Add Account                        </button>                        <button class="btn btn-outline-secondary w-100" (click)="goToManageAccounts()">                            <i class="fa fa-cog"></i> Manage                        </button>                    </div>                    }                </div>            </div>            @for (account of accounts_list; track account._id) {            <div class="stripe-card mb-3 clickable-card" [routerLink]="[\'/accounts\', account._id]"                [class.complete]="cardComplete">                <div class="stripe-card-top">                    <div class="chip"></div>                    <div class="card-brand">                        {{ cardBrand | uppercase }}                    </div>                </div>                <div class="card-number">                    {{ maskAccountNumber(account.accountNumber) }}                </div>                <div class="stripe-card-bottom">                    <div class="card-holder">                        {{ account.accountType | uppercase }}<br>                        {{ account.availableBalance | currency: (account.currency || \'GBP\') }}<br>                        {{ firstName }} {{ lastName }}                    </div>                    <div class="expiry">                        MM / YY                    </div>                </div>            </div>            }        </div>    </div></div>'
-    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12 d-flex flex-column align-items-center">            @if (accounts_list.length === 0) {            <p>No accounts found</p>            }            <div class="row mb-3">                <div class="col-sm-12">                    <button class="kebab-btn" (click)="toggleMenu()">                        <i class="fa fa-ellipsis-v"></i>                    </button>                    @if (menuOpen) {                    <div class="menu-dropdown">                        <button class="btn btn-outline-secondary me-2 w-100" (click)="addAccount(); toggleMenu()">                            <i class="fa fa-plus"></i> Add Account                        </button>                        <button class="btn btn-outline-secondary w-100" (click)="goToManageAccounts()">                            <i class="fa fa-cog"></i> Manage                        </button>                    </div>                    }                </div>            </div>            @for (account of accounts_list; track account._id) {            <div class="stripe-card mb-3 clickable-card" [routerLink]="[\'/accounts\', account._id]"                [class.complete]="cardComplete">                <div class="stripe-card-top">                    <div class="chip"></div>                    <div class="card-brand">                        {{ cardBrand | uppercase }}                    </div>                </div>                <div class="card-number">                    {{ maskAccountNumber(account.accountNumber) }}                </div>                <div class="stripe-card-bottom">                    <div class="card-holder">                        {{ account.accountType | uppercase }}<br>                        {{ account.availableBalance | currency: (account.currency || \'GBP\') }}<br>                        Sort Code: {{ account.sortCode }}<br>                        {{ account.firstName }} {{ account.lastName }}                    </div>                    <div class="expiry">                        MM / YY                    </div>                </div>            </div>            }        </div>    </div></div>'
+    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TestUserService', 'selector': 'app-test-user-service'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Accounts'};
 </script>

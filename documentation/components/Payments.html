@@ -236,7 +236,13 @@ Currently serves as a foundation for future development.</p>
                                 <a href="#confirmAccountNumber" >confirmAccountNumber</a>
                             </li>
                             <li>
+                                <a href="#confirmSortCode" >confirmSortCode</a>
+                            </li>
+                            <li>
                                 <a href="#error" >error</a>
+                            </li>
+                            <li>
+                                <a href="#recentPayees" >recentPayees</a>
                             </li>
                             <li>
                                 <a href="#showAddBalanceForm" >showAddBalanceForm</a>
@@ -260,7 +266,16 @@ Currently serves as a foundation for future development.</p>
                                 <a href="#closeBalanceForm" >closeBalanceForm</a>
                             </li>
                             <li>
+                                <a href="#formatAccountNumber" >formatAccountNumber</a>
+                            </li>
+                            <li>
+                                <a href="#formatSortCode" >formatSortCode</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#numbersOnly" >numbersOnly</a>
                             </li>
                             <li>
                                 <a href="#openBalanceForm" >openBalanceForm</a>
@@ -288,7 +303,7 @@ Currently serves as a foundation for future development.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/components/payments/payments.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/payments/payments.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -369,8 +384,8 @@ Currently serves as a foundation for future development.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="97"
-                                    class="link-to-prism">src/app/components/payments/payments.ts:97</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="114"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:114</a></div>
                         </td>
                     </tr>
 
@@ -410,8 +425,8 @@ If validation passes, it calls the AccountService to add the balance and updates
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="88"
-                                    class="link-to-prism">src/app/components/payments/payments.ts:88</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -419,6 +434,86 @@ If validation passes, it calls the AccountService to add the balance and updates
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Closes the form for adding balance to the user&#39;s account. Hides the form without making any changes to the account or input fields.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatAccountNumber"></a>
+                    <span class="name">
+                        <span ><b>formatAccountNumber</b></span>
+                        <a href="#formatAccountNumber"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>formatAccountNumber()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:175</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Formats the confirmAccountNumber input by removing spaces and inserting dashes every 4 characters for better readability.
+This method is called on every input event for the confirmAccountNumber field to ensure consistent formatting as the user types.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatSortCode"></a>
+                    <span class="name">
+                        <span ><b>formatSortCode</b></span>
+                        <a href="#formatSortCode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>formatSortCode()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="199"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:199</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Formats the confirmSortCode input by removing non-digit characters and inserting dashes every 2 characters for better readability.
+This method is called on every input event for the confirmSortCode field to ensure consistent formatting as the user types.</p>
 </div>
 
                         <div class="io-description">
@@ -449,8 +544,8 @@ If validation passes, it calls the AccountService to add the balance and updates
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="62"
-                                    class="link-to-prism">src/app/components/payments/payments.ts:62</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -466,6 +561,73 @@ If either the user ID or account ID is missing, it simply returns without attemp
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="numbersOnly"></a>
+                    <span class="name">
+                        <span ><b>numbersOnly</b></span>
+                        <a href="#numbersOnly"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>numbersOnly(event: KeyboardEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="219"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:219</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>KeyboardEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -490,8 +652,8 @@ If either the user ID or account ID is missing, it simply returns without attemp
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="81"
-                                    class="link-to-prism">src/app/components/payments/payments.ts:81</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="98"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:98</a></div>
                         </td>
                     </tr>
 
@@ -539,7 +701,7 @@ If either the user ID or account ID is missing, it simply returns without attemp
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/payments/payments.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/payments/payments.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -577,7 +739,7 @@ currency, and account type (e.g., &#39;savings&#39;, &#39;checking&#39;). Null u
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/payments/payments.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/payments/payments.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -615,7 +777,7 @@ This should be a positive number. Initially set to null until the user inputs a 
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/payments/payments.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/payments/payments.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -623,6 +785,45 @@ This should be a positive number. Initially set to null until the user inputs a 
                 <td class="col-md-4">
                     <div class="io-description"><p>The account number entered by the user to confirm their identity before adding balance.
 This should match the actual account number of the user&#39;s account for validation to succeed.
+Initially set to an empty string until the user inputs a value.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmSortCode"></a>
+                    <span class="name">
+                        <span ><b>confirmSortCode</b></span>
+                        <a href="#confirmSortCode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/payments/payments.ts:55</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The sort code entered by the user to confirm their identity before adding balance.
+This should match the actual sort code of the user&#39;s account for validation to succeed.
 Initially set to an empty string until the user inputs a value.</p>
 </div>
                 </td>
@@ -654,7 +855,7 @@ Initially set to an empty string until the user inputs a value.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/components/payments/payments.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/payments/payments.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -662,6 +863,44 @@ Initially set to an empty string until the user inputs a value.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Error message displayed to the user when operations fail or data cannot be loaded.
 Null when no error is present.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="recentPayees"></a>
+                    <span class="name">
+                        <span ><b>recentPayees</b></span>
+                        <a href="#recentPayees"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/components/payments/payments.ts:67</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of recent payees for the user. This can be used to display a history of recent transactions or frequent transfer recipients.
+Initially set to an empty array until data is loaded from the API.</p>
 </div>
                 </td>
             </tr>
@@ -692,7 +931,7 @@ Null when no error is present.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/payments/payments.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/payments/payments.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -712,11 +951,10 @@ Initially set to false, meaning the form is hidden until the user chooses to ope
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ChangeDetectorRef } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { FormsModule } from &#x27;@angular/forms&#x27;;
 import { AccountService } from &#x27;../../services/account-service&#x27;;
-import { ChangeDetectorRef } from &#x27;@angular/core&#x27;;
 /**
  * Payments component - placeholder for payment processing features.
  * This component is intended for handling user payments, transfers, and payment history.
@@ -763,10 +1001,23 @@ export class Payments implements OnInit {
   confirmAccountNumber: string &#x3D; &#x27;&#x27;;
 
   /**
+ * The sort code entered by the user to confirm their identity before adding balance.
+ * This should match the actual sort code of the user&#x27;s account for validation to succeed.
+ * Initially set to an empty string until the user inputs a value.
+ */
+  confirmSortCode: string &#x3D; &#x27;&#x27;;
+
+  /**
  * The amount entered by the user to add to their account balance.
  * This should be a positive number. Initially set to null until the user inputs a value.
  */
   amountToAdd: number | null &#x3D; null;
+
+  /**
+   * List of recent payees for the user. This can be used to display a history of recent transactions or frequent transfer recipients.
+   * Initially set to an empty array until data is loaded from the API.
+   */
+  recentPayees: any[] &#x3D; [];
 
   /**
  * Lifecycle hook that is called after the component has been initialized. It retrieves the user ID and account ID from session storage,
@@ -779,6 +1030,11 @@ export class Payments implements OnInit {
 
     if (!userId || !accountId) {
       return;
+    }
+
+    const storedPayees &#x3D; localStorage.getItem(&#x60;recentPayees_${userId}&#x60;);
+    if (storedPayees) {
+      this.recentPayees &#x3D; JSON.parse(storedPayees);
     }
 
     this.accountService.getAccount(userId, accountId).subscribe({
@@ -810,39 +1066,136 @@ export class Payments implements OnInit {
  */
   addBalance() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
+    const accountId &#x3D; sessionStorage.getItem(&#x27;accountId&#x27;);
 
-    if (!userId) {
+    if (!userId || !accountId) {
       return;
     }
 
-    this.accountService.getAccountByNumber(userId, this.confirmAccountNumber).subscribe({
+    if (!this.confirmAccountNumber || !this.confirmSortCode || !this.amountToAdd || this.amountToAdd &lt;&#x3D; 0) {
+      this.error &#x3D; &#x27;Please enter a valid account number, sort code, and amount&#x27;;
+      this.cdr.detectChanges();
+      return;
+    }
+
+    this.accountService.getAccountByNumber(userId, this.confirmAccountNumber, this.confirmSortCode).subscribe({
       next: (account) &#x3D;&gt; {
         const payeeAccountId &#x3D; account._id;
+
         this.accountService.addBalance(userId, payeeAccountId, this.amountToAdd!).subscribe({
           next: () &#x3D;&gt; {
+            this.accountService.getAccount(userId, accountId).subscribe(updatedAccount &#x3D;&gt; {
+              this.account &#x3D; updatedAccount;
+              this.cdr.detectChanges();
+            });
+
+            const exists &#x3D; this.recentPayees.find(p &#x3D;&gt; p._id &#x3D;&#x3D;&#x3D; payeeAccountId);
+
+            if (!exists) {
+              this.recentPayees.unshift(account);
+            }
+
+            if (this.recentPayees.length &gt; 5) {
+              this.recentPayees.pop();
+            }
+
+            localStorage.setItem(&#x60;recentPayees_${userId}&#x60;, JSON.stringify(this.recentPayees));
+
             this.showAddBalanceForm &#x3D; false;
             this.confirmAccountNumber &#x3D; &#x27;&#x27;;
+            this.confirmSortCode &#x3D; &#x27;&#x27;;
             this.amountToAdd &#x3D; null;
             this.error &#x3D; null;
+            this.cdr.detectChanges();
           },
           error: () &#x3D;&gt; {
-            this.error &#x3D; &#x27;Failed to add balance&#x27;;
+            this.error &#x3D; &#x27;Account number not found&#x27;;
+            this.cdr.detectChanges();
           }
         });
       },
       error: () &#x3D;&gt; {
         this.error &#x3D; &#x27;Account number not found&#x27;;
+        this.cdr.detectChanges();
       }
     });
+  }
+
+  /**
+   * Formats the confirmAccountNumber input by removing spaces and inserting dashes every 4 characters for better readability.
+   * This method is called on every input event for the confirmAccountNumber field to ensure consistent formatting as the user types.
+   */
+  formatAccountNumber() {
+    if (!this.confirmAccountNumber) {
+      return;
+    }
+
+    let digits &#x3D; this.confirmAccountNumber.replace(/\D/g, &#x27;&#x27;);
+    digits &#x3D; digits.slice(0, 16);
+
+    let formatted &#x3D; &#x27;&#x27;;
+
+    for (let i &#x3D; 0; i &lt; digits.length; i++) {
+      if (i &gt; 0 &amp;&amp; i % 4 &#x3D;&#x3D;&#x3D; 0) {
+        formatted +&#x3D; &#x27;-&#x27;;
+      }
+      formatted +&#x3D; digits[i];
+    }
+
+    this.confirmAccountNumber &#x3D; formatted;
+  }
+
+  /**
+   * Formats the confirmSortCode input by removing non-digit characters and inserting dashes every 2 characters for better readability.
+   * This method is called on every input event for the confirmSortCode field to ensure consistent formatting as the user types.
+   */
+  formatSortCode() {
+    if (!this.confirmSortCode) {
+      return;
+    }
+
+    let digits &#x3D; this.confirmSortCode.replace(/\D/g, &#x27;&#x27;);
+    digits &#x3D; digits.slice(0, 6);
+
+    let formatted &#x3D; &#x27;&#x27;;
+
+    for (let i &#x3D; 0; i &lt; digits.length; i++) {
+      if (i &gt; 0 &amp;&amp; i % 2 &#x3D;&#x3D;&#x3D; 0) {
+        formatted +&#x3D; &#x27;-&#x27;;
+      }
+      formatted +&#x3D; digits[i];
+    }
+
+    this.confirmSortCode &#x3D; formatted;
+  }
+
+  numbersOnly(event: KeyboardEvent) {
+    const allowedKeys &#x3D; [&#x27;Backspace&#x27;, &#x27;Tab&#x27;, &#x27;ArrowLeft&#x27;, &#x27;ArrowRight&#x27;, &#x27;Delete&#x27;];
+
+    if (allowedKeys.includes(event.key) || /^[0-9]$/.test(event.key)) {
+      return;
+    }
+
+    event.preventDefault();
   }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;button class&#x3D;&quot;btn btn-success w-100&quot; (click)&#x3D;&quot;openBalanceForm()&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;button class&#x3D;&quot;btn btn-success&quot; (click)&#x3D;&quot;openBalanceForm()&quot;&gt;
     Add Balance
 &lt;/button&gt;
+&lt;h5 class&#x3D;&quot;mt-4&quot; *ngIf&#x3D;&quot;recentPayees.length &gt; 0&quot;&gt;Recent Payees&lt;/h5&gt;
+
+&lt;div *ngIf&#x3D;&quot;recentPayees.length &gt; 0&quot;&gt;
+    &lt;div class&#x3D;&quot;card p-2 mb-2&quot; *ngFor&#x3D;&quot;let payee of recentPayees&quot;&gt;
+        &lt;strong&gt;{{ payee.accountNumber }}&lt;/strong&gt;&lt;br&gt;
+        {{ payee.firstName }} {{ payee.lastName }}
+        {{ payee.accountType }} - {{ payee.currency }}
+        Sort Code: {{ payee.sortCode || &#x27;-&#x27; }}
+    &lt;/div&gt;
+&lt;/div&gt;
 @if (showAddBalanceForm) {
 &lt;div class&#x3D;&quot;overlay&quot; (click)&#x3D;&quot;closeBalanceForm()&quot;&gt;
     &lt;div class&#x3D;&quot;modal-card card p-3&quot; (click)&#x3D;&quot;$event.stopPropagation()&quot;&gt;
@@ -850,14 +1203,21 @@ export class Payments implements OnInit {
         &lt;h5 class&#x3D;&quot;mb-3&quot;&gt;Add Balance&lt;/h5&gt;
 
         &lt;div class&#x3D;&quot;mb-3&quot;&gt;
-            &lt;label class&#x3D;&quot;form-label&quot;&gt;Confirm Account Number&lt;/label&gt;
-            &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; [(ngModel)]&#x3D;&quot;confirmAccountNumber&quot; name&#x3D;&quot;confirmAccountNumber&quot;&gt;
+            &lt;label class&#x3D;&quot;form-label&quot;&gt;Account Number&lt;/label&gt;
+            &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;confirmAccountNumber&quot; (input)&#x3D;&quot;formatAccountNumber()&quot; (keydown)&#x3D;&quot;numbersOnly($event)&quot; maxlength&#x3D;&quot;19&quot; inputmode&#x3D;&quot;numeric&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+            &lt;label class&#x3D;&quot;form-label&quot;&gt;Sort Code&lt;/label&gt;
+            &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;confirmSortCode&quot; (input)&#x3D;&quot;formatSortCode()&quot; (keydown)&#x3D;&quot;numbersOnly($event)&quot; maxlength&#x3D;&quot;8&quot; inputmode&#x3D;&quot;numeric&quot;&gt;
         &lt;/div&gt;
         &lt;div class&#x3D;&quot;mb-3&quot;&gt;
             &lt;label class&#x3D;&quot;form-label&quot;&gt;Amount to add&lt;/label&gt;
-            &lt;input type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; [(ngModel)]&#x3D;&quot;amountToAdd&quot; name&#x3D;&quot;amountToAdd&quot;&gt;
+            &lt;input type&#x3D;&quot;number&quot; class&#x3D;&quot;form-control&quot; [(ngModel)]&#x3D;&quot;amountToAdd&quot; name&#x3D;&quot;amountToAdd&quot; required&gt;
         &lt;/div&gt;
-        &lt;button class&#x3D;&quot;btn btn-primary w-100&quot; (click)&#x3D;&quot;addBalance()&quot;&gt;Confirm Add Balance&lt;/button&gt;
+        &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-primary w-100&quot; (click)&#x3D;&quot;$event.stopPropagation(); addBalance()&quot;
+            [disabled]&#x3D;&quot;!confirmAccountNumber || !amountToAdd&quot;&gt;
+            Confirm Add Balance
+        &lt;/button&gt;
     &lt;/div&gt;
 &lt;/div&gt;
 }</code></pre>
@@ -889,8 +1249,8 @@ export class Payments implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button class="btn btn-success w-100" (click)="openBalanceForm()">    Add Balance</button>@if (showAddBalanceForm) {<div class="overlay" (click)="closeBalanceForm()">    <div class="modal-card card p-3" (click)="$event.stopPropagation()">        <h5 class="mb-3">Add Balance</h5>        <div class="mb-3">            <label class="form-label">Confirm Account Number</label>            <input type="text" class="form-control" [(ngModel)]="confirmAccountNumber" name="confirmAccountNumber">        </div>        <div class="mb-3">            <label class="form-label">Amount to add</label>            <input type="number" class="form-control" [(ngModel)]="amountToAdd" name="amountToAdd">        </div>        <button class="btn btn-primary w-100" (click)="addBalance()">Confirm Add Balance</button>    </div></div>}</div>'
-    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
+        var COMPONENT_TEMPLATE = '<div><button class="btn btn-success" (click)="openBalanceForm()">    Add Balance</button><h5 class="mt-4" *ngIf="recentPayees.length > 0">Recent Payees</h5><div *ngIf="recentPayees.length > 0">    <div class="card p-2 mb-2" *ngFor="let payee of recentPayees">        <strong>{{ payee.accountNumber }}</strong><br>        {{ payee.firstName }} {{ payee.lastName }}        {{ payee.accountType }} - {{ payee.currency }}        Sort Code: {{ payee.sortCode || \'-\' }}    </div></div>@if (showAddBalanceForm) {<div class="overlay" (click)="closeBalanceForm()">    <div class="modal-card card p-3" (click)="$event.stopPropagation()">        <h5 class="mb-3">Add Balance</h5>        <div class="mb-3">            <label class="form-label">Account Number</label>            <input type="text" [(ngModel)]="confirmAccountNumber" (input)="formatAccountNumber()" (keydown)="numbersOnly($event)" maxlength="19" inputmode="numeric">        </div>        <div class="mb-3">            <label class="form-label">Sort Code</label>            <input type="text" [(ngModel)]="confirmSortCode" (input)="formatSortCode()" (keydown)="numbersOnly($event)" maxlength="8" inputmode="numeric">        </div>        <div class="mb-3">            <label class="form-label">Amount to add</label>            <input type="number" class="form-control" [(ngModel)]="amountToAdd" name="amountToAdd" required>        </div>        <button type="button" class="btn btn-primary w-100" (click)="$event.stopPropagation(); addBalance()"            [disabled]="!confirmAccountNumber || !amountToAdd">            Confirm Add Balance        </button>    </div></div>}</div>'
+    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TestUserService', 'selector': 'app-test-user-service'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Payments'};
 </script>
