@@ -215,4 +215,14 @@ export class Payments implements OnInit {
 
     this.confirmSortCode = formatted;
   }
+
+  numbersOnly(event: KeyboardEvent) {
+    const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'];
+
+    if (allowedKeys.includes(event.key) || /^[0-9]$/.test(event.key)) {
+      return;
+    }
+
+    event.preventDefault();
+  }
 }

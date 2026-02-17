@@ -19,11 +19,11 @@
 
         <div class="mb-3">
             <label class="form-label">Account Number</label>
-            <input type="text" [(ngModel)]="confirmAccountNumber" (input)="formatAccountNumber()" maxlength="19" inputmode="numeric">
+            <input type="text" [(ngModel)]="confirmAccountNumber" (input)="formatAccountNumber()" (keydown)="numbersOnly($event)" maxlength="19" inputmode="numeric">
         </div>
         <div class="mb-3">
             <label class="form-label">Sort Code</label>
-            <input type="text" [(ngModel)]="confirmSortCode" (input)="formatSortCode()" maxlength="8" inputmode="numeric">
+            <input type="text" [(ngModel)]="confirmSortCode" (input)="formatSortCode()" (keydown)="numbersOnly($event)" maxlength="8" inputmode="numeric">
         </div>
         <div class="mb-3">
             <label class="form-label">Amount to add</label>
