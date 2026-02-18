@@ -99,6 +99,21 @@ export class AccountDetails implements OnInit {
   endDate: string = '';
 
   /**
+ * List of accounts
+ */
+  accounts_list: any[] = [];
+
+  /**
+ * Indicates whether the card information is complete for display purposes.
+ */
+  cardComplete: boolean = false;
+
+  /**
+ * Card brand for display purposes (e.g., Visa, MasterCard)
+ */
+  cardBrand: string = '';
+
+  /**
    * Creates an instance of the AccountDetails component.
    * @param route ActivatedRoute - Used to extract the accountId from the current route parameters
    * @param router Router - Used to navigate between routes (e.g., to transaction details or back to accounts list)
@@ -412,5 +427,18 @@ export class AccountDetails implements OnInit {
    */
   closeBudgetForm() {
     this.showBudgetForm = false;
+  }
+
+  /**
+ * Masks an account number for secure display, showing only the last 4 digits.
+ * @param accountNumber The account number to mask.
+ * @returns A masked account number string.
+ */
+  maskAccountNumber(accountNumber: string): string {
+    if (!accountNumber) return '•••• •••• •••• ••••';
+
+    const clean = accountNumber.replace(/\s/g, '');
+    const last4 = clean.slice(-4);
+    return `•••• •••• •••• ${last4}`;
   }
 }

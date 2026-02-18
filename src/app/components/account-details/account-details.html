@@ -20,6 +20,31 @@
         }
     </div>
 
+    <div class="stripe-card mb-3">
+        <div class="stripe-card-top">
+            <div class="chip"></div>
+            <div class="card-brand">
+                {{ cardBrand | uppercase }}
+            </div>
+        </div>
+
+        <div class="card-number">
+            {{ account.accountNumber }}
+        </div>
+
+        <div class="stripe-card-bottom">
+            <div class="card-holder">
+                {{ account.accountType | uppercase }}<br>
+                {{ account.availableBalance | currency: account.currency || 'GBP' }}<br>
+                Sort Code: {{ account.sortCode }}<br>
+                {{ account.firstName }} {{ account.lastName }}
+            </div>
+            <div class="expiry">
+                MM / YY
+            </div>
+        </div>
+    </div>
+
     <div class="balance-card">
         @if (account?.budget) {
         <div class="balance-label">
@@ -28,8 +53,8 @@
 
         <div class="balance-amount">
             <span class="fw-bold">
-                {{ account.balance | currency: account.currency || 'GBP' }} / {{ account.budget.amount | currency: 'GBP'
-                }}
+                {{ account.balance | currency: account.currency || 'GBP' }} / {{ account.budget.amount | currency:
+                account.currency || 'GBP' }}
             </span>
         </div>
 
@@ -38,7 +63,7 @@
         } @else {
         <div class="balance-label">Balance</div>
         <div class="balance-amount">
-            {{ account?.balance | currency: 'GBP' }}
+            {{ account?.balance | currency: account.currency || 'GBP' }}
         </div>
         }
     </div>
@@ -90,12 +115,6 @@
         </div>
     </div>
     }
-    }
-    <div class="amount-card">
-        <div class="amount-label">Amount:</div>
-        Account #: {{ account.accountNumber }}<br />
-        Currency: {{ account.currency || 'GBP' }}<br />
-    </div>
     }
 
     @if (transactions.length > 0) {
@@ -154,5 +173,6 @@
             <i class="fa fa-plus" (click)="addTransaction()"></i>
         </div>
     </div>
+    }
     }
 </div>
