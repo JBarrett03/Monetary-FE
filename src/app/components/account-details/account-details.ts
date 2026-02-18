@@ -189,10 +189,8 @@ export class AccountDetails implements OnInit {
     const userId = sessionStorage.getItem('userId');
     const accountId = sessionStorage.getItem('accountId');
 
-    if (!userId || !accountId) {
-      this.error = 'Invalid user or account';
-      return;
-    }
+    if (!userId || !accountId) return;
+
     const description = prompt('Description:');
     const amountInput = prompt('Amount:');
     const merchant = prompt('Merchant:');
@@ -201,11 +199,24 @@ export class AccountDetails implements OnInit {
       return;
     }
 
-    const amount = Number(amountInput);
+    const amount = Math.abs(Number(amountInput));
+
+    if (isNaN(amount) || amount <= 0) {
+      alert('Please enter a valid positive number for the amount.');
+      return;
+    }
+
+    const currentBalance = this.account?.balance || 0;
+    const newBalance = currentBalance - amount;
+
+    if (newBalance < 0) {
+      alert('Insufficient funds for this transaction.');
+      return;
+    }
 
     const transaction = {
-      type: amount >= 0 ? 'credit' : 'debit',
-      amount,
+      type: 'debit',
+      amount: -amount,
       description,
       merchant
     };
