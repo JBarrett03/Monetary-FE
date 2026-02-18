@@ -42,19 +42,19 @@ export class TransactionDetails implements OnInit {
    */
   ngOnInit() {
     const userId = sessionStorage.getItem('userId');
-    const accountId = sessionStorage.getItem('accountId');
 
-    if (!userId || !accountId) {
-      this.error = 'Invalid user or account ID';
+    if (!userId) {
+      this.error = 'Invalid user ID';
       this.cdr.detectChanges();
       return;
     }
 
     this.route.paramMap.subscribe(params => {
+      const accountId = params.get('accountId');
       const transactionId = params.get('transactionId');
 
-      if (!transactionId) {
-        this.error = 'Invalid transaction ID';
+      if (!accountId || !transactionId) {
+        this.error = 'Invalid account or transaction ID';
         this.cdr.detectChanges();
         return;
       }

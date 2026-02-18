@@ -7,9 +7,9 @@
 }
 
 .stripe-card {
-  width: 360px;
-  height: 210px;
-  padding: 22px;
+  width: 450px;
+  height: 280px;
+  padding: 28px;
   border-radius: 18px;
   background: linear-gradient(135deg, #1c1f3f, #2f3b87);
   color: white;
@@ -21,6 +21,7 @@
   transition: transform 0.25s ease;
   position: relative;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .stripe-card:hover {
@@ -32,8 +33,8 @@
 }
 
 .chip {
-  width: 42px;
-  height: 30px;
+  width: 50px;
+  height: 36px;
   border-radius: 6px;
   background: linear-gradient(135deg, #d4af37, #f6e27f);
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -46,13 +47,13 @@
 }
 
 .card-brand {
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 1px;
   opacity: 0.9;
 }
 
 .card-number {
-  font-size: 20px;
+  font-size: 24px;
   letter-spacing: 3px;
   font-weight: 500;
 }
@@ -64,13 +65,33 @@
 }
 
 .card-holder {
-  font-size: 13px;
+  font-size: 15px;
   letter-spacing: 1px;
   text-transform: uppercase;
   opacity: 0.85;
 }
 
 .stripe-card .expiry {
-  font-size: 14px;
+  font-size: 16px;
   opacity: 0.85;
+}
+
+.transaction-item {
+  cursor: pointer;
+  padding: 30px !important;
+  font-size: 24px;
+  line-height: 2;
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+  border: 1px solid #dee2e6 !important;
+  border-radius: 4px !important;
+  background-color: #f8f9fa !important;
+}
+
+.transaction-item strong {
+  font-size: 28px;
+}
+
+.transaction-item span {
+  font-size: 24px;
 }
