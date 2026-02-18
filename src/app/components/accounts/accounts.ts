@@ -4,6 +4,7 @@ import { UserService } from '../../services/user-service';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ACCOUNT_CATEGORIES } from '../../constants/account-categories';
 /**
  * Accounts component displays all user accounts as Stripe-styled cards.
  * Users can view account details, add new accounts, and navigate to the manage accounts page.
@@ -21,6 +22,8 @@ export class Accounts implements OnInit {
    * List of accounts
    */
   accounts_list: any[] = [];
+
+  allAccounts: any[] = [];
 
   /**
    * Menu open state
@@ -71,6 +74,30 @@ export class Accounts implements OnInit {
   newAccountNickname: string = '';
 
   /**
+   * List of all available account categories imported from the constants file.
+   * Used to populate the category dropdown filter in the UI.
+   */
+  categories = ACCOUNT_CATEGORIES;
+
+  /**
+ * Category selected from the dropdown menu for filtering accounts.
+ * Cleared when user inputs a custom search term.
+ */
+  selectedCategory: string = '';
+
+  /**
+   * Custom category entered by the user for filtering accounts.
+   * Clears the selectedCategory when used.
+   */
+  customCategory: string = '';
+
+  /**
+ * Controls the visibility of the transaction filter UI. When true, displays category
+ * dropdown and custom search input for filtering transactions.
+ */
+  showFilter: boolean = false;
+
+  /**
    * Creates an instance of Accounts component.
    * @param accountService Service for account operations.
    * @param userService Service for user operations.
@@ -103,6 +130,7 @@ export class Accounts implements OnInit {
     this.accountService.getAccounts(userId).subscribe({
       next: (accounts) => {
         this.accounts_list = accounts;
+        this.allAccounts = accounts;
         this.cdr.detectChanges();
       },
       error: (err) => {
@@ -188,5 +216,37 @@ export class Accounts implements OnInit {
     if (digits.length <= 4) return digits.slice(0, 2) + '-' + digits.slice(2);
 
     return digits.slice(0, 2) + '-' + digits.slice(2, 4) + '-' + digits.slice(4);
+  }
+
+  /**
+ * Toggles the visibility of the transaction filter UI.
+ * When hiding the filter, also clears any active filter selections
+ * (selected category and custom search term).
+ * @returns void
+ */
+  toggleFilter() {
+    this.showFilter = !this.showFilter;
+
+    if (!this.showFilter) {
+      this.selectedCategory = '';
+      this.customCategory = '';
+    }
+  }
+
+  applyFilter() {
+    const search = (this.customCategory || this.selectedCategory || '').toLowerCase().trim();
+
+    if (!search) {
+      this.accounts_list = [...this.allAccounts];
+      return;
+    }
+
+    this.accounts_list = this.allAccounts.filter(account =>
+      account.accountType?.toLowerCase().includes(search)
+    );
+  }
+
+  get effectiveCategory(): string {
+    return this.customCategory || this.selectedCategory;
   }
 }
