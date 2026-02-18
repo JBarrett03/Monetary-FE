@@ -204,15 +204,29 @@ export class Home implements OnInit {
     }
   }
 
-    /**
-   * Getter that returns the active filter term for transactions.
-   * Prioritizes the custom search term if user has entered one,
-   * otherwise returns the selected category from the dropdown.
-   * Used by the filter pipe to display matching transactions.
-   * @returns The effective category or custom search term to filter transactions by
-   */
+  /**
+ * Getter that returns the active filter term for transactions.
+ * Prioritizes the custom search term if user has entered one,
+ * otherwise returns the selected category from the dropdown.
+ * Used by the filter pipe to display matching transactions.
+ * @returns The effective category or custom search term to filter transactions by
+ */
   get effectiveCategory(): string {
     return this.customCategory || this.selectedCategory;
   }
 
+  /**
+ * Formats the confirmSortCode input by removing non-digit characters and inserting dashes every 2 characters for better readability.
+ * This method is called on every input event for the confirmSortCode field to ensure consistent formatting as the user types.
+ */
+  formatSortCode(sortCode: string): string {
+    if (!sortCode) return '';
+
+    const digits = sortCode.replace(/\D/g, '').slice(0, 6);
+
+    if (digits.length <= 2) return digits;
+    if (digits.length <= 4) return digits.slice(0, 2) + '-' + digits.slice(2);
+
+    return digits.slice(0, 2) + '-' + digits.slice(2, 4) + '-' + digits.slice(4);
+  }
 }

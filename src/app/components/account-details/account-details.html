@@ -48,7 +48,7 @@
             <div class="card-holder">
                 {{ account.accountType | uppercase }}<br>
                 {{ account.availableBalance | currency: account.currency || 'GBP' }}<br>
-                Sort Code: {{ account.sortCode }}<br>
+                Sort Code: {{ formatSortCode(account.sortCode) }}<br>
                 {{ account.firstName }} {{ account.lastName }}
             </div>
             <div class="expiry">
