@@ -132,15 +132,31 @@
     @if (transactions.length > 0) {
     <div class="d-flex justify-content-between align-items-center mt-5">
         <h5>Transactions:</h5>
-        <div class="d-flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2 flex-wrap">
             <button class="btn btn-outline-primary btn-sm" (click)="toggleFilter()">
                 <i class="fa" [ngClass]="showFilter ? 'fa-times' : 'fa-filter'"></i>
                 {{ showFilter ? 'Close Filter' : 'Filter' }}
             </button>
 
+            <button class="btn btn-outline-primary btn-sm" (click)="toggleSortOptions()">
+                <i class="fa fa-sort"></i>
+                {{ showSortOptions ? 'Hide Sort' : 'Sort' }}
+            </button>
+
+            @if (showSortOptions) {
+            <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-outline-secondary" (click)="applySort('createdAtAsc')">
+                    Created At ↑
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" (click)="applySort('createdAtDesc')">
+                    Created At ↓
+                </button>
+            </div>
+            }
+
             @if (showFilter) {
-            <div class="d-flex gap-2 align-items-center">
-                <select class="form-select form-select-sm w-25" [(ngModel)]="selectedCategory"
+            <div class="d-flex gap-2 align-items-center flex-wrap">
+                <select class="form-select form-select-sm w-auto" [(ngModel)]="selectedCategory"
                     (change)="customCategory = ''">
                     <option value="">All Categories:</option>
                     @for (category of categories; track category) {
@@ -149,6 +165,7 @@
                     </option>
                     }
                 </select>
+
                 <input type="search" class="form-control form-control-sm w-25" placeholder="Enter category..."
                     [(ngModel)]="customCategory" (input)="selectedCategory = ''" />
             </div>

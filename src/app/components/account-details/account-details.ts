@@ -119,6 +119,16 @@ export class AccountDetails implements OnInit {
   menuOpen = false;
 
   /**
+ * Flag indicating if the sort options dropdown is visible.
+ */
+  showSortOptions: boolean = false;
+
+  /**
+ * Currently applied sort option.
+ */
+  sortOptions: 'createdAtAsc' | 'createdAtDesc' | null = null;
+
+  /**
    * Creates an instance of the AccountDetails component.
    * @param route ActivatedRoute - Used to extract the accountId from the current route parameters
    * @param router Router - Used to navigate between routes (e.g., to transaction details or back to accounts list)
@@ -466,6 +476,13 @@ export class AccountDetails implements OnInit {
   }
 
   /**
+   * Toggles the visibility of the sort options dropdown.
+   */
+  toggleSortOptions() {
+    this.showSortOptions = !this.showSortOptions;
+  }
+
+  /**
  * Formats the confirmSortCode input by removing non-digit characters and inserting dashes every 2 characters for better readability.
  * This method is called on every input event for the confirmSortCode field to ensure consistent formatting as the user types.
  */
@@ -478,5 +495,36 @@ export class AccountDetails implements OnInit {
     if (digits.length <= 4) return digits.slice(0, 2) + '-' + digits.slice(2);
 
     return digits.slice(0, 2) + '-' + digits.slice(2, 4) + '-' + digits.slice(4);
+  }
+
+  /**
+   * Applies the selected sort option to the transactions list.
+   * Supports sorting by creation date in ascending or descending order.
+   * @param option The sort option to apply.
+   */
+  applySort(option: 'createdAtAsc' | 'createdAtDesc') {
+    this.sortOptions = option;
+
+    const toTime = (value?: string): number => {
+      if (!value) return 0;
+      const normalized = value.replace(/Z$/, '');
+      const time = new Date(normalized).getTime();
+      return isNaN(time) ? 0 : time;
+    };
+
+    switch (option) {
+      case 'createdAtAsc':
+        this.transactions = [...this.transactions].sort(
+          (a, b) => toTime(a.createdAt) - toTime(b.createdAt)
+        );
+        break;
+
+      case 'createdAtDesc':
+        this.transactions = [...this.transactions].sort(
+          (a, b) => toTime(b.createdAt) - toTime(a.createdAt)
+        );
+        break;
+    }
+    this.cdr.detectChanges();
   }
 }
