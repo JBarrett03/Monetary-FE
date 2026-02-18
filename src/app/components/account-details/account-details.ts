@@ -114,6 +114,11 @@ export class AccountDetails implements OnInit {
   cardBrand: string = '';
 
   /**
+ * Menu open state
+ */
+  menuOpen = false;
+
+  /**
    * Creates an instance of the AccountDetails component.
    * @param route ActivatedRoute - Used to extract the accountId from the current route parameters
    * @param router Router - Used to navigate between routes (e.g., to transaction details or back to accounts list)
@@ -440,5 +445,12 @@ export class AccountDetails implements OnInit {
     const clean = accountNumber.replace(/\s/g, '');
     const last4 = clean.slice(-4);
     return `•••• •••• •••• ${last4}`;
+  }
+
+  /**
+ * Toggles the kebab menu visibility for adding and managing accounts.
+ */
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
   }
 }

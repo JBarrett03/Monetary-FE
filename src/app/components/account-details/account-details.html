@@ -4,20 +4,32 @@
     }
 
     @if (account) {
-    <div class="d-flex gap-2 mb-3">
-        <button class="btn btn-outline-secondary" (click)="archiveAccount()" [disabled]="account?.balance > 0">
-            Archive Account
-        </button>
-        <button class="btn" [ngClass]="account?.isDefault ? 'btn-success' : 'btn-outline-primary'"
-            (click)="setAsDefault()" [disabled]="account?.isDefault">
-            {{ account?.isDefault ? 'Default Account ✓' : 'Set as Default' }}
-        </button>
+    <div class="row mb-3">
+        <div class="col-sm-12">
+            <button class="kebab-btn" (click)="toggleMenu()">
+                <i class="fa fa-ellipsis-v"></i>
+            </button>
+            @if (menuOpen) {
+            <div class="menu-dropdown">
+                <div class="d-flex gap-2 mb-3">
+                    <button class="btn btn-outline-secondary" (click)="archiveAccount()"
+                        [disabled]="account?.balance > 0">
+                        Archive Account
+                    </button>
+                    <button class="btn" [ngClass]="account?.isDefault ? 'btn-success' : 'btn-outline-primary'"
+                        (click)="setAsDefault()" [disabled]="account?.isDefault">
+                        {{ account?.isDefault ? 'Default Account ✓' : 'Set as Default' }}
+                    </button>
 
-        @if (account?.accountType === 'savings') {
-        <button class="btn btn-outline-secondary" (click)="addBudget()">
-            {{ showBudgetForm ? 'Cancel' : 'Set Budget' }}
-        </button>
-        }
+                    @if (account?.accountType === 'savings') {
+                    <button class="btn btn-outline-secondary" (click)="addBudget()">
+                        {{ showBudgetForm ? 'Cancel' : 'Set Budget' }}
+                    </button>
+                    }
+                </div>
+            </div>
+            }
+        </div>
     </div>
 
     <div class="stripe-card mb-3">
@@ -29,7 +41,7 @@
         </div>
 
         <div class="card-number">
-            {{ account.accountNumber }}
+            {{ maskAccountNumber(account.accountNumber) }}
         </div>
 
         <div class="stripe-card-bottom">
