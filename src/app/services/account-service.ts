@@ -65,12 +65,7 @@ export class AccountService {
    * @returns An observable containing the HTTP response
    */
   addBalance(userId: string, accountId: string, amount: number): Observable<any> {
-    const url = `${this.baseUrl}/users/${userId}/accounts/${accountId}`;
-
-    const formData = new FormData();
-    formData.append('amount', amount.toString());
-
-    return this.http.post<{ balance: number }>(url, formData);
+    return this.http.post(`${this.baseUrl}/users/${userId}/accounts/${accountId}`, { amount });
   }
 
 

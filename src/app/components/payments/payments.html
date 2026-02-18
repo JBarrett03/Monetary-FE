@@ -1,16 +1,17 @@
 <button class="btn btn-success" (click)="openBalanceForm()">
     Add Balance
 </button>
+
 <h5 class="mt-4" *ngIf="recentPayees.length > 0">Recent Payees</h5>
 
 <div *ngIf="recentPayees.length > 0">
     <div class="card p-2 mb-2" *ngFor="let payee of recentPayees">
-        <strong>{{ payee.accountNumber }}</strong><br>
-        {{ payee.firstName }} {{ payee.lastName }}
-        {{ payee.accountType }} - {{ payee.currency }}
-        Sort Code: {{ payee.sortCode || '-' }}
+        <strong>{{ formatAccountNumber(payee.accountNumber) }}</strong><br>
+        {{ payee.accountType }}: {{ payee.currency }}
+        Sort Code: {{ formatSortCode(payee.sortCode) || '-' }}
     </div>
 </div>
+
 @if (showAddBalanceForm) {
 <div class="overlay" (click)="closeBalanceForm()">
     <div class="modal-card card p-3" (click)="$event.stopPropagation()">
@@ -19,18 +20,19 @@
 
         <div class="mb-3">
             <label class="form-label">Account Number</label>
-            <input type="text" [(ngModel)]="confirmAccountNumber" (input)="formatAccountNumber()" (keydown)="numbersOnly($event)" maxlength="19" inputmode="numeric">
+            <input type="text" [(ngModel)]="confirmAccountNumber" (input)="confirmAccountNumber = formatAccountNumber(confirmAccountNumber)"
+                (keydown)="numbersOnly($event)" maxlength="19" inputmode="numeric">
         </div>
         <div class="mb-3">
             <label class="form-label">Sort Code</label>
-            <input type="text" [(ngModel)]="confirmSortCode" (input)="formatSortCode()" (keydown)="numbersOnly($event)" maxlength="8" inputmode="numeric">
+            <input type="text" [(ngModel)]="confirmSortCode" (input)="confirmSortCode = formatSortCode(confirmSortCode)" (keydown)="numbersOnly($event)"
+                maxlength="8" inputmode="numeric">
         </div>
         <div class="mb-3">
             <label class="form-label">Amount to add</label>
-            <input type="number" class="form-control" [(ngModel)]="amountToAdd" name="amountToAdd" required>
+            <input type="number" class="form-control" [(ngModel)]="amountToAdd" required>
         </div>
-        <button type="button" class="btn btn-primary w-100" (click)="$event.stopPropagation(); addBalance()"
-            [disabled]="!confirmAccountNumber || !amountToAdd">
+        <button type="button" class="btn btn-primary w-100" (click)="addBalance()">
             Confirm Add Balance
         </button>
     </div>

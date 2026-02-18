@@ -112,6 +112,7 @@ export class Payments implements OnInit {
  * If validation passes, it calls the AccountService to add the balance and updates the account information on success. Displays error messages for any validation or operation failures.
  */
   addBalance() {
+    console.log("Add balance clicked")
     const userId = sessionStorage.getItem('userId');
     const accountId = sessionStorage.getItem('accountId');
 
@@ -119,18 +120,24 @@ export class Payments implements OnInit {
       return;
     }
 
-    if (!this.confirmAccountNumber || !this.confirmSortCode || !this.amountToAdd || this.amountToAdd <= 0) {
+    if (!this.confirmAccountNumber || !this.confirmSortCode || !(this.amountToAdd && this.amountToAdd > 0)) {
       this.error = 'Please enter a valid account number, sort code, and amount';
       this.cdr.detectChanges();
       return;
     }
 
-    this.accountService.getAccountByNumber(userId, this.confirmAccountNumber, this.confirmSortCode).subscribe({
+    const cleanAccountNumber = this.confirmAccountNumber.replace(/\s/g, '');
+    const cleanSortCode = this.confirmSortCode.replace(/-/g, '');
+
+    console.log("Before")
+    this.accountService.getAccountByNumber(userId, cleanAccountNumber, cleanSortCode).subscribe({
       next: (account) => {
+        console.log("AFter")
         const payeeAccountId = account._id;
 
         this.accountService.addBalance(userId, payeeAccountId, this.amountToAdd!).subscribe({
           next: () => {
+            console.log("Inside add balance success")
             this.accountService.getAccount(userId, accountId).subscribe(updatedAccount => {
               this.account = updatedAccount;
               this.cdr.detectChanges();
@@ -154,6 +161,9 @@ export class Payments implements OnInit {
             this.amountToAdd = null;
             this.error = null;
             this.cdr.detectChanges();
+
+            console.log("Updated account:", payeeAccountId);
+            console.log("Currently viewed account:", accountId);
           },
           error: () => {
             this.error = 'Account number not found';
@@ -172,48 +182,25 @@ export class Payments implements OnInit {
    * Formats the confirmAccountNumber input by removing spaces and inserting dashes every 4 characters for better readability.
    * This method is called on every input event for the confirmAccountNumber field to ensure consistent formatting as the user types.
    */
-  formatAccountNumber() {
-    if (!this.confirmAccountNumber) {
-      return;
-    }
-
-    let digits = this.confirmAccountNumber.replace(/\D/g, '');
-    digits = digits.slice(0, 16);
-
-    let formatted = '';
-
-    for (let i = 0; i < digits.length; i++) {
-      if (i > 0 && i % 4 === 0) {
-        formatted += '-';
-      }
-      formatted += digits[i];
-    }
-
-    this.confirmAccountNumber = formatted;
+  formatAccountNumber(accountNumber: string | undefined | null): string {
+    if (!accountNumber) return '';
+    const digits = accountNumber.replace(/\D/g, '').slice(0, 16);
+    return digits.replace(/(.{4})/g, '$1 ').trim();
   }
 
   /**
    * Formats the confirmSortCode input by removing non-digit characters and inserting dashes every 2 characters for better readability.
    * This method is called on every input event for the confirmSortCode field to ensure consistent formatting as the user types.
    */
-  formatSortCode() {
-    if (!this.confirmSortCode) {
-      return;
-    }
+  formatSortCode(sortCode: string): string {
+    if (!sortCode) return '';
 
-    let digits = this.confirmSortCode.replace(/\D/g, '');
-    digits = digits.slice(0, 6);
+    const digits = sortCode.replace(/\D/g, '').slice(0, 6);
 
-    let formatted = '';
+    if (digits.length <= 2) return digits;
+    if (digits.length <= 4) return digits.slice(0, 2) + '-' + digits.slice(2);
 
-    for (let i = 0; i < digits.length; i++) {
-      if (i > 0 && i % 2 === 0) {
-        formatted += '-';
-      }
-      formatted += digits[i];
-    }
-
-    this.confirmSortCode = formatted;
+    return digits.slice(0, 2) + '-' + digits.slice(2, 4) + '-' + digits.slice(4);
   }
 
   numbersOnly(event: KeyboardEvent) {
