@@ -23,6 +23,9 @@ export class Accounts implements OnInit {
    */
   accounts_list: any[] = [];
 
+  /**
+   * List of all accounts (used for filtering)
+   */
   allAccounts: any[] = [];
 
   /**
@@ -242,8 +245,10 @@ export class Accounts implements OnInit {
     }
 
     this.accounts_list = this.allAccounts.filter(account =>
-      account.accountType?.toLowerCase().includes(search)
+      account.accountType?.toLowerCase().includes(search) ||
+      account.nickname?.toLowerCase().includes(search)
     );
+    this.cdr.detectChanges();
   }
 
   get effectiveCategory(): string {
