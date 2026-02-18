@@ -23,6 +23,41 @@
                 </div>
             </div>
 
+            @if (showAddAccountForm) {
+            <div class="overlay" (click)="showAddAccountForm = false">
+                <div class="modal-card card p-4" (click)="$event.stopPropagation()">
+
+                    <h5 class="mb-3">Create New Account</h5>
+
+                    <div class="mb-3">
+                        <label class="form-label">Account Name</label>
+                        <input type="text" class="form-control" [(ngModel)]="newAccountNickname"
+                            placeholder="e.g. Travel Fund">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Account Type</label>
+                        <select class="form-select" [(ngModel)]="newAccountType">
+                            <option value="">Select Type:</option>
+                            <option value="current">Current</option>
+                            <option value="savings">Savings</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Currency</label>
+                        <select class="form-select" [(ngModel)]="newAccountCurrency">
+                            <option value="">Select Currency:</option>
+                            <option value="GBP">GBP</option>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-success w-100" (click)="addAccount()">
+                        Create Account
+                    </button>
+                </div>
+            </div>
+            }
+
             @for (account of accounts_list; track account._id) {
             <div class="stripe-card mb-3 clickable-card" [routerLink]="['/accounts', account._id]"
                 [class.complete]="cardComplete">
@@ -39,7 +74,9 @@
 
                 <div class="stripe-card-bottom">
                     <div class="card-holder">
-                        {{ account.accountType | uppercase }}<br>
+                        <strong class="account-nickname">
+                            {{ account.nickname || (account.accountType | titlecase) }}
+                        </strong>
                         {{ account.availableBalance | currency: (account.currency || 'GBP') }}<br>
                         Sort Code: {{ account.sortCode }}<br>
                         {{ account.firstName }} {{ account.lastName }}

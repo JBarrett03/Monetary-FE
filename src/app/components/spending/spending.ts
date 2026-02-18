@@ -5,9 +5,10 @@ import * as Highcharts from 'highcharts';
 import { HighchartsChartModule } from 'highcharts-angular';
 
 /**
- * Spending component - placeholder for spending analytics features.
- * This component is intended for displaying spending summaries, charts, and analysis.
- * Currently serves as a foundation for future development.
+ * Spending component - displays budget and spending analytics with interactive charts.
+ * Provides two views: 'savings' (remaining budget) and 'spent' (amount spent from budget).
+ * Uses Highcharts to visualize budget breakdown and spending patterns.
+ * Includes slide-in panel animation for viewing details and data export capability.
  */
 @Component({
   selector: 'app-spending',
@@ -18,14 +19,15 @@ import { HighchartsChartModule } from 'highcharts-angular';
 })
 
 /**
- * Spending class - the component logic for the spending page.
- * To be implemented with spending analysis and visualization features.
+ * Component logic for budget analytics and spending visualization.
+ * Toggles between savings and spending views, loads account data, and renders Highcharts visualizations.
  */
 export class Spending {
 
   /**
- * Constructor for Spending component. Currently does not perform any initialization. 
- */
+   * Constructor for Spending component.
+   * @param accountService Service for fetching account and budget data
+   */
   constructor(private accountService: AccountService) { }
 
   /**
@@ -41,13 +43,21 @@ export class Spending {
   Highcharts: typeof Highcharts = Highcharts;
 
   /**
-   * Chart options for configuring the appearance and data of the Highcharts charts.
-   * This object will be populated with the appropriate configuration when loading the savings chart.
+   * Configuration object for Highcharts chart. Contains chart type, data series, labels, and display options.
+   * Updated dynamically when switching between 'savings' and 'spent' views.
    */
   chartOptions: Highcharts.Options = {};
 
+  /**
+   * Reference to the Highcharts chart instance, used for manual updates and reflowing after data changes.
+   * This allows the component to programmatically control the chart rendering and ensure it updates correctly when the view changes.
+   */
   chartRef: Highcharts.Chart | null = null;
 
+  /**
+   * Chart callback function that is called when the Highcharts chart is initialized. It receives the chart instance as a parameter and assigns it to the chartRef variable for later use.
+   * This allows the component to keep a reference to the chart instance, enabling manual updates and reflowing when necessary.
+   */
   chartCallback: Highcharts.ChartCallbackFunction = (chart) => {
     this.chartRef = chart;
   }
@@ -83,6 +93,10 @@ export class Spending {
     this.activeView = null;
   }
 
+  /**
+   * Loads the savings chart data and configuration for the Highcharts instance. It retrieves the user's account information, including budget and spending data, and constructs a pie chart to visualize the breakdown of spent vs remaining budget.
+   * The chart displays the percentage and amount of money spent and remaining in the user's budget, providing insights into their savings progress.
+   */
   loadSavingsChart() {
     const userId = sessionStorage.getItem('userId');
     const accountId = sessionStorage.getItem('accountId');

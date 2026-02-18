@@ -14,7 +14,8 @@ import { Navigation } from './components/navigation/navigation';
 })
 
 /**
- * The App class defines the main application component. It includes a title property that is initialized as a signal with the value 'Monetary'.
+ * The App class is the root component of the application.
+ * It provides the main layout structure with navigation and routed content display.
  */
 export class App {
   

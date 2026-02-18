@@ -142,7 +142,9 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Component for creating a new user account.</p>
+        <p>CreateAccount component - handles new user registration.
+Presents a form for collecting user information (name, email, password, contact details, and date of birth).
+Submits user data to the backend API and initializes the user&#39;s session upon successful registration.</p>
 
     </p>
 
@@ -276,7 +278,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/create-account/create-account.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/create-account/create-account.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -366,8 +368,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="67"
-                                    class="link-to-prism">src/app/components/create-account/create-account.ts:67</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/app/components/create-account/create-account.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -415,7 +417,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/components/create-account/create-account.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/create-account/create-account.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -452,7 +454,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/create-account/create-account.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/create-account/create-account.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -489,7 +491,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/create-account/create-account.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/create-account/create-account.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -526,7 +528,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/create-account/create-account.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/create-account/create-account.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -563,7 +565,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/create-account/create-account.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/create-account/create-account.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -600,7 +602,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/create-account/create-account.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/create-account/create-account.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -637,7 +639,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/create-account/create-account.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/create-account/create-account.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -662,7 +664,9 @@ import { Router } from &#x27;@angular/router&#x27;;
 import { UserService } from &#x27;../../services/user-service&#x27;;
 
 /**
- * Component for creating a new user account.
+ * CreateAccount component - handles new user registration.
+ * Presents a form for collecting user information (name, email, password, contact details, and date of birth).
+ * Submits user data to the backend API and initializes the user&#x27;s session upon successful registration.
  */
 @Component({
   standalone: true,
@@ -673,7 +677,8 @@ import { UserService } from &#x27;../../services/user-service&#x27;;
 })
 
 /**
- * Class representing the CreateAccount component.
+ * Component logic for user registration.
+ * Manages form input, validation, and account creation through the UserService.
  */
 export class CreateAccount {
 

@@ -508,8 +508,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="95"
-                                    class="link-to-prism">src/app/services/account-service.ts:95</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/services/account-service.ts:90</a></div>
                         </td>
                     </tr>
 
@@ -615,8 +615,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="124"
-                                    class="link-to-prism">src/app/services/account-service.ts:124</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="119"
+                                    class="link-to-prism">src/app/services/account-service.ts:119</a></div>
                         </td>
                     </tr>
 
@@ -797,8 +797,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="165"
-                                    class="link-to-prism">src/app/services/account-service.ts:165</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="160"
+                                    class="link-to-prism">src/app/services/account-service.ts:160</a></div>
                         </td>
                     </tr>
 
@@ -979,8 +979,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="83"
-                                    class="link-to-prism">src/app/services/account-service.ts:83</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/services/account-service.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -1070,8 +1070,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="133"
-                                    class="link-to-prism">src/app/services/account-service.ts:133</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/app/services/account-service.ts:128</a></div>
                         </td>
                     </tr>
 
@@ -1145,8 +1145,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="184"
-                                    class="link-to-prism">src/app/services/account-service.ts:184</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="179"
+                                    class="link-to-prism">src/app/services/account-service.ts:179</a></div>
                         </td>
                     </tr>
 
@@ -1220,8 +1220,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="143"
-                                    class="link-to-prism">src/app/services/account-service.ts:143</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="138"
+                                    class="link-to-prism">src/app/services/account-service.ts:138</a></div>
                         </td>
                     </tr>
 
@@ -1311,8 +1311,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="113"
-                                    class="link-to-prism">src/app/services/account-service.ts:113</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="108"
+                                    class="link-to-prism">src/app/services/account-service.ts:108</a></div>
                         </td>
                     </tr>
 
@@ -1402,8 +1402,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="154"
-                                    class="link-to-prism">src/app/services/account-service.ts:154</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="149"
+                                    class="link-to-prism">src/app/services/account-service.ts:149</a></div>
                         </td>
                     </tr>
 
@@ -1509,8 +1509,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="175"
-                                    class="link-to-prism">src/app/services/account-service.ts:175</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="170"
+                                    class="link-to-prism">src/app/services/account-service.ts:170</a></div>
                         </td>
                     </tr>
 
@@ -1697,12 +1697,7 @@ export class AccountService {
    * @returns An observable containing the HTTP response
    */
   addBalance(userId: string, accountId: string, amount: number): Observable&lt;any&gt; {
-    const url &#x3D; &#x60;${this.baseUrl}/users/${userId}/accounts/${accountId}&#x60;;
-
-    const formData &#x3D; new FormData();
-    formData.append(&#x27;amount&#x27;, amount.toString());
-
-    return this.http.post&lt;{ balance: number }&gt;(url, formData);
+    return this.http.post(&#x60;${this.baseUrl}/users/${userId}/accounts/${accountId}&#x60;, { amount });
   }
 
 

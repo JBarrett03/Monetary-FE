@@ -274,14 +274,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/app/services/transaction-service.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/app/services/transaction-service.ts:34</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Fetch all transactions for a user&#39;s account from the API.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -292,6 +294,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -306,6 +309,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The ID of the user to retrieve transactions for</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>accountId</td>
@@ -318,6 +325,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The ID of the account to retrieve transactions for</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -327,7 +338,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>An observable containing the list of transactions</p>
+
                             </div>
                 </td>
             </tr>
@@ -353,8 +365,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/app/services/transaction-service.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/services/transaction-service.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -517,6 +529,12 @@ export class TransactionService {
    */
   constructor(private http: HttpClient) {}
 
+  /**
+   * Fetch all transactions for a user&#x27;s account from the API.
+   * @param userId The ID of the user to retrieve transactions for
+   * @param accountId The ID of the account to retrieve transactions for
+   * @returns An observable containing the list of transactions
+   */
   getAllTransactions(userId: string, accountId: string):Observable&lt;any[]&gt; {
     const url &#x3D; &#x60;${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions&#x60;;
     return this.http.get&lt;any[]&gt;(url);

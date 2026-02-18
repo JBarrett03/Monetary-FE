@@ -7,11 +7,10 @@ import { FilterPipe } from '../../pipes/filter-pipe';
 import { TRANSACTION_CATEGORIES } from '../../constants/transaction-categories';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 /**
- * AccountDetails component
- * Displays detailed information about a single account, including its balance,
- * transactions, and budget settings. Users can view transactions, add new transactions,
- * manage budgets, and archive accounts. Supports filtering and searching transactions
- * by category.
+ * AccountDetails component - displays comprehensive information for a single account.
+ * Shows account balance, transaction history, and budget management.
+ * Enables users to add transactions, manage budgets with configurable periods, set default accounts,
+ * and archive accounts. Provides category-based transaction filtering and search capabilities.
  */
 @Component({
   standalone: true,
@@ -22,7 +21,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 })
 
 /**
- * Component class for managing and displaying account details
+ * Component logic for managing account details, budgets, and transactions.
+ * Handles account display, transaction management, budget creation/editing, and filtering.
  */
 export class AccountDetails implements OnInit {
 

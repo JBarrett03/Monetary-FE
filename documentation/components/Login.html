@@ -142,9 +142,9 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Login component for user authentication.
-This component provides a form for users to enter their email and password,
-and handles the login process by communicating with the backend API.</p>
+        <p>Login component - handles user authentication and session initialization.
+Presents a login form for collecting email and password credentials.
+Authenticates users via the backend API and initializes the session with user data upon successful login.</p>
 
     </p>
 
@@ -263,7 +263,7 @@ and handles the login process by communicating with the backend API.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/login/login.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/login/login.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -353,8 +353,8 @@ and handles the login process by communicating with the backend API.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/app/components/login/login.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/components/login/login.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -403,7 +403,7 @@ Sends user credentials to the backend API and handles the response.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/login/login.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/login/login.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -440,7 +440,7 @@ Sends user credentials to the backend API and handles the response.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/login/login.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/login/login.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -465,9 +465,9 @@ import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 
 /**
- * Login component for user authentication.
- * This component provides a form for users to enter their email and password,
- * and handles the login process by communicating with the backend API.
+ * Login component - handles user authentication and session initialization.
+ * Presents a login form for collecting email and password credentials.
+ * Authenticates users via the backend API and initializes the session with user data upon successful login.
  */
 @Component({
   standalone: true,
@@ -478,9 +478,8 @@ import { Router } from &#x27;@angular/router&#x27;;
 })
 
 /**
- * The Login class represents the logic for the login component.
- * It manages user input for email and password, and handles form submission
- * to authenticate the user with the backend API.
+ * Component logic for user authentication.
+ * Manages login form input, validation, and authentication flow.
  */
 export class Login {
 

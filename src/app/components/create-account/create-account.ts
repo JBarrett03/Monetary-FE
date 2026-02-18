@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user-service';
 
 /**
- * Component for creating a new user account.
+ * CreateAccount component - handles new user registration.
+ * Presents a form for collecting user information (name, email, password, contact details, and date of birth).
+ * Submits user data to the backend API and initializes the user's session upon successful registration.
  */
 @Component({
   standalone: true,
@@ -15,7 +17,8 @@ import { UserService } from '../../services/user-service';
 })
 
 /**
- * Class representing the CreateAccount component.
+ * Component logic for user registration.
+ * Manages form input, validation, and account creation through the UserService.
  */
 export class CreateAccount {
 

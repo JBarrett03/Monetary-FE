@@ -3,7 +3,7 @@ import { AccountService } from '../../services/account-service';
 import { UserService } from '../../services/user-service';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
-
+import { FormsModule } from '@angular/forms';
 /**
  * Accounts component displays all user accounts as Stripe-styled cards.
  * Users can view account details, add new accounts, and navigate to the manage accounts page.
@@ -11,7 +11,7 @@ import { RouterModule, Router } from '@angular/router';
 @Component({
   standalone: true,
   selector: 'app-accounts',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './accounts.html',
   styleUrl: './accounts.css',
 })
@@ -46,6 +46,29 @@ export class Accounts implements OnInit {
    * Indicates whether the card information is complete for display purposes.
    */
   cardComplete: boolean = false;
+
+  /**
+   * Flag to control the visibility of the add account form.
+   */
+  showAddAccountForm: boolean = false;
+
+  /**
+   * New account type selected by the user when adding a new account (e.g., 'savings', 'checking').
+   * This value is used to specify the type of account being created when the user submits the add account form.
+   */
+  newAccountType: string = '';
+
+  /**
+   * New account currency selected by the user when adding a new account (e.g., 'USD', 'EUR').
+   * This value is used to specify the currency of the account being created when the user submits the add account form.
+   */
+  newAccountCurrency: string = '';
+
+  /**
+   * New account nickname entered by the user when adding a new account.
+   * This value is used to specify a custom nickname for the account being created, allowing users to easily identify their accounts in the UI.
+   */
+  newAccountNickname: string = '';
 
   /**
    * Creates an instance of Accounts component.
@@ -97,23 +120,31 @@ export class Accounts implements OnInit {
 
     if (!userId) return;
 
-    const accountType = prompt('Account type (e.g. Current, Savings):');
-    const currency = prompt('Currency (e.g. GBP, USD):');
+    if (!this.showAddAccountForm) {
+      this.showAddAccountForm = true;
+      return;
+    }
 
-    if (!accountType || !currency) return;
+    if (!this.newAccountType || !this.newAccountCurrency) return;
 
-    const account = { accountType, currency };
+    const account = {
+      accountType: this.newAccountType,
+      currency: this.newAccountCurrency,
+      nickname: this.newAccountNickname || 'New Account'
+    }
 
     this.accountService.addAccount(userId, account).subscribe({
       next: () => {
-        this.accountService.getAccounts(userId).subscribe({
-          next: (accounts) => {
-            this.accounts_list = accounts;
-            this.cdr.detectChanges();
-          },
-        });
-      },
-    });
+        this.accountService.getAccounts(userId).subscribe(accounts => {
+          this.accounts_list = accounts;
+          this.showAddAccountForm = false;
+          this.newAccountType = '';
+          this.newAccountCurrency = '';
+          this.newAccountNickname = '';
+          this.cdr.detectChanges();
+        })
+      }
+    })
   }
 
   /**

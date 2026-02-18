@@ -142,7 +142,9 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Navigation component for the application.</p>
+        <p>Navigation component - displays application navigation links and user authentication status.
+Shows the app menu with links to main pages (home, accounts, payments, spending).
+Displays user profile information and authentication state in the header.</p>
 
     </p>
 
@@ -274,8 +276,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/app/components/navigation/navigation.ts:32</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="35"
+                                    class="link-to-prism">src/app/components/navigation/navigation.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -319,7 +321,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/components/navigation/navigation.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/components/navigation/navigation.ts:27</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -348,7 +350,9 @@ import { RouterModule } from &#x27;@angular/router&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 
 /**
- * Navigation component for the application.
+ * Navigation component - displays application navigation links and user authentication status.
+ * Shows the app menu with links to main pages (home, accounts, payments, spending).
+ * Displays user profile information and authentication state in the header.
  */
 @Component({
   selector: &#x27;app-navigation&#x27;,
@@ -358,7 +362,8 @@ import { CommonModule } from &#x27;@angular/common&#x27;;
 })
 
 /**
- * Navigation class handles the navigation logic of the application.
+ * Component logic for application navigation.
+ * Manages navigation links visibility based on user authentication state.
  */
 export class Navigation {
 

@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../../services/account-service';
 /**
- * Payments component - placeholder for payment processing features.
- * This component is intended for handling user payments, transfers, and payment history.
- * Currently serves as a foundation for future development.
+ * Payments component - handles balance transfers between user accounts.
+ * Allows users to search for recipient accounts by account number and sort code,
+ * transfer balance between accounts, and maintains a history of recent payees.
+ * Includes form validation and error handling for transfer operations.
  */
 @Component({
   selector: 'app-payments',
@@ -15,11 +16,17 @@ import { AccountService } from '../../services/account-service';
   styleUrl: './payments.css',
 })
 
+/**
+ * Component logic for balance transfer operations.
+ * Manages form state, account lookups, transfers, and recent payee tracking.
+ */
 export class Payments implements OnInit {
 
   /**
-   * Constructor for Payments component. Currently does not perform any initialization. 
-  */
+   * Constructor for Payments component.
+   * @param accountService Service for account operations and balance transfers
+   * @param cdr ChangeDetectorRef for manual change detection after async operations
+   */
   constructor(private accountService: AccountService, private cdr: ChangeDetectorRef) { }
 
   /**
@@ -203,6 +210,11 @@ export class Payments implements OnInit {
     return digits.slice(0, 2) + '-' + digits.slice(2, 4) + '-' + digits.slice(4);
   }
 
+  /**
+   * Event handler to allow only numeric input in the confirmAccountNumber and confirmSortCode fields.
+   * This method checks the key pressed against allowed keys (backspace, tab, arrow keys, delete) and numeric characters.
+   * If the key is not allowed, it prevents the default action, effectively blocking non-numeric input.
+   */
   numbersOnly(event: KeyboardEvent) {
     const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'];
 

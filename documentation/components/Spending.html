@@ -142,9 +142,10 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Spending component - placeholder for spending analytics features.
-This component is intended for displaying spending summaries, charts, and analysis.
-Currently serves as a foundation for future development.</p>
+        <p>Spending component - displays budget and spending analytics with interactive charts.
+Provides two views: &#39;savings&#39; (remaining budget) and &#39;spent&#39; (amount spent from budget).
+Uses Highcharts to visualize budget breakdown and spending patterns.
+Includes slide-in panel animation for viewing details and data export capability.</p>
 
     </p>
 
@@ -172,7 +173,18 @@ Currently serves as a foundation for future development.</p>
                 <td class="col-md-9"><code>app-spending</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="https://angular.io/api/common/CommonModule" target="_blank" >CommonModule</a></code>
+                            <code>HighchartsChartModule</code>
+                </td>
+            </tr>
 
 
 
@@ -212,6 +224,18 @@ Currently serves as a foundation for future development.</p>
                             <li>
                                 <a href="#activeView" >activeView</a>
                             </li>
+                            <li>
+                                <a href="#chartCallback" >chartCallback</a>
+                            </li>
+                            <li>
+                                <a href="#chartOptions" >chartOptions</a>
+                            </li>
+                            <li>
+                                <a href="#chartRef" >chartRef</a>
+                            </li>
+                            <li>
+                                <a href="#Highcharts" >Highcharts</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -226,6 +250,9 @@ Currently serves as a foundation for future development.</p>
                         <ul class="index-list">
                             <li>
                                 <a href="#closeView" >closeView</a>
+                            </li>
+                            <li>
+                                <a href="#loadSavingsChart" >loadSavingsChart</a>
                             </li>
                             <li>
                                 <a href="#showSavings" >showSavings</a>
@@ -245,6 +272,61 @@ Currently serves as a foundation for future development.</p>
     </table>
 </section>
 
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(accountService: <a href="../injectables/AccountService.html" target="_self">AccountService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/spending/spending.ts:25</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor for Spending component.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>accountService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AccountService.html" target="_self" >AccountService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Service for fetching account and budget data</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
 
@@ -275,8 +357,8 @@ Currently serves as a foundation for future development.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/app/components/spending/spending.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="92"
+                                    class="link-to-prism">src/app/components/spending/spending.ts:92</a></div>
                         </td>
                     </tr>
 
@@ -285,6 +367,46 @@ Currently serves as a foundation for future development.</p>
                 <td class="col-md-4">
                         <div class="io-description"><p>Method to close the currently active view and return to the default state with no analytics displayed.
 Sets the activeView variable to null, which hides any active analytics view.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadSavingsChart"></a>
+                    <span class="name">
+                        <span ><b>loadSavingsChart</b></span>
+                        <a href="#loadSavingsChart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadSavingsChart()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/components/spending/spending.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Loads the savings chart data and configuration for the Highcharts instance. It retrieves the user&#39;s account information, including budget and spending data, and constructs a pie chart to visualize the breakdown of spent vs remaining budget.
+The chart displays the percentage and amount of money spent and remaining in the user&#39;s budget, providing insights into their savings progress.</p>
 </div>
 
                         <div class="io-description">
@@ -315,8 +437,8 @@ Sets the activeView variable to null, which hides any active analytics view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/app/components/spending/spending.ts:31</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/app/components/spending/spending.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -355,8 +477,8 @@ Sets the activeView variable to &#39;savings&#39; to trigger the display of the 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="39"
-                                    class="link-to-prism">src/app/components/spending/spending.ts:39</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/app/components/spending/spending.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -405,7 +527,7 @@ Sets the activeView variable to &#39;spent&#39; to trigger the display of the sp
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/spending/spending.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/spending/spending.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -419,6 +541,158 @@ This variable controls which spending analytics view is currently displayed to t
 
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chartCallback"></a>
+                    <span class="name">
+                        <span ><b>chartCallback</b></span>
+                        <a href="#chartCallback"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Highcharts.ChartCallbackFunction</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/spending/spending.ts:61</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Chart callback function that is called when the Highcharts chart is initialized. It receives the chart instance as a parameter and assigns it to the chartRef variable for later use.
+This allows the component to keep a reference to the chart instance, enabling manual updates and reflowing when necessary.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chartOptions"></a>
+                    <span class="name">
+                        <span ><b>chartOptions</b></span>
+                        <a href="#chartOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Highcharts.Options</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/spending/spending.ts:49</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Configuration object for Highcharts chart. Contains chart type, data series, labels, and display options.
+Updated dynamically when switching between &#39;savings&#39; and &#39;spent&#39; views.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chartRef"></a>
+                    <span class="name">
+                        <span ><b>chartRef</b></span>
+                        <a href="#chartRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Highcharts.Chart | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/spending/spending.ts:55</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Reference to the Highcharts chart instance, used for manual updates and reflowing after data changes.
+This allows the component to programmatically control the chart rendering and ensure it updates correctly when the view changes.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Highcharts"></a>
+                    <span class="name">
+                        <span ><b>Highcharts</b></span>
+                        <a href="#Highcharts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Highcharts</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/spending/spending.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Highcharts instance for rendering charts in the spending analytics views.
+This is used to create and display charts based on the user&#39;s spending data.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </section>
 
 </div>
@@ -426,24 +700,36 @@ This variable controls which spending analytics view is currently displayed to t
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { AccountService } from &#x27;../../services/account-service&#x27;;
+import * as Highcharts from &#x27;highcharts&#x27;;
+import { HighchartsChartModule } from &#x27;highcharts-angular&#x27;;
 
 /**
- * Spending component - placeholder for spending analytics features.
- * This component is intended for displaying spending summaries, charts, and analysis.
- * Currently serves as a foundation for future development.
+ * Spending component - displays budget and spending analytics with interactive charts.
+ * Provides two views: &#x27;savings&#x27; (remaining budget) and &#x27;spent&#x27; (amount spent from budget).
+ * Uses Highcharts to visualize budget breakdown and spending patterns.
+ * Includes slide-in panel animation for viewing details and data export capability.
  */
 @Component({
   selector: &#x27;app-spending&#x27;,
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, HighchartsChartModule],
   templateUrl: &#x27;./spending.html&#x27;,
   styleUrl: &#x27;./spending.css&#x27;,
 })
 
 /**
- * Spending class - the component logic for the spending page.
- * To be implemented with spending analysis and visualization features.
+ * Component logic for budget analytics and spending visualization.
+ * Toggles between savings and spending views, loads account data, and renders Highcharts visualizations.
  */
 export class Spending {
+
+  /**
+   * Constructor for Spending component.
+   * @param accountService Service for fetching account and budget data
+   */
+  constructor(private accountService: AccountService) { }
 
   /**
    * The active view for spending analytics, which can be &#x27;savings&#x27;, &#x27;spent&#x27;, or null (no view).
@@ -452,11 +738,44 @@ export class Spending {
   activeView: &#x27;savings&#x27; | &#x27;spent&#x27; | null &#x3D; null;
 
   /**
+   * Highcharts instance for rendering charts in the spending analytics views.
+   * This is used to create and display charts based on the user&#x27;s spending data.
+   */
+  Highcharts: typeof Highcharts &#x3D; Highcharts;
+
+  /**
+   * Configuration object for Highcharts chart. Contains chart type, data series, labels, and display options.
+   * Updated dynamically when switching between &#x27;savings&#x27; and &#x27;spent&#x27; views.
+   */
+  chartOptions: Highcharts.Options &#x3D; {};
+
+  /**
+   * Reference to the Highcharts chart instance, used for manual updates and reflowing after data changes.
+   * This allows the component to programmatically control the chart rendering and ensure it updates correctly when the view changes.
+   */
+  chartRef: Highcharts.Chart | null &#x3D; null;
+
+  /**
+   * Chart callback function that is called when the Highcharts chart is initialized. It receives the chart instance as a parameter and assigns it to the chartRef variable for later use.
+   * This allows the component to keep a reference to the chart instance, enabling manual updates and reflowing when necessary.
+   */
+  chartCallback: Highcharts.ChartCallbackFunction &#x3D; (chart) &#x3D;&gt; {
+    this.chartRef &#x3D; chart;
+  }
+
+  /**
    * Method to show the savings view, which displays analytics related to money saved.
    * Sets the activeView variable to &#x27;savings&#x27; to trigger the display of the savings analytics.
    */
   showSavings() {
     this.activeView &#x3D; &#x27;savings&#x27;;
+    setTimeout(() &#x3D;&gt; {
+      this.loadSavingsChart();
+
+      if (this.chartRef) {
+        this.chartRef.reflow();
+      }
+    }, 450);
   }
 
   /**
@@ -473,6 +792,55 @@ export class Spending {
    */
   closeView() {
     this.activeView &#x3D; null;
+  }
+
+  /**
+   * Loads the savings chart data and configuration for the Highcharts instance. It retrieves the user&#x27;s account information, including budget and spending data, and constructs a pie chart to visualize the breakdown of spent vs remaining budget.
+   * The chart displays the percentage and amount of money spent and remaining in the user&#x27;s budget, providing insights into their savings progress.
+   */
+  loadSavingsChart() {
+    const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
+    const accountId &#x3D; sessionStorage.getItem(&#x27;accountId&#x27;);
+
+    if (!userId || !accountId) {
+      return;
+    }
+
+    this.accountService.getAccount(userId, accountId).subscribe(account &#x3D;&gt; {
+      if (!account.budget) return;
+
+      const totalBudget &#x3D; account.budget.amount;
+      const spent &#x3D; account.budgetSpent || 0;
+      const remaining &#x3D; account.budgetRemaining || totalBudget;
+
+      this.chartOptions &#x3D; {
+        chart: {
+          type: &#x27;pie&#x27;
+        },
+        title: {
+          text: &#x27;Savings Budget Overview&#x27;
+        },
+        tooltip: {
+          pointFormat: &#x27;&lt;b&gt;{point.percentage:.1f}%&lt;/b&gt; ({point.y:.2f})&#x27;
+        },
+        plotOptions: {
+          pie: {
+            innerSize: &#x27;60%&#x27;,
+            dataLabels: {
+              enabled: true,
+              format: &#x27;{point.name}: {point.y:.2f}&#x27;
+            }
+          }
+        },
+        series: [{
+          type: &#x27;pie&#x27;,
+          data: [
+            { name: &#x27;Spent&#x27;, y: spent, color: &#x27;#e53935&#x27; },
+            { name: &#x27;Remaining&#x27;, y: remaining, color: &#x27;#43a047&#x27; }
+          ]
+        }]
+      };
+    });
   }
 
 }
@@ -497,13 +865,14 @@ export class Spending {
     &lt;div class&#x3D;&quot;panel-content&quot;&gt;
         &lt;div *ngIf&#x3D;&quot;activeView &#x3D;&#x3D;&#x3D; &#x27;savings&#x27;&quot;&gt;
             &lt;h2&gt;Savings Clicked&lt;/h2&gt;
+            &lt;highcharts-chart [Highcharts]&#x3D;&quot;Highcharts&quot; [options]&#x3D;&quot;chartOptions&quot; [callbackFunction]&#x3D;&quot;chartCallback&quot;
+                style&#x3D;&quot;width: 100%; height: 400px; display: block;&quot;&gt;&lt;/highcharts-chart&gt;
         &lt;/div&gt;
         &lt;div *ngIf&#x3D;&quot;activeView &#x3D;&#x3D;&#x3D; &#x27;spent&#x27;&quot;&gt;
             &lt;h2&gt;Spending Clicked&lt;/h2&gt;
         &lt;/div&gt;
-        &lt;button class&#x3D;&quot;btn btn-primary mt-4&quot;&gt;Export Data&lt;/button&gt;
+        &lt;button class&#x3D;&quot;btn btn-primary&quot;&gt;Export Data&lt;/button&gt;
     &lt;/div&gt;
-    &lt;div class&#x3D;&quot;overlay&quot; *ngIf&#x3D;&quot;activeView&quot; (click)&#x3D;&quot;closeView()&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
     </div>
 
@@ -533,7 +902,7 @@ export class Spending {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="toggle-container">    <button class="toggle-btn" [class.active]="activeView === \'savings\'" (click)="showSavings()">        Savings    </button>    <button class="toggle-btn" [class.active]="activeView === \'spent\'" (click)="showSpent()">        Spending    </button></div><div class="slide-panel" [class.open]="activeView !== null">    <div class="panel-header">        <button class="close-btn" (click)="closeView()">X</button>    </div>    <div class="panel-content">        <div *ngIf="activeView === \'savings\'">            <h2>Savings Clicked</h2>        </div>        <div *ngIf="activeView === \'spent\'">            <h2>Spending Clicked</h2>        </div>        <button class="btn btn-primary mt-4">Export Data</button>    </div>    <div class="overlay" *ngIf="activeView" (click)="closeView()"></div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="toggle-container">    <button class="toggle-btn" [class.active]="activeView === \'savings\'" (click)="showSavings()">        Savings    </button>    <button class="toggle-btn" [class.active]="activeView === \'spent\'" (click)="showSpent()">        Spending    </button></div><div class="slide-panel" [class.open]="activeView !== null">    <div class="panel-header">        <button class="close-btn" (click)="closeView()">X</button>    </div>    <div class="panel-content">        <div *ngIf="activeView === \'savings\'">            <h2>Savings Clicked</h2>            <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" [callbackFunction]="chartCallback"                style="width: 100%; height: 400px; display: block;"></highcharts-chart>        </div>        <div *ngIf="activeView === \'spent\'">            <h2>Spending Clicked</h2>        </div>        <button class="btn btn-primary">Export Data</button>    </div></div></div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TestUserService', 'selector': 'app-test-user-service'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Spending'};

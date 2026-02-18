@@ -25,6 +25,12 @@ export class TransactionService {
    */
   constructor(private http: HttpClient) {}
 
+  /**
+   * Fetch all transactions for a user's account from the API.
+   * @param userId The ID of the user to retrieve transactions for
+   * @param accountId The ID of the account to retrieve transactions for
+   * @returns An observable containing the list of transactions
+   */
   getAllTransactions(userId: string, accountId: string):Observable<any[]> {
     const url = `${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions`;
     return this.http.get<any[]>(url);

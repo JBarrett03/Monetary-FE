@@ -7,8 +7,9 @@ import { ChangeDetectorRef } from '@angular/core';
 import { FilterPipe } from '../../pipes/filter-pipe';
 import { TRANSACTION_CATEGORIES } from '../../constants/transaction-categories';
 /**
- * Home component - the landing page displayed to unauthenticated users.
- * Provides information about the application and links to login and create account.
+ * Home component - displays the authenticated user's dashboard.
+ * Shows the default account with card details, recent transactions, and transaction filtering/search capabilities.
+ * Allows users to navigate to transaction details and manage account information.
  */
 @Component({
   selector: 'app-home',
@@ -19,7 +20,8 @@ import { TRANSACTION_CATEGORIES } from '../../constants/transaction-categories';
 })
 
 /**
- * Home class - the component logic for the home/landing page.
+ * Component logic for the user dashboard.
+ * Manages account display, transaction loading, filtering, and navigation.
  */
 export class Home implements OnInit {
 
@@ -52,9 +54,9 @@ export class Home implements OnInit {
   cardBrand: string = '';
 
   /**
- * The account object containing account information such as balance, account number,
- * currency, and account type (e.g., 'savings', 'checking'). Null until account data is loaded.
- */
+   * The currently selected account from sessionStorage. Used to fetch account-specific transactions.
+   * Set from session storage during component initialization.
+   */
   account: any | null = null;
 
   /**

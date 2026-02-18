@@ -4,7 +4,9 @@ import { CommonModule } from '@angular/common';
 import { TransactionService } from '../../services/transaction-service';
 
 /**
- * TransactionDetails component
+ * TransactionDetails component - displays detailed information for a single transaction.
+ * Retrieves transaction data from the TransactionService using route parameters (accountId and transactionId).
+ * Shows transaction source, destination, amount, date, and other relevant details.
  */
 @Component({
   standalone: true,
@@ -15,7 +17,8 @@ import { TransactionService } from '../../services/transaction-service';
 })
 
 /**
- * TransactionDetails class
+ * Component logic for displaying transaction details.
+ * Loads transaction information from the backend based on route parameters.
  */
 export class TransactionDetails implements OnInit {
 
