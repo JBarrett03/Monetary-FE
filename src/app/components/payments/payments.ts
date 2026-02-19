@@ -90,7 +90,7 @@ export class Payments implements OnInit {
 
     const storedPayees = localStorage.getItem(`recentPayees_${userId}`);
     if (storedPayees) {
-      this.recentPayees = JSON.parse(storedPayees);
+      this.recentPayees = JSON.parse(storedPayees).slice(0, 3);
     }
 
     this.accountService.getAccount(userId, accountId).subscribe({
@@ -158,9 +158,8 @@ export class Payments implements OnInit {
               this.recentPayees.unshift(account);
             }
 
-            if (this.recentPayees.length > 5) {
-              this.recentPayees.pop();
-            }
+            this.recentPayees.unshift(account);
+            this.recentPayees = this.recentPayees.slice(0, 3);
 
             localStorage.setItem(`recentPayees_${userId}`, JSON.stringify(this.recentPayees));
 
@@ -210,7 +209,6 @@ export class Payments implements OnInit {
     if (allowedKeys.includes(event.key) || /^[0-9]$/.test(event.key)) {
       return;
     }
-
     event.preventDefault();
   }
 }
