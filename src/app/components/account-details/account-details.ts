@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../../services/account-service';
+import { UtilityService } from '../../services/utility-service';
 import { FilterPipe } from '../../pipes/filter-pipe';
 import { TRANSACTION_CATEGORIES } from '../../constants/transaction-categories';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -135,7 +136,7 @@ export class AccountDetails implements OnInit {
    * @param accountService AccountService - Service for fetching and managing account data, transactions, and budgets
    * @param cdr ChangeDetectorRef - Reference to manually trigger change detection when needed
    */
-  constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef) { }
+  constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef, public utility: UtilityService) { }
 
   /**
    * Angular lifecycle hook called after the component is initialized.
@@ -253,28 +254,7 @@ export class AccountDetails implements OnInit {
     });
   }
 
-  /**
-   * Converts an ISO date string into a human-readable format with proper ordinal suffix.
-   * Example: "2025-02-12" becomes "February 12th"
-   * @param dateString The date string to format (ISO 8601 format: YYYY-MM-DD hh:mm:ss)
-   * @returns The formatted date string with month name and day with ordinal suffix (e.g., "February 12th")
-   */
-  formatTransactionDate(dateString: string): string {
-    if (!dateString) return '';
 
-    const match = dateString.match(/^(\d{4})-(\d{2})-(\d{2})/);
-
-    if (!match) return dateString;
-
-    const year = Number(match[1]);
-    const monthIndex = Number(match[2]) - 1;
-    const day = Number(match[3]);
-
-    const suffix = day >= 11 && day <= 13 ? 'th' : { 1: 'st', 2: 'nd', 3: 'rd' }[day % 10] || 'th';
-    const month = new Date(year, monthIndex).toLocaleString('en-GB', { month: 'long' });
-
-    return `${month} ${day}${suffix}`;
-  }
 
   /**
    * Archives the current account after confirming with the user.
@@ -455,18 +435,7 @@ export class AccountDetails implements OnInit {
     this.showBudgetForm = false;
   }
 
-  /**
- * Masks an account number for secure display, showing only the last 4 digits.
- * @param accountNumber The account number to mask.
- * @returns A masked account number string.
- */
-  maskAccountNumber(accountNumber: string): string {
-    if (!accountNumber) return '•••• •••• •••• ••••';
 
-    const clean = accountNumber.replace(/\s/g, '');
-    const last4 = clean.slice(-4);
-    return `•••• •••• •••• ${last4}`;
-  }
 
   /**
  * Toggles the kebab menu visibility for adding and managing accounts.
@@ -482,20 +451,7 @@ export class AccountDetails implements OnInit {
     this.showSortOptions = !this.showSortOptions;
   }
 
-  /**
- * Formats the confirmSortCode input by removing non-digit characters and inserting dashes every 2 characters for better readability.
- * This method is called on every input event for the confirmSortCode field to ensure consistent formatting as the user types.
- */
-  formatSortCode(sortCode: string): string {
-    if (!sortCode) return '';
 
-    const digits = sortCode.replace(/\D/g, '').slice(0, 6);
-
-    if (digits.length <= 2) return digits;
-    if (digits.length <= 4) return digits.slice(0, 2) + '-' + digits.slice(2);
-
-    return digits.slice(0, 2) + '-' + digits.slice(2, 4) + '-' + digits.slice(4);
-  }
 
   /**
    * Applies the selected sort option to the transactions list.
@@ -505,23 +461,16 @@ export class AccountDetails implements OnInit {
   applySort(option: 'createdAtAsc' | 'createdAtDesc') {
     this.sortOptions = option;
 
-    const toTime = (value?: string): number => {
-      if (!value) return 0;
-      const normalized = value.replace(/Z$/, '');
-      const time = new Date(normalized).getTime();
-      return isNaN(time) ? 0 : time;
-    };
-
     switch (option) {
       case 'createdAtAsc':
         this.transactions = [...this.transactions].sort(
-          (a, b) => toTime(a.createdAt) - toTime(b.createdAt)
+          (a, b) => this.utility.toTime(a.createdAt) - this.utility.toTime(b.createdAt)
         );
         break;
 
       case 'createdAtDesc':
         this.transactions = [...this.transactions].sort(
-          (a, b) => toTime(b.createdAt) - toTime(a.createdAt)
+          (a, b) => this.utility.toTime(b.createdAt) - this.utility.toTime(a.createdAt)
         );
         break;
     }

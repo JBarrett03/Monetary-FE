@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AccountService } from '../../services/account-service';
 import { UserService } from '../../services/user-service';
+import { UtilityService } from '../../services/utility-service';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -107,7 +108,13 @@ export class Accounts implements OnInit {
    * @param cdr Change detector reference.
    * @param router Router for navigation.
    */
-  constructor(private accountService: AccountService, private userService: UserService, private cdr: ChangeDetectorRef, private router: Router) { }
+  constructor(
+    private accountService: AccountService,
+    private userService: UserService,
+    private cdr: ChangeDetectorRef,
+    private router: Router,
+    public utility: UtilityService
+  ) { }
 
   /**
    * Initializes the component and loads the list of accounts and user details.
@@ -193,33 +200,9 @@ export class Accounts implements OnInit {
     this.router.navigate(['/manage-accounts']);
   }
 
-  /**
-   * Masks an account number for secure display, showing only the last 4 digits.
-   * @param accountNumber The account number to mask.
-   * @returns A masked account number string.
-   */
-  maskAccountNumber(accountNumber: string): string {
-    if (!accountNumber) return '•••• •••• •••• ••••';
 
-    const clean = accountNumber.replace(/\s/g, '');
-    const last4 = clean.slice(-4);
-    return `•••• •••• •••• ${last4}`;
-  }
 
-  /**
- * Formats the confirmSortCode input by removing non-digit characters and inserting dashes every 2 characters for better readability.
- * This method is called on every input event for the confirmSortCode field to ensure consistent formatting as the user types.
- */
-  formatSortCode(sortCode: string): string {
-    if (!sortCode) return '';
 
-    const digits = sortCode.replace(/\D/g, '').slice(0, 6);
-
-    if (digits.length <= 2) return digits;
-    if (digits.length <= 4) return digits.slice(0, 2) + '-' + digits.slice(2);
-
-    return digits.slice(0, 2) + '-' + digits.slice(2, 4) + '-' + digits.slice(4);
-  }
 
   /**
  * Toggles the visibility of the transaction filter UI.

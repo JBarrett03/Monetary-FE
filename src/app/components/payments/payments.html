@@ -8,7 +8,7 @@
     <div class="card p-2 mb-2" *ngFor="let payee of recentPayees">
         <strong>{{ formatAccountNumber(payee.accountNumber) }}</strong><br>
         {{ payee.accountType }}: {{ payee.currency }}
-        Sort Code: {{ formatSortCode(payee.sortCode) || '-' }}
+        Sort Code: {{ utility.formatSortCode(payee.sortCode) || '-' }}
     </div>
 </div>
 
@@ -25,7 +25,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Sort Code</label>
-            <input type="text" [(ngModel)]="confirmSortCode" (input)="confirmSortCode = formatSortCode(confirmSortCode)" (keydown)="numbersOnly($event)"
+            <input type="text" [(ngModel)]="confirmSortCode" (input)="confirmSortCode = utility.formatSortCode(confirmSortCode)" (keydown)="numbersOnly($event)"
                 maxlength="8" inputmode="numeric">
         </div>
         <div class="mb-3">

@@ -41,14 +41,14 @@
         </div>
 
         <div class="card-number">
-            {{ maskAccountNumber(account.accountNumber) }}
+            {{ utility.maskAccountNumber(account.accountNumber) }}
         </div>
 
         <div class="stripe-card-bottom">
             <div class="card-holder">
                 {{ account.accountType | uppercase }}<br>
                 {{ account.availableBalance | currency: account.currency || 'GBP' }}<br>
-                Sort Code: {{ formatSortCode(account.sortCode) }}<br>
+                Sort Code: {{ utility.formatSortCode(account.sortCode) }}<br>
                 {{ account.firstName }} {{ account.lastName }}
             </div>
             <div class="expiry">
@@ -182,7 +182,7 @@
             <div>
                 {{ transaction.description }}<br />
                 {{ transaction.category }}<br />
-                <p>{{ formatTransactionDate(transaction.createdAt) }}</p>
+                <p>{{ utility.formatTransactionDate(transaction.createdAt) }}</p>
             </div>
             <span [ngClass]="{
                         'text-success': transaction.type === 'credit',

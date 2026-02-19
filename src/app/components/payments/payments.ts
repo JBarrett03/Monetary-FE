@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../../services/account-service';
+import { UtilityService } from '../../services/utility-service';
 /**
  * Payments component - handles balance transfers between user accounts.
  * Allows users to search for recipient accounts by account number and sort code,
@@ -26,8 +27,9 @@ export class Payments implements OnInit {
    * Constructor for Payments component.
    * @param accountService Service for account operations and balance transfers
    * @param cdr ChangeDetectorRef for manual change detection after async operations
+   * @param utility UtilityService for shared utility methods
    */
-  constructor(private accountService: AccountService, private cdr: ChangeDetectorRef) { }
+  constructor(private accountService: AccountService, private cdr: ChangeDetectorRef, public utility: UtilityService) { }
 
   /**
  * The account object containing account information such as balance, account number,
@@ -195,20 +197,7 @@ export class Payments implements OnInit {
     return digits.replace(/(.{4})/g, '$1 ').trim();
   }
 
-  /**
-   * Formats the confirmSortCode input by removing non-digit characters and inserting dashes every 2 characters for better readability.
-   * This method is called on every input event for the confirmSortCode field to ensure consistent formatting as the user types.
-   */
-  formatSortCode(sortCode: string): string {
-    if (!sortCode) return '';
 
-    const digits = sortCode.replace(/\D/g, '').slice(0, 6);
-
-    if (digits.length <= 2) return digits;
-    if (digits.length <= 4) return digits.slice(0, 2) + '-' + digits.slice(2);
-
-    return digits.slice(0, 2) + '-' + digits.slice(2, 4) + '-' + digits.slice(4);
-  }
 
   /**
    * Event handler to allow only numeric input in the confirmAccountNumber and confirmSortCode fields.

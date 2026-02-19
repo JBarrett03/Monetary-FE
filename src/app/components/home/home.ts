@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account-service';
+import { UtilityService } from '../../services/utility-service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
@@ -94,7 +95,7 @@ export class Home implements OnInit {
    * @param accountService The service used to interact with account-related API endpoints.
    * @param cdr ChangeDetectorRef - Reference to manually trigger change detection when needed
    */
-  constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef) { }
+  constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef, public utility: UtilityService) { }
 
   /**
    * Lifecycle hook that is called after the component has been initialized. It retrieves the user ID from session storage,
@@ -140,42 +141,7 @@ export class Home implements OnInit {
     });
   }
 
-  /**
-   * Utility method to mask the account number for display purposes. It replaces all but the last 4 digits with '••••'.
-   * If the account number is not available, it returns a placeholder string.
-   * @param accountNumber The full account number to be masked.
-   * @returns A masked version of the account number for display.
-   */
-  maskAccountNumber(accountNumber: string): string {
-    if (!accountNumber) return '•••• •••• •••• ••••';
 
-    const clean = accountNumber.replace(/\s/g, '');
-    const last4 = clean.slice(-4);
-    return `•••• •••• •••• ${last4}`;
-  }
-
-  /**
- * Converts an ISO date string into a human-readable format with proper ordinal suffix.
- * Example: "2025-02-12" becomes "February 12th"
- * @param dateString The date string to format (ISO 8601 format: YYYY-MM-DD hh:mm:ss)
- * @returns The formatted date string with month name and day with ordinal suffix (e.g., "February 12th")
- */
-  formatTransactionDate(dateString: string): string {
-    if (!dateString) return '';
-
-    const match = dateString.match(/^(\d{4})-(\d{2})-(\d{2})/);
-
-    if (!match) return dateString;
-
-    const year = Number(match[1]);
-    const monthIndex = Number(match[2]) - 1;
-    const day = Number(match[3]);
-
-    const suffix = day >= 11 && day <= 13 ? 'th' : { 1: 'st', 2: 'nd', 3: 'rd' }[day % 10] || 'th';
-    const month = new Date(year, monthIndex).toLocaleString('en-GB', { month: 'long' });
-
-    return `${month} ${day}${suffix}`;
-  }
 
   /**
  * Navigates to the details page for the specified transaction.
@@ -215,18 +181,5 @@ export class Home implements OnInit {
     return this.customCategory || this.selectedCategory;
   }
 
-  /**
- * Formats the confirmSortCode input by removing non-digit characters and inserting dashes every 2 characters for better readability.
- * This method is called on every input event for the confirmSortCode field to ensure consistent formatting as the user types.
- */
-  formatSortCode(sortCode: string): string {
-    if (!sortCode) return '';
 
-    const digits = sortCode.replace(/\D/g, '').slice(0, 6);
-
-    if (digits.length <= 2) return digits;
-    if (digits.length <= 4) return digits.slice(0, 2) + '-' + digits.slice(2);
-
-    return digits.slice(0, 2) + '-' + digits.slice(2, 4) + '-' + digits.slice(4);
-  }
 }

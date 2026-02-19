@@ -93,7 +93,7 @@
                 </div>
 
                 <div class="card-number">
-                    {{ maskAccountNumber(account.accountNumber) }}
+                    {{ utility.maskAccountNumber(account.accountNumber) }}
                 </div>
 
                 <div class="stripe-card-bottom">
@@ -102,7 +102,7 @@
                             {{ account.nickname || (account.accountType | titlecase) }}
                         </strong>
                         {{ account.availableBalance | currency: (account.currency || 'GBP') }}<br>
-                        Sort Code: {{ formatSortCode(account.sortCode) }}<br>
+                        Sort Code: {{ utility.formatSortCode(account.sortCode) }}<br>
                         {{ account.firstName }} {{ account.lastName }}
                     </div>
                     <div class="expiry">
