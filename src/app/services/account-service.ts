@@ -87,16 +87,9 @@ export class AccountService {
   * @param transaction The transaction data to be added
   * @returns An observable containing the HTTP response
   */
-  addTransaction(userId: string, accountId: string, transaction: { type: string, amount: number, description: string, merchant: string }): Observable<any> {
+  addTransaction(userId: string, accountId: string, transaction: { direction: 'in' | 'out', type: string, amount: number, description: string, merchant: string }): Observable<any> {
     const url = `${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions`;
-
-    const formData = new FormData();
-    formData.append('type', transaction.type);
-    formData.append('amount', transaction.amount.toString());
-    formData.append('description', transaction.description);
-    formData.append('merchant', transaction.merchant);
-
-    return this.http.post<any>(url, formData);
+    return this.http.post<any>(url, transaction);
   }
 
   /**

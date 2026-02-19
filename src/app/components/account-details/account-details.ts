@@ -217,17 +217,16 @@ export class AccountDetails implements OnInit {
       return;
     }
 
-    const currentBalance = this.account?.balance || 0;
-    const newBalance = currentBalance - amount;
-
-    if (newBalance < 0) {
-      alert('Insufficient funds for this transaction.');
-      return;
-    }
-
-    const transaction = {
+    const transaction: {
+      direction: 'in' | 'out',
+      type: string,
+      amount: number,
+      description: string,
+      merchant: string
+    } = {
+      direction: 'out',
       type: 'debit',
-      amount: -amount,
+      amount: amount,
       description,
       merchant
     };
@@ -408,10 +407,10 @@ export class AccountDetails implements OnInit {
   get budgetProgress(): number {
     if (!this.account?.budget?.amount) return 0;
 
-    const balance = this.account.balance || 0;
+    const spent = this.account.budgetSpent || 0;
     const budgetAmount = this.account.budget.amount;
 
-    const percentage = (balance / budgetAmount) * 100;
+    const percentage = (spent / budgetAmount) * 100;
     return Math.min(percentage, 100);
   }
 
