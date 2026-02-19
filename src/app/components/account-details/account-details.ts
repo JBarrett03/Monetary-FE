@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AccountService } from '../../services/account-service';
 import { UtilityService } from '../../services/utility-service';
 import { FilterPipe } from '../../pipes/filter-pipe';
-import { TRANSACTION_CATEGORIES } from '../../constants/transaction-categories';
+import { TRANSACTION_CATEGORIES, TRANSACTION_CATEGORY_META } from '../../constants/transaction-categories';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 /**
  * AccountDetails component - displays comprehensive information for a single account.
@@ -450,8 +450,6 @@ export class AccountDetails implements OnInit {
     this.showSortOptions = !this.showSortOptions;
   }
 
-
-
   /**
    * Applies the selected sort option to the transactions list.
    * Supports sorting by creation date in ascending or descending order.
@@ -474,5 +472,15 @@ export class AccountDetails implements OnInit {
         break;
     }
     this.cdr.detectChanges();
+  }
+
+  /**
+ * Retrieves the metadata (icon and color) for a given transaction category.
+ * If the category is not found in the predefined metadata, returns default values.
+ * @param category The transaction category to look up
+ * @returns An object containing the icon class and color associated with the category
+ */
+  getCategoryMeta(category: string) {
+    return TRANSACTION_CATEGORY_META[category as keyof typeof TRANSACTION_CATEGORY_META] || { icon: 'fa-question-circle', color: '#9E9E9E' };
   }
 }

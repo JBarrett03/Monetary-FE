@@ -59,10 +59,10 @@
                 @for (transaction of transactions | filter: effectiveCategory; track transaction._id) {
                 <li class="list-group-item d-flex justify-content-between transaction-item transaction-spacing"
                     (click)="openTransaction(transaction._id)">
-                    <div>
-                        {{ transaction.description }}<br />
-                        {{ transaction.category }}<br />
-                        <p>{{ utility.formatTransactionDate(transaction.createdAt) }}</p>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="fa" [ngClass]="getCategoryMeta(transaction.category).icon"
+                            [style.color]="getCategoryMeta(transaction.category).color"></i>
+                        <p class="mb-0">{{ transaction.category }} • {{ utility.formatTransactionDate(transaction.createdAt) }}</p>
                     </div>
                     <span [ngClass]="{
                         'text-success': transaction.type === 'credit',
