@@ -86,6 +86,9 @@ export class Spending {
    */
   showSpent() {
     this.activeView = 'spent';
+    setTimeout(() => {
+      this.loadSpendingChart();
+    });
   }
 
   /**
@@ -111,10 +114,53 @@ export class Spending {
 
       const totalBudget = account.budget.amount;
 
+      this.transactionService.getTransactionSummary(userId, accountId, 'in').subscribe(summary => {
+        const budget = summary.totalAmount || 0;
+        const remaining = Math.max(totalBudget - budget, 0);
+
+        this.chartOptions = {
+          chart: {
+            type: 'pie'
+          },
+          title: {
+            text: 'Savings Budget Overview'
+          },
+          plotOptions: {
+            pie: {
+              innerSize: '60%',
+              dataLabels: {
+                enabled: true,
+                format: '{point.name}: {point.y:.2f}'
+              }
+            }
+          },
+          series: [{
+            type: 'pie',
+            data: [
+              { name: 'Budget', y: budget, color: '#e53935' },
+              { name: 'Remaining', y: remaining, color: '#43a047' }
+            ]
+          }]
+        };
+        this.updateFlag = true;
+      });
+    });
+  }
+
+  loadSpendingChart() {
+    const userId = sessionStorage.getItem('userId');
+    const accountId = sessionStorage.getItem('accountId');
+
+    if (!userId || !accountId) return;
+
+    this.accountService.getAccount(userId, accountId).subscribe(account => {
+      if (!account.budget) return;
+
+      const totalSpent = account.budget.amount - account.budget.remaining;
+
       this.transactionService.getTransactionSummary(userId, accountId, 'out').subscribe(summary => {
-        console.log('Transaction summary:', summary);
         const spent = summary.totalAmount || 0;
-        const remaining = Math.max(totalBudget - spent, 0);
+        const remaining = Math.max(totalSpent - spent, 0);
 
         this.chartOptions = {
           chart: {
@@ -142,6 +188,6 @@ export class Spending {
         };
         this.updateFlag = true;
       });
-    });
+    })
   }
 }
