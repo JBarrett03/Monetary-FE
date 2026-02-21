@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AccountService } from '../../services/account-service';
 import * as Highcharts from 'highcharts';
 import { HighchartsChartModule } from 'highcharts-angular';
-
+import { TransactionService } from '../../services/transaction-service';
 /**
  * Spending component - displays budget and spending analytics with interactive charts.
  * Provides two views: 'savings' (remaining budget) and 'spent' (amount spent from budget).
@@ -27,8 +27,9 @@ export class Spending {
   /**
    * Constructor for Spending component.
    * @param accountService Service for fetching account and budget data
+   * @param transactionService Service for fetching transaction data
    */
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private transactionService: TransactionService) { }
 
   /**
    * The active view for spending analytics, which can be 'savings', 'spent', or null (no view).
@@ -55,6 +56,12 @@ export class Spending {
   chartRef: Highcharts.Chart | null = null;
 
   /**
+   * Flag to trigger chart updates when data changes. Set to true when new data is loaded and the chart needs to be re-rendered.
+   * This is used in conjunction with the chartRef to ensure that the chart updates with the latest data when the user switches views or when new transaction data is fetched.
+   */
+  updateFlag = false;
+
+  /**
    * Chart callback function that is called when the Highcharts chart is initialized. It receives the chart instance as a parameter and assigns it to the chartRef variable for later use.
    * This allows the component to keep a reference to the chart instance, enabling manual updates and reflowing when necessary.
    */
@@ -70,11 +77,7 @@ export class Spending {
     this.activeView = 'savings';
     setTimeout(() => {
       this.loadSavingsChart();
-
-      if (this.chartRef) {
-        this.chartRef.reflow();
-      }
-    }, 450);
+    });
   }
 
   /**
@@ -101,45 +104,44 @@ export class Spending {
     const userId = sessionStorage.getItem('userId');
     const accountId = sessionStorage.getItem('accountId');
 
-    if (!userId || !accountId) {
-      return;
-    }
+    if (!userId || !accountId) return;
 
     this.accountService.getAccount(userId, accountId).subscribe(account => {
       if (!account.budget) return;
 
       const totalBudget = account.budget.amount;
-      const spent = account.budgetSpent || 0;
-      const remaining = account.budgetRemaining || totalBudget;
 
-      this.chartOptions = {
-        chart: {
-          type: 'pie'
-        },
-        title: {
-          text: 'Savings Budget Overview'
-        },
-        tooltip: {
-          pointFormat: '<b>{point.percentage:.1f}%</b> ({point.y:.2f})'
-        },
-        plotOptions: {
-          pie: {
-            innerSize: '60%',
-            dataLabels: {
-              enabled: true,
-              format: '{point.name}: {point.y:.2f}'
+      this.transactionService.getTransactionSummary(userId, accountId, 'out').subscribe(summary => {
+        console.log('Transaction summary:', summary);
+        const spent = summary.totalAmount || 0;
+        const remaining = Math.max(totalBudget - spent, 0);
+
+        this.chartOptions = {
+          chart: {
+            type: 'pie'
+          },
+          title: {
+            text: 'Savings Budget Overview'
+          },
+          plotOptions: {
+            pie: {
+              innerSize: '60%',
+              dataLabels: {
+                enabled: true,
+                format: '{point.name}: {point.y:.2f}'
+              }
             }
-          }
-        },
-        series: [{
-          type: 'pie',
-          data: [
-            { name: 'Spent', y: spent, color: '#e53935' },
-            { name: 'Remaining', y: remaining, color: '#43a047' }
-          ]
-        }]
-      };
+          },
+          series: [{
+            type: 'pie',
+            data: [
+              { name: 'Spent', y: spent, color: '#e53935' },
+              { name: 'Remaining', y: remaining, color: '#43a047' }
+            ]
+          }]
+        };
+        this.updateFlag = true;
+      });
     });
   }
-
 }

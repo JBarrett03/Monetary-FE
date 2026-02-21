@@ -48,4 +48,8 @@ export class TransactionService {
     return this.http.get<any>(url);
   }
   
+  getTransactionSummary(userId: string, accountId: string, direction: 'in' | 'out'): Observable<any> {
+    console.log(`${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions/summary?direction=${direction}`);
+    return this.http.get<any>(`${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions/summary?direction=${direction}`);
+  }
 }
