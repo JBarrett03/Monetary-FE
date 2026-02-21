@@ -16,16 +16,12 @@
         <div *ngIf="activeView === 'savings'">
             <h2 class="panel-title">Total Savings:</h2>
             Period
-            <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" [(update)]="updateFlag"
-                [callbackFunction]="chartCallback"
-                class="chart"></highcharts-chart>
+            <app-pie mode="savings" [primaryValue]="primaryValue" [remainingValue]="remainingValue"></app-pie>
         </div>
         <div *ngIf="activeView === 'spent'">
             <h2 class="panel-title">Total Spending:</h2>
             Period
-            <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" [(update)]="updateFlag"
-                [callbackFunction]="chartCallback"
-                class="chart"></highcharts-chart>
+            <app-pie mode="spent" [primaryValue]="primaryValue" [remainingValue]="remainingValue"></app-pie>
         </div>
         <button class="btn btn-primary">Export Data</button>
     </div>

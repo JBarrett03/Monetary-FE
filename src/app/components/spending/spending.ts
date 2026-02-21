@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountService } from '../../services/account-service';
-import * as Highcharts from 'highcharts';
-import { HighchartsChartModule } from 'highcharts-angular';
 import { TransactionService } from '../../services/transaction-service';
+import { Pie } from '../charts/pie/pie';
 /**
  * Spending component - displays budget and spending analytics with interactive charts.
  * Provides two views: 'savings' (remaining budget) and 'spent' (amount spent from budget).
@@ -13,7 +12,7 @@ import { TransactionService } from '../../services/transaction-service';
 @Component({
   selector: 'app-spending',
   standalone: true,
-  imports: [CommonModule, HighchartsChartModule],
+  imports: [CommonModule, Pie],
   templateUrl: './spending.html',
   styleUrl: './spending.css',
 })
@@ -38,36 +37,14 @@ export class Spending {
   activeView: 'savings' | 'spent' | null = null;
 
   /**
-   * Highcharts instance for rendering charts in the spending analytics views.
-   * This is used to create and display charts based on the user's spending data.
+   * Calculated primary chart value for the selected mode.
    */
-  Highcharts: typeof Highcharts = Highcharts;
+  primaryValue = 0;
 
   /**
-   * Configuration object for Highcharts chart. Contains chart type, data series, labels, and display options.
-   * Updated dynamically when switching between 'savings' and 'spent' views.
+   * Calculated remaining chart value for the selected mode.
    */
-  chartOptions: Highcharts.Options = {};
-
-  /**
-   * Reference to the Highcharts chart instance, used for manual updates and reflowing after data changes.
-   * This allows the component to programmatically control the chart rendering and ensure it updates correctly when the view changes.
-   */
-  chartRef: Highcharts.Chart | null = null;
-
-  /**
-   * Flag to trigger chart updates when data changes. Set to true when new data is loaded and the chart needs to be re-rendered.
-   * This is used in conjunction with the chartRef to ensure that the chart updates with the latest data when the user switches views or when new transaction data is fetched.
-   */
-  updateFlag = false;
-
-  /**
-   * Chart callback function that is called when the Highcharts chart is initialized. It receives the chart instance as a parameter and assigns it to the chartRef variable for later use.
-   * This allows the component to keep a reference to the chart instance, enabling manual updates and reflowing when necessary.
-   */
-  chartCallback: Highcharts.ChartCallbackFunction = (chart) => {
-    this.chartRef = chart;
-  }
+  remainingValue = 0;
 
   /**
    * Method to show the savings view, which displays analytics related to money saved.
@@ -100,8 +77,7 @@ export class Spending {
   }
 
   /**
-   * Loads the savings chart data and configuration for the Highcharts instance. It retrieves the user's account information, including budget and spending data, and constructs a pie chart to visualize the breakdown of spent vs remaining budget.
-   * The chart displays the percentage and amount of money spent and remaining in the user's budget, providing insights into their savings progress.
+  * Loads the savings chart data and updates chart input values.
    */
   loadSavingsChart() {
     const userId = sessionStorage.getItem('userId');
@@ -118,35 +94,15 @@ export class Spending {
         const budget = summary.totalAmount || 0;
         const remaining = Math.max(totalBudget - budget, 0);
 
-        this.chartOptions = {
-          chart: {
-            type: 'pie'
-          },
-          title: {
-            text: 'Savings Budget Overview'
-          },
-          plotOptions: {
-            pie: {
-              innerSize: '60%',
-              dataLabels: {
-                enabled: true,
-                format: '{point.name}: {point.y:.2f}'
-              }
-            }
-          },
-          series: [{
-            type: 'pie',
-            data: [
-              { name: 'Budget', y: budget, color: '#e53935' },
-              { name: 'Remaining', y: remaining, color: '#43a047' }
-            ]
-          }]
-        };
-        this.updateFlag = true;
+        this.primaryValue = budget;
+        this.remainingValue = remaining;
       });
     });
   }
 
+  /**
+   * Loads the spending chart data and updates chart input values.
+   */
   loadSpendingChart() {
     const userId = sessionStorage.getItem('userId');
     const accountId = sessionStorage.getItem('accountId');
@@ -162,31 +118,8 @@ export class Spending {
         const spent = summary.totalAmount || 0;
         const remaining = Math.max(totalSpent - spent, 0);
 
-        this.chartOptions = {
-          chart: {
-            type: 'pie'
-          },
-          title: {
-            text: 'Savings Budget Overview'
-          },
-          plotOptions: {
-            pie: {
-              innerSize: '60%',
-              dataLabels: {
-                enabled: true,
-                format: '{point.name}: {point.y:.2f}'
-              }
-            }
-          },
-          series: [{
-            type: 'pie',
-            data: [
-              { name: 'Spent', y: spent, color: '#e53935' },
-              { name: 'Remaining', y: remaining, color: '#43a047' }
-            ]
-          }]
-        };
-        this.updateFlag = true;
+        this.primaryValue = spent;
+        this.remainingValue = remaining;
       });
     })
   }
