@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AccountService } from '../../services/account-service';
 import { TransactionService } from '../../services/transaction-service';
 import { Pie } from '../charts/pie/pie';
+import { HorizontalBar } from '../charts/horizontal-bar/horizontal-bar';
 import { MatSelectModule } from '@angular/material/select';
 /**
  * Spending component - displays budget and spending analytics with interactive charts.
@@ -13,7 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 @Component({
   selector: 'app-spending',
   standalone: true,
-  imports: [CommonModule, Pie, MatSelectModule],
+  imports: [CommonModule, Pie, HorizontalBar, MatSelectModule],
   templateUrl: './spending.html',
   styleUrl: './spending.css',
 })
@@ -57,6 +58,17 @@ export class Spending {
    * List of available time periods for filtering analytics data.
    */
   period_list = ['Weekly', 'Monthly', 'Yearly', 'Custom'];
+
+  /**
+   * The currently selected chart type for displaying analytics data.
+   * Can be 'Pie' or 'Bar'. Defaults to 'Pie'.
+   */
+  selectedChartType: 'Pie' | 'Bar' = 'Pie';
+
+  /**
+   * List of available chart types for selection in the UI.
+   */
+  chart_type_list = ['Pie', 'Bar'];
 
   /**
    * Method to show the savings view, which displays analytics related to money saved.
@@ -139,7 +151,11 @@ export class Spending {
     this.loadChart('out');
   }
 
-  onChange(event: any) {
-    console.log('Selected period:', event.value);
+  onPeriodChange(event: any) {
+    this.loadChart(this.activeView === 'savings' ? 'in' : 'out');
+  }
+
+  onChartTypeChange(event: any) {
+    this.selectedChartType = event.value;
   }
 }

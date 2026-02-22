@@ -8,36 +8,53 @@
 </div>
 
 <div class="slide-panel" [class.open]="activeView !== null">
+
     <div class="panel-header">
         <button class="close-btn" (click)="closeView()">X</button>
     </div>
 
-    <div class="panel-content">
-        <div *ngIf="activeView === 'savings'">
-            <div class="period-actions">
-                <mat-form-field appearance="fill">
-                    <mat-label>Period</mat-label>
-                    <mat-select (selectionChange)="onChange($event)">
-                        <mat-option *ngFor="let period of period_list" [value]="period">{{ period }}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <button class="btn btn-primary">Export Data</button>
-            </div>
-            <h2 class="panel-title">Total Savings</h2>
-            <app-pie mode="savings" [primaryValue]="primaryValue" [remainingValue]="remainingValue"></app-pie>
+    <div class="panel-content" *ngIf="activeView">
+
+        <h2 class="panel-title">
+            {{ activeView === 'savings' ? 'Total Savings' : 'Total Spending' }}
+        </h2>
+
+        <div class="period-actions">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Period</mat-label>
+                <mat-select (selectionChange)="onPeriodChange($event)">
+                    <mat-option *ngFor="let period of period_list" [value]="period">
+                        {{ period }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Chart Type</mat-label>
+                <mat-select (selectionChange)="onChartTypeChange($event)">
+                    <mat-option *ngFor="let chartType of chart_type_list" [value]="chartType">
+                        {{ chartType }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button class="btn btn-primary">
+                Export Data
+            </button>
         </div>
-        <div *ngIf="activeView === 'spent'">
-            <div class="period-actions">
-                <mat-form-field appearance="fill">
-                    <mat-label>Period</mat-label>
-                    <mat-select (selectionChange)="onChange($event)">
-                        <mat-option *ngFor="let period of period_list" [value]="period">{{ period }}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <button class="btn btn-primary">Export Data</button>
-            </div>
-            <h2 class="panel-title">Total Spending</h2>
-            <app-pie mode="spent" [primaryValue]="primaryValue" [remainingValue]="remainingValue"></app-pie>
-        </div>
+
+        <ng-container [ngSwitch]="selectedChartType">
+
+            <app-pie *ngSwitchCase="'Pie'" [mode]="activeView" [primaryValue]="primaryValue"
+                [remainingValue]="remainingValue"></app-pie>
+            <app-horizontal-bar *ngSwitchCase="'Bar'" [mode]="activeView" [primaryValue]="primaryValue"
+                [remainingValue]="remainingValue"></app-horizontal-bar>
+
+            <p *ngSwitchDefault>
+                Select a chart type to display analytics.
+            </p>
+
+        </ng-container>
     </div>
 </div>
