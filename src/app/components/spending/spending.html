@@ -14,15 +14,30 @@
 
     <div class="panel-content">
         <div *ngIf="activeView === 'savings'">
-            <h2 class="panel-title">Total Savings:</h2>
-            Period
+            <div class="period-actions">
+                <mat-form-field appearance="fill">
+                    <mat-label>Period</mat-label>
+                    <mat-select (selectionChange)="onChange($event)">
+                        <mat-option *ngFor="let period of period_list" [value]="period">{{ period }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button class="btn btn-primary">Export Data</button>
+            </div>
+            <h2 class="panel-title">Total Savings</h2>
             <app-pie mode="savings" [primaryValue]="primaryValue" [remainingValue]="remainingValue"></app-pie>
         </div>
         <div *ngIf="activeView === 'spent'">
-            <h2 class="panel-title">Total Spending:</h2>
-            Period
+            <div class="period-actions">
+                <mat-form-field appearance="fill">
+                    <mat-label>Period</mat-label>
+                    <mat-select (selectionChange)="onChange($event)">
+                        <mat-option *ngFor="let period of period_list" [value]="period">{{ period }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button class="btn btn-primary">Export Data</button>
+            </div>
+            <h2 class="panel-title">Total Spending</h2>
             <app-pie mode="spent" [primaryValue]="primaryValue" [remainingValue]="remainingValue"></app-pie>
         </div>
-        <button class="btn btn-primary">Export Data</button>
     </div>
 </div>

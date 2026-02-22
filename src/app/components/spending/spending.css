@@ -58,3 +58,14 @@
 .panel-title {
     text-align: center;
 }
+
+.period-actions {
+    margin: 5%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.period-actions .btn {
+    margin-left: auto;
+}

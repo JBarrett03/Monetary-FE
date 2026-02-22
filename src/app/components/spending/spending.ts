@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AccountService } from '../../services/account-service';
 import { TransactionService } from '../../services/transaction-service';
 import { Pie } from '../charts/pie/pie';
+import { MatSelectModule } from '@angular/material/select';
 /**
  * Spending component - displays budget and spending analytics with interactive charts.
  * Provides two views: 'savings' (remaining budget) and 'spent' (amount spent from budget).
@@ -12,7 +13,7 @@ import { Pie } from '../charts/pie/pie';
 @Component({
   selector: 'app-spending',
   standalone: true,
-  imports: [CommonModule, Pie],
+  imports: [CommonModule, Pie, MatSelectModule],
   templateUrl: './spending.html',
   styleUrl: './spending.css',
 })
@@ -31,6 +32,12 @@ export class Spending {
   constructor(private accountService: AccountService, private transactionService: TransactionService) { }
 
   /**
+ * The account object containing account information such as balance, account number,
+ * currency, and account type (e.g., 'savings', 'checking'). Null until account data is loaded.
+ */
+  account: any | null = null;
+
+  /**
    * The active view for spending analytics, which can be 'savings', 'spent', or null (no view).
    * This variable controls which spending analytics view is currently displayed to the user.
    */
@@ -45,6 +52,11 @@ export class Spending {
    * Calculated remaining chart value for the selected mode.
    */
   remainingValue = 0;
+
+  /**
+   * List of available time periods for filtering analytics data.
+   */
+  period_list = ['Weekly', 'Monthly', 'Yearly', 'Custom'];
 
   /**
    * Method to show the savings view, which displays analytics related to money saved.
@@ -122,5 +134,9 @@ export class Spending {
         this.remainingValue = remaining;
       });
     })
+  }
+
+  onChange(event: any) {
+    console.log('Selected period:', event.value);
   }
 }
