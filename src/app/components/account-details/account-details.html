@@ -4,20 +4,57 @@
     }
 
     @if (account) {
-    <div class="d-flex gap-2 mb-3">
-        <button class="btn btn-outline-secondary" (click)="archiveAccount()" [disabled]="account?.balance > 0">
-            Archive Account
-        </button>
-        <button class="btn" [ngClass]="account?.isDefault ? 'btn-success' : 'btn-outline-primary'"
-            (click)="setAsDefault()" [disabled]="account?.isDefault">
-            {{ account?.isDefault ? 'Default Account ✓' : 'Set as Default' }}
-        </button>
+    <div class="row mb-3">
+        <div class="col-sm-12 d-flex justify-content-end">
+            <button class="kebab-btn" (click)="toggleMenu()">
+                <i class="fa fa-ellipsis-v"></i>
+            </button>
+            @if (menuOpen) {
+            <div class="menu-dropdown">
+                <div class="d-flex gap-2 mb-3">
+                    <button class="btn btn-outline-secondary" (click)="archiveAccount()"
+                        [disabled]="account?.balance > 0">
+                        Archive Account
+                    </button>
+                    <button class="btn" [ngClass]="account?.isDefault ? 'btn-success' : 'btn-outline-primary'"
+                        (click)="setAsDefault()" [disabled]="account?.isDefault">
+                        {{ account?.isDefault ? 'Default Account ✓' : 'Set as Default' }}
+                    </button>
 
-        @if (account?.accountType === 'savings') {
-        <button class="btn btn-outline-secondary" (click)="addBudget()">
-            {{ showBudgetForm ? 'Cancel' : 'Set Budget' }}
-        </button>
-        }
+                    @if (account?.accountType === 'savings') {
+                    <button class="btn btn-outline-secondary" (click)="addBudget()">
+                        {{ showBudgetForm ? 'Cancel' : 'Set Budget' }}
+                    </button>
+                    }
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+
+    <div class="stripe-card mb-3">
+        <div class="stripe-card-top">
+            <div class="chip"></div>
+            <div class="card-brand">
+                {{ cardBrand | uppercase }}
+            </div>
+        </div>
+
+        <div class="card-number">
+            {{ utility.maskAccountNumber(account.accountNumber) }}
+        </div>
+
+        <div class="stripe-card-bottom">
+            <div class="card-holder">
+                {{ account.accountType | uppercase }}<br>
+                {{ account.availableBalance | currency: account.currency || 'GBP' }}<br>
+                Sort Code: {{ utility.formatSortCode(account.sortCode) }}<br>
+                {{ account.firstName }} {{ account.lastName }}
+            </div>
+            <div class="expiry">
+                {{ account.expiryDate }}
+            </div>
+        </div>
     </div>
 
     <div class="balance-card">
@@ -28,8 +65,8 @@
 
         <div class="balance-amount">
             <span class="fw-bold">
-                {{ account.balance | currency: account.currency || 'GBP' }} / {{ account.budget.amount | currency: 'GBP'
-                }}
+                {{ account.balance | currency: account.currency || 'GBP' }} / {{ account.budget.amount | currency:
+                account.currency || 'GBP' }}
             </span>
         </div>
 
@@ -38,7 +75,7 @@
         } @else {
         <div class="balance-label">Balance</div>
         <div class="balance-amount">
-            {{ account?.balance | currency: 'GBP' }}
+            {{ account?.balance | currency: account.currency || 'GBP' }}
         </div>
         }
     </div>
@@ -91,25 +128,35 @@
     </div>
     }
     }
-    <div class="amount-card">
-        <div class="amount-label">Amount:</div>
-        Account #: {{ account.accountNumber }}<br />
-        Currency: {{ account.currency || 'GBP' }}<br />
-    </div>
-    }
 
     @if (transactions.length > 0) {
     <div class="d-flex justify-content-between align-items-center mt-5">
         <h5>Transactions:</h5>
-        <div class="d-flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2 flex-wrap">
             <button class="btn btn-outline-primary btn-sm" (click)="toggleFilter()">
                 <i class="fa" [ngClass]="showFilter ? 'fa-times' : 'fa-filter'"></i>
                 {{ showFilter ? 'Close Filter' : 'Filter' }}
             </button>
 
+            <button class="btn btn-outline-primary btn-sm" (click)="toggleSortOptions()">
+                <i class="fa fa-sort"></i>
+                {{ showSortOptions ? 'Hide Sort' : 'Sort' }}
+            </button>
+
+            @if (showSortOptions) {
+            <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-outline-secondary" (click)="applySort('createdAtAsc')">
+                    Created At ↑
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" (click)="applySort('createdAtDesc')">
+                    Created At ↓
+                </button>
+            </div>
+            }
+
             @if (showFilter) {
-            <div class="d-flex gap-2 align-items-center">
-                <select class="form-select form-select-sm w-25" [(ngModel)]="selectedCategory"
+            <div class="d-flex gap-2 align-items-center flex-wrap">
+                <select class="form-select form-select-sm w-auto" [(ngModel)]="selectedCategory"
                     (change)="customCategory = ''">
                     <option value="">All Categories:</option>
                     @for (category of categories; track category) {
@@ -118,6 +165,7 @@
                     </option>
                     }
                 </select>
+
                 <input type="search" class="form-control form-control-sm w-25" placeholder="Enter category..."
                     [(ngModel)]="customCategory" (input)="selectedCategory = ''" />
             </div>
@@ -131,15 +179,22 @@
         @for (transaction of transactions | filter: effectiveCategory; track transaction._id) {
         <li class="list-group-item d-flex justify-content-between transaction-item transaction-spacing"
             (click)="openTransaction(transaction._id)">
-            <div>
-                {{ transaction.description }}<br />
-                {{ transaction.category }}<br />
-                <p>{{ formatTransactionDate(transaction.createdAt) }}</p>
+            <div class="d-flex align-items-center gap-2">
+                <i class="fa" [ngClass]="getCategoryMeta(transaction.category).icon"
+                    [style.color]="getCategoryMeta(transaction.category).color"></i>
+                <div>
+                    {{ transaction.description }}<br />
+                    <small class="text-muted">
+                        {{ transaction.category }} • {{ utility.formatTransactionDate(transaction.createdAt) }}
+                    </small>
+                </div>
+                <p>{{ utility.formatTransactionDate(transaction.createdAt) }}</p>
             </div>
             <span [ngClass]="{
-                        'text-success': transaction.type === 'credit',
-                        'text-danger': transaction.type === 'debit'
+                        'text-success': transaction.direction === 'in',
+                        'text-danger': transaction.direction === 'out'
                     }">
+                {{ transaction.direction === 'out' ? '-' : '+' }}
                 {{ transaction.amount | currency: account.currency || 'GBP' }}
             </span>
         </li>
@@ -154,5 +209,6 @@
             <i class="fa fa-plus" (click)="addTransaction()"></i>
         </div>
     </div>
+    }
     }
 </div>

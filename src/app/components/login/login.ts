@@ -4,9 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 /**
- * Login component for user authentication.
- * This component provides a form for users to enter their email and password,
- * and handles the login process by communicating with the backend API.
+ * Login component - handles user authentication and session initialization.
+ * Presents a login form for collecting email and password credentials.
+ * Authenticates users via the backend API and initializes the session with user data upon successful login.
  */
 @Component({
   standalone: true,
@@ -17,9 +17,8 @@ import { Router } from '@angular/router';
 })
 
 /**
- * The Login class represents the logic for the login component.
- * It manages user input for email and password, and handles form submission
- * to authenticate the user with the backend API.
+ * Component logic for user authentication.
+ * Manages login form input, validation, and authentication flow.
  */
 export class Login {
 

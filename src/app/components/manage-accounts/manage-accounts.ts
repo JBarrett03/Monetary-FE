@@ -4,6 +4,7 @@ import { RouterModule, Router } from '@angular/router';
 import { DragDropModule, CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AccountService } from '../../services/account-service';
 import { UserService } from '../../services/user-service';
+import { UtilityService } from '../../services/utility-service';
 
 /**
  * Manage Accounts component allows users to reorder, sort, and restore archived accounts.
@@ -49,11 +50,6 @@ export class ManageAccounts implements OnInit {
   showSortOptions: boolean = false;
 
   /**
-   * Currently applied sort option.
-   */
-  sortOptions: 'balanceAsc' | 'balanceDesc' | 'openedAtAsc' | 'openedAtDesc' | null = null;
-
-  /**
    * Customer's first name
    */
   firstName: string = '';
@@ -64,13 +60,18 @@ export class ManageAccounts implements OnInit {
   lastName: string = '';
 
   /**
+   * Card brand for display purposes (e.g., Visa, MasterCard)
+   */
+  cardBrand: string = '';
+
+  /**
    * Constructor for the ManageAccounts component.
    * @param accountService Service for account operations.
    * @param userService Service for user operations.
    * @param cdr Change detector reference.
    * @param router Router for navigation.
    */
-  constructor(private accountService: AccountService, private userService: UserService, private cdr: ChangeDetectorRef, private router: Router) { }
+  constructor(private accountService: AccountService, private userService: UserService, private cdr: ChangeDetectorRef, private router: Router, public utility: UtilityService) { }
 
   /**
    * Angular lifecycle hook that runs when the component is initialized.
@@ -152,15 +153,6 @@ export class ManageAccounts implements OnInit {
    * @param option The sort option to apply.
    */
   applySort(option: 'balanceAsc' | 'balanceDesc' | 'openedAtAsc' | 'openedAtDesc') {
-    this.sortOptions = option;
-
-    const toTime = (value?: string): number => {
-      if (!value) return 0;
-      const normalized = value.replace(/Z$/, '');
-      const time = new Date(normalized).getTime();
-      return isNaN(time) ? 0 : time;
-    };
-
     switch (option) {
       case 'balanceAsc':
         this.accounts_list = [...this.accounts_list].sort(
@@ -176,13 +168,13 @@ export class ManageAccounts implements OnInit {
 
       case 'openedAtAsc':
         this.accounts_list = [...this.accounts_list].sort(
-          (a, b) => toTime(a.openedAt) - toTime(b.openedAt)
+          (a, b) => this.utility.toTime(a.openedAt) - this.utility.toTime(b.openedAt)
         );
         break;
 
       case 'openedAtDesc':
         this.accounts_list = [...this.accounts_list].sort(
-          (a, b) => toTime(b.openedAt) - toTime(a.openedAt)
+          (a, b) => this.utility.toTime(b.openedAt) - this.utility.toTime(a.openedAt)
         );
         break;
     }
@@ -266,16 +258,5 @@ export class ManageAccounts implements OnInit {
     });
   }
 
-  /**
-   * Masks an account number for secure display, showing only the last 4 digits.
-   * @param accountNumber The account number to mask.
-   * @returns A masked account number string.
-   */
-  maskAccountNumber(accountNumber: string): string {
-    if (!accountNumber) return '•••• •••• •••• ••••';
 
-    const clean = accountNumber.replace(/\s/g, '');
-    const last4 = clean.slice(-4);
-    return `•••• •••• •••• ${last4}`;
-  }
 }

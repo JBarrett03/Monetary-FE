@@ -3,15 +3,15 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../../services/account-service';
+import { UtilityService } from '../../services/utility-service';
 import { FilterPipe } from '../../pipes/filter-pipe';
-import { TRANSACTION_CATEGORIES } from '../../constants/transaction-categories';
+import { TRANSACTION_CATEGORIES, TRANSACTION_CATEGORY_META } from '../../constants/transaction-categories';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 /**
- * AccountDetails component
- * Displays detailed information about a single account, including its balance,
- * transactions, and budget settings. Users can view transactions, add new transactions,
- * manage budgets, and archive accounts. Supports filtering and searching transactions
- * by category.
+ * AccountDetails component - displays comprehensive information for a single account.
+ * Shows account balance, transaction history, and budget management.
+ * Enables users to add transactions, manage budgets with configurable periods, set default accounts,
+ * and archive accounts. Provides category-based transaction filtering and search capabilities.
  */
 @Component({
   standalone: true,
@@ -22,7 +22,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 })
 
 /**
- * Component class for managing and displaying account details
+ * Component logic for managing account details, budgets, and transactions.
+ * Handles account display, transaction management, budget creation/editing, and filtering.
  */
 export class AccountDetails implements OnInit {
 
@@ -99,13 +100,43 @@ export class AccountDetails implements OnInit {
   endDate: string = '';
 
   /**
+ * List of accounts
+ */
+  accounts_list: any[] = [];
+
+  /**
+ * Indicates whether the card information is complete for display purposes.
+ */
+  cardComplete: boolean = false;
+
+  /**
+ * Card brand for display purposes (e.g., Visa, MasterCard)
+ */
+  cardBrand: string = '';
+
+  /**
+ * Menu open state
+ */
+  menuOpen = false;
+
+  /**
+ * Flag indicating if the sort options dropdown is visible.
+ */
+  showSortOptions: boolean = false;
+
+  /**
+ * Currently applied sort option.
+ */
+  sortOptions: 'createdAtAsc' | 'createdAtDesc' | null = null;
+
+  /**
    * Creates an instance of the AccountDetails component.
    * @param route ActivatedRoute - Used to extract the accountId from the current route parameters
    * @param router Router - Used to navigate between routes (e.g., to transaction details or back to accounts list)
    * @param accountService AccountService - Service for fetching and managing account data, transactions, and budgets
    * @param cdr ChangeDetectorRef - Reference to manually trigger change detection when needed
    */
-  constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef) { }
+  constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef, public utility: UtilityService) { }
 
   /**
    * Angular lifecycle hook called after the component is initialized.
@@ -130,7 +161,7 @@ export class AccountDetails implements OnInit {
         this.account = account;
         this.cdr.detectChanges();
       },
-      error: (err) => {
+      error: () => {
         this.error = 'Account not found';
         this.cdr.detectChanges();
       }
@@ -141,7 +172,7 @@ export class AccountDetails implements OnInit {
         this.transactions = transactions;
         this.cdr.detectChanges();
       },
-      error: (err) => {
+      error: () => {
         this.error = 'Could not load transactions';
         this.cdr.detectChanges();
       }
@@ -169,10 +200,8 @@ export class AccountDetails implements OnInit {
     const userId = sessionStorage.getItem('userId');
     const accountId = sessionStorage.getItem('accountId');
 
-    if (!userId || !accountId) {
-      this.error = 'Invalid user or account';
-      return;
-    }
+    if (!userId || !accountId) return;
+
     const description = prompt('Description:');
     const amountInput = prompt('Amount:');
     const merchant = prompt('Merchant:');
@@ -181,11 +210,23 @@ export class AccountDetails implements OnInit {
       return;
     }
 
-    const amount = Number(amountInput);
+    const amount = Math.abs(Number(amountInput));
 
-    const transaction = {
-      type: amount >= 0 ? 'credit' : 'debit',
-      amount,
+    if (isNaN(amount) || amount <= 0) {
+      alert('Please enter a valid positive number for the amount.');
+      return;
+    }
+
+    const transaction: {
+      direction: 'in' | 'out',
+      type: string,
+      amount: number,
+      description: string,
+      merchant: string
+    } = {
+      direction: 'out',
+      type: 'debit',
+      amount: amount,
       description,
       merchant
     };
@@ -212,28 +253,7 @@ export class AccountDetails implements OnInit {
     });
   }
 
-  /**
-   * Converts an ISO date string into a human-readable format with proper ordinal suffix.
-   * Example: "2025-02-12" becomes "February 12th"
-   * @param dateString The date string to format (ISO 8601 format: YYYY-MM-DD hh:mm:ss)
-   * @returns The formatted date string with month name and day with ordinal suffix (e.g., "February 12th")
-   */
-  formatTransactionDate(dateString: string): string {
-    if (!dateString) return '';
 
-    const match = dateString.match(/^(\d{4})-(\d{2})-(\d{2})/);
-
-    if (!match) return dateString;
-
-    const year = Number(match[1]);
-    const monthIndex = Number(match[2]) - 1;
-    const day = Number(match[3]);
-
-    const suffix = day >= 11 && day <= 13 ? 'th' : { 1: 'st', 2: 'nd', 3: 'rd' }[day % 10] || 'th';
-    const month = new Date(year, monthIndex).toLocaleString('en-GB', { month: 'long' });
-
-    return `${month} ${day}${suffix}`;
-  }
 
   /**
    * Archives the current account after confirming with the user.
@@ -387,10 +407,10 @@ export class AccountDetails implements OnInit {
   get budgetProgress(): number {
     if (!this.account?.budget?.amount) return 0;
 
-    const balance = this.account.balance || 0;
+    const spent = this.account.budgetSpent || 0;
     const budgetAmount = this.account.budget.amount;
 
-    const percentage = (balance / budgetAmount) * 100;
+    const percentage = (spent / budgetAmount) * 100;
     return Math.min(percentage, 100);
   }
 
@@ -412,5 +432,55 @@ export class AccountDetails implements OnInit {
    */
   closeBudgetForm() {
     this.showBudgetForm = false;
+  }
+
+
+
+  /**
+ * Toggles the kebab menu visibility for adding and managing accounts.
+ */
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  /**
+   * Toggles the visibility of the sort options dropdown.
+   */
+  toggleSortOptions() {
+    this.showSortOptions = !this.showSortOptions;
+  }
+
+  /**
+   * Applies the selected sort option to the transactions list.
+   * Supports sorting by creation date in ascending or descending order.
+   * @param option The sort option to apply.
+   */
+  applySort(option: 'createdAtAsc' | 'createdAtDesc') {
+    this.sortOptions = option;
+
+    switch (option) {
+      case 'createdAtAsc':
+        this.transactions = [...this.transactions].sort(
+          (a, b) => this.utility.toTime(a.createdAt) - this.utility.toTime(b.createdAt)
+        );
+        break;
+
+      case 'createdAtDesc':
+        this.transactions = [...this.transactions].sort(
+          (a, b) => this.utility.toTime(b.createdAt) - this.utility.toTime(a.createdAt)
+        );
+        break;
+    }
+    this.cdr.detectChanges();
+  }
+
+  /**
+ * Retrieves the metadata (icon and color) for a given transaction category.
+ * If the category is not found in the predefined metadata, returns default values.
+ * @param category The transaction category to look up
+ * @returns An object containing the icon class and color associated with the category
+ */
+  getCategoryMeta(category: string) {
+    return TRANSACTION_CATEGORY_META[category as keyof typeof TRANSACTION_CATEGORY_META] || { icon: 'fa-question-circle', color: '#9E9E9E' };
   }
 }

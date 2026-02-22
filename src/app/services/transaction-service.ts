@@ -26,6 +26,17 @@ export class TransactionService {
   constructor(private http: HttpClient) {}
 
   /**
+   * Fetch all transactions for a user's account from the API.
+   * @param userId The ID of the user to retrieve transactions for
+   * @param accountId The ID of the account to retrieve transactions for
+   * @returns An observable containing the list of transactions
+   */
+  getAllTransactions(userId: string, accountId: string):Observable<any[]> {
+    const url = `${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions`;
+    return this.http.get<any[]>(url);
+  }
+
+  /**
    * Fetch a specific transaction for a user's account from the API.
    * @param userId The ID of the user to retrieve the transaction for
    * @param accountId The ID of the account to retrieve the transaction for
@@ -37,4 +48,8 @@ export class TransactionService {
     return this.http.get<any>(url);
   }
   
+  getTransactionSummary(userId: string, accountId: string, direction: 'in' | 'out'): Observable<any> {
+    console.log(`${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions/summary?direction=${direction}`);
+    return this.http.get<any>(`${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions/summary?direction=${direction}`);
+  }
 }

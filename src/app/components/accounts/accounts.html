@@ -10,6 +10,30 @@
                     <button class="kebab-btn" (click)="toggleMenu()">
                         <i class="fa fa-ellipsis-v"></i>
                     </button>
+                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                        <button class="btn btn-outline-primary btn-sm" (click)="toggleFilter()">
+                            <i class="fa" [ngClass]="showFilter ? 'fa-times' : 'fa-filter'"></i>
+                            {{ showFilter ? 'Close Filter' : 'Filter' }}
+                        </button>
+
+                        @if (showFilter) {
+                        <div class="d-flex gap-2 align-items-center flex-wrap">
+                            <select class="form-select form-select-sm w-auto" [(ngModel)]="selectedCategory"
+                                (change)="customCategory = ''; applyFilter()">
+                                <option value="">All Categories:</option>
+                                @for (category of categories; track category) {
+                                <option [value]="category">
+                                    {{ category }}
+                                </option>
+                                }
+                            </select>
+
+                            <input type="search" class="form-control form-control-sm w-25"
+                                placeholder="Enter category..." [(ngModel)]="customCategory"
+                                (input)="selectedCategory = ''; applyFilter()" />
+                        </div>
+                        }
+                    </div>
                     @if (menuOpen) {
                     <div class="menu-dropdown">
                         <button class="btn btn-outline-secondary me-2 w-100" (click)="addAccount(); toggleMenu()">
@@ -23,6 +47,41 @@
                 </div>
             </div>
 
+            @if (showAddAccountForm) {
+            <div class="overlay" (click)="showAddAccountForm = false">
+                <div class="modal-card card p-4" (click)="$event.stopPropagation()">
+
+                    <h5 class="mb-3">Create New Account</h5>
+
+                    <div class="mb-3">
+                        <label class="form-label">Account Name</label>
+                        <input type="text" class="form-control" [(ngModel)]="newAccountNickname"
+                            placeholder="e.g. Travel Fund">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Account Type</label>
+                        <select class="form-select" [(ngModel)]="newAccountType">
+                            <option value="">Select Type:</option>
+                            <option value="current">Current</option>
+                            <option value="savings">Savings</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Currency</label>
+                        <select class="form-select" [(ngModel)]="newAccountCurrency">
+                            <option value="">Select Currency:</option>
+                            <option value="GBP">GBP</option>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-success w-100" (click)="addAccount()">
+                        Create Account
+                    </button>
+                </div>
+            </div>
+            }
+
             @for (account of accounts_list; track account._id) {
             <div class="stripe-card mb-3 clickable-card" [routerLink]="['/accounts', account._id]"
                 [class.complete]="cardComplete">
@@ -34,17 +93,20 @@
                 </div>
 
                 <div class="card-number">
-                    {{ maskAccountNumber(account.accountNumber) }}
+                    {{ utility.maskAccountNumber(account.accountNumber) }}
                 </div>
 
                 <div class="stripe-card-bottom">
                     <div class="card-holder">
-                        {{ account.accountType | uppercase }}<br>
+                        <strong class="account-nickname">
+                            {{ account.nickname || (account.accountType | titlecase) }}
+                        </strong>
                         {{ account.availableBalance | currency: (account.currency || 'GBP') }}<br>
-                        {{ firstName }} {{ lastName }}
+                        Sort Code: {{ utility.formatSortCode(account.sortCode) }}<br>
+                        {{ account.firstName }} {{ account.lastName }}
                     </div>
                     <div class="expiry">
-                        MM / YY
+                        {{ account.expiryDate }}
                     </div>
                 </div>
             </div>
