@@ -28,16 +28,10 @@ export class HorizontalBar implements OnChanges {
   @Input() mode: 'savings' | 'spent' = 'savings';
 
   /**
-   * Input property for the primary value to be displayed in the chart (e.g., amount saved or spent).
-   * This value is used to calculate the proportions in the horizontal bar chart.
+   * Input property for category data to be displayed in the horizontal bar chart.
+   * This is an array of objects, each containing a category name and its corresponding value.
    */
-  @Input() primaryValue = 0;
-
-  /**
-   * Input property for the remaining value to be displayed in the chart (e.g., remaining budget).
-   * This value is used alongside the primary value to calculate the proportions in the horizontal bar chart.
-   */
-  @Input() remainingValue = 0;
+  @Input() categoryData: { name: string, value: number }[] = [];
 
   /**
    * Highcharts instance used for rendering the horizontal bar chart. This is passed to the HighchartsChart component in the template.
@@ -59,7 +53,7 @@ export class HorizontalBar implements OnChanges {
    * @param changes An object of key/value pairs for the set of changed properties.
    */
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes['mode'] && !changes['primaryValue'] && !changes['remainingValue']) return;
+    if (!changes['categoryData']) return;
     this.createBarChart();
   }
 
@@ -68,22 +62,29 @@ export class HorizontalBar implements OnChanges {
    * Sets the chart options and updates the chart when called.
    */
   private createBarChart() {
-    const isSavings = this.mode === 'savings';
-    const primaryLabel = isSavings ? 'Saved' : 'Spent';
+
+    const categories = this.categoryData.map(category => category.name);
+    const values = this.categoryData.map(category => category.value);
 
     this.chartOptions = {
       chart: {
         type: 'bar'
       },
       title: {
-        text: 'Overview'
+        text: 'Spending by Category'
       },
       xAxis: {
-        categories: [primaryLabel, 'Remaining']
+        categories: categories
+      },
+      yAxis: {
+        title: {
+          text: 'Amount'
+        }
       },
       series: [{
         type: 'bar',
-        data: [this.primaryValue, this.remainingValue]
+        name: 'Amount',
+        data: values
       }]
     };
     this.updateFlag = true;

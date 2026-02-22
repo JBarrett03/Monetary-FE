@@ -58,4 +58,15 @@ export class TransactionService {
   getTransactionSummary(userId: string, accountId: string, direction: 'in' | 'out'): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions/summary?direction=${direction}`);
   }
+
+  /**
+   * Fetch a summary of transactions by category for a user's account from the API, filtered by direction (in or out).
+   * @param userId The ID of the user to retrieve the category summary for
+   * @param accountId The ID of the account to retrieve the category summary for
+   * @param direction The direction of transactions to summarize ('in' for incoming, 'out' for outgoing)
+   * @returns An observable containing the category summary data
+   */
+  getCategorySummary(userId: string, accountId: string, direction: 'in' | 'out') {
+    return this.http.get<any>(`${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions/category-summary?direction=${direction}`);
+  }
 }

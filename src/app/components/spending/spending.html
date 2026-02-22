@@ -48,8 +48,7 @@
 
             <app-pie *ngSwitchCase="'Pie'" [mode]="activeView" [primaryValue]="primaryValue"
                 [remainingValue]="remainingValue"></app-pie>
-            <app-horizontal-bar *ngSwitchCase="'Bar'" [mode]="activeView" [primaryValue]="primaryValue"
-                [remainingValue]="remainingValue"></app-horizontal-bar>
+            <app-horizontal-bar *ngSwitchCase="'Bar'" [categoryData]="categoryData"></app-horizontal-bar>
             <app-line *ngSwitchCase="'Line'" [mode]="activeView" [primaryValue]="primaryValue"
                 [remainingValue]="remainingValue"></app-line>
 

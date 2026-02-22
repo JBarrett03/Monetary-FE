@@ -72,6 +72,12 @@ export class Spending {
   chart_type_list = ['Pie', 'Bar', 'Line'];
 
   /**
+ * Input property for category data to be displayed in the horizontal bar chart.
+ * This is an array of objects, each containing a category name and its corresponding value.
+ */
+  categoryData: { name: string, value: number }[] = [];
+
+  /**
    * Method to show the savings view, which displays analytics related to money saved.
    * Sets the activeView variable to 'savings' to trigger the display of the savings analytics.
    */
@@ -90,6 +96,7 @@ export class Spending {
     this.activeView = 'spent';
     setTimeout(() => {
       this.loadSpendingChart();
+      this.loadCategoryData('out');
     });
   }
 
@@ -168,5 +175,43 @@ export class Spending {
    */
   onChartTypeChange(event: any) {
     this.selectedChartType = event.value;
+    if (this.selectedChartType === 'Bar') {
+      const direction = this.activeView === 'savings' ? 'in' : 'out';
+      this.loadCategoryData(direction);
+    }
+  }
+
+  /**
+ * Loads category summary data for the specified transaction direction and updates the categoryData input for the horizontal bar chart.
+ * Fetches account data and then retrieves category summaries for each account, aggregating totals by category.
+ * @param direction 'in' for savings categories, 'out' for spending categories
+ */
+  loadCategoryData(direction: 'in' | 'out') {
+    const userId = sessionStorage.getItem('userId');
+
+    if (!userId) return;
+
+    this.accountService.getAccounts(userId).subscribe(accounts => {
+      const totals: Record<string, number> = {};
+      let completed = 0;
+
+      if (!accounts || accounts.length === 0) {
+        this.categoryData = [];
+        return;
+      }
+
+      accounts.forEach(account => {
+        this.transactionService.getCategorySummary(userId, account._id, direction).subscribe(data => {
+          data.forEach((item: any) => {
+            totals[item.category] = (totals[item.category] || 0) + Number(item.totalAmount || 0);
+          });
+          completed += 1;
+
+          if (completed === accounts.length) {
+            this.categoryData = Object.entries(totals).map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value);
+          }
+        });
+      });
+    });
   }
 }
