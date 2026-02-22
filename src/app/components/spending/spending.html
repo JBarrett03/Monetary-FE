@@ -1,61 +1,52 @@
 <div class="toggle-container">
-    <button class="toggle-btn" [class.active]="activeView === 'savings'" (click)="showSavings()">
-        Savings
-    </button>
-    <button class="toggle-btn" [class.active]="activeView === 'spent'" (click)="showSpent()">
-        Spending
-    </button>
+    <button class="toggle-btn" [class.active]="activeView === 'savings'" (click)="showSavings()">Savings</button>
+    <button class="toggle-btn" [class.active]="activeView === 'spent'" (click)="showSpent()">Spending</button>
 </div>
 
 <div class="slide-panel" [class.open]="activeView !== null">
-
     <div class="panel-header">
         <button class="close-btn" (click)="closeView()">X</button>
     </div>
 
     <div class="panel-content" *ngIf="activeView">
 
-        <h2 class="panel-title">
-            {{ activeView === 'savings' ? 'Total Savings' : 'Total Spending' }}
-        </h2>
-
         <div class="period-actions">
 
             <mat-form-field appearance="fill">
                 <mat-label>Period</mat-label>
                 <mat-select (selectionChange)="onPeriodChange($event)">
-                    <mat-option *ngFor="let period of period_list" [value]="period">
-                        {{ period }}
-                    </mat-option>
+                    <mat-option *ngFor="let period of period_list" [value]="period">{{ period }}</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <mat-label>Chart Type</mat-label>
                 <mat-select (selectionChange)="onChartTypeChange($event)">
-                    <mat-option *ngFor="let chartType of chart_type_list" [value]="chartType">
-                        {{ chartType }}
-                    </mat-option>
+                    <mat-option *ngFor="let chartType of chart_type_list" [value]="chartType">{{ chartType
+                        }}</mat-option>
                 </mat-select>
             </mat-form-field>
 
-            <button class="btn btn-primary">
-                Export Data
-            </button>
+            <button class="btn btn-primary" (click)="generatePDF()">Export Data</button>
         </div>
 
-        <ng-container [ngSwitch]="selectedChartType">
+        <div #chartContainer>
+            <h2 class="panel-title">
+                {{ activeView === 'savings' ? 'Savings Analytics' : 'Spending Analytics' }}
+            </h2>
+            <ng-container [ngSwitch]="selectedChartType">
 
-            <app-pie *ngSwitchCase="'Pie'" [mode]="activeView" [primaryValue]="primaryValue"
-                [remainingValue]="remainingValue"></app-pie>
-            <app-horizontal-bar *ngSwitchCase="'Bar'" [categoryData]="categoryData"></app-horizontal-bar>
-            <app-line *ngSwitchCase="'Line'" [mode]="activeView" [primaryValue]="primaryValue"
-                [remainingValue]="remainingValue"></app-line>
+                <app-pie *ngSwitchCase="'Pie'" [mode]="activeView" [primaryValue]="primaryValue"
+                    [remainingValue]="remainingValue"></app-pie>
+                <app-horizontal-bar *ngSwitchCase="'Bar'" [categoryData]="categoryData"></app-horizontal-bar>
+                <app-line *ngSwitchCase="'Line'" [mode]="activeView" [primaryValue]="primaryValue"
+                    [remainingValue]="remainingValue"></app-line>
 
-            <p *ngSwitchDefault>
-                Select a chart type to display analytics.
-            </p>
+                <p *ngSwitchDefault>
+                    Select a chart type to display analytics.
+                </p>
 
-        </ng-container>
+            </ng-container>
+        </div>
     </div>
 </div>

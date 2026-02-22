@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountService } from '../../services/account-service';
 import { TransactionService } from '../../services/transaction-service';
@@ -6,6 +6,8 @@ import { Pie } from '../charts/pie/pie';
 import { HorizontalBar } from '../charts/horizontal-bar/horizontal-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { Line } from '../charts/line/line';
+import html2pdf from 'html2pdf.js';
+
 /**
  * Spending component - displays budget and spending analytics with interactive charts.
  * Provides two views: 'savings' (remaining budget) and 'spent' (amount spent from budget).
@@ -25,6 +27,8 @@ import { Line } from '../charts/line/line';
  * Toggles between savings and spending views, loads account data, and renders Highcharts visualizations.
  */
 export class Spending {
+
+  @ViewChild('chartContainer', { static: false }) chartContainer!: ElementRef;
 
   /**
    * Constructor for Spending component.
@@ -76,6 +80,25 @@ export class Spending {
  * This is an array of objects, each containing a category name and its corresponding value.
  */
   categoryData: { name: string, value: number }[] = [];
+
+  /**
+   * Method to generate a PDF report of the current chart view. Uses the html2pdf library to capture the chart container
+   * and save it as a PDF file named 'spending_report.pdf'. Configures options for PDF generation such as margins,
+   * image quality, and page format.
+   */
+  generatePDF(): void {
+    if (!this.chartContainer?.nativeElement) return;
+
+    const content = this.chartContainer.nativeElement;
+    const options = {
+      margin: 10,
+      filename: 'spending_report.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' }
+    };
+    (html2pdf as any)().set(options).from(content).save();
+  }
 
   /**
    * Method to show the savings view, which displays analytics related to money saved.
