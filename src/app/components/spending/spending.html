@@ -50,6 +50,8 @@
                 [remainingValue]="remainingValue"></app-pie>
             <app-horizontal-bar *ngSwitchCase="'Bar'" [mode]="activeView" [primaryValue]="primaryValue"
                 [remainingValue]="remainingValue"></app-horizontal-bar>
+            <app-line *ngSwitchCase="'Line'" [mode]="activeView" [primaryValue]="primaryValue"
+                [remainingValue]="remainingValue"></app-line>
 
             <p *ngSwitchDefault>
                 Select a chart type to display analytics.

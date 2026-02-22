@@ -5,6 +5,7 @@ import { TransactionService } from '../../services/transaction-service';
 import { Pie } from '../charts/pie/pie';
 import { HorizontalBar } from '../charts/horizontal-bar/horizontal-bar';
 import { MatSelectModule } from '@angular/material/select';
+import { Line } from '../charts/line/line';
 /**
  * Spending component - displays budget and spending analytics with interactive charts.
  * Provides two views: 'savings' (remaining budget) and 'spent' (amount spent from budget).
@@ -14,7 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 @Component({
   selector: 'app-spending',
   standalone: true,
-  imports: [CommonModule, Pie, HorizontalBar, MatSelectModule],
+  imports: [CommonModule, Pie, HorizontalBar, Line, MatSelectModule],
   templateUrl: './spending.html',
   styleUrl: './spending.css',
 })
@@ -61,14 +62,14 @@ export class Spending {
 
   /**
    * The currently selected chart type for displaying analytics data.
-   * Can be 'Pie' or 'Bar'. Defaults to 'Pie'.
+   * Can be 'Pie', 'Bar', or 'Line'. Defaults to 'Pie'.
    */
-  selectedChartType: 'Pie' | 'Bar' = 'Pie';
+  selectedChartType: 'Pie' | 'Bar' | 'Line' = 'Pie';
 
   /**
    * List of available chart types for selection in the UI.
    */
-  chart_type_list = ['Pie', 'Bar'];
+  chart_type_list = ['Pie', 'Bar', 'Line'];
 
   /**
    * Method to show the savings view, which displays analytics related to money saved.
