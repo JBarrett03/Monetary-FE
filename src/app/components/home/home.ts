@@ -124,7 +124,7 @@ export class Home implements OnInit {
         this.account = account;
         this.cdr.detectChanges();
       },
-      error: (err) => {
+      error: () => {
         this.error = 'Account not found';
         this.cdr.detectChanges();
       }
@@ -135,7 +135,7 @@ export class Home implements OnInit {
         this.transactions = transactions;
         this.cdr.detectChanges();
       },
-      error: (err) => {
+      error: () => {
         this.error = 'Could not load transactions';
         this.cdr.detectChanges();
       }
@@ -181,7 +181,6 @@ export class Home implements OnInit {
   get effectiveCategory(): string {
     return this.customCategory || this.selectedCategory;
   }
-
 
   /**
  * Retrieves the metadata (icon and color) for a given transaction category.

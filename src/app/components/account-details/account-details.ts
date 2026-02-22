@@ -253,8 +253,6 @@ export class AccountDetails implements OnInit {
     });
   }
 
-
-
   /**
    * Archives the current account after confirming with the user.
    * Displays a confirmation dialog to ensure the user intentionally wants to archive.
@@ -433,8 +431,6 @@ export class AccountDetails implements OnInit {
   closeBudgetForm() {
     this.showBudgetForm = false;
   }
-
-
 
   /**
  * Toggles the kebab menu visibility for adding and managing accounts.

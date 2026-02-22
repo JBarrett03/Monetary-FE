@@ -230,10 +230,19 @@ Users can view account details, add new accounts, and navigate to the manage acc
                                 <a href="#accounts_list" >accounts_list</a>
                             </li>
                             <li>
+                                <a href="#allAccounts" >allAccounts</a>
+                            </li>
+                            <li>
                                 <a href="#cardBrand" >cardBrand</a>
                             </li>
                             <li>
                                 <a href="#cardComplete" >cardComplete</a>
+                            </li>
+                            <li>
+                                <a href="#categories" >categories</a>
+                            </li>
+                            <li>
+                                <a href="#customCategory" >customCategory</a>
                             </li>
                             <li>
                                 <a href="#firstName" >firstName</a>
@@ -254,7 +263,17 @@ Users can view account details, add new accounts, and navigate to the manage acc
                                 <a href="#newAccountType" >newAccountType</a>
                             </li>
                             <li>
+                                <a href="#selectedCategory" >selectedCategory</a>
+                            </li>
+                            <li>
                                 <a href="#showAddAccountForm" >showAddAccountForm</a>
+                            </li>
+                            <li>
+                                <a href="#showFilter" >showFilter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#utility" >utility</a>
                             </li>
                         </ul>
                     </td>
@@ -272,13 +291,16 @@ Users can view account details, add new accounts, and navigate to the manage acc
                                 <a href="#addAccount" >addAccount</a>
                             </li>
                             <li>
+                                <a href="#applyFilter" >applyFilter</a>
+                            </li>
+                            <li>
                                 <a href="#goToManageAccounts" >goToManageAccounts</a>
                             </li>
                             <li>
-                                <a href="#maskAccountNumber" >maskAccountNumber</a>
+                                <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
+                                <a href="#toggleFilter" >toggleFilter</a>
                             </li>
                             <li>
                                 <a href="#toggleMenu" >toggleMenu</a>
@@ -291,6 +313,20 @@ Users can view account details, add new accounts, and navigate to the manage acc
 
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#effectiveCategory" >effectiveCategory</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
@@ -301,12 +337,12 @@ Users can view account details, add new accounts, and navigate to the manage acc
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(accountService: <a href="../injectables/AccountService.html" target="_self">AccountService</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(accountService: <a href="../injectables/AccountService.html" target="_self">AccountService</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, utility: <a href="../injectables/UtilityService.html" target="_self">UtilityService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/components/accounts/accounts.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/components/accounts/accounts.ts:102</a></div>
                             </td>
                         </tr>
 
@@ -390,6 +426,20 @@ Users can view account details, add new accounts, and navigate to the manage acc
 
                                                         </td>
                                                 </tr>
+                                                <tr>
+                                                        <td>utility</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UtilityService.html" target="_self" >UtilityService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -428,8 +478,8 @@ Users can view account details, add new accounts, and navigate to the manage acc
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="118"
-                                    class="link-to-prism">src/app/components/accounts/accounts.ts:118</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="150"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:150</a></div>
                         </td>
                     </tr>
 
@@ -444,6 +494,51 @@ Prompts the user for account type and currency, then creates the account via the
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applyFilter"></a>
+                    <span class="name">
+                        <span ><b>applyFilter</b></span>
+                        <a href="#applyFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>applyFilter()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="218"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:218</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Applies the selected category filter or custom search term to the list of accounts.
+If no filter is selected, resets the accounts list to show all accounts.
+Filters accounts based on whether the account type or nickname includes the search term.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>void</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -468,8 +563,8 @@ Prompts the user for account type and currency, then creates the account via the
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="160"
-                                    class="link-to-prism">src/app/components/accounts/accounts.ts:160</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="192"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:192</a></div>
                         </td>
                     </tr>
 
@@ -483,81 +578,6 @@ Prompts the user for account type and currency, then creates the account via the
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="maskAccountNumber"></a>
-                    <span class="name">
-                        <span ><b>maskAccountNumber</b></span>
-                        <a href="#maskAccountNumber"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>maskAccountNumber(accountNumber: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="170"
-                                    class="link-to-prism">src/app/components/accounts/accounts.ts:170</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Masks an account number for secure display, showing only the last 4 digits.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>accountNumber</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The account number to mask.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>A masked account number string.</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -582,8 +602,8 @@ Prompts the user for account type and currency, then creates the account via the
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="85"
-                                    class="link-to-prism">src/app/components/accounts/accounts.ts:85</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:116</a></div>
                         </td>
                     </tr>
 
@@ -597,6 +617,51 @@ Prompts the user for account type and currency, then creates the account via the
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleFilter"></a>
+                    <span class="name">
+                        <span ><b>toggleFilter</b></span>
+                        <a href="#toggleFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleFilter()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="203"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:203</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Toggles the visibility of the transaction filter UI.
+When hiding the filter, also clears any active filter selections
+(selected category and custom search term).</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>void</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -621,8 +686,8 @@ Prompts the user for account type and currency, then creates the account via the
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="153"
-                                    class="link-to-prism">src/app/components/accounts/accounts.ts:153</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="185"
+                                    class="link-to-prism">src/app/components/accounts/accounts.ts:185</a></div>
                         </td>
                     </tr>
 
@@ -670,13 +735,50 @@ Prompts the user for account type and currency, then creates the account via the
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/components/accounts/accounts.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/accounts/accounts.ts:25</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>List of accounts</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="allAccounts"></a>
+                    <span class="name">
+                        <span ><b>allAccounts</b></span>
+                        <a href="#allAccounts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/accounts/accounts.ts:30</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of all accounts (used for filtering)</p>
 </div>
                 </td>
             </tr>
@@ -707,7 +809,7 @@ Prompts the user for account type and currency, then creates the account via the
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/accounts/accounts.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/components/accounts/accounts.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -744,13 +846,89 @@ Prompts the user for account type and currency, then creates the account via the
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/accounts/accounts.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/accounts/accounts.ts:55</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Indicates whether the card information is complete for display purposes.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="categories"></a>
+                    <span class="name">
+                        <span ><b>categories</b></span>
+                        <a href="#categories"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ACCOUNT_CATEGORIES</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/components/accounts/accounts.ts:84</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of all available account categories imported from the constants file.
+Used to populate the category dropdown filter in the UI.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="customCategory"></a>
+                    <span class="name">
+                        <span ><b>customCategory</b></span>
+                        <a href="#customCategory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/components/accounts/accounts.ts:96</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Custom category entered by the user for filtering accounts.
+Clears the selectedCategory when used.</p>
 </div>
                 </td>
             </tr>
@@ -781,7 +959,7 @@ Prompts the user for account type and currency, then creates the account via the
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/accounts/accounts.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/accounts/accounts.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -818,7 +996,7 @@ Prompts the user for account type and currency, then creates the account via the
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/accounts/accounts.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/accounts/accounts.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -855,7 +1033,7 @@ Prompts the user for account type and currency, then creates the account via the
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/accounts/accounts.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/accounts/accounts.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -892,7 +1070,7 @@ Prompts the user for account type and currency, then creates the account via the
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/components/accounts/accounts.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/components/accounts/accounts.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -930,7 +1108,7 @@ This value is used to specify the currency of the account being created when the
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/components/accounts/accounts.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/components/accounts/accounts.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -968,7 +1146,7 @@ This value is used to specify a custom nickname for the account being created, a
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/components/accounts/accounts.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/components/accounts/accounts.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -976,6 +1154,44 @@ This value is used to specify a custom nickname for the account being created, a
                 <td class="col-md-4">
                     <div class="io-description"><p>New account type selected by the user when adding a new account (e.g., &#39;savings&#39;, &#39;checking&#39;).
 This value is used to specify the type of account being created when the user submits the add account form.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedCategory"></a>
+                    <span class="name">
+                        <span ><b>selectedCategory</b></span>
+                        <a href="#selectedCategory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/components/accounts/accounts.ts:90</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Category selected from the dropdown menu for filtering accounts.
+Cleared when user inputs a custom search term.</p>
 </div>
                 </td>
             </tr>
@@ -1006,7 +1222,7 @@ This value is used to specify the type of account being created when the user su
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/accounts/accounts.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/accounts/accounts.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -1019,8 +1235,114 @@ This value is used to specify the type of account being created when the user su
 
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showFilter"></a>
+                    <span class="name">
+                        <span ><b>showFilter</b></span>
+                        <a href="#showFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/components/accounts/accounts.ts:102</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Controls the visibility of the transaction filter UI. When true, displays category
+dropdown and custom search input for filtering transactions.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="utility"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>utility</b></span>
+                        <a href="#utility"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/UtilityService.html" target="_self" >UtilityService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/components/accounts/accounts.ts:111</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
 </section>
 
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="effectiveCategory"></a>
+                        <span class="name"><b>effectiveCategory</b><a href="#effectiveCategory"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>effectiveCategory()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="238" class="link-to-prism">src/app/components/accounts/accounts.ts:238</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Getter for the effective category filter, which returns the custom category if entered, or the selected category from the dropdown.
+This allows the component to determine which filter value to use when applying filters to the accounts list.</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
 </div>
 
 
@@ -1028,9 +1350,11 @@ This value is used to specify the type of account being created when the user su
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, ChangeDetectorRef } from &#x27;@angular/core&#x27;;
 import { AccountService } from &#x27;../../services/account-service&#x27;;
 import { UserService } from &#x27;../../services/user-service&#x27;;
+import { UtilityService } from &#x27;../../services/utility-service&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { RouterModule, Router } from &#x27;@angular/router&#x27;;
 import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { ACCOUNT_CATEGORIES } from &#x27;../../constants/account-categories&#x27;;
 /**
  * Accounts component displays all user accounts as Stripe-styled cards.
  * Users can view account details, add new accounts, and navigate to the manage accounts page.
@@ -1048,6 +1372,11 @@ export class Accounts implements OnInit {
    * List of accounts
    */
   accounts_list: any[] &#x3D; [];
+
+  /**
+   * List of all accounts (used for filtering)
+   */
+  allAccounts: any[] &#x3D; [];
 
   /**
    * Menu open state
@@ -1098,13 +1427,37 @@ export class Accounts implements OnInit {
   newAccountNickname: string &#x3D; &#x27;&#x27;;
 
   /**
+   * List of all available account categories imported from the constants file.
+   * Used to populate the category dropdown filter in the UI.
+   */
+  categories &#x3D; ACCOUNT_CATEGORIES;
+
+  /**
+ * Category selected from the dropdown menu for filtering accounts.
+ * Cleared when user inputs a custom search term.
+ */
+  selectedCategory: string &#x3D; &#x27;&#x27;;
+
+  /**
+   * Custom category entered by the user for filtering accounts.
+   * Clears the selectedCategory when used.
+   */
+  customCategory: string &#x3D; &#x27;&#x27;;
+
+  /**
+ * Controls the visibility of the transaction filter UI. When true, displays category
+ * dropdown and custom search input for filtering transactions.
+ */
+  showFilter: boolean &#x3D; false;
+
+  /**
    * Creates an instance of Accounts component.
    * @param accountService Service for account operations.
    * @param userService Service for user operations.
    * @param cdr Change detector reference.
    * @param router Router for navigation.
    */
-  constructor(private accountService: AccountService, private userService: UserService, private cdr: ChangeDetectorRef, private router: Router) { }
+  constructor(private accountService: AccountService, private userService: UserService, private cdr: ChangeDetectorRef, private router: Router, public utility: UtilityService) { }
 
   /**
    * Initializes the component and loads the list of accounts and user details.
@@ -1130,6 +1483,7 @@ export class Accounts implements OnInit {
     this.accountService.getAccounts(userId).subscribe({
       next: (accounts) &#x3D;&gt; {
         this.accounts_list &#x3D; accounts;
+        this.allAccounts &#x3D; accounts;
         this.cdr.detectChanges();
       },
       error: (err) &#x3D;&gt; {
@@ -1190,16 +1544,48 @@ export class Accounts implements OnInit {
   }
 
   /**
-   * Masks an account number for secure display, showing only the last 4 digits.
-   * @param accountNumber The account number to mask.
-   * @returns A masked account number string.
-   */
-  maskAccountNumber(accountNumber: string): string {
-    if (!accountNumber) return &#x27;•••• •••• •••• ••••&#x27;;
+ * Toggles the visibility of the transaction filter UI.
+ * When hiding the filter, also clears any active filter selections
+ * (selected category and custom search term).
+ * @returns void
+ */
+  toggleFilter() {
+    this.showFilter &#x3D; !this.showFilter;
 
-    const clean &#x3D; accountNumber.replace(/\s/g, &#x27;&#x27;);
-    const last4 &#x3D; clean.slice(-4);
-    return &#x60;•••• •••• •••• ${last4}&#x60;;
+    if (!this.showFilter) {
+      this.selectedCategory &#x3D; &#x27;&#x27;;
+      this.customCategory &#x3D; &#x27;&#x27;;
+    }
+  }
+
+  /**
+   * Applies the selected category filter or custom search term to the list of accounts.
+   * If no filter is selected, resets the accounts list to show all accounts.
+   * Filters accounts based on whether the account type or nickname includes the search term.
+   * @returns void
+    */
+  applyFilter() {
+    const search &#x3D; (this.customCategory || this.selectedCategory || &#x27;&#x27;).toLowerCase().trim();
+
+    if (!search) {
+      this.accounts_list &#x3D; [...this.allAccounts];
+      return;
+    }
+
+    this.accounts_list &#x3D; this.allAccounts.filter(account &#x3D;&gt;
+      account.accountType?.toLowerCase().includes(search) ||
+      account.nickname?.toLowerCase().includes(search)
+    );
+    this.cdr.detectChanges();
+  }
+
+  /**
+   * Getter for the effective category filter, which returns the custom category if entered, or the selected category from the dropdown.
+   * This allows the component to determine which filter value to use when applying filters to the accounts list.
+   * @returns The effective category filter string
+   */
+  get effectiveCategory(): string {
+    return this.customCategory || this.selectedCategory;
   }
 }</code></pre>
     </div>
@@ -1217,6 +1603,30 @@ export class Accounts implements OnInit {
                     &lt;button class&#x3D;&quot;kebab-btn&quot; (click)&#x3D;&quot;toggleMenu()&quot;&gt;
                         &lt;i class&#x3D;&quot;fa fa-ellipsis-v&quot;&gt;&lt;/i&gt;
                     &lt;/button&gt;
+                    &lt;div class&#x3D;&quot;d-flex align-items-center gap-2 flex-wrap&quot;&gt;
+                        &lt;button class&#x3D;&quot;btn btn-outline-primary btn-sm&quot; (click)&#x3D;&quot;toggleFilter()&quot;&gt;
+                            &lt;i class&#x3D;&quot;fa&quot; [ngClass]&#x3D;&quot;showFilter ? &#x27;fa-times&#x27; : &#x27;fa-filter&#x27;&quot;&gt;&lt;/i&gt;
+                            {{ showFilter ? &#x27;Close Filter&#x27; : &#x27;Filter&#x27; }}
+                        &lt;/button&gt;
+
+                        @if (showFilter) {
+                        &lt;div class&#x3D;&quot;d-flex gap-2 align-items-center flex-wrap&quot;&gt;
+                            &lt;select class&#x3D;&quot;form-select form-select-sm w-auto&quot; [(ngModel)]&#x3D;&quot;selectedCategory&quot;
+                                (change)&#x3D;&quot;customCategory &#x3D; &#x27;&#x27;; applyFilter()&quot;&gt;
+                                &lt;option value&#x3D;&quot;&quot;&gt;All Categories:&lt;/option&gt;
+                                @for (category of categories; track category) {
+                                &lt;option [value]&#x3D;&quot;category&quot;&gt;
+                                    {{ category }}
+                                &lt;/option&gt;
+                                }
+                            &lt;/select&gt;
+
+                            &lt;input type&#x3D;&quot;search&quot; class&#x3D;&quot;form-control form-control-sm w-25&quot;
+                                placeholder&#x3D;&quot;Enter category...&quot; [(ngModel)]&#x3D;&quot;customCategory&quot;
+                                (input)&#x3D;&quot;selectedCategory &#x3D; &#x27;&#x27;; applyFilter()&quot; /&gt;
+                        &lt;/div&gt;
+                        }
+                    &lt;/div&gt;
                     @if (menuOpen) {
                     &lt;div class&#x3D;&quot;menu-dropdown&quot;&gt;
                         &lt;button class&#x3D;&quot;btn btn-outline-secondary me-2 w-100&quot; (click)&#x3D;&quot;addAccount(); toggleMenu()&quot;&gt;
@@ -1276,7 +1686,7 @@ export class Accounts implements OnInit {
                 &lt;/div&gt;
 
                 &lt;div class&#x3D;&quot;card-number&quot;&gt;
-                    {{ maskAccountNumber(account.accountNumber) }}
+                    {{ utility.maskAccountNumber(account.accountNumber) }}
                 &lt;/div&gt;
 
                 &lt;div class&#x3D;&quot;stripe-card-bottom&quot;&gt;
@@ -1285,7 +1695,7 @@ export class Accounts implements OnInit {
                             {{ account.nickname || (account.accountType | titlecase) }}
                         &lt;/strong&gt;
                         {{ account.availableBalance | currency: (account.currency || &#x27;GBP&#x27;) }}&lt;br&gt;
-                        Sort Code: {{ account.sortCode }}&lt;br&gt;
+                        Sort Code: {{ utility.formatSortCode(account.sortCode) }}&lt;br&gt;
                         {{ account.firstName }} {{ account.lastName }}
                     &lt;/div&gt;
                     &lt;div class&#x3D;&quot;expiry&quot;&gt;
@@ -1324,8 +1734,8 @@ export class Accounts implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12 d-flex flex-column align-items-center">            @if (accounts_list.length === 0) {            <p>No accounts found</p>            }            <div class="row mb-3">                <div class="col-sm-12">                    <button class="kebab-btn" (click)="toggleMenu()">                        <i class="fa fa-ellipsis-v"></i>                    </button>                    @if (menuOpen) {                    <div class="menu-dropdown">                        <button class="btn btn-outline-secondary me-2 w-100" (click)="addAccount(); toggleMenu()">                            <i class="fa fa-plus"></i> Add Account                        </button>                        <button class="btn btn-outline-secondary w-100" (click)="goToManageAccounts()">                            <i class="fa fa-cog"></i> Manage                        </button>                    </div>                    }                </div>            </div>            @if (showAddAccountForm) {            <div class="overlay" (click)="showAddAccountForm = false">                <div class="modal-card card p-4" (click)="$event.stopPropagation()">                    <h5 class="mb-3">Create New Account</h5>                    <div class="mb-3">                        <label class="form-label">Account Name</label>                        <input type="text" class="form-control" [(ngModel)]="newAccountNickname"                            placeholder="e.g. Travel Fund">                    </div>                    <div class="mb-3">                        <label class="form-label">Account Type</label>                        <select class="form-select" [(ngModel)]="newAccountType">                            <option value="">Select Type:</option>                            <option value="current">Current</option>                            <option value="savings">Savings</option>                        </select>                    </div>                    <div class="mb-3">                        <label class="form-label">Currency</label>                        <select class="form-select" [(ngModel)]="newAccountCurrency">                            <option value="">Select Currency:</option>                            <option value="GBP">GBP</option>                            <option value="USD">USD</option>                            <option value="EUR">EUR</option>                        </select>                    </div>                    <button class="btn btn-success w-100" (click)="addAccount()">                        Create Account                    </button>                </div>            </div>            }            @for (account of accounts_list; track account._id) {            <div class="stripe-card mb-3 clickable-card" [routerLink]="[\'/accounts\', account._id]"                [class.complete]="cardComplete">                <div class="stripe-card-top">                    <div class="chip"></div>                    <div class="card-brand">                        {{ cardBrand | uppercase }}                    </div>                </div>                <div class="card-number">                    {{ maskAccountNumber(account.accountNumber) }}                </div>                <div class="stripe-card-bottom">                    <div class="card-holder">                        <strong class="account-nickname">                            {{ account.nickname || (account.accountType | titlecase) }}                        </strong>                        {{ account.availableBalance | currency: (account.currency || \'GBP\') }}<br>                        Sort Code: {{ account.sortCode }}<br>                        {{ account.firstName }} {{ account.lastName }}                    </div>                    <div class="expiry">                        {{ account.expiryDate }}                    </div>                </div>            </div>            }        </div>    </div></div>'
-    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TestUserService', 'selector': 'app-test-user-service'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12 d-flex flex-column align-items-center">            @if (accounts_list.length === 0) {            <p>No accounts found</p>            }            <div class="row mb-3">                <div class="col-sm-12">                    <button class="kebab-btn" (click)="toggleMenu()">                        <i class="fa fa-ellipsis-v"></i>                    </button>                    <div class="d-flex align-items-center gap-2 flex-wrap">                        <button class="btn btn-outline-primary btn-sm" (click)="toggleFilter()">                            <i class="fa" [ngClass]="showFilter ? \'fa-times\' : \'fa-filter\'"></i>                            {{ showFilter ? \'Close Filter\' : \'Filter\' }}                        </button>                        @if (showFilter) {                        <div class="d-flex gap-2 align-items-center flex-wrap">                            <select class="form-select form-select-sm w-auto" [(ngModel)]="selectedCategory"                                (change)="customCategory = \'\'; applyFilter()">                                <option value="">All Categories:</option>                                @for (category of categories; track category) {                                <option [value]="category">                                    {{ category }}                                </option>                                }                            </select>                            <input type="search" class="form-control form-control-sm w-25"                                placeholder="Enter category..." [(ngModel)]="customCategory"                                (input)="selectedCategory = \'\'; applyFilter()" />                        </div>                        }                    </div>                    @if (menuOpen) {                    <div class="menu-dropdown">                        <button class="btn btn-outline-secondary me-2 w-100" (click)="addAccount(); toggleMenu()">                            <i class="fa fa-plus"></i> Add Account                        </button>                        <button class="btn btn-outline-secondary w-100" (click)="goToManageAccounts()">                            <i class="fa fa-cog"></i> Manage                        </button>                    </div>                    }                </div>            </div>            @if (showAddAccountForm) {            <div class="overlay" (click)="showAddAccountForm = false">                <div class="modal-card card p-4" (click)="$event.stopPropagation()">                    <h5 class="mb-3">Create New Account</h5>                    <div class="mb-3">                        <label class="form-label">Account Name</label>                        <input type="text" class="form-control" [(ngModel)]="newAccountNickname"                            placeholder="e.g. Travel Fund">                    </div>                    <div class="mb-3">                        <label class="form-label">Account Type</label>                        <select class="form-select" [(ngModel)]="newAccountType">                            <option value="">Select Type:</option>                            <option value="current">Current</option>                            <option value="savings">Savings</option>                        </select>                    </div>                    <div class="mb-3">                        <label class="form-label">Currency</label>                        <select class="form-select" [(ngModel)]="newAccountCurrency">                            <option value="">Select Currency:</option>                            <option value="GBP">GBP</option>                            <option value="USD">USD</option>                            <option value="EUR">EUR</option>                        </select>                    </div>                    <button class="btn btn-success w-100" (click)="addAccount()">                        Create Account                    </button>                </div>            </div>            }            @for (account of accounts_list; track account._id) {            <div class="stripe-card mb-3 clickable-card" [routerLink]="[\'/accounts\', account._id]"                [class.complete]="cardComplete">                <div class="stripe-card-top">                    <div class="chip"></div>                    <div class="card-brand">                        {{ cardBrand | uppercase }}                    </div>                </div>                <div class="card-number">                    {{ utility.maskAccountNumber(account.accountNumber) }}                </div>                <div class="stripe-card-bottom">                    <div class="card-holder">                        <strong class="account-nickname">                            {{ account.nickname || (account.accountType | titlecase) }}                        </strong>                        {{ account.availableBalance | currency: (account.currency || \'GBP\') }}<br>                        Sort Code: {{ utility.formatSortCode(account.sortCode) }}<br>                        {{ account.firstName }} {{ account.lastName }}                    </div>                    <div class="expiry">                        {{ account.expiryDate }}                    </div>                </div>            </div>            }        </div>    </div></div>'
+    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'HorizontalBar', 'selector': 'app-horizontal-bar'},{'name': 'Line', 'selector': 'app-line'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Pie', 'selector': 'app-pie'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TestUserService', 'selector': 'app-test-user-service'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Accounts'};
 </script>

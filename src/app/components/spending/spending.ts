@@ -152,10 +152,20 @@ export class Spending {
     this.loadChart('out');
   }
 
+  /**
+   * Event handler for when the user changes the selected time period for analytics data.
+   * Reloads the chart data based on the new time period selection.
+   * @param event The event object containing information about the selected time period
+   */
   onPeriodChange(event: any) {
     this.loadChart(this.activeView === 'savings' ? 'in' : 'out');
   }
 
+  /**
+   * Event handler for when the user changes the selected chart type for analytics data.
+   * Updates the selectedChartType variable to reflect the new selection, which triggers a change in the displayed chart.
+   * @param event The event object containing information about the selected chart type
+   */
   onChartTypeChange(event: any) {
     this.selectedChartType = event.value;
   }

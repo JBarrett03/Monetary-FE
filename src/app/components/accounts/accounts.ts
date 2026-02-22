@@ -108,13 +108,7 @@ export class Accounts implements OnInit {
    * @param cdr Change detector reference.
    * @param router Router for navigation.
    */
-  constructor(
-    private accountService: AccountService,
-    private userService: UserService,
-    private cdr: ChangeDetectorRef,
-    private router: Router,
-    public utility: UtilityService
-  ) { }
+  constructor(private accountService: AccountService, private userService: UserService, private cdr: ChangeDetectorRef, private router: Router, public utility: UtilityService) { }
 
   /**
    * Initializes the component and loads the list of accounts and user details.
@@ -200,10 +194,6 @@ export class Accounts implements OnInit {
     this.router.navigate(['/manage-accounts']);
   }
 
-
-
-
-
   /**
  * Toggles the visibility of the transaction filter UI.
  * When hiding the filter, also clears any active filter selections
@@ -219,6 +209,12 @@ export class Accounts implements OnInit {
     }
   }
 
+  /**
+   * Applies the selected category filter or custom search term to the list of accounts.
+   * If no filter is selected, resets the accounts list to show all accounts.
+   * Filters accounts based on whether the account type or nickname includes the search term.
+   * @returns void
+    */
   applyFilter() {
     const search = (this.customCategory || this.selectedCategory || '').toLowerCase().trim();
 
@@ -234,6 +230,11 @@ export class Accounts implements OnInit {
     this.cdr.detectChanges();
   }
 
+  /**
+   * Getter for the effective category filter, which returns the custom category if entered, or the selected category from the dropdown.
+   * This allows the component to determine which filter value to use when applying filters to the accounts list.
+   * @returns The effective category filter string
+   */
   get effectiveCategory(): string {
     return this.customCategory || this.selectedCategory;
   }

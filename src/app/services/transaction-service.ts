@@ -48,6 +48,13 @@ export class TransactionService {
     return this.http.get<any>(url);
   }
   
+  /**
+   * Fetch a summary of transactions for a user's account from the API, filtered by direction (in or out).
+   * @param userId The ID of the user to retrieve the transaction summary for
+   * @param accountId The ID of the account to retrieve the transaction summary for
+   * @param direction The direction of transactions to summarize ('in' for incoming, 'out' for outgoing)
+   * @returns An observable containing the transaction summary data
+   */
   getTransactionSummary(userId: string, accountId: string, direction: 'in' | 'out'): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions/summary?direction=${direction}`);
   }

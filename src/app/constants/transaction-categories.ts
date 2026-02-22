@@ -19,6 +19,11 @@ export const TRANSACTION_CATEGORIES = [
     'Miscellaneous'
 ] as const;
 
+/**
+ * This constant defines metadata for each transaction category, including an associated icon and color.
+ * The metadata is used to enhance the visual representation of transactions in the UI, allowing users
+ * to quickly identify the category of each transaction based on its icon and color.
+ */
 export const TRANSACTION_CATEGORY_META: Record<typeof TRANSACTION_CATEGORIES[number], { icon: string, color: string }> = {
     'Groceries': { icon: 'fa-shopping-cart', color: '#4CAF50' },
     'Dining': { icon: 'fa-utensils', color: '#FF9800' },

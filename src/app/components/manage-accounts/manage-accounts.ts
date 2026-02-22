@@ -257,6 +257,4 @@ export class ManageAccounts implements OnInit {
       }
     });
   }
-
-
 }

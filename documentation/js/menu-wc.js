@@ -72,6 +72,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/Home.html" data-type="entity-link" >Home</a>
                             </li>
                             <li class="link">
+                                <a href="components/HorizontalBar.html" data-type="entity-link" >HorizontalBar</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/Line.html" data-type="entity-link" >Line</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/Login.html" data-type="entity-link" >Login</a>
                             </li>
                             <li class="link">
@@ -82,6 +88,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/Payments.html" data-type="entity-link" >Payments</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/Pie.html" data-type="entity-link" >Pie</a>
                             </li>
                             <li class="link">
                                 <a href="components/Spending.html" data-type="entity-link" >Spending</a>
@@ -113,6 +122,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/UserService.html" data-type="entity-link" >UserService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/UtilityService.html" data-type="entity-link" >UtilityService</a>
                                 </li>
                             </ul>
                         </li>
