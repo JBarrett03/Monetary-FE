@@ -231,6 +231,9 @@ Includes slide-in panel animation for viewing details and data export capability
                                 <a href="#activeView" >activeView</a>
                             </li>
                             <li>
+                                <a href="#categoryData" >categoryData</a>
+                            </li>
+                            <li>
                                 <a href="#chart_type_list" >chart_type_list</a>
                             </li>
                             <li>
@@ -259,6 +262,9 @@ Includes slide-in panel animation for viewing details and data export capability
                         <ul class="index-list">
                             <li>
                                 <a href="#closeView" >closeView</a>
+                            </li>
+                            <li>
+                                <a href="#loadCategoryData" >loadCategoryData</a>
                             </li>
                             <li>
                                 <a href="#loadChart" >loadChart</a>
@@ -394,8 +400,8 @@ Includes slide-in panel animation for viewing details and data export capability
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="100"
-                                    class="link-to-prism">src/app/components/spending/spending.ts:100</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/components/spending/spending.ts:107</a></div>
                         </td>
                     </tr>
 
@@ -410,6 +416,81 @@ Sets the activeView variable to null, which hides any active analytics view.</p>
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadCategoryData"></a>
+                    <span class="name">
+                        <span ><b>loadCategoryData</b></span>
+                        <a href="#loadCategoryData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadCategoryData(direction: "in" | "out")</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="189"
+                                    class="link-to-prism">src/app/components/spending/spending.ts:189</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Loads category summary data for the specified transaction direction and updates the categoryData input for the horizontal bar chart.
+Fetches account data and then retrieves category summaries for each account, aggregating totals by category.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>direction</td>
+                                            <td>
+                                                        <code>&quot;in&quot; | &quot;out&quot;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>&#39;in&#39; for savings categories, &#39;out&#39; for spending categories</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -434,8 +515,8 @@ Sets the activeView variable to null, which hides any active analytics view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="109"
-                                    class="link-to-prism">src/app/components/spending/spending.ts:109</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/app/components/spending/spending.ts:116</a></div>
                         </td>
                     </tr>
 
@@ -509,8 +590,8 @@ Fetches account and transaction summary data to calculate primary and remaining 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="144"
-                                    class="link-to-prism">src/app/components/spending/spending.ts:144</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="151"
+                                    class="link-to-prism">src/app/components/spending/spending.ts:151</a></div>
                         </td>
                     </tr>
 
@@ -548,8 +629,8 @@ Fetches account and transaction summary data to calculate primary and remaining 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="151"
-                                    class="link-to-prism">src/app/components/spending/spending.ts:151</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="158"
+                                    class="link-to-prism">src/app/components/spending/spending.ts:158</a></div>
                         </td>
                     </tr>
 
@@ -587,8 +668,8 @@ Fetches account and transaction summary data to calculate primary and remaining 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="169"
-                                    class="link-to-prism">src/app/components/spending/spending.ts:169</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="176"
+                                    class="link-to-prism">src/app/components/spending/spending.ts:176</a></div>
                         </td>
                     </tr>
 
@@ -662,8 +743,8 @@ Updates the selectedChartType variable to reflect the new selection, which trigg
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="160"
-                                    class="link-to-prism">src/app/components/spending/spending.ts:160</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="167"
+                                    class="link-to-prism">src/app/components/spending/spending.ts:167</a></div>
                         </td>
                     </tr>
 
@@ -737,8 +818,8 @@ Reloads the chart data based on the new time period selection.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="78"
-                                    class="link-to-prism">src/app/components/spending/spending.ts:78</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/app/components/spending/spending.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -777,8 +858,8 @@ Sets the activeView variable to &#39;savings&#39; to trigger the display of the 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="89"
-                                    class="link-to-prism">src/app/components/spending/spending.ts:89</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/components/spending/spending.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -873,6 +954,44 @@ currency, and account type (e.g., &#39;savings&#39;, &#39;checking&#39;). Null u
                 <td class="col-md-4">
                     <div class="io-description"><p>The active view for spending analytics, which can be &#39;savings&#39;, &#39;spent&#39;, or null (no view).
 This variable controls which spending analytics view is currently displayed to the user.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="categoryData"></a>
+                    <span class="name">
+                        <span ><b>categoryData</b></span>
+                        <a href="#categoryData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/components/spending/spending.ts:78</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Input property for category data to be displayed in the horizontal bar chart.
+This is an array of objects, each containing a category name and its corresponding value.</p>
 </div>
                 </td>
             </tr>
@@ -1145,6 +1264,12 @@ export class Spending {
   chart_type_list &#x3D; [&#x27;Pie&#x27;, &#x27;Bar&#x27;, &#x27;Line&#x27;];
 
   /**
+ * Input property for category data to be displayed in the horizontal bar chart.
+ * This is an array of objects, each containing a category name and its corresponding value.
+ */
+  categoryData: { name: string, value: number }[] &#x3D; [];
+
+  /**
    * Method to show the savings view, which displays analytics related to money saved.
    * Sets the activeView variable to &#x27;savings&#x27; to trigger the display of the savings analytics.
    */
@@ -1163,6 +1288,7 @@ export class Spending {
     this.activeView &#x3D; &#x27;spent&#x27;;
     setTimeout(() &#x3D;&gt; {
       this.loadSpendingChart();
+      this.loadCategoryData(&#x27;out&#x27;);
     });
   }
 
@@ -1241,6 +1367,44 @@ export class Spending {
    */
   onChartTypeChange(event: any) {
     this.selectedChartType &#x3D; event.value;
+    if (this.selectedChartType &#x3D;&#x3D;&#x3D; &#x27;Bar&#x27;) {
+      const direction &#x3D; this.activeView &#x3D;&#x3D;&#x3D; &#x27;savings&#x27; ? &#x27;in&#x27; : &#x27;out&#x27;;
+      this.loadCategoryData(direction);
+    }
+  }
+
+  /**
+ * Loads category summary data for the specified transaction direction and updates the categoryData input for the horizontal bar chart.
+ * Fetches account data and then retrieves category summaries for each account, aggregating totals by category.
+ * @param direction &#x27;in&#x27; for savings categories, &#x27;out&#x27; for spending categories
+ */
+  loadCategoryData(direction: &#x27;in&#x27; | &#x27;out&#x27;) {
+    const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
+
+    if (!userId) return;
+
+    this.accountService.getAccounts(userId).subscribe(accounts &#x3D;&gt; {
+      const totals: Record&lt;string, number&gt; &#x3D; {};
+      let completed &#x3D; 0;
+
+      if (!accounts || accounts.length &#x3D;&#x3D;&#x3D; 0) {
+        this.categoryData &#x3D; [];
+        return;
+      }
+
+      accounts.forEach(account &#x3D;&gt; {
+        this.transactionService.getCategorySummary(userId, account._id, direction).subscribe(data &#x3D;&gt; {
+          data.forEach((item: any) &#x3D;&gt; {
+            totals[item.category] &#x3D; (totals[item.category] || 0) + Number(item.totalAmount || 0);
+          });
+          completed +&#x3D; 1;
+
+          if (completed &#x3D;&#x3D;&#x3D; accounts.length) {
+            this.categoryData &#x3D; Object.entries(totals).map(([name, value]) &#x3D;&gt; ({ name, value })).sort((a, b) &#x3D;&gt; b.value - a.value);
+          }
+        });
+      });
+    });
   }
 }
 </code></pre>
@@ -1297,8 +1461,7 @@ export class Spending {
 
             &lt;app-pie *ngSwitchCase&#x3D;&quot;&#x27;Pie&#x27;&quot; [mode]&#x3D;&quot;activeView&quot; [primaryValue]&#x3D;&quot;primaryValue&quot;
                 [remainingValue]&#x3D;&quot;remainingValue&quot;&gt;&lt;/app-pie&gt;
-            &lt;app-horizontal-bar *ngSwitchCase&#x3D;&quot;&#x27;Bar&#x27;&quot; [mode]&#x3D;&quot;activeView&quot; [primaryValue]&#x3D;&quot;primaryValue&quot;
-                [remainingValue]&#x3D;&quot;remainingValue&quot;&gt;&lt;/app-horizontal-bar&gt;
+            &lt;app-horizontal-bar *ngSwitchCase&#x3D;&quot;&#x27;Bar&#x27;&quot; [categoryData]&#x3D;&quot;categoryData&quot;&gt;&lt;/app-horizontal-bar&gt;
             &lt;app-line *ngSwitchCase&#x3D;&quot;&#x27;Line&#x27;&quot; [mode]&#x3D;&quot;activeView&quot; [primaryValue]&#x3D;&quot;primaryValue&quot;
                 [remainingValue]&#x3D;&quot;remainingValue&quot;&gt;&lt;/app-line&gt;
 
@@ -1337,7 +1500,7 @@ export class Spending {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="toggle-container">    <button class="toggle-btn" [class.active]="activeView === \'savings\'" (click)="showSavings()">        Savings    </button>    <button class="toggle-btn" [class.active]="activeView === \'spent\'" (click)="showSpent()">        Spending    </button></div><div class="slide-panel" [class.open]="activeView !== null">    <div class="panel-header">        <button class="close-btn" (click)="closeView()">X</button>    </div>    <div class="panel-content" *ngIf="activeView">        <h2 class="panel-title">            {{ activeView === \'savings\' ? \'Total Savings\' : \'Total Spending\' }}        </h2>        <div class="period-actions">            <mat-form-field appearance="fill">                <mat-label>Period</mat-label>                <mat-select (selectionChange)="onPeriodChange($event)">                    <mat-option *ngFor="let period of period_list" [value]="period">                        {{ period }}                    </mat-option>                </mat-select>            </mat-form-field>            <mat-form-field appearance="fill">                <mat-label>Chart Type</mat-label>                <mat-select (selectionChange)="onChartTypeChange($event)">                    <mat-option *ngFor="let chartType of chart_type_list" [value]="chartType">                        {{ chartType }}                    </mat-option>                </mat-select>            </mat-form-field>            <button class="btn btn-primary">                Export Data            </button>        </div>        <ng-container [ngSwitch]="selectedChartType">            <app-pie *ngSwitchCase="\'Pie\'" [mode]="activeView" [primaryValue]="primaryValue"                [remainingValue]="remainingValue"></app-pie>            <app-horizontal-bar *ngSwitchCase="\'Bar\'" [mode]="activeView" [primaryValue]="primaryValue"                [remainingValue]="remainingValue"></app-horizontal-bar>            <app-line *ngSwitchCase="\'Line\'" [mode]="activeView" [primaryValue]="primaryValue"                [remainingValue]="remainingValue"></app-line>            <p *ngSwitchDefault>                Select a chart type to display analytics.            </p>        </ng-container>    </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="toggle-container">    <button class="toggle-btn" [class.active]="activeView === \'savings\'" (click)="showSavings()">        Savings    </button>    <button class="toggle-btn" [class.active]="activeView === \'spent\'" (click)="showSpent()">        Spending    </button></div><div class="slide-panel" [class.open]="activeView !== null">    <div class="panel-header">        <button class="close-btn" (click)="closeView()">X</button>    </div>    <div class="panel-content" *ngIf="activeView">        <h2 class="panel-title">            {{ activeView === \'savings\' ? \'Total Savings\' : \'Total Spending\' }}        </h2>        <div class="period-actions">            <mat-form-field appearance="fill">                <mat-label>Period</mat-label>                <mat-select (selectionChange)="onPeriodChange($event)">                    <mat-option *ngFor="let period of period_list" [value]="period">                        {{ period }}                    </mat-option>                </mat-select>            </mat-form-field>            <mat-form-field appearance="fill">                <mat-label>Chart Type</mat-label>                <mat-select (selectionChange)="onChartTypeChange($event)">                    <mat-option *ngFor="let chartType of chart_type_list" [value]="chartType">                        {{ chartType }}                    </mat-option>                </mat-select>            </mat-form-field>            <button class="btn btn-primary">                Export Data            </button>        </div>        <ng-container [ngSwitch]="selectedChartType">            <app-pie *ngSwitchCase="\'Pie\'" [mode]="activeView" [primaryValue]="primaryValue"                [remainingValue]="remainingValue"></app-pie>            <app-horizontal-bar *ngSwitchCase="\'Bar\'" [categoryData]="categoryData"></app-horizontal-bar>            <app-line *ngSwitchCase="\'Line\'" [mode]="activeView" [primaryValue]="primaryValue"                [remainingValue]="remainingValue"></app-line>            <p *ngSwitchDefault>                Select a chart type to display analytics.            </p>        </ng-container>    </div></div></div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'HorizontalBar', 'selector': 'app-horizontal-bar'},{'name': 'Line', 'selector': 'app-line'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Pie', 'selector': 'app-pie'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TestUserService', 'selector': 'app-test-user-service'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Spending'};

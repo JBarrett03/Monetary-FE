@@ -3,7 +3,7 @@ import { AccountService } from '../../services/account-service';
 import { UtilityService } from '../../services/utility-service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Router, ActivatedRoute } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import { FilterPipe } from '../../pipes/filter-pipe';
 import { TRANSACTION_CATEGORIES, TRANSACTION_CATEGORY_META } from '../../constants/transaction-categories';
@@ -96,7 +96,7 @@ export class Home implements OnInit {
    * @param accountService The service used to interact with account-related API endpoints.
    * @param cdr ChangeDetectorRef - Reference to manually trigger change detection when needed
    */
-  constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef, public utility: UtilityService) { }
+  constructor(private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef, public utility: UtilityService) { }
 
   /**
    * Lifecycle hook that is called after the component has been initialized. It retrieves the user ID from session storage,

@@ -81,9 +81,7 @@
     white-space: nowrap;
 }
 
-input {
-    transition: all 0.2s ease-in-out;
-}
+
 
 .overlay {
     position: fixed;

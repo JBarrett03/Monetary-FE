@@ -179,6 +179,9 @@
                                 <a href="#getAllTransactions" >getAllTransactions</a>
                             </li>
                             <li>
+                                <a href="#getCategorySummary" >getCategorySummary</a>
+                            </li>
+                            <li>
                                 <a href="#getTransaction" >getTransaction</a>
                             </li>
                             <li>
@@ -342,6 +345,113 @@
                         </div>
                             <div class="io-description">
                                 <p>An observable containing the list of transactions</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCategorySummary"></a>
+                    <span class="name">
+                        <span ><b>getCategorySummary</b></span>
+                        <a href="#getCategorySummary"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCategorySummary(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, accountId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, direction: "in" | "out")</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/app/services/transaction-service.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Fetch a summary of transactions by category for a user&#39;s account from the API, filtered by direction (in or out).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>userId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The ID of the user to retrieve the category summary for</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>accountId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The ID of the account to retrieve the category summary for</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>direction</td>
+                                            <td>
+                                                        <code>&quot;in&quot; | &quot;out&quot;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The direction of transactions to summarize (&#39;in&#39; for incoming, &#39;out&#39; for outgoing)</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable containing the category summary data</p>
 
                             </div>
                 </td>
@@ -671,6 +781,17 @@ export class TransactionService {
    */
   getTransactionSummary(userId: string, accountId: string, direction: &#x27;in&#x27; | &#x27;out&#x27;): Observable&lt;any&gt; {
     return this.http.get&lt;any&gt;(&#x60;${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions/summary?direction&#x3D;${direction}&#x60;);
+  }
+
+  /**
+   * Fetch a summary of transactions by category for a user&#x27;s account from the API, filtered by direction (in or out).
+   * @param userId The ID of the user to retrieve the category summary for
+   * @param accountId The ID of the account to retrieve the category summary for
+   * @param direction The direction of transactions to summarize (&#x27;in&#x27; for incoming, &#x27;out&#x27; for outgoing)
+   * @returns An observable containing the category summary data
+   */
+  getCategorySummary(userId: string, accountId: string, direction: &#x27;in&#x27; | &#x27;out&#x27;) {
+    return this.http.get&lt;any&gt;(&#x60;${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions/category-summary?direction&#x3D;${direction}&#x60;);
   }
 }
 </code></pre>
