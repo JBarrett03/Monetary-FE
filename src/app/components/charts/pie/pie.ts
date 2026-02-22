@@ -19,18 +19,29 @@ export class Pie implements OnChanges {
   chartOptions: Highcharts.Options = {};
   updateFlag = false;
 
+  private chart?: Highcharts.Chart;
+
+  chartCallback: Highcharts.ChartCallbackFunction = (chart) => {
+    this.chart = chart;
+    setTimeout(() => this.chart?.reflow(), 0);
+  };
+
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes['mode'] && !changes['primaryValue'] && !changes['remainingValue']) {
-      return;
-    }
+    if (!changes['mode'] && !changes['primaryValue'] && !changes['remainingValue']) return;
 
     this.createPieChart();
+
+    setTimeout(() => {
+      this.chart?.reflow();
+    }, 0);
   }
 
   private createPieChart() {
     const isSavings = this.mode === 'savings';
     const title = isSavings ? 'Savings Budget Overview' : 'Spending Overview';
-    const primaryLabel = isSavings ? 'Budget' : 'Spent';
+    const primaryLabel = isSavings ? 'Saved' : 'Spent';
+    const primaryColor = isSavings ? '#43a047' : '#e53935';
+    const remainingColor = isSavings ? '#e53935' : '#43a047';
 
     this.chartOptions = {
       chart: {
@@ -51,8 +62,8 @@ export class Pie implements OnChanges {
       series: [{
         type: 'pie',
         data: [
-          { name: primaryLabel, y: this.primaryValue, color: '#e53935' },
-          { name: 'Remaining', y: this.remainingValue, color: '#43a047' }
+          { name: primaryLabel, y: this.primaryValue, color: primaryColor },
+          { name: 'Remaining', y: this.remainingValue, color: remainingColor }
         ]
       }]
     };

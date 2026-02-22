@@ -89,51 +89,54 @@ export class Spending {
   }
 
   /**
+   * Loads the pie chart data for either savings or spending based on the provided direction.
+   * Fetches account and transaction summary data to calculate primary and remaining values for the chart.
+   * @param direction 'in' for savings, 'out' for spending
+   */
+  loadChart(direction: 'in' | 'out') {
+    const userId = sessionStorage.getItem('userId');
+
+    if (!userId) return;
+
+    this.primaryValue = 0;
+    this.remainingValue = 0;
+
+    this.accountService.getAccounts(userId).subscribe(accounts => {
+      const budgetAccounts = accounts.filter(a => a?.budget?.amount);
+
+      if (budgetAccounts.length === 0) return;
+
+      let goal = 0;
+      let actual = 0;
+      let completed = 0;
+
+      budgetAccounts.forEach(account => {
+        goal += Number(account.budget.amount);
+        this.transactionService.getTransactionSummary(userId, account._id, direction).subscribe(summary => {
+          actual += Number(summary?.totalAmount || 0);
+          completed += 1;
+
+          if (completed === budgetAccounts.length) {
+            this.primaryValue = actual;
+            this.remainingValue = Math.max(goal - actual, 0);
+          }
+        });
+      });
+    });
+  }
+
+  /**
   * Loads the savings chart data and updates chart input values.
    */
   loadSavingsChart() {
-    const userId = sessionStorage.getItem('userId');
-    const accountId = sessionStorage.getItem('accountId');
-
-    if (!userId || !accountId) return;
-
-    this.accountService.getAccount(userId, accountId).subscribe(account => {
-      if (!account.budget) return;
-
-      const totalBudget = account.budget.amount;
-
-      this.transactionService.getTransactionSummary(userId, accountId, 'in').subscribe(summary => {
-        const budget = summary.totalAmount || 0;
-        const remaining = Math.max(totalBudget - budget, 0);
-
-        this.primaryValue = budget;
-        this.remainingValue = remaining;
-      });
-    });
+    this.loadChart('in');
   }
 
   /**
    * Loads the spending chart data and updates chart input values.
    */
   loadSpendingChart() {
-    const userId = sessionStorage.getItem('userId');
-    const accountId = sessionStorage.getItem('accountId');
-
-    if (!userId || !accountId) return;
-
-    this.accountService.getAccount(userId, accountId).subscribe(account => {
-      if (!account.budget) return;
-
-      const totalSpent = account.budget.amount - account.budget.remaining;
-
-      this.transactionService.getTransactionSummary(userId, accountId, 'out').subscribe(summary => {
-        const spent = summary.totalAmount || 0;
-        const remaining = Math.max(totalSpent - spent, 0);
-
-        this.primaryValue = spent;
-        this.remainingValue = remaining;
-      });
-    })
+    this.loadChart('out');
   }
 
   onChange(event: any) {
