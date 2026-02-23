@@ -82,6 +82,12 @@ export class Spending {
   categoryData: { name: string, value: number }[] = [];
 
   /**
+   * List of account analytics data for all accounts, used to display multiple charts if needed.
+   * Each entry contains account ID, account name, primary value, and remaining value for the chart.
+   */
+  accountAnalytics: { accountId: string, accountName: string, primaryValue: number, remainingValue: number }[] = [];
+
+  /**
    * Method to generate a PDF report of the current chart view. Uses the html2pdf library to capture the chart container
    * and save it as a PDF file named 'spending_report.pdf'. Configures options for PDF generation such as margins,
    * image quality, and page format.
@@ -106,9 +112,7 @@ export class Spending {
    */
   showSavings() {
     this.activeView = 'savings';
-    setTimeout(() => {
-      this.loadSavingsChart();
-    });
+    this.loadSavingsChart();
   }
 
   /**
@@ -117,10 +121,8 @@ export class Spending {
    */
   showSpent() {
     this.activeView = 'spent';
-    setTimeout(() => {
-      this.loadSpendingChart();
-      this.loadCategoryData('out');
-    });
+    this.loadSpendingChart();
+    this.loadCategoryData('out');
   }
 
   /**
@@ -143,6 +145,7 @@ export class Spending {
 
     this.primaryValue = 0;
     this.remainingValue = 0;
+    this.accountAnalytics = [];
 
     this.accountService.getAccounts(userId).subscribe(accounts => {
       const budgetAccounts = accounts.filter(a => a?.budget?.amount);
@@ -157,6 +160,15 @@ export class Spending {
         goal += Number(account.budget.amount);
         this.transactionService.getTransactionSummary(userId, account._id, direction).subscribe(summary => {
           actual += Number(summary?.totalAmount || 0);
+          const accountBalance = Number(summary?.totalAmount || 0);
+          const accountGoal = Number(account.budget.amount);
+
+          this.accountAnalytics.push({
+            accountId: account._id,
+            accountName: account.nickname || account.accountNumber,
+            primaryValue: accountBalance,
+            remainingValue: Math.max(accountGoal - accountBalance, 0)
+          })
           completed += 1;
 
           if (completed === budgetAccounts.length) {

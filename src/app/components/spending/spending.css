@@ -69,3 +69,10 @@
 .period-actions .btn {
     margin-left: auto;
 }
+
+.account-chart-card {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+}
