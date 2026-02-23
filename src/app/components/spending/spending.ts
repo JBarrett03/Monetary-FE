@@ -68,7 +68,7 @@ export class Spending {
    * The currently selected chart type for displaying analytics data.
    * Can be 'Pie', 'Bar', or 'Line'. Defaults to 'Pie'.
    */
-  selectedChartType: 'Pie' | 'Bar' | 'Line' = 'Pie';
+  selectedChartType: 'Pie' | 'Bar' | 'Line' | null = null;
 
   /**
    * List of available chart types for selection in the UI.

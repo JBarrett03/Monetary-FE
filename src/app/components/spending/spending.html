@@ -21,7 +21,7 @@
 
             <mat-form-field appearance="fill">
                 <mat-label>Chart Type</mat-label>
-                <mat-select (selectionChange)="onChartTypeChange($event)">
+                <mat-select [(value)]="selectedChartType" (selectionChange)="onChartTypeChange($event)">
                     <mat-option *ngFor="let chartType of chart_type_list" [value]="chartType">{{ chartType
                         }}</mat-option>
                 </mat-select>
@@ -30,12 +30,15 @@
             <button class="btn btn-primary" (click)="generatePDF()">Export Data</button>
         </div>
 
-        <div #chartContainer>
+        <p *ngIf="!selectedChartType" class="text-muted">
+            Please select a chart type to display analytics.
+        </p>
+
+        <div #chartContainer *ngIf="selectedChartType">
             <h2 class="panel-title">
                 {{ activeView === 'savings' ? 'Savings Analytics' : 'Spending Analytics' }}
             </h2>
             <ng-container [ngSwitch]="selectedChartType">
-
                 <app-pie *ngSwitchCase="'Pie'" [mode]="activeView" [primaryValue]="primaryValue"
                     [remainingValue]="remainingValue"></app-pie>
                 <app-horizontal-bar *ngSwitchCase="'Bar'" [categoryData]="categoryData"></app-horizontal-bar>
@@ -43,7 +46,8 @@
                     [remainingValue]="remainingValue"></app-line>
             </ng-container>
         </div>
-        <div class="account-breakdown" *ngIf="accountAnalytics.length > 0">
+
+        <div class="account-breakdown" *ngIf="selectedChartType && accountAnalytics.length > 0">
             <h3 class="mt-4">Account Breakdown</h3>
             <div *ngFor="let account of accountAnalytics" class="account-chart-card">
                 <h4>{{ account.accountName }}</h4>
@@ -56,5 +60,6 @@
                 </ng-container>
             </div>
         </div>
+        
     </div>
 </div>
