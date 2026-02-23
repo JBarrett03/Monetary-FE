@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TRANSACTION_CATEGORY_META } from '../constants/transaction-categories';
 
 /**
  * UtilityService provides common formatting and helper methods used across multiple components.
@@ -7,7 +8,14 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
+
+/**
+ * The UtilityService class contains methods for formatting account numbers, sort codes, transaction dates,
+ * and handling numeric input. It also provides a method to retrieve metadata for transaction categories.
+ * This service is designed to be injected into components that require these utility functions.
+ */
 export class UtilityService {
+  
   /**
    * Masks an account number for secure display, showing only the last 4 digits.
    * @param accountNumber The account number to mask
@@ -71,5 +79,38 @@ export class UtilityService {
     const normalized = value.replace(/Z$/, '');
     const time = new Date(normalized).getTime();
     return isNaN(time) ? 0 : time;
+  }
+
+  /**
+   * Formats an account number by grouping digits into blocks of four.
+   * @param accountNumber The account number to format
+   * @returns The formatted account number string
+   */
+  formatAccountNumber(accountNumber?: string | null): string {
+    if (!accountNumber) return '';
+    const digits = accountNumber.replace(/\D/g, '').slice(0, 16);
+    return digits.replace(/(.{4})/g, '$1 ').trim();
+  }
+
+  /**
+   * Allows only numeric input for keydown events.
+   * @param event The keydown event
+   */
+  numbersOnly(event: KeyboardEvent): void {
+    const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'];
+
+    if (allowedKeys.includes(event.key) || /^[0-9]$/.test(event.key)) {
+      return;
+    }
+    event.preventDefault();
+  }
+
+  /**
+   * Retrieves the metadata (icon and color) for a given transaction category.
+   * @param category The transaction category to look up
+   * @returns An object containing the icon class and color associated with the category
+   */
+  getCategoryMeta(category: string): { icon: string; color: string } {
+    return TRANSACTION_CATEGORY_META[category as keyof typeof TRANSACTION_CATEGORY_META] || { icon: 'fa-question-circle', color: '#9E9E9E' };
   }
 }

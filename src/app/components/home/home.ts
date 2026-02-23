@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import { FilterPipe } from '../../pipes/filter-pipe';
-import { TRANSACTION_CATEGORIES, TRANSACTION_CATEGORY_META } from '../../constants/transaction-categories';
+import { TRANSACTION_CATEGORIES } from '../../constants/transaction-categories';
 
 /**
  * Home component - displays the authenticated user's dashboard.
@@ -182,13 +182,4 @@ export class Home implements OnInit {
     return this.customCategory || this.selectedCategory;
   }
 
-  /**
- * Retrieves the metadata (icon and color) for a given transaction category.
- * If the category is not found in the predefined metadata, returns default values.
- * @category The transaction category to look up
- * @returns An object containing the icon class and color associated with the category
- */
-  getCategoryMeta(category: string) {
-    return TRANSACTION_CATEGORY_META[category as keyof typeof TRANSACTION_CATEGORY_META] || { icon: 'fa-question-circle', color: '#9E9E9E' };
-  }
 }

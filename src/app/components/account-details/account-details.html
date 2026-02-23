@@ -180,8 +180,8 @@
         <li class="list-group-item d-flex justify-content-between transaction-item transaction-spacing"
             (click)="openTransaction(transaction._id)">
             <div class="d-flex align-items-center gap-2">
-                <i class="fa" [ngClass]="getCategoryMeta(transaction.category).icon"
-                    [style.color]="getCategoryMeta(transaction.category).color"></i>
+                <i class="fa" [ngClass]="utility.getCategoryMeta(transaction.category).icon"
+                    [style.color]="utility.getCategoryMeta(transaction.category).color"></i>
                 <div>
                     {{ transaction.description }}<br />
                     <small class="text-muted">

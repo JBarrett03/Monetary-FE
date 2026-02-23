@@ -186,29 +186,4 @@ export class Payments implements OnInit {
     });
   }
 
-  /**
-   * Formats the confirmAccountNumber input by removing spaces and inserting dashes every 4 characters for better readability.
-   * This method is called on every input event for the confirmAccountNumber field to ensure consistent formatting as the user types.
-   */
-  formatAccountNumber(accountNumber: string | undefined | null): string {
-    if (!accountNumber) return '';
-    const digits = accountNumber.replace(/\D/g, '').slice(0, 16);
-    return digits.replace(/(.{4})/g, '$1 ').trim();
-  }
-
-
-
-  /**
-   * Event handler to allow only numeric input in the confirmAccountNumber and confirmSortCode fields.
-   * This method checks the key pressed against allowed keys (backspace, tab, arrow keys, delete) and numeric characters.
-   * If the key is not allowed, it prevents the default action, effectively blocking non-numeric input.
-   */
-  numbersOnly(event: KeyboardEvent) {
-    const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'];
-
-    if (allowedKeys.includes(event.key) || /^[0-9]$/.test(event.key)) {
-      return;
-    }
-    event.preventDefault();
-  }
 }
