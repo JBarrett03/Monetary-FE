@@ -231,6 +231,9 @@ Includes form validation and error handling for transfer operations.</p>
                                 <a href="#account" >account</a>
                             </li>
                             <li>
+                                <a href="#allPayees" >allPayees</a>
+                            </li>
+                            <li>
                                 <a href="#amountToAdd" >amountToAdd</a>
                             </li>
                             <li>
@@ -247,6 +250,9 @@ Includes form validation and error handling for transfer operations.</p>
                             </li>
                             <li>
                                 <a href="#showAddBalanceForm" >showAddBalanceForm</a>
+                            </li>
+                            <li>
+                                <a href="#showRecentPayees" >showRecentPayees</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -271,16 +277,19 @@ Includes form validation and error handling for transfer operations.</p>
                                 <a href="#closeBalanceForm" >closeBalanceForm</a>
                             </li>
                             <li>
-                                <a href="#formatAccountNumber" >formatAccountNumber</a>
+                                <a href="#closeShowRecentPayees" >closeShowRecentPayees</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#numbersOnly" >numbersOnly</a>
+                                <a href="#openBalanceForm" >openBalanceForm</a>
                             </li>
                             <li>
-                                <a href="#openBalanceForm" >openBalanceForm</a>
+                                <a href="#openShowRecentPayees" >openShowRecentPayees</a>
+                            </li>
+                            <li>
+                                <a href="#showAllPayees" >showAllPayees</a>
                             </li>
                         </ul>
                     </td>
@@ -411,8 +420,8 @@ Includes form validation and error handling for transfer operations.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="123"
-                                    class="link-to-prism">src/app/components/payments/payments.ts:123</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="151"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:151</a></div>
                         </td>
                     </tr>
 
@@ -452,8 +461,8 @@ If validation passes, it calls the AccountService to add the balance and updates
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="114"
-                                    class="link-to-prism">src/app/components/payments/payments.ts:114</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:128</a></div>
                         </td>
                     </tr>
 
@@ -475,68 +484,37 @@ If validation passes, it calls the AccountService to add the balance and updates
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="formatAccountNumber"></a>
+                    <a name="closeShowRecentPayees"></a>
                     <span class="name">
-                        <span ><b>formatAccountNumber</b></span>
-                        <a href="#formatAccountNumber"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>closeShowRecentPayees</b></span>
+                        <a href="#closeShowRecentPayees"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>formatAccountNumber(accountNumber: string | undefined | null)</code>
+<code>closeShowRecentPayees()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="193"
-                                    class="link-to-prism">src/app/components/payments/payments.ts:193</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="142"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:142</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Formats the confirmAccountNumber input by removing spaces and inserting dashes every 4 characters for better readability.
-This method is called on every input event for the confirmAccountNumber field to ensure consistent formatting as the user types.</p>
+                        <div class="io-description"><p>Closes the recent payees view, hiding the list of recent payees from the user. Sets the showRecentPayees flag to false to hide the view.</p>
 </div>
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>accountNumber</td>
-                                            <td>
-                                                        <code>string | undefined | null</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -561,8 +539,8 @@ This method is called on every input event for the confirmAccountNumber field to
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="83"
-                                    class="link-to-prism">src/app/components/payments/payments.ts:83</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -578,77 +556,6 @@ If either the user ID or account ID is missing, it simply returns without attemp
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="numbersOnly"></a>
-                    <span class="name">
-                        <span ><b>numbersOnly</b></span>
-                        <a href="#numbersOnly"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>numbersOnly(event: KeyboardEvent)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="206"
-                                    class="link-to-prism">src/app/components/payments/payments.ts:206</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Event handler to allow only numeric input in the confirmAccountNumber and confirmSortCode fields.
-This method checks the key pressed against allowed keys (backspace, tab, arrow keys, delete) and numeric characters.
-If the key is not allowed, it prevents the default action, effectively blocking non-numeric input.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>event</td>
-                                            <td>
-                                                        <code>KeyboardEvent</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -673,8 +580,8 @@ If the key is not allowed, it prevents the default action, effectively blocking 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">src/app/components/payments/payments.ts:107</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="121"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:121</a></div>
                         </td>
                     </tr>
 
@@ -682,6 +589,86 @@ If the key is not allowed, it prevents the default action, effectively blocking 
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Opens the form for adding balance to the user&#39;s account. Resets the confirmation account number and amount to add fields to their default states.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openShowRecentPayees"></a>
+                    <span class="name">
+                        <span ><b>openShowRecentPayees</b></span>
+                        <a href="#openShowRecentPayees"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openShowRecentPayees()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="135"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:135</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Opens the recent payees view, allowing the user to see a list of their recent payees. Sets the showRecentPayees flag to true to display the view.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showAllPayees"></a>
+                    <span class="name">
+                        <span ><b>showAllPayees</b></span>
+                        <a href="#showAllPayees"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showAllPayees()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="213"
+                                    class="link-to-prism">src/app/components/payments/payments.ts:213</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Displays the full list of recent payees for the user. This method retrieves the user ID from session storage,
+then loads the recent payees from local storage and updates the component&#39;s state to show all payees.
+It also refreshes the account information to ensure any recent changes are reflected.</p>
 </div>
 
                         <div class="io-description">
@@ -730,6 +717,44 @@ If the key is not allowed, it prevents the default action, effectively blocking 
                 <td class="col-md-4">
                     <div class="io-description"><p>The account object containing account information such as balance, account number,
 currency, and account type (e.g., &#39;savings&#39;, &#39;checking&#39;). Null until account data is loaded.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="allPayees"></a>
+                    <span class="name">
+                        <span ><b>allPayees</b></span>
+                        <a href="#allPayees"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/components/payments/payments.ts:76</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of all payees available for balance transfer. This can be used to display a dropdown or autocomplete list of payees when the user is entering transfer details.
+Initially set to an empty array until data is loaded from the API.</p>
 </div>
                 </td>
             </tr>
@@ -914,7 +939,7 @@ Null when no error is present.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/components/payments/payments.ts:76</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/components/payments/payments.ts:82</a></div>
                         </td>
                     </tr>
 
@@ -960,6 +985,44 @@ Initially set to an empty array until data is loaded from the API.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Boolean flag indicating whether the form for adding balance to the account is currently visible.
 Initially set to false, meaning the form is hidden until the user chooses to open it.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showRecentPayees"></a>
+                    <span class="name">
+                        <span ><b>showRecentPayees</b></span>
+                        <a href="#showRecentPayees"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/components/payments/payments.ts:88</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Boolean flag indicating whether the full list of recent payees is currently displayed.
+Initially set to false, meaning only a limited number of recent payees are shown until the user chooses to view all.</p>
 </div>
                 </td>
             </tr>
@@ -1076,10 +1139,22 @@ export class Payments implements OnInit {
   amountToAdd: number | null &#x3D; null;
 
   /**
+ * List of all payees available for balance transfer. This can be used to display a dropdown or autocomplete list of payees when the user is entering transfer details.
+ * Initially set to an empty array until data is loaded from the API.
+ */
+  allPayees: any[] &#x3D; [];
+
+  /**
    * List of recent payees for the user. This can be used to display a history of recent transactions or frequent transfer recipients.
    * Initially set to an empty array until data is loaded from the API.
    */
   recentPayees: any[] &#x3D; [];
+
+  /**
+ * Boolean flag indicating whether the full list of recent payees is currently displayed.
+ * Initially set to false, meaning only a limited number of recent payees are shown until the user chooses to view all.
+ */
+  showRecentPayees: boolean &#x3D; false;
 
   /**
  * Lifecycle hook that is called after the component has been initialized. It retrieves the user ID and account ID from session storage,
@@ -1096,7 +1171,9 @@ export class Payments implements OnInit {
 
     const storedPayees &#x3D; localStorage.getItem(&#x60;recentPayees_${userId}&#x60;);
     if (storedPayees) {
-      this.recentPayees &#x3D; JSON.parse(storedPayees).slice(0, 3);
+      const parsedPayees &#x3D; JSON.parse(storedPayees);
+      this.recentPayees &#x3D; parsedPayees.slice(0, 3);
+      this.allPayees &#x3D; parsedPayees;
     }
 
     this.accountService.getAccount(userId, accountId).subscribe({
@@ -1122,12 +1199,25 @@ export class Payments implements OnInit {
   }
 
   /**
+ * Opens the recent payees view, allowing the user to see a list of their recent payees. Sets the showRecentPayees flag to true to display the view.
+ */
+  openShowRecentPayees() {
+    this.showRecentPayees &#x3D; true;
+  }
+
+  /**
+ * Closes the recent payees view, hiding the list of recent payees from the user. Sets the showRecentPayees flag to false to hide the view.
+ */
+  closeShowRecentPayees() {
+    this.showRecentPayees &#x3D; false;
+  }
+
+  /**
  * Adds balance to the user&#x27;s account after validating the input. Checks if the user and account IDs are present,
  * verifies that the confirmed account number matches the actual account number, and ensures that the amount to add is valid.
  * If validation passes, it calls the AccountService to add the balance and updates the account information on success. Displays error messages for any validation or operation failures.
  */
   addBalance() {
-    console.log(&quot;Add balance clicked&quot;)
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
     const accountId &#x3D; sessionStorage.getItem(&#x27;accountId&#x27;);
 
@@ -1144,40 +1234,32 @@ export class Payments implements OnInit {
     const cleanAccountNumber &#x3D; this.confirmAccountNumber.replace(/\s/g, &#x27;&#x27;);
     const cleanSortCode &#x3D; this.confirmSortCode.replace(/-/g, &#x27;&#x27;);
 
-    console.log(&quot;Before&quot;)
     this.accountService.getAccountByNumber(userId, cleanAccountNumber, cleanSortCode).subscribe({
       next: (account) &#x3D;&gt; {
-        console.log(&quot;AFter&quot;)
         const payeeAccountId &#x3D; account._id;
 
         this.accountService.addBalance(userId, payeeAccountId, this.amountToAdd!).subscribe({
           next: () &#x3D;&gt; {
-            console.log(&quot;Inside add balance success&quot;)
             this.accountService.getAccount(userId, accountId).subscribe(updatedAccount &#x3D;&gt; {
               this.account &#x3D; updatedAccount;
               this.cdr.detectChanges();
             });
 
-            const exists &#x3D; this.recentPayees.find(p &#x3D;&gt; p._id &#x3D;&#x3D;&#x3D; payeeAccountId);
-
-            if (!exists) {
-              this.recentPayees.unshift(account);
+            if (!this.allPayees) {
+              this.allPayees &#x3D; [];
             }
 
-            this.recentPayees.unshift(account);
-            this.recentPayees &#x3D; this.recentPayees.slice(0, 3);
+            this.allPayees.unshift(account);
 
-            localStorage.setItem(&#x60;recentPayees_${userId}&#x60;, JSON.stringify(this.recentPayees));
+            localStorage.setItem(&#x60;recentPayees_${userId}&#x60;, JSON.stringify(this.allPayees));
 
+            this.recentPayees &#x3D; this.allPayees.slice(0, 3);
             this.showAddBalanceForm &#x3D; false;
             this.confirmAccountNumber &#x3D; &#x27;&#x27;;
             this.confirmSortCode &#x3D; &#x27;&#x27;;
             this.amountToAdd &#x3D; null;
             this.error &#x3D; null;
             this.cdr.detectChanges();
-
-            console.log(&quot;Updated account:&quot;, payeeAccountId);
-            console.log(&quot;Currently viewed account:&quot;, accountId);
           },
           error: () &#x3D;&gt; {
             this.error &#x3D; &#x27;Account number not found&#x27;;
@@ -1193,29 +1275,12 @@ export class Payments implements OnInit {
   }
 
   /**
-   * Formats the confirmAccountNumber input by removing spaces and inserting dashes every 4 characters for better readability.
-   * This method is called on every input event for the confirmAccountNumber field to ensure consistent formatting as the user types.
+   * Displays the full list of recent payees for the user. This method retrieves the user ID from session storage,
+   * then loads the recent payees from local storage and updates the component&#x27;s state to show all payees.
+   * It also refreshes the account information to ensure any recent changes are reflected.
    */
-  formatAccountNumber(accountNumber: string | undefined | null): string {
-    if (!accountNumber) return &#x27;&#x27;;
-    const digits &#x3D; accountNumber.replace(/\D/g, &#x27;&#x27;).slice(0, 16);
-    return digits.replace(/(.{4})/g, &#x27;$1 &#x27;).trim();
-  }
-
-
-
-  /**
-   * Event handler to allow only numeric input in the confirmAccountNumber and confirmSortCode fields.
-   * This method checks the key pressed against allowed keys (backspace, tab, arrow keys, delete) and numeric characters.
-   * If the key is not allowed, it prevents the default action, effectively blocking non-numeric input.
-   */
-  numbersOnly(event: KeyboardEvent) {
-    const allowedKeys &#x3D; [&#x27;Backspace&#x27;, &#x27;Tab&#x27;, &#x27;ArrowLeft&#x27;, &#x27;ArrowRight&#x27;, &#x27;Delete&#x27;];
-
-    if (allowedKeys.includes(event.key) || /^[0-9]$/.test(event.key)) {
-      return;
-    }
-    event.preventDefault();
+  showAllPayees() {
+    this.showRecentPayees &#x3D; true;
   }
 }
 </code></pre>
@@ -1227,10 +1292,25 @@ export class Payments implements OnInit {
 &lt;/button&gt;
 
 &lt;h5 class&#x3D;&quot;mt-4&quot; *ngIf&#x3D;&quot;recentPayees.length &gt; 0&quot;&gt;Recent Payees&lt;/h5&gt;
+&lt;button class&#x3D;&quot;btn btn-outline-secondary mb-3&quot; (click)&#x3D;&quot;showAllPayees()&quot; *ngIf&#x3D;&quot;recentPayees.length &gt; 0&quot;&gt;
+    View All Payees
+&lt;/button&gt;
+
+@if (showRecentPayees) {
+&lt;div class&#x3D;&quot;overlay&quot; (click)&#x3D;&quot;closeShowRecentPayees()&quot;&gt;
+    &lt;div class&#x3D;&quot;modal-card card p-3&quot; (click)&#x3D;&quot;$event.stopPropagation()&quot;&gt;
+        &lt;div class&#x3D;&quot;card p-2 mb-2&quot; *ngFor&#x3D;&quot;let payee of allPayees&quot;&gt;
+            &lt;strong&gt;{{ utility.formatAccountNumber(payee.accountNumber) }}&lt;/strong&gt;&lt;br&gt;
+            {{ payee.accountType }}: {{ payee.currency }}
+            Sort Code: {{ utility.formatSortCode(payee.sortCode) || &#x27;-&#x27; }}
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+}
 
 &lt;div *ngIf&#x3D;&quot;recentPayees.length &gt; 0&quot;&gt;
     &lt;div class&#x3D;&quot;card p-2 mb-2&quot; *ngFor&#x3D;&quot;let payee of recentPayees&quot;&gt;
-        &lt;strong&gt;{{ formatAccountNumber(payee.accountNumber) }}&lt;/strong&gt;&lt;br&gt;
+        &lt;strong&gt;{{ utility.formatAccountNumber(payee.accountNumber) }}&lt;/strong&gt;&lt;br&gt;
         {{ payee.accountType }}: {{ payee.currency }}
         Sort Code: {{ utility.formatSortCode(payee.sortCode) || &#x27;-&#x27; }}
     &lt;/div&gt;
@@ -1244,13 +1324,15 @@ export class Payments implements OnInit {
 
         &lt;div class&#x3D;&quot;mb-3&quot;&gt;
             &lt;label class&#x3D;&quot;form-label&quot;&gt;Account Number&lt;/label&gt;
-            &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;confirmAccountNumber&quot; (input)&#x3D;&quot;confirmAccountNumber &#x3D; formatAccountNumber(confirmAccountNumber)&quot;
-                (keydown)&#x3D;&quot;numbersOnly($event)&quot; maxlength&#x3D;&quot;19&quot; inputmode&#x3D;&quot;numeric&quot;&gt;
+            &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;confirmAccountNumber&quot;
+                (input)&#x3D;&quot;confirmAccountNumber &#x3D; utility.formatAccountNumber(confirmAccountNumber)&quot;
+                (keydown)&#x3D;&quot;utility.numbersOnly($event)&quot; maxlength&#x3D;&quot;19&quot; inputmode&#x3D;&quot;numeric&quot;&gt;
         &lt;/div&gt;
         &lt;div class&#x3D;&quot;mb-3&quot;&gt;
             &lt;label class&#x3D;&quot;form-label&quot;&gt;Sort Code&lt;/label&gt;
-            &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;confirmSortCode&quot; (input)&#x3D;&quot;confirmSortCode &#x3D; utility.formatSortCode(confirmSortCode)&quot; (keydown)&#x3D;&quot;numbersOnly($event)&quot;
-                maxlength&#x3D;&quot;8&quot; inputmode&#x3D;&quot;numeric&quot;&gt;
+            &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;confirmSortCode&quot;
+                (input)&#x3D;&quot;confirmSortCode &#x3D; utility.formatSortCode(confirmSortCode)&quot;
+                (keydown)&#x3D;&quot;utility.numbersOnly($event)&quot; maxlength&#x3D;&quot;8&quot; inputmode&#x3D;&quot;numeric&quot;&gt;
         &lt;/div&gt;
         &lt;div class&#x3D;&quot;mb-3&quot;&gt;
             &lt;label class&#x3D;&quot;form-label&quot;&gt;Amount to add&lt;/label&gt;
@@ -1290,7 +1372,7 @@ export class Payments implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button class="btn btn-success" (click)="openBalanceForm()">    Add Balance</button><h5 class="mt-4" *ngIf="recentPayees.length > 0">Recent Payees</h5><div *ngIf="recentPayees.length > 0">    <div class="card p-2 mb-2" *ngFor="let payee of recentPayees">        <strong>{{ formatAccountNumber(payee.accountNumber) }}</strong><br>        {{ payee.accountType }}: {{ payee.currency }}        Sort Code: {{ utility.formatSortCode(payee.sortCode) || \'-\' }}    </div></div>@if (showAddBalanceForm) {<div class="overlay" (click)="closeBalanceForm()">    <div class="modal-card card p-3" (click)="$event.stopPropagation()">        <h5 class="mb-3">Add Balance</h5>        <div class="mb-3">            <label class="form-label">Account Number</label>            <input type="text" [(ngModel)]="confirmAccountNumber" (input)="confirmAccountNumber = formatAccountNumber(confirmAccountNumber)"                (keydown)="numbersOnly($event)" maxlength="19" inputmode="numeric">        </div>        <div class="mb-3">            <label class="form-label">Sort Code</label>            <input type="text" [(ngModel)]="confirmSortCode" (input)="confirmSortCode = utility.formatSortCode(confirmSortCode)" (keydown)="numbersOnly($event)"                maxlength="8" inputmode="numeric">        </div>        <div class="mb-3">            <label class="form-label">Amount to add</label>            <input type="number" class="form-control" [(ngModel)]="amountToAdd" required>        </div>        <button type="button" class="btn btn-primary w-100" (click)="addBalance()">            Confirm Add Balance        </button>    </div></div>}</div>'
+        var COMPONENT_TEMPLATE = '<div><button class="btn btn-success" (click)="openBalanceForm()">    Add Balance</button><h5 class="mt-4" *ngIf="recentPayees.length > 0">Recent Payees</h5><button class="btn btn-outline-secondary mb-3" (click)="showAllPayees()" *ngIf="recentPayees.length > 0">    View All Payees</button>@if (showRecentPayees) {<div class="overlay" (click)="closeShowRecentPayees()">    <div class="modal-card card p-3" (click)="$event.stopPropagation()">        <div class="card p-2 mb-2" *ngFor="let payee of allPayees">            <strong>{{ utility.formatAccountNumber(payee.accountNumber) }}</strong><br>            {{ payee.accountType }}: {{ payee.currency }}            Sort Code: {{ utility.formatSortCode(payee.sortCode) || \'-\' }}        </div>    </div></div>}<div *ngIf="recentPayees.length > 0">    <div class="card p-2 mb-2" *ngFor="let payee of recentPayees">        <strong>{{ utility.formatAccountNumber(payee.accountNumber) }}</strong><br>        {{ payee.accountType }}: {{ payee.currency }}        Sort Code: {{ utility.formatSortCode(payee.sortCode) || \'-\' }}    </div></div>@if (showAddBalanceForm) {<div class="overlay" (click)="closeBalanceForm()">    <div class="modal-card card p-3" (click)="$event.stopPropagation()">        <h5 class="mb-3">Add Balance</h5>        <div class="mb-3">            <label class="form-label">Account Number</label>            <input type="text" [(ngModel)]="confirmAccountNumber"                (input)="confirmAccountNumber = utility.formatAccountNumber(confirmAccountNumber)"                (keydown)="utility.numbersOnly($event)" maxlength="19" inputmode="numeric">        </div>        <div class="mb-3">            <label class="form-label">Sort Code</label>            <input type="text" [(ngModel)]="confirmSortCode"                (input)="confirmSortCode = utility.formatSortCode(confirmSortCode)"                (keydown)="utility.numbersOnly($event)" maxlength="8" inputmode="numeric">        </div>        <div class="mb-3">            <label class="form-label">Amount to add</label>            <input type="number" class="form-control" [(ngModel)]="amountToAdd" required>        </div>        <button type="button" class="btn btn-primary w-100" (click)="addBalance()">            Confirm Add Balance        </button>    </div></div>}</div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'HorizontalBar', 'selector': 'app-horizontal-bar'},{'name': 'Line', 'selector': 'app-line'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Pie', 'selector': 'app-pie'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TestUserService', 'selector': 'app-test-user-service'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Payments'};

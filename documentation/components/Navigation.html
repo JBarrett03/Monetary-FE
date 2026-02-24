@@ -397,18 +397,17 @@ export class Navigation {
         &lt;li class&#x3D;&quot;nav-item home-item&quot;&gt;
             &lt;a class&#x3D;&quot;nav-link home-link&quot; [routerLink]&#x3D;&quot;[&#x27;/&#x27;]&quot; aria-label&#x3D;&quot;Home&quot;&gt;
                 &lt;i class&#x3D;&quot;fa fa-home&quot;&gt;&lt;/i&gt;
-                &lt;span&gt;Home&lt;/span&gt;
             &lt;/a&gt;
         &lt;/li&gt;
 
         &lt;li class&#x3D;&quot;nav-item&quot;&gt;
-            &lt;a class&#x3D;&quot;nav-link&quot; [routerLink]&#x3D;&quot;[&#x27;/payments&#x27;]&quot;&gt;Payments&lt;/a&gt;
+            &lt;a class&#x3D;&quot;nav-link&quot; [routerLink]&#x3D;&quot;[&#x27;/payments&#x27;]&quot;&gt;Payees&lt;/a&gt;
         &lt;/li&gt;
         &lt;li class&#x3D;&quot;nav-item&quot;&gt;
-            &lt;a class&#x3D;&quot;nav-link&quot; [routerLink]&#x3D;&quot;[&#x27;/spending&#x27;]&quot;&gt;Spending&lt;/a&gt;
+            &lt;a class&#x3D;&quot;nav-link&quot; [routerLink]&#x3D;&quot;[&#x27;/spending&#x27;]&quot;&gt;Insights&lt;/a&gt;
         &lt;/li&gt;
         &lt;li class&#x3D;&quot;nav-item&quot;&gt;
-            &lt;a class&#x3D;&quot;nav-link&quot; [routerLink]&#x3D;&quot;[&#x27;/accounts&#x27;]&quot;&gt;Accounts&lt;/a&gt;
+            &lt;a class&#x3D;&quot;nav-link&quot; [routerLink]&#x3D;&quot;[&#x27;/accounts&#x27;]&quot;&gt;Cards&lt;/a&gt;
         &lt;/li&gt;
     &lt;/ul&gt;
 
@@ -455,7 +454,7 @@ export class Navigation {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-expand-sm container-fluid d-flex align-items-center">    <span class="navbar-brand app-title">        Monetary    </span>    <ul class="navbar-nav mx-auto" *ngIf="isLoggedIn">        <li class="nav-item home-item">            <a class="nav-link home-link" [routerLink]="[\'/\']" aria-label="Home">                <i class="fa fa-home"></i>                <span>Home</span>            </a>        </li>        <li class="nav-item">            <a class="nav-link" [routerLink]="[\'/payments\']">Payments</a>        </li>        <li class="nav-item">            <a class="nav-link" [routerLink]="[\'/spending\']">Spending</a>        </li>        <li class="nav-item">            <a class="nav-link" [routerLink]="[\'/accounts\']">Accounts</a>        </li>    </ul>    <div class="d-flex align-items-center">        <a *ngIf="getUserId()" [routerLink]="[\'/user-details\', getUserId()]" class="profile-icon me-3">            <i class="fa fa-user"></i>        </a>    </div>    <div class="navbar-right d-flex align-items-center">        <a class="nav-link" routerLink="/login" *ngIf="!isLoggedIn">            Login        </a>        <a class="nav-link" [routerLink]="[\'/create-account\']" *ngIf="!isLoggedIn">            Sign Up        </a>    </div></nav></div>'
+        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-expand-sm container-fluid d-flex align-items-center">    <span class="navbar-brand app-title">        Monetary    </span>    <ul class="navbar-nav mx-auto" *ngIf="isLoggedIn">        <li class="nav-item home-item">            <a class="nav-link home-link" [routerLink]="[\'/\']" aria-label="Home">                <i class="fa fa-home"></i>            </a>        </li>        <li class="nav-item">            <a class="nav-link" [routerLink]="[\'/payments\']">Payees</a>        </li>        <li class="nav-item">            <a class="nav-link" [routerLink]="[\'/spending\']">Insights</a>        </li>        <li class="nav-item">            <a class="nav-link" [routerLink]="[\'/accounts\']">Cards</a>        </li>    </ul>    <div class="d-flex align-items-center">        <a *ngIf="getUserId()" [routerLink]="[\'/user-details\', getUserId()]" class="profile-icon me-3">            <i class="fa fa-user"></i>        </a>    </div>    <div class="navbar-right d-flex align-items-center">        <a class="nav-link" routerLink="/login" *ngIf="!isLoggedIn">            Login        </a>        <a class="nav-link" [routerLink]="[\'/create-account\']" *ngIf="!isLoggedIn">            Sign Up        </a>    </div></nav></div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'HorizontalBar', 'selector': 'app-horizontal-bar'},{'name': 'Line', 'selector': 'app-line'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Pie', 'selector': 'app-pie'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TestUserService', 'selector': 'app-test-user-service'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Navigation'};

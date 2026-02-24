@@ -162,13 +162,22 @@ Centralizes reusable utility functions to reduce code duplication.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#formatAccountNumber" >formatAccountNumber</a>
+                            </li>
+                            <li>
                                 <a href="#formatSortCode" >formatSortCode</a>
                             </li>
                             <li>
                                 <a href="#formatTransactionDate" >formatTransactionDate</a>
                             </li>
                             <li>
+                                <a href="#getCategoryMeta" >getCategoryMeta</a>
+                            </li>
+                            <li>
                                 <a href="#maskAccountNumber" >maskAccountNumber</a>
+                            </li>
+                            <li>
+                                <a href="#numbersOnly" >numbersOnly</a>
                             </li>
                             <li>
                                 <a href="#toTime" >toTime</a>
@@ -195,6 +204,81 @@ Centralizes reusable utility functions to reduce code duplication.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="formatAccountNumber"></a>
+                    <span class="name">
+                        <span ><b>formatAccountNumber</b></span>
+                        <a href="#formatAccountNumber"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>formatAccountNumber(accountNumber?: string | null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/app/services/utility-service.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Formats an account number by grouping digits into blocks of four.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>accountNumber</td>
+                                            <td>
+                                                        <code>string | null</code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The account number to format</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The formatted account number string</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="formatSortCode"></a>
                     <span class="name">
                         <span ><b>formatSortCode</b></span>
@@ -211,8 +295,8 @@ Centralizes reusable utility functions to reduce code duplication.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="29"
-                                    class="link-to-prism">src/app/services/utility-service.ts:29</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/app/services/utility-service.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -287,8 +371,8 @@ Input: &quot;123456&quot; → Output: &quot;12-34-56&quot;</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="46"
-                                    class="link-to-prism">src/app/services/utility-service.ts:46</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/services/utility-service.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -347,6 +431,81 @@ Example: &quot;2025-02-12&quot; → &quot;February 12th&quot;</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getCategoryMeta"></a>
+                    <span class="name">
+                        <span ><b>getCategoryMeta</b></span>
+                        <a href="#getCategoryMeta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCategoryMeta(category: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/app/services/utility-service.ts:113</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves the metadata (icon and color) for a given transaction category.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>category</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The transaction category to look up</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>literal type</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An object containing the icon class and color associated with the category</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="maskAccountNumber"></a>
                     <span class="name">
                         <span ><b>maskAccountNumber</b></span>
@@ -363,8 +522,8 @@ Example: &quot;2025-02-12&quot; → &quot;February 12th&quot;</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/app/services/utility-service.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="24"
+                                    class="link-to-prism">src/app/services/utility-service.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -422,6 +581,80 @@ Example: &quot;2025-02-12&quot; → &quot;February 12th&quot;</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="numbersOnly"></a>
+                    <span class="name">
+                        <span ><b>numbersOnly</b></span>
+                        <a href="#numbersOnly"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>numbersOnly(event: KeyboardEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/services/utility-service.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Allows only numeric input for keydown events.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>KeyboardEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The keydown event</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="toTime"></a>
                     <span class="name">
                         <span ><b>toTime</b></span>
@@ -438,8 +671,8 @@ Example: &quot;2025-02-12&quot; → &quot;February 12th&quot;</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="69"
-                                    class="link-to-prism">src/app/services/utility-service.ts:69</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/services/utility-service.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -501,6 +734,7 @@ Used for date comparisons in sorting operations.</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { TRANSACTION_CATEGORY_META } from &#x27;../constants/transaction-categories&#x27;;
 
 /**
  * UtilityService provides common formatting and helper methods used across multiple components.
@@ -509,7 +743,14 @@ Used for date comparisons in sorting operations.</p>
 @Injectable({
   providedIn: &#x27;root&#x27;,
 })
+
+/**
+ * The UtilityService class contains methods for formatting account numbers, sort codes, transaction dates,
+ * and handling numeric input. It also provides a method to retrieve metadata for transaction categories.
+ * This service is designed to be injected into components that require these utility functions.
+ */
 export class UtilityService {
+  
   /**
    * Masks an account number for secure display, showing only the last 4 digits.
    * @param accountNumber The account number to mask
@@ -573,6 +814,39 @@ export class UtilityService {
     const normalized &#x3D; value.replace(/Z$/, &#x27;&#x27;);
     const time &#x3D; new Date(normalized).getTime();
     return isNaN(time) ? 0 : time;
+  }
+
+  /**
+   * Formats an account number by grouping digits into blocks of four.
+   * @param accountNumber The account number to format
+   * @returns The formatted account number string
+   */
+  formatAccountNumber(accountNumber?: string | null): string {
+    if (!accountNumber) return &#x27;&#x27;;
+    const digits &#x3D; accountNumber.replace(/\D/g, &#x27;&#x27;).slice(0, 16);
+    return digits.replace(/(.{4})/g, &#x27;$1 &#x27;).trim();
+  }
+
+  /**
+   * Allows only numeric input for keydown events.
+   * @param event The keydown event
+   */
+  numbersOnly(event: KeyboardEvent): void {
+    const allowedKeys &#x3D; [&#x27;Backspace&#x27;, &#x27;Tab&#x27;, &#x27;ArrowLeft&#x27;, &#x27;ArrowRight&#x27;, &#x27;Delete&#x27;];
+
+    if (allowedKeys.includes(event.key) || /^[0-9]$/.test(event.key)) {
+      return;
+    }
+    event.preventDefault();
+  }
+
+  /**
+   * Retrieves the metadata (icon and color) for a given transaction category.
+   * @param category The transaction category to look up
+   * @returns An object containing the icon class and color associated with the category
+   */
+  getCategoryMeta(category: string): { icon: string; color: string } {
+    return TRANSACTION_CATEGORY_META[category as keyof typeof TRANSACTION_CATEGORY_META] || { icon: &#x27;fa-question-circle&#x27;, color: &#x27;#9E9E9E&#x27; };
   }
 }
 </code></pre>

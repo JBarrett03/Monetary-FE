@@ -518,9 +518,7 @@ export class Login {
       error: (err) &#x3D;&gt; {
         if (err.status &#x3D;&#x3D;&#x3D; 401) {
           alert(&#x27;Invalid email or password. Please try again.&#x27;);
-        } else {
-          console.log(&#x27;Login error:&#x27;, err);
-        }
+        } 
       }
     });
   }

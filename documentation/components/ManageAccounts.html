@@ -142,8 +142,7 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Manage Accounts component allows users to reorder, sort, and restore archived accounts.
-Features include drag-and-drop reordering, sorting by balance or opened date, and restoring archived accounts.</p>
+        <p>The ManageAccounts component is responsible for displaying and managing the user&#39;s accounts. It allows users to view their accounts, sort them based on different criteria (e.g., balance, opened date), and manage archived accounts. The component also provides functionality for reordering accounts using drag-and-drop and restoring archived accounts. It interacts with the AccountService to fetch account data and perform actions such as saving the new order of accounts or restoring archived accounts. The component also uses the UserService to fetch user information and the UtilityService for any utility functions needed within the component.</p>
 
     </p>
 
@@ -319,13 +318,13 @@ Features include drag-and-drop reordering, sorting by balance or opened date, an
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:68</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Constructor for the ManageAccounts component.</p>
+                            <div class="io-description"><p>The constructor for the ManageAccounts component is responsible for injecting the necessary services and dependencies required for the component to function properly. It takes in the AccountService for fetching and managing account data, the UserService for fetching user information, the ChangeDetectorRef for manually triggering change detection when data is updated, the Router for navigating between routes, and the UtilityService for any utility functions needed within the component. These injected services are essential for handling data retrieval, navigation, and UI updates within the ManageAccounts component.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -351,7 +350,9 @@ Features include drag-and-drop reordering, sorting by balance or opened date, an
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Service for account operations.</p>
+                                                                <ul>
+<li>The AccountService used for fetching and managing account data from the backend.</li>
+</ul>
 
                                                         </td>
                                                 </tr>
@@ -367,7 +368,9 @@ Features include drag-and-drop reordering, sorting by balance or opened date, an
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Service for user operations.</p>
+                                                                <ul>
+<li>The UserService used for fetching user information from the backend.</li>
+</ul>
 
                                                         </td>
                                                 </tr>
@@ -383,7 +386,9 @@ Features include drag-and-drop reordering, sorting by balance or opened date, an
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Change detector reference.</p>
+                                                                <ul>
+<li>The ChangeDetectorRef used for manually triggering change detection when data is updated.</li>
+</ul>
 
                                                         </td>
                                                 </tr>
@@ -399,7 +404,9 @@ Features include drag-and-drop reordering, sorting by balance or opened date, an
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>Router for navigation.</p>
+                                                                <ul>
+<li>The Router used for navigating between routes within the application.</li>
+</ul>
 
                                                         </td>
                                                 </tr>
@@ -415,6 +422,10 @@ Features include drag-and-drop reordering, sorting by balance or opened date, an
                                                     </td>
                                                     
                                                         <td>
+                                                                <ul>
+<li>The UtilityService that provides utility functions for use within the component.</li>
+</ul>
+
                                                         </td>
                                                 </tr>
                                         </tbody>
@@ -455,16 +466,15 @@ Features include drag-and-drop reordering, sorting by balance or opened date, an
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="155"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:155</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:157</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Applies the selected sort option to the accounts list.
-Supports sorting by balance or opened date in ascending or descending order.</p>
+                        <div class="io-description"><p>The applySort method is responsible for sorting the accounts based on the selected sorting option. It takes in an option parameter that specifies the sorting criteria (e.g., balance ascending, balance descending, opened date ascending, opened date descending). Based on the selected option, it sorts the accounts_list array accordingly using JavaScript&#39;s array sort method. After sorting the accounts, it triggers change detection to update the UI and reflect the new order of accounts based on the selected sorting criteria.</p>
 </div>
 
                             <div class="io-description">
@@ -492,7 +502,9 @@ Supports sorting by balance or opened date in ascending or descending order.</p>
 
 
                                             <td>
-                                                    <p>The sort option to apply.</p>
+                                                    <ul>
+<li>The sorting option that specifies how to sort the accounts (e.g., &#39;balanceAsc&#39;, &#39;balanceDesc&#39;, &#39;openedAtAsc&#39;, &#39;openedAtDesc&#39;).</li>
+</ul>
 
                                             </td>
                                         </tr>
@@ -530,15 +542,15 @@ Supports sorting by balance or opened date in ascending or descending order.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="106"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:106</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="109"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:109</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Handles the drop event when reordering accounts via drag and drop.</p>
+                        <div class="io-description"><p>The drop method is an event handler for the drag-and-drop functionality provided by the Angular CDK. It is called when a user drops an account item into a new position in the list. The method takes in a CdkDragDrop event, which contains information about the previous and current index of the dragged item. The method uses the moveItemInArray function from the Angular CDK to update the order of accounts in the accounts_list array based on the new position of the dragged item. After updating the order, it triggers change detection to update the UI and reflect the new order of accounts.</p>
 </div>
 
                             <div class="io-description">
@@ -566,7 +578,9 @@ Supports sorting by balance or opened date in ascending or descending order.</p>
 
 
                                             <td>
-                                                    <p>The drag and drop event containing the previous and current index.</p>
+                                                    <ul>
+<li>The CdkDragDrop event that contains information about the drag-and-drop action, including previous and current index of the dragged item.</li>
+</ul>
 
                                             </td>
                                         </tr>
@@ -604,16 +618,15 @@ Supports sorting by balance or opened date in ascending or descending order.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="80"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:80</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:83</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Angular lifecycle hook that runs when the component is initialized.
-Loads the user details and active accounts list.</p>
+                        <div class="io-description"><p>The ngOnInit method is a lifecycle hook that is called after the component has been initialized. In this method, the component retrieves the userId from session storage to fetch the user&#39;s information and their accounts. It uses the UserService to get the user&#39;s first and last name, and the AccountService to fetch the list of active accounts for the user. If any of the API calls fail, it handles errors appropriately (e.g., by logging them or setting error messages). The method also ensures that change detection is triggered after data is updated to reflect the changes in the UI.</p>
 </div>
 
                         <div class="io-description">
@@ -644,15 +657,15 @@ Loads the user details and active accounts list.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="237"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:237</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="239"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:239</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Restores an archived account back to the active accounts list.</p>
+                        <div class="io-description"><p>The restoreArchivedAccount method is responsible for restoring an archived account back to active status. It takes in the accountId of the archived account to be restored. The method retrieves the userId from session storage and checks if it exists. If the userId is not found, the method returns early. Otherwise, it calls the restoreArchivedAccount method of the AccountService to send a request to the backend API to restore the archived account. If the API call is successful, it removes the restored account from the archived_list, closes any open menus, and refreshes the accounts list by fetching the updated list of accounts from the backend. If there is an error during the API call, it logs the error to the console.</p>
 </div>
 
                             <div class="io-description">
@@ -680,7 +693,9 @@ Loads the user details and active accounts list.</p>
 
 
                                             <td>
-                                                    <p>The ID of the account to restore.</p>
+                                                    <ul>
+<li>The ID of the archived account to be restored.</li>
+</ul>
 
                                             </td>
                                         </tr>
@@ -718,15 +733,15 @@ Loads the user details and active accounts list.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="118"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:118</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="121"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:121</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Saves the new account order after reordering and navigates back to accounts page.</p>
+                        <div class="io-description"><p>The saveOrder method is responsible for saving the new order of accounts after the user has rearranged them using drag-and-drop. It retrieves the userId from session storage and constructs an updated order array that contains the accountId and its new order index for each account in the accounts_list. It then calls the saveAccountOrder method of the AccountService to send the updated order to the backend API. If the API call is successful, it resets the isReordering flag and refreshes the accounts list by navigating to the accounts route. If there is an error during the API call, it logs the error to the console.</p>
 </div>
 
                         <div class="io-description">
@@ -757,15 +772,15 @@ Loads the user details and active accounts list.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="208"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:208</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="210"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:210</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Switches to displaying archived accounts instead of active accounts.</p>
+                        <div class="io-description"><p>The showArchivedAccounts method is responsible for displaying the user&#39;s archived accounts. It retrieves the userId from session storage and checks if it exists. If the userId is not found, the method returns early. Otherwise, it sets the showingArchived flag to true, hides the reordering options, and triggers change detection. It then calls the getArchivedAccounts method of the AccountService to fetch the user&#39;s archived accounts and updates the archived_list with the retrieved data, followed by triggering change detection to update the UI and display the archived accounts.</p>
 </div>
 
                         <div class="io-description">
@@ -796,15 +811,15 @@ Loads the user details and active accounts list.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="187"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:187</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="189"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:189</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Enables reordering mode and loads accounts for reordering.</p>
+                        <div class="io-description"><p>The sortAccounts method is responsible for initiating the sorting process for the user&#39;s accounts. It retrieves the userId from session storage and checks if it exists. If the userId is not found, the method returns early. Otherwise, it sets the isReordering flag to true, hides the archived accounts, and triggers change detection. It then calls the getAccounts method of the AccountService to fetch the user&#39;s accounts and updates the accounts_list with the retrieved data, followed by triggering change detection to update the UI.</p>
 </div>
 
                         <div class="io-description">
@@ -835,15 +850,15 @@ Loads the user details and active accounts list.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="229"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:229</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="231"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:231</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Toggles the kebab menu visibility for a specific account.</p>
+                        <div class="io-description"><p>The toggleMenu method is responsible for toggling the visibility of the options menu for a specific account. It takes in the accountId as a parameter and checks if the openMenu property is currently set to that accountId. If it is, it sets openMenu to null (closing the menu); otherwise, it sets openMenu to the accountId (opening the menu). This allows users to click on an account&#39;s options button to show or hide the options menu for that account in the UI.</p>
 </div>
 
                             <div class="io-description">
@@ -871,7 +886,9 @@ Loads the user details and active accounts list.</p>
 
 
                                             <td>
-                                                    <p>The ID of the account whose menu should be toggled.</p>
+                                                    <ul>
+<li>The ID of the account for which to toggle the options menu.</li>
+</ul>
 
                                             </td>
                                         </tr>
@@ -909,15 +926,15 @@ Loads the user details and active accounts list.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="146"
-                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:146</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="149"
+                                    class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:149</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Toggles the visibility of the sort options dropdown.</p>
+                        <div class="io-description"><p>The toggleSortOptions method is responsible for toggling the visibility of the sorting options in the user interface. When this method is called (e.g., when the user clicks a &quot;Sort&quot; button), it updates the showSortOptions boolean property to either show or hide the sorting options. This allows users to choose how they want to sort their accounts (e.g., by balance, by opened date) when the sorting options are visible in the UI.</p>
 </div>
 
                         <div class="io-description">
@@ -958,13 +975,13 @@ Loads the user details and active accounts list.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:28</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>List of accounts</p>
+                    <div class="io-description"><p>The accounts_list property holds the list of active accounts for the user. It is initialized as an empty array and is populated with account data retrieved from the backend API when the component is initialized. This property is used to display the user&#39;s accounts in the UI and allows for operations such as sorting and reordering of accounts.</p>
 </div>
                 </td>
             </tr>
@@ -995,13 +1012,13 @@ Loads the user details and active accounts list.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:33</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>List of archived accounts</p>
+                    <div class="io-description"><p>The archived_list property holds the list of archived accounts for the user. Similar to accounts_list, it is initialized as an empty array and is populated with archived account data retrieved from the backend API when the user chooses to view archived accounts. This property is used to display archived accounts in the UI and allows users to manage their archived accounts, such as restoring them back to active status.</p>
 </div>
                 </td>
             </tr>
@@ -1032,13 +1049,13 @@ Loads the user details and active accounts list.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:68</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Card brand for display purposes (e.g., Visa, MasterCard)</p>
+                    <div class="io-description"><p>The cardBrand property holds the brand of the card associated with the account (e.g., Visa, MasterCard). It is initialized as an empty string and can be populated with the card brand information retrieved from the backend API when account data is fetched. This property can be used in the UI to display the card brand next to the account information, providing users with a visual cue about which card is associated with each account.</p>
 </div>
                 </td>
             </tr>
@@ -1069,13 +1086,13 @@ Loads the user details and active accounts list.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:58</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Customer&#39;s first name</p>
+                    <div class="io-description"><p>The firstName property holds the first name of the user. It is initialized as an empty string and is populated with the user&#39;s first name retrieved from the backend API when the component is initialized. This property can be used in the UI to display a personalized greeting or to show the user&#39;s name in various parts of the account management interface.</p>
 </div>
                 </td>
             </tr>
@@ -1106,13 +1123,13 @@ Loads the user details and active accounts list.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:38</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Flag indicating if the component is in reordering mode.</p>
+                    <div class="io-description"><p>The isReordering property is a boolean flag that indicates whether the user is currently in the process of reordering their accounts. It is initialized as false and is set to true when the user initiates the sorting/reordering process. This property can be used in the UI to conditionally display certain elements or provide feedback to the user while they are reordering their accounts.</p>
 </div>
                 </td>
             </tr>
@@ -1143,13 +1160,13 @@ Loads the user details and active accounts list.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:63</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Customer&#39;s last name</p>
+                    <div class="io-description"><p>The lastName property holds the last name of the user. Similar to firstName, it is initialized as an empty string and is populated with the user&#39;s last name retrieved from the backend API when the component is initialized. This property can be used in conjunction with firstName to display the user&#39;s full name in the UI, providing a more personalized experience for the user when managing their accounts.</p>
 </div>
                 </td>
             </tr>
@@ -1180,13 +1197,13 @@ Loads the user details and active accounts list.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:48</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Currently open menu ID for an account (kebab menu).</p>
+                    <div class="io-description"><p>The openMenu property holds the ID of the account for which the options menu is currently open. It is initialized as null and is updated when the user toggles the options menu for a specific account. This property allows the component to track which account&#39;s menu is open and can be used to conditionally display the options menu in the UI for the corresponding account.</p>
 </div>
                 </td>
             </tr>
@@ -1217,13 +1234,13 @@ Loads the user details and active accounts list.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:43</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Archived accounts open state</p>
+                    <div class="io-description"><p>The showingArchived property is a boolean flag that indicates whether the user is currently viewing their archived accounts. It is initialized as false and is set to true when the user chooses to view archived accounts. This property can be used in the UI to conditionally display the archived accounts section and hide the active accounts section when the user is viewing archived accounts.</p>
 </div>
                 </td>
             </tr>
@@ -1254,13 +1271,13 @@ Loads the user details and active accounts list.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:53</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Flag indicating if the sort options dropdown is visible.</p>
+                    <div class="io-description"><p>The showSortOptions property is a boolean flag that indicates whether the sorting options for accounts are currently visible in the UI. It is initialized as false and is toggled when the user interacts with the UI to show or hide the sorting options. This property can be used to conditionally display the sorting options in the UI, allowing users to choose how they want to sort their accounts (e.g., by balance, by opened date).</p>
 </div>
                 </td>
             </tr>
@@ -1287,10 +1304,15 @@ Loads the user details and active accounts list.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:74</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/components/manage-accounts/manage-accounts.ts:78</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description">- The UtilityService that provides utility functions for use within the component.</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1309,8 +1331,7 @@ import { UserService } from &#x27;../../services/user-service&#x27;;
 import { UtilityService } from &#x27;../../services/utility-service&#x27;;
 
 /**
- * Manage Accounts component allows users to reorder, sort, and restore archived accounts.
- * Features include drag-and-drop reordering, sorting by balance or opened date, and restoring archived accounts.
+ * The ManageAccounts component is responsible for displaying and managing the user&#x27;s accounts. It allows users to view their accounts, sort them based on different criteria (e.g., balance, opened date), and manage archived accounts. The component also provides functionality for reordering accounts using drag-and-drop and restoring archived accounts. It interacts with the AccountService to fetch account data and perform actions such as saving the new order of accounts or restoring archived accounts. The component also uses the UserService to fetch user information and the UtilityService for any utility functions needed within the component.
  */
 @Component({
   selector: &#x27;app-manage-accounts&#x27;,
@@ -1319,65 +1340,69 @@ import { UtilityService } from &#x27;../../services/utility-service&#x27;;
   templateUrl: &#x27;./manage-accounts.html&#x27;,
   styleUrl: &#x27;./manage-accounts.css&#x27;,
 })
+
+/**
+ * The ManageAccounts class implements the OnInit lifecycle hook and contains properties and methods for managing the user&#x27;s accounts. It includes properties for storing the list of accounts, archived accounts, sorting options, and user information. The class also contains methods for handling drag-and-drop reordering of accounts, saving the new order, toggling sort options, applying sorting based on different criteria, showing archived accounts, toggling account menus, and restoring archived accounts. The class interacts with the AccountService to perform API calls related to account management and uses the ChangeDetectorRef to trigger change detection when data is updated.
+ */
 export class ManageAccounts implements OnInit {
 
   /**
-   * List of accounts
+   * The accounts_list property holds the list of active accounts for the user. It is initialized as an empty array and is populated with account data retrieved from the backend API when the component is initialized. This property is used to display the user&#x27;s accounts in the UI and allows for operations such as sorting and reordering of accounts.
    */
   accounts_list: any[] &#x3D; [];
 
   /**
-   * List of archived accounts
+   * The archived_list property holds the list of archived accounts for the user. Similar to accounts_list, it is initialized as an empty array and is populated with archived account data retrieved from the backend API when the user chooses to view archived accounts. This property is used to display archived accounts in the UI and allows users to manage their archived accounts, such as restoring them back to active status.
    */
   archived_list: any[] &#x3D; [];
 
   /**
-   * Flag indicating if the component is in reordering mode.
+   * The isReordering property is a boolean flag that indicates whether the user is currently in the process of reordering their accounts. It is initialized as false and is set to true when the user initiates the sorting/reordering process. This property can be used in the UI to conditionally display certain elements or provide feedback to the user while they are reordering their accounts.
    */
   isReordering &#x3D; false;
 
   /**
-   * Archived accounts open state
+   * The showingArchived property is a boolean flag that indicates whether the user is currently viewing their archived accounts. It is initialized as false and is set to true when the user chooses to view archived accounts. This property can be used in the UI to conditionally display the archived accounts section and hide the active accounts section when the user is viewing archived accounts.
    */
   showingArchived &#x3D; false;
 
   /**
-   * Currently open menu ID for an account (kebab menu).
+   * The openMenu property holds the ID of the account for which the options menu is currently open. It is initialized as null and is updated when the user toggles the options menu for a specific account. This property allows the component to track which account&#x27;s menu is open and can be used to conditionally display the options menu in the UI for the corresponding account.
    */
   openMenu: string | null &#x3D; null;
 
   /**
-   * Flag indicating if the sort options dropdown is visible.
+   * The showSortOptions property is a boolean flag that indicates whether the sorting options for accounts are currently visible in the UI. It is initialized as false and is toggled when the user interacts with the UI to show or hide the sorting options. This property can be used to conditionally display the sorting options in the UI, allowing users to choose how they want to sort their accounts (e.g., by balance, by opened date).
    */
   showSortOptions: boolean &#x3D; false;
 
   /**
-   * Customer&#x27;s first name
+   * The firstName property holds the first name of the user. It is initialized as an empty string and is populated with the user&#x27;s first name retrieved from the backend API when the component is initialized. This property can be used in the UI to display a personalized greeting or to show the user&#x27;s name in various parts of the account management interface.
    */
   firstName: string &#x3D; &#x27;&#x27;;
 
   /**
-   * Customer&#x27;s last name
+   * The lastName property holds the last name of the user. Similar to firstName, it is initialized as an empty string and is populated with the user&#x27;s last name retrieved from the backend API when the component is initialized. This property can be used in conjunction with firstName to display the user&#x27;s full name in the UI, providing a more personalized experience for the user when managing their accounts.
    */
   lastName: string &#x3D; &#x27;&#x27;;
 
   /**
-   * Card brand for display purposes (e.g., Visa, MasterCard)
+   * The cardBrand property holds the brand of the card associated with the account (e.g., Visa, MasterCard). It is initialized as an empty string and can be populated with the card brand information retrieved from the backend API when account data is fetched. This property can be used in the UI to display the card brand next to the account information, providing users with a visual cue about which card is associated with each account.
    */
   cardBrand: string &#x3D; &#x27;&#x27;;
 
   /**
-   * Constructor for the ManageAccounts component.
-   * @param accountService Service for account operations.
-   * @param userService Service for user operations.
-   * @param cdr Change detector reference.
-   * @param router Router for navigation.
+   * The constructor for the ManageAccounts component is responsible for injecting the necessary services and dependencies required for the component to function properly. It takes in the AccountService for fetching and managing account data, the UserService for fetching user information, the ChangeDetectorRef for manually triggering change detection when data is updated, the Router for navigating between routes, and the UtilityService for any utility functions needed within the component. These injected services are essential for handling data retrieval, navigation, and UI updates within the ManageAccounts component.
+   * @param accountService - The AccountService used for fetching and managing account data from the backend.
+   * @param userService - The UserService used for fetching user information from the backend.
+   * @param cdr - The ChangeDetectorRef used for manually triggering change detection when data is updated.
+   * @param router - The Router used for navigating between routes within the application.
+   * @param utility - The UtilityService that provides utility functions for use within the component.
    */
   constructor(private accountService: AccountService, private userService: UserService, private cdr: ChangeDetectorRef, private router: Router, public utility: UtilityService) { }
 
   /**
-   * Angular lifecycle hook that runs when the component is initialized.
-   * Loads the user details and active accounts list.
+   * The ngOnInit method is a lifecycle hook that is called after the component has been initialized. In this method, the component retrieves the userId from session storage to fetch the user&#x27;s information and their accounts. It uses the UserService to get the user&#x27;s first and last name, and the AccountService to fetch the list of active accounts for the user. If any of the API calls fail, it handles errors appropriately (e.g., by logging them or setting error messages). The method also ensures that change detection is triggered after data is updated to reflect the changes in the UI.
    */
   ngOnInit() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
@@ -1402,8 +1427,8 @@ export class ManageAccounts implements OnInit {
   }
 
   /**
-   * Handles the drop event when reordering accounts via drag and drop.
-   * @param event The drag and drop event containing the previous and current index.
+   * The drop method is an event handler for the drag-and-drop functionality provided by the Angular CDK. It is called when a user drops an account item into a new position in the list. The method takes in a CdkDragDrop event, which contains information about the previous and current index of the dragged item. The method uses the moveItemInArray function from the Angular CDK to update the order of accounts in the accounts_list array based on the new position of the dragged item. After updating the order, it triggers change detection to update the UI and reflect the new order of accounts.
+   * @param event - The CdkDragDrop event that contains information about the drag-and-drop action, including previous and current index of the dragged item.
    */
   drop(event: CdkDragDrop&lt;any[]&gt;) {
     moveItemInArray(
@@ -1415,7 +1440,7 @@ export class ManageAccounts implements OnInit {
   }
 
   /**
-   * Saves the new account order after reordering and navigates back to accounts page.
+   * The saveOrder method is responsible for saving the new order of accounts after the user has rearranged them using drag-and-drop. It retrieves the userId from session storage and constructs an updated order array that contains the accountId and its new order index for each account in the accounts_list. It then calls the saveAccountOrder method of the AccountService to send the updated order to the backend API. If the API call is successful, it resets the isReordering flag and refreshes the accounts list by navigating to the accounts route. If there is an error during the API call, it logs the error to the console.
    */
   saveOrder() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
@@ -1443,16 +1468,15 @@ export class ManageAccounts implements OnInit {
   }
 
   /**
-   * Toggles the visibility of the sort options dropdown.
+   * The toggleSortOptions method is responsible for toggling the visibility of the sorting options in the user interface. When this method is called (e.g., when the user clicks a &quot;Sort&quot; button), it updates the showSortOptions boolean property to either show or hide the sorting options. This allows users to choose how they want to sort their accounts (e.g., by balance, by opened date) when the sorting options are visible in the UI.
    */
   toggleSortOptions() {
     this.showSortOptions &#x3D; !this.showSortOptions;
   }
 
   /**
-   * Applies the selected sort option to the accounts list.
-   * Supports sorting by balance or opened date in ascending or descending order.
-   * @param option The sort option to apply.
+   * The applySort method is responsible for sorting the accounts based on the selected sorting option. It takes in an option parameter that specifies the sorting criteria (e.g., balance ascending, balance descending, opened date ascending, opened date descending). Based on the selected option, it sorts the accounts_list array accordingly using JavaScript&#x27;s array sort method. After sorting the accounts, it triggers change detection to update the UI and reflect the new order of accounts based on the selected sorting criteria.
+   * @param option - The sorting option that specifies how to sort the accounts (e.g., &#x27;balanceAsc&#x27;, &#x27;balanceDesc&#x27;, &#x27;openedAtAsc&#x27;, &#x27;openedAtDesc&#x27;).
    */
   applySort(option: &#x27;balanceAsc&#x27; | &#x27;balanceDesc&#x27; | &#x27;openedAtAsc&#x27; | &#x27;openedAtDesc&#x27;) {
     switch (option) {
@@ -1484,7 +1508,7 @@ export class ManageAccounts implements OnInit {
   }
 
   /**
-   * Enables reordering mode and loads accounts for reordering.
+   * The sortAccounts method is responsible for initiating the sorting process for the user&#x27;s accounts. It retrieves the userId from session storage and checks if it exists. If the userId is not found, the method returns early. Otherwise, it sets the isReordering flag to true, hides the archived accounts, and triggers change detection. It then calls the getAccounts method of the AccountService to fetch the user&#x27;s accounts and updates the accounts_list with the retrieved data, followed by triggering change detection to update the UI.
    */
   sortAccounts() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
@@ -1505,7 +1529,7 @@ export class ManageAccounts implements OnInit {
   }
 
   /**
-   * Switches to displaying archived accounts instead of active accounts.
+   * The showArchivedAccounts method is responsible for displaying the user&#x27;s archived accounts. It retrieves the userId from session storage and checks if it exists. If the userId is not found, the method returns early. Otherwise, it sets the showingArchived flag to true, hides the reordering options, and triggers change detection. It then calls the getArchivedAccounts method of the AccountService to fetch the user&#x27;s archived accounts and updates the archived_list with the retrieved data, followed by triggering change detection to update the UI and display the archived accounts.
    */
   showArchivedAccounts() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
@@ -1525,16 +1549,16 @@ export class ManageAccounts implements OnInit {
   }
 
   /**
-   * Toggles the kebab menu visibility for a specific account.
-   * @param accountId The ID of the account whose menu should be toggled.
+   * The toggleMenu method is responsible for toggling the visibility of the options menu for a specific account. It takes in the accountId as a parameter and checks if the openMenu property is currently set to that accountId. If it is, it sets openMenu to null (closing the menu); otherwise, it sets openMenu to the accountId (opening the menu). This allows users to click on an account&#x27;s options button to show or hide the options menu for that account in the UI.
+   * @param accountId - The ID of the account for which to toggle the options menu.
    */
   toggleMenu(accountId: string) {
     this.openMenu &#x3D; this.openMenu &#x3D;&#x3D;&#x3D; accountId ? null : accountId;
   }
 
   /**
-   * Restores an archived account back to the active accounts list.
-   * @param accountId The ID of the account to restore.
+   * The restoreArchivedAccount method is responsible for restoring an archived account back to active status. It takes in the accountId of the archived account to be restored. The method retrieves the userId from session storage and checks if it exists. If the userId is not found, the method returns early. Otherwise, it calls the restoreArchivedAccount method of the AccountService to send a request to the backend API to restore the archived account. If the API call is successful, it removes the restored account from the archived_list, closes any open menus, and refreshes the accounts list by fetching the updated list of accounts from the backend. If there is an error during the API call, it logs the error to the console.
+   * @param accountId - The ID of the archived account to be restored.
    */
   restoreArchivedAccount(accountId: string) {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);

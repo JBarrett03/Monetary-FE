@@ -142,10 +142,7 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>AccountDetails component - displays comprehensive information for a single account.
-Shows account balance, transaction history, and budget management.
-Enables users to add transactions, manage budgets with configurable periods, set default accounts,
-and archive accounts. Provides category-based transaction filtering and search capabilities.</p>
+        <p>The AccountDetails component is responsible for displaying the details of a specific account, including its transactions, and providing functionality to manage the account. It retrieves the account information and transactions from the backend API using the AccountService, and allows users to add new transactions, set budgets, and archive the account. The component also includes filtering and sorting options for transactions, as well as error handling for various operations. It uses Angular&#39;s reactive programming model to handle asynchronous data retrieval and updates the UI accordingly.</p>
 
     </p>
 
@@ -316,9 +313,6 @@ and archive accounts. Provides category-based transaction filtering and search c
                                 <a href="#closeBudgetForm" >closeBudgetForm</a>
                             </li>
                             <li>
-                                <a href="#getCategoryMeta" >getCategoryMeta</a>
-                            </li>
-                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
@@ -385,13 +379,13 @@ and archive accounts. Provides category-based transaction filtering and search c
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/app/components/account-details/account-details.ts:130</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/components/account-details/account-details.ts:120</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Creates an instance of the AccountDetails component.</p>
+                            <div class="io-description"><p>The constructor method is responsible for injecting the necessary services and dependencies into the AccountDetails component. It takes in the ActivatedRoute to access route parameters, the Router for navigation, the AccountService to interact with the backend API for account-related operations, the ChangeDetectorRef to trigger UI updates when data changes, and the UtilityService for any utility functions needed within the component. By injecting these services, the constructor allows the component to perform various actions such as fetching account details, managing transactions, navigating between routes, and updating the UI based on user interactions and data changes.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -401,7 +395,6 @@ and archive accounts. Provides category-based transaction filtering and search c
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -416,10 +409,6 @@ and archive accounts. Provides category-based transaction filtering and search c
                                                             No
                                                     </td>
                                                     
-                                                        <td>
-                                                                <p>ActivatedRoute - Used to extract the accountId from the current route parameters</p>
-
-                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>router</td>
@@ -432,10 +421,6 @@ and archive accounts. Provides category-based transaction filtering and search c
                                                             No
                                                     </td>
                                                     
-                                                        <td>
-                                                                <p>Router - Used to navigate between routes (e.g., to transaction details or back to accounts list)</p>
-
-                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>accountService</td>
@@ -448,10 +433,6 @@ and archive accounts. Provides category-based transaction filtering and search c
                                                             No
                                                     </td>
                                                     
-                                                        <td>
-                                                                <p>AccountService - Service for fetching and managing account data, transactions, and budgets</p>
-
-                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>cdr</td>
@@ -464,10 +445,6 @@ and archive accounts. Provides category-based transaction filtering and search c
                                                             No
                                                     </td>
                                                     
-                                                        <td>
-                                                                <p>ChangeDetectorRef - Reference to manually trigger change detection when needed</p>
-
-                                                        </td>
                                                 </tr>
                                                 <tr>
                                                         <td>utility</td>
@@ -480,8 +457,6 @@ and archive accounts. Provides category-based transaction filtering and search c
                                                             No
                                                     </td>
                                                     
-                                                        <td>
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -521,25 +496,21 @@ and archive accounts. Provides category-based transaction filtering and search c
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="344"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:344</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="307"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:307</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Toggles the visibility of the budget form.</p>
+                        <div class="io-description"><p>The addBudget method is responsible for toggling the visibility of the budget form. When this method is called (e.g., when the user clicks an &quot;Add Budget&quot; button), it updates the showBudgetForm boolean property to either show or hide the budget form. This allows users to easily access and manage their budget settings. When the form is shown, users can enter their desired budget amount and period, and when the form is hidden, it keeps the UI clean and organized by hiding the budget settings when they are not needed.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -564,28 +535,21 @@ and archive accounts. Provides category-based transaction filtering and search c
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="199"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:199</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="177"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:177</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Prompts the user for transaction details and adds a new transaction to the account.
-Collects description, amount, and merchant information from the user via prompts.
-Automatically determines transaction type (credit/debit) based on the amount sign.
-Updates both account balance and transaction list on success.</p>
+                        <div class="io-description"><p>The addTransaction method is responsible for adding a new transaction to the account. It first retrieves the userId and accountId from session storage. If either of these values is missing, it returns early. It then prompts the user to enter the description, amount, and merchant for the new transaction. If any of these values are missing, it returns early. The method then constructs a transaction object with the provided information and calls the addTransaction method of the AccountService to send a request to the backend API to create the new transaction. If the API call is successful, it refreshes the account details and transactions by making additional API calls to fetch the updated data. If there is an error during the API call, it sets an appropriate error message and triggers change detection to display the error in the UI.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -610,16 +574,15 @@ Updates both account balance and transaction list on success.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="454"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:454</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="400"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:400</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Applies the selected sort option to the transactions list.
-Supports sorting by creation date in ascending or descending order.</p>
+                        <div class="io-description"><p>The applySort method is responsible for applying the selected sorting option to the transactions list. It takes in the selected sorting option as a parameter (e.g., &#39;createdAtAsc&#39; for sorting by creation date in ascending order, &#39;createdAtDesc&#39; for sorting by creation date in descending order) and updates the sortOptions property with the selected option. The method then uses a switch statement to determine how to sort the transactions based on the selected option. It creates a new sorted array of transactions using the JavaScript array sort method, comparing the createdAt timestamps of the transactions to sort them accordingly. After sorting the transactions, it triggers change detection to update the UI with the newly sorted transaction list.</p>
 </div>
 
                             <div class="io-description">
@@ -631,7 +594,6 @@ Supports sorting by creation date in ascending or descending order.</p>
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -646,10 +608,6 @@ Supports sorting by creation date in ascending or descending order.</p>
                                             </td>
 
 
-                                            <td>
-                                                    <p>The sort option to apply.</p>
-
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -685,28 +643,21 @@ Supports sorting by creation date in ascending or descending order.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="263"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:263</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="237"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:237</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Archives the current account after confirming with the user.
-Displays a confirmation dialog to ensure the user intentionally wants to archive.
-Only allows archiving if the account balance is zero. On success, navigates back
-to the accounts list. On failure, displays an error message.</p>
+                        <div class="io-description"><p>The archiveAccount method is responsible for archiving the current account. It first prompts the user with a confirmation dialog to ensure they want to proceed with archiving the account. If the user confirms, it retrieves the userId and accountId from session storage. If either of these values is missing, it sets an error message and returns early. It then calls the archiveAccount method of the AccountService to send a request to the backend API to archive the account. If the API call is successful, it navigates the user back to the accounts list page. If there is an error during the API call, it sets an appropriate error message and triggers change detection to display the error in the UI.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -731,102 +682,21 @@ to the accounts list. On failure, displays an error message.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="431"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:431</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="379"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:379</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Closes the budget form without saving any changes.
-Resets the form fields to their default states.</p>
+                        <div class="io-description"><p>The closeBudgetForm method is responsible for hiding the budget form in the UI. When this method is called (e.g., when the user clicks a &quot;Cancel&quot; button in the budget form), it sets the showBudgetForm boolean property to false, which hides the form from view. This allows users to easily exit the budget setting process without making any changes, keeping the UI clean and organized when the budget form is not needed.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getCategoryMeta"></a>
-                    <span class="name">
-                        <span ><b>getCategoryMeta</b></span>
-                        <a href="#getCategoryMeta"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getCategoryMeta(category: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="479"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:479</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Retrieves the metadata (icon and color) for a given transaction category.
-If the category is not found in the predefined metadata, returns default values.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>category</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The transaction category to look up</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>An object containing the icon class and color associated with the category</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -851,28 +721,21 @@ If the category is not found in the predefined metadata, returns default values.
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="148"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:148</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="132"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:132</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Angular lifecycle hook called after the component is initialized.
-Fetches the userId from session storage and accountId from route parameters,
-then loads both the account details and its associated transactions from the service.
-Sets appropriate error messages if data cannot be loaded.</p>
+                        <div class="io-description"><p>The ngOnInit method is a lifecycle hook that is called when the component is initialized. It retrieves the userId from session storage and the accountId from the route parameters. If either of these values is missing, it sets an error message and returns early. If both values are present, it stores the accountId in session storage for later use. The method then makes two API calls using the AccountService: one to fetch the account details and another to fetch the transactions associated with the account. For each API call, it subscribes to the observable returned by the service and handles both the success and error cases. On success, it updates the corresponding properties (account or transactions) and triggers change detection to update the UI. On error, it sets an appropriate error message and triggers change detection to display the error in the UI.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -897,15 +760,15 @@ Sets appropriate error messages if data cannot be loaded.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="187"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:187</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="169"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:169</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Navigates to the details page for the specified transaction.</p>
+                        <div class="io-description"><p>The openTransaction method is responsible for navigating the user to the details page of a specific transaction. It takes in the transactionId as a parameter, retrieves the accountId from the route parameters, and then uses the Router to navigate to the route that corresponds to the transaction details page (e.g., &#39;/accounts/:accountId/transactions/:transactionId&#39;). This allows users to view more detailed information about a specific transaction when they click on it in the transaction list.</p>
 </div>
 
                             <div class="io-description">
@@ -917,7 +780,6 @@ Sets appropriate error messages if data cannot be loaded.</p>
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -932,10 +794,6 @@ Sets appropriate error messages if data cannot be loaded.</p>
                                             </td>
 
 
-                                            <td>
-                                                    <p>The unique identifier of the transaction to display</p>
-
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -945,8 +803,7 @@ Sets appropriate error messages if data cannot be loaded.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>void</p>
-
+                                
                             </div>
                 </td>
             </tr>
@@ -972,15 +829,15 @@ Sets appropriate error messages if data cannot be loaded.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="353"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:353</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="314"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:314</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Updates the selected budget period.</p>
+                        <div class="io-description"><p>The selectBudgetPeriod method is responsible for updating the budgetPeriod property based on the user&#39;s selection. When a user selects a budget period (e.g., monthly, weekly, custom) from the UI, this method is called with the selected period as an argument. It then updates the budgetPeriod property with the selected value, which is used in the submitBudget method to construct the budget object that will be sent to the backend API when the user submits the budget form. This method allows users to specify the time frame for their budget, helping them manage their finances more effectively by setting appropriate budget limits based on their spending patterns and financial goals.</p>
 </div>
 
                             <div class="io-description">
@@ -992,7 +849,6 @@ Sets appropriate error messages if data cannot be loaded.</p>
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
-                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -1007,10 +863,6 @@ Sets appropriate error messages if data cannot be loaded.</p>
                                             </td>
 
 
-                                            <td>
-                                                    <p>The budget period to set (&#39;weekly&#39;, &#39;monthly&#39;, &#39;annual&#39;, or &#39;custom&#39;)</p>
-
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -1020,8 +872,7 @@ Sets appropriate error messages if data cannot be loaded.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>void</p>
-
+                                
                             </div>
                 </td>
             </tr>
@@ -1047,27 +898,21 @@ Sets appropriate error messages if data cannot be loaded.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="294"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:294</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="265"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:265</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Sets the current account as the default account for the user.
-Sends a request to the AccountService to update the default account setting.
-On success, updates the local account state to reflect the change. On failure, displays an error message.</p>
+                        <div class="io-description"><p>The setAsDefault method is responsible for setting the current account as the default account for the user. It retrieves the userId and accountId from session storage. If either of these values is missing, it returns early. It then updates the local account object to set its isDefault property to true, which allows the UI to reflect the change immediately. The method then calls the setDefaultAccount method of the AccountService to send a request to the backend API to update the default account for the user. If there is an error during the API call, it sets an appropriate error message and triggers change detection to display the error in the UI. This method allows users to easily designate a specific account as their default account, which can be useful for quickly accessing it or for setting it as the primary account for transactions.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1092,29 +937,21 @@ On success, updates the local account state to reflect the change. On failure, d
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="365"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:365</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="321"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:321</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Submits the budget form and saves the budget to the account.
-Validates that user and account IDs are available, constructs a budget object
-with the appropriate date fields based on the selected period, and sends it to
-the AccountService. On success, clears the form and reloads account data.
-On failure, displays an error message.</p>
+                        <div class="io-description"><p>The submitBudget method is responsible for submitting the budget information entered by the user to the backend API. It first retrieves the userId and accountId from session storage. If either of these values is missing, it sets an error message and returns early. It then constructs a budget object with the amount, period, and optional start and end dates (if the period is custom) based on the user&#39;s input. The method calls the setBudget method of the AccountService to send a request to the backend API to set the budget for the account. If the API call is successful, it hides the budget form, resets the budget input fields, and refreshes the account details to reflect the updated budget information. If there is an error during the API call, it sets an appropriate error message and triggers change detection to display the error in the UI. This method allows users to easily set or update their budget for the account, helping them manage their spending and stay within their financial goals.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1139,27 +976,21 @@ On failure, displays an error message.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="320"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:320</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="288"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:288</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Toggles the visibility of the transaction filter UI.
-When hiding the filter, also clears any active filter selections
-(selected category and custom search term).</p>
+                        <div class="io-description"><p>The toggleFilter method is responsible for toggling the visibility of the filter options for transactions. When this method is called (e.g., when the user clicks a &quot;Filter&quot; button), it updates the showFilter boolean property to either show or hide the filter options. If the filter options are being hidden, it also resets the selectedCategory and customCategory properties to clear any applied filters. This allows users to easily access and apply filters to their transaction list, and also provides a way to quickly clear filters and return to viewing all transactions.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1184,15 +1015,15 @@ When hiding the filter, also clears any active filter selections
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="438"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:438</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="386"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:386</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Toggles the kebab menu visibility for adding and managing accounts.</p>
+                        <div class="io-description"><p>The toggleMenu method is responsible for toggling the visibility of the options menu for the account details. When this method is called (e.g., when the user clicks on the menu button), it updates the menuOpen boolean property to either show or hide the options menu. This allows users to easily access additional actions and settings related to their account details, such as sorting transactions, managing accounts, or accessing other features, while keeping the UI clean and organized by hiding the options menu when it is not needed.</p>
 </div>
 
                         <div class="io-description">
@@ -1223,15 +1054,15 @@ When hiding the filter, also clears any active filter selections
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="445"
-                                    class="link-to-prism">src/app/components/account-details/account-details.ts:445</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="393"
+                                    class="link-to-prism">src/app/components/account-details/account-details.ts:393</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Toggles the visibility of the sort options dropdown.</p>
+                        <div class="io-description"><p>The toggleSortOptions method is responsible for toggling the visibility of the sorting options for transactions in the options menu. When this method is called (e.g., when the user clicks on the &quot;Sort&quot; button in the options menu), it updates the showSortOptions boolean property to either show or hide the sorting options. This allows users to easily access and apply sorting to their transaction list, helping them organize their transactions in a way that best suits their needs (e.g., by date, amount, or category), while keeping the UI clean and organized by hiding the sorting options when they are not needed.</p>
 </div>
 
                         <div class="io-description">
@@ -1272,14 +1103,13 @@ When hiding the filter, also clears any active filter selections
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/account-details/account-details.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/account-details/account-details.ts:30</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The account object containing account information such as balance, account number,
-currency, and account type (e.g., &#39;savings&#39;, &#39;checking&#39;). Null until account data is loaded.</p>
+                    <div class="io-description"><p>The account property is used to store the details of the specific account being viewed. It is initialized as null and will be populated with the account data retrieved from the backend API when the component is initialized. The account object may contain properties such as accountType, balance, currency, nickname, budget, and other relevant information about the account. This property is essential for displaying the account details in the UI and for performing operations related to the account, such as adding transactions or setting budgets.</p>
 </div>
                 </td>
             </tr>
@@ -1310,13 +1140,13 @@ currency, and account type (e.g., &#39;savings&#39;, &#39;checking&#39;). Null u
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/components/account-details/account-details.ts:105</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/components/account-details/account-details.ts:90</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>List of accounts</p>
+                    <div class="io-description"><p>The accounts_list property is an array that holds the list of accounts associated with the user. It is initialized as an empty array and will be populated with account data retrieved from the backend API when the component is initialized. Each account object in the array may contain properties such as accountType, balance, currency, nickname, and other relevant information about the account. This property is essential for displaying the list of accounts in the UI and for allowing users to interact with their accounts (e.g., viewing details, adding transactions, setting budgets). It serves as a central data structure for managing and displaying the user&#39;s accounts within the AccountDetails component.</p>
 </div>
                 </td>
             </tr>
@@ -1347,14 +1177,13 @@ currency, and account type (e.g., &#39;savings&#39;, &#39;checking&#39;). Null u
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/components/account-details/account-details.ts:82</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/components/account-details/account-details.ts:70</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The monetary amount for the budget. Set by user in the budget form.
-Null until user enters a value.</p>
+                    <div class="io-description"><p>The budgetAmount property is a number that holds the amount for the budget that the user wants to set for the account. It is used in the submitBudget method to construct the budget object that will be sent to the backend API when the user submits the budget form. This property allows users to specify their desired budget amount, which can help them manage their spending and stay within their financial goals. The value of this property is typically entered by the user in an input field in the UI, and it is important for ensuring that the correct budget amount is applied to the account when setting or updating the budget.</p>
 </div>
                 </td>
             </tr>
@@ -1385,14 +1214,13 @@ Null until user enters a value.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/components/account-details/account-details.ts:88</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/components/account-details/account-details.ts:75</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The period over which the budget applies. Valid values are &#39;weekly&#39;, &#39;monthly&#39;,
-&#39;annual&#39;, or &#39;custom&#39;. When set to &#39;custom&#39;, startDate and endDate are used.</p>
+                    <div class="io-description"><p>The budgetPeriod property is a string that holds the selected period for the budget that the user wants to set for the account. It is used in the submitBudget method to construct the budget object that will be sent to the backend API when the user submits the budget form. This property allows users to specify the time frame for their budget (e.g., monthly, weekly, custom), which can help them manage their finances more effectively by setting appropriate budget limits based on their spending patterns and financial goals. The value of this property is typically selected by the user from a dropdown or set of options in the UI, and it is important for ensuring that the correct budget period is applied to the account when setting or updating the budget.</p>
 </div>
                 </td>
             </tr>
@@ -1423,13 +1251,13 @@ Null until user enters a value.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/components/account-details/account-details.ts:115</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/components/account-details/account-details.ts:100</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Card brand for display purposes (e.g., Visa, MasterCard)</p>
+                    <div class="io-description"><p>The cardBrand property is a string that holds the brand of the credit card being added or updated. It is used to display the appropriate card brand logo in the UI and may also be used for validation purposes when processing credit card information. This property allows users to easily identify the type of credit card they are working with (e.g., Visa, MasterCard, American Express) and can enhance the visual appeal of the UI by showing the corresponding card brand logo.</p>
 </div>
                 </td>
             </tr>
@@ -1460,13 +1288,13 @@ Null until user enters a value.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/components/account-details/account-details.ts:110</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/components/account-details/account-details.ts:95</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Indicates whether the card information is complete for display purposes.</p>
+                    <div class="io-description"><p>The cardComplete property is a boolean that indicates whether the credit card information form is complete. It is used to enable or disable the submission of the form based on whether all required fields have been filled out correctly. When cardComplete is true, the form can be submitted; when it is false, the form submission is disabled. This property helps ensure that users provide all necessary information before attempting to add or update a credit card, reducing the likelihood of errors and improving the overall user experience.</p>
 </div>
                 </td>
             </tr>
@@ -1497,14 +1325,13 @@ Null until user enters a value.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/account-details/account-details.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/components/account-details/account-details.ts:50</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>List of all available transaction categories imported from the constants file.
-Used to populate the category dropdown filter in the UI.</p>
+                    <div class="io-description"><p>The categories property holds a list of predefined transaction categories that can be used for filtering transactions or categorizing new transactions. It is initialized with the TRANSACTION_CATEGORIES constant, which is imported from a separate file. This property provides users with a set of common categories to choose from when managing their transactions, making it easier to organize and analyze their spending habits. Users can select from these categories when adding new transactions or applying filters to view specific types of transactions in their account details.</p>
 </div>
                 </td>
             </tr>
@@ -1535,14 +1362,13 @@ Used to populate the category dropdown filter in the UI.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/components/account-details/account-details.ts:64</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/account-details/account-details.ts:55</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>User-entered custom search term for filtering transactions by category or description.
-Takes precedence over the selected category dropdown when populated.</p>
+                    <div class="io-description"><p>The customCategory property is a string that allows users to enter a custom category for filtering transactions. It is used in conjunction with the selectedCategory property to determine which category filter to apply when the user selects a category from the predefined list or enters a custom category. If the user enters a custom category, this property will hold that value, and the applyFilter method will use it to filter the transactions displayed in the UI. This feature provides flexibility for users to categorize their transactions in a way that best suits their needs, especially if the predefined categories do not cover all possible transaction types they may have.</p>
 </div>
                 </td>
             </tr>
@@ -1573,14 +1399,13 @@ Takes precedence over the selected category dropdown when populated.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/components/account-details/account-details.ts:100</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/components/account-details/account-details.ts:85</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The end date for a custom budget period. Only used when budgetPeriod is set to &#39;custom&#39;.
-Format: ISO 8601 date string (YYYY-MM-DD)</p>
+                    <div class="io-description"><p>The endDate property is a string that holds the end date for a custom budget period when the user selects &quot;custom&quot; as the budget period. It is used in the submitBudget method to construct the budget object that will be sent to the backend API when the user submits the budget form. This property allows users to specify the ending point of their custom budget period, which can help them manage their finances more effectively by setting budget limits based on specific time frames that align with their financial goals and spending habits. The value of this property is typically entered by the user in a date input field in the UI, and it is important for ensuring that the correct end date is applied to the account when setting or updating a custom budget.</p>
 </div>
                 </td>
             </tr>
@@ -1611,14 +1436,13 @@ Format: ISO 8601 date string (YYYY-MM-DD)</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/account-details/account-details.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/account-details/account-details.ts:40</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Error message displayed to the user when operations fail or data cannot be loaded.
-Null when no error is present.</p>
+                    <div class="io-description"><p>The error property is used to store any error messages that may occur during the retrieval of account details or transactions, or during any operations performed on the account (e.g., adding a transaction, setting a budget). It is initialized as null and will be updated with appropriate error messages if any issues arise while interacting with the backend API or performing actions on the account. This property is important for providing feedback to the user about any problems that may occur and for improving the overall user experience by informing them of issues in a clear and concise manner.</p>
 </div>
                 </td>
             </tr>
@@ -1649,13 +1473,13 @@ Null when no error is present.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/components/account-details/account-details.ts:120</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/components/account-details/account-details.ts:105</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Menu open state</p>
+                    <div class="io-description"><p>The menuOpen property is a boolean that indicates whether the options menu for the account details is currently open in the UI. It is used to toggle the display of the options menu when the user clicks on the menu button (e.g., three dots or &quot;Options&quot; button). When menuOpen is true, the options menu is displayed; when it is false, the options menu is hidden. This property allows users to easily access additional actions and settings related to their account details, such as sorting transactions, managing accounts, or accessing other features, while keeping the UI clean and organized by hiding the options menu when it is not needed.</p>
 </div>
                 </td>
             </tr>
@@ -1686,14 +1510,13 @@ Null when no error is present.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/components/account-details/account-details.ts:70</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/account-details/account-details.ts:60</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Category selected from the dropdown menu for filtering transactions.
-Cleared when user inputs a custom search term.</p>
+                    <div class="io-description"><p>The selectedCategory property is a string that holds the currently selected category for filtering transactions. It is used in conjunction with the showFilter property to determine which category filter to apply when the user selects a category from the predefined list. When a user selects a category, this property is updated with the selected category value, and the applyFilter method uses this value to filter the transactions displayed in the UI. This allows users to easily view transactions that belong to a specific category, helping them analyze their spending patterns and manage their finances more effectively.</p>
 </div>
                 </td>
             </tr>
@@ -1724,14 +1547,13 @@ Cleared when user inputs a custom search term.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/components/account-details/account-details.ts:76</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/components/account-details/account-details.ts:65</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Controls visibility of the budget form. When true, displays form for entering
-budget amount, period selection, and optional custom date range.</p>
+                    <div class="io-description"><p>The showBudgetForm property is a boolean that indicates whether the form for setting a budget is currently visible in the UI. It is used to toggle the display of the budget form when the user clicks on the &quot;Set Budget&quot; button. When showBudgetForm is true, the form is displayed; when it is false, the form is hidden. This property allows users to easily access the budget setting functionality when they want to set or update their budget for the account, while keeping the UI clean and organized by hiding the form when it is not needed.</p>
 </div>
                 </td>
             </tr>
@@ -1762,14 +1584,13 @@ budget amount, period selection, and optional custom date range.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/account-details/account-details.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/account-details/account-details.ts:45</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Controls the visibility of the transaction filter UI. When true, displays category
-dropdown and custom search input for filtering transactions.</p>
+                    <div class="io-description"><p>The showFilter property is a boolean that indicates whether the filter options for transactions are currently visible in the UI. It is used to toggle the display of the filter options when the user clicks on the &quot;Filter&quot; button. When showFilter is true, the filter options are displayed; when it is false, the filter options are hidden. This property allows users to easily access and apply filters to their transaction list, and also provides a way to quickly hide the filter options when they are not needed, keeping the UI clean and organized.</p>
 </div>
                 </td>
             </tr>
@@ -1800,13 +1621,13 @@ dropdown and custom search input for filtering transactions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/components/account-details/account-details.ts:125</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/components/account-details/account-details.ts:110</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Flag indicating if the sort options dropdown is visible.</p>
+                    <div class="io-description"><p>The showSortOptions property is a boolean that indicates whether the sorting options for transactions are currently visible in the UI. It is used to toggle the display of the sorting options when the user clicks on the &quot;Sort&quot; button in the options menu. When showSortOptions is true, the sorting options are displayed; when it is false, the sorting options are hidden. This property allows users to easily access and apply sorting to their transaction list, helping them organize their transactions in a way that best suits their needs (e.g., by date, amount, or category), while keeping the UI clean and organized by hiding the sorting options when they are not needed.</p>
 </div>
                 </td>
             </tr>
@@ -1837,13 +1658,13 @@ dropdown and custom search input for filtering transactions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/app/components/account-details/account-details.ts:130</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/components/account-details/account-details.ts:115</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Currently applied sort option.</p>
+                    <div class="io-description"><p>The sortOptions property holds the currently selected sorting option for transactions. It can have values such as &#39;createdAtAsc&#39; for sorting transactions by creation date in ascending order, &#39;createdAtDesc&#39; for sorting by creation date in descending order, or null if no sorting option is selected. This property is used in the applySort method to determine how to sort the transactions displayed in the UI based on the user&#39;s selection. By allowing users to choose their preferred sorting option, this property enhances the usability of the transaction list and helps users find specific transactions more easily.</p>
 </div>
                 </td>
             </tr>
@@ -1874,14 +1695,13 @@ dropdown and custom search input for filtering transactions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/components/account-details/account-details.ts:94</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/components/account-details/account-details.ts:80</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The start date for a custom budget period. Only used when budgetPeriod is set to &#39;custom&#39;.
-Format: ISO 8601 date string (YYYY-MM-DD)</p>
+                    <div class="io-description"><p>The startDate property is a string that holds the start date for a custom budget period when the user selects &quot;custom&quot; as the budget period. It is used in the submitBudget method to construct the budget object that will be sent to the backend API when the user submits the budget form. This property allows users to specify the starting point of their custom budget period, which can help them manage their finances more effectively by setting budget limits based on specific time frames that align with their financial goals and spending habits. The value of this property is typically entered by the user in a date input field in the UI, and it is important for ensuring that the correct start date is applied to the account when setting or updating a custom budget.</p>
 </div>
                 </td>
             </tr>
@@ -1912,14 +1732,13 @@ Format: ISO 8601 date string (YYYY-MM-DD)</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/account-details/account-details.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/account-details/account-details.ts:35</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Array of transaction objects associated with this account. Each transaction contains
-details such as type (credit/debit), amount, description, merchant, and timestamp.</p>
+                    <div class="io-description"><p>The transactions property is an array that holds the list of transactions associated with the account. It is initialized as an empty array and will be populated with transaction data retrieved from the backend API when the component is initialized. Each transaction object in the array may contain properties such as amount, description, merchant, date, category, and other relevant information about the transaction. This property is crucial for displaying the transaction history of the account in the UI and for allowing users to interact with individual transactions (e.g., viewing details or adding new transactions).</p>
 </div>
                 </td>
             </tr>
@@ -1946,10 +1765,16 @@ details such as type (credit/debit), amount, description, merchant, and timestam
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/app/components/account-details/account-details.ts:139</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/components/account-details/account-details.ts:120</a></div>
                         </td>
                     </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The utility service provides helper functions used by the template and component logic for formatting and data transformations.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1975,19 +1800,14 @@ details such as type (credit/debit), amount, description, merchant, and timestam
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="336" class="link-to-prism">src/app/components/account-details/account-details.ts:336</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="300" class="link-to-prism">src/app/components/account-details/account-details.ts:300</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Getter that returns the active filter term for transactions.
-Prioritizes the custom search term if user has entered one,
-otherwise returns the selected category from the dropdown.
-Used by the filter pipe to display matching transactions.</p>
+                                <div class="io-description"><p>The effectiveCategory getter is a computed property that returns the effective category filter to be applied to the transactions list. It checks if a custom category has been entered by the user (customCategory) and returns it if it exists; otherwise, it returns the selected category (selectedCategory). This allows the component to determine which category filter to apply when filtering the transactions list, giving priority to the custom category if it is provided by the user. This getter is used in the applyFilter method to determine which category to use for filtering the transactions displayed in the UI.</p>
 </div>
 
-                                <div>
-                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
@@ -2013,18 +1833,14 @@ Used by the filter pipe to display matching transactions.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="405" class="link-to-prism">src/app/components/account-details/account-details.ts:405</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="358" class="link-to-prism">src/app/components/account-details/account-details.ts:358</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Calculates the percentage of the budget that has been spent based on the current account balance.
-If no budget is set, returns 0. Otherwise, divides the account balance by the budget amount
-and multiplies by 100 to get a percentage. Caps the returned value at 100% to avoid overflow.</p>
+                                <div class="io-description"><p>The budgetProgress getter is a computed property that calculates the percentage of the budget that has been spent based on the account&#39;s budget and the amount spent. It checks if the account has a budget amount defined; if not, it returns 0. If a budget amount exists, it calculates the percentage by dividing the amount spent (account.budgetSpent) by the total budget amount (account.budget.amount) and multiplying by 100 to get a percentage value. The method also ensures that the returned percentage does not exceed 100% by using Math.min. This getter is used to display a progress bar or similar UI element to visually represent how much of the budget has been used, helping users understand their spending in relation to their set budget.</p>
 </div>
 
-                                <div>
-                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
@@ -2050,18 +1866,14 @@ and multiplies by 100 to get a percentage. Caps the returned value at 100% to av
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="421" class="link-to-prism">src/app/components/account-details/account-details.ts:421</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="371" class="link-to-prism">src/app/components/account-details/account-details.ts:371</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Determines if the account balance has exceeded the set budget.
-Compares the current account balance against the budget amount.
-Returns true if the balance exceeds the budget, false otherwise. If no budget is set, returns false.</p>
+                                <div class="io-description"><p>The isBudgetExceeded getter is a computed property that checks if the account&#39;s current balance exceeds the defined budget amount. It first checks if the account has a budget amount defined; if not, it returns false, indicating that the budget is not exceeded. If a budget amount exists, it compares the account&#39;s balance (or 0 if balance is undefined) to the budget amount. If the balance exceeds the budget amount, it returns true, indicating that the budget has been exceeded; otherwise, it returns false. This getter can be used to display warnings or alerts in the UI when users have exceeded their set budget, helping them manage their finances more effectively.</p>
 </div>
 
-                                <div>
-                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
@@ -2083,13 +1895,11 @@ import { FormsModule } from &#x27;@angular/forms&#x27;;
 import { AccountService } from &#x27;../../services/account-service&#x27;;
 import { UtilityService } from &#x27;../../services/utility-service&#x27;;
 import { FilterPipe } from &#x27;../../pipes/filter-pipe&#x27;;
-import { TRANSACTION_CATEGORIES, TRANSACTION_CATEGORY_META } from &#x27;../../constants/transaction-categories&#x27;;
+import { TRANSACTION_CATEGORIES } from &#x27;../../constants/transaction-categories&#x27;;
 import { MatProgressBarModule } from &#x27;@angular/material/progress-bar&#x27;;
+
 /**
- * AccountDetails component - displays comprehensive information for a single account.
- * Shows account balance, transaction history, and budget management.
- * Enables users to add transactions, manage budgets with configurable periods, set default accounts,
- * and archive accounts. Provides category-based transaction filtering and search capabilities.
+ * The AccountDetails component is responsible for displaying the details of a specific account, including its transactions, and providing functionality to manage the account. It retrieves the account information and transactions from the backend API using the AccountService, and allows users to add new transactions, set budgets, and archive the account. The component also includes filtering and sorting options for transactions, as well as error handling for various operations. It uses Angular&#x27;s reactive programming model to handle asynchronous data retrieval and updates the UI accordingly.
  */
 @Component({
   standalone: true,
@@ -2100,129 +1910,115 @@ import { MatProgressBarModule } from &#x27;@angular/material/progress-bar&#x27;;
 })
 
 /**
- * Component logic for managing account details, budgets, and transactions.
- * Handles account display, transaction management, budget creation/editing, and filtering.
+ * The AccountDetails class is the TypeScript component class for the AccountDetails component. It implements the OnInit interface, which means it has a lifecycle hook method called ngOnInit that is called when the component is initialized. The class contains properties to hold the account details, transactions, error messages, filter options, budget information, and menu state. It also has methods to handle various actions such as opening a transaction, adding a transaction, archiving the account, setting it as default, toggling filters and menus, applying sorting options, and submitting budget information. The class interacts with the AccountService to fetch and manipulate account data, and uses ChangeDetectorRef to trigger UI updates when data changes.
  */
 export class AccountDetails implements OnInit {
 
   /**
-   * The account object containing account information such as balance, account number,
-   * currency, and account type (e.g., &#x27;savings&#x27;, &#x27;checking&#x27;). Null until account data is loaded.
+   * The account property is used to store the details of the specific account being viewed. It is initialized as null and will be populated with the account data retrieved from the backend API when the component is initialized. The account object may contain properties such as accountType, balance, currency, nickname, budget, and other relevant information about the account. This property is essential for displaying the account details in the UI and for performing operations related to the account, such as adding transactions or setting budgets.
    */
   account: any | null &#x3D; null;
 
   /**
-   * Array of transaction objects associated with this account. Each transaction contains
-   * details such as type (credit/debit), amount, description, merchant, and timestamp.
-   */
+   * The transactions property is an array that holds the list of transactions associated with the account. It is initialized as an empty array and will be populated with transaction data retrieved from the backend API when the component is initialized. Each transaction object in the array may contain properties such as amount, description, merchant, date, category, and other relevant information about the transaction. This property is crucial for displaying the transaction history of the account in the UI and for allowing users to interact with individual transactions (e.g., viewing details or adding new transactions).
+    */
   transactions: any[] &#x3D; [];
 
   /**
-   * Error message displayed to the user when operations fail or data cannot be loaded.
-   * Null when no error is present.
-   */
+   * The error property is used to store any error messages that may occur during the retrieval of account details or transactions, or during any operations performed on the account (e.g., adding a transaction, setting a budget). It is initialized as null and will be updated with appropriate error messages if any issues arise while interacting with the backend API or performing actions on the account. This property is important for providing feedback to the user about any problems that may occur and for improving the overall user experience by informing them of issues in a clear and concise manner.
+    */
   error: string | null &#x3D; null;
 
   /**
-   * Controls the visibility of the transaction filter UI. When true, displays category
-   * dropdown and custom search input for filtering transactions.
-   */
+   * The showFilter property is a boolean that indicates whether the filter options for transactions are currently visible in the UI. It is used to toggle the display of the filter options when the user clicks on the &quot;Filter&quot; button. When showFilter is true, the filter options are displayed; when it is false, the filter options are hidden. This property allows users to easily access and apply filters to their transaction list, and also provides a way to quickly hide the filter options when they are not needed, keeping the UI clean and organized.
+    */
   showFilter: boolean &#x3D; false;
 
   /**
-   * List of all available transaction categories imported from the constants file.
-   * Used to populate the category dropdown filter in the UI.
-   */
+   * The categories property holds a list of predefined transaction categories that can be used for filtering transactions or categorizing new transactions. It is initialized with the TRANSACTION_CATEGORIES constant, which is imported from a separate file. This property provides users with a set of common categories to choose from when managing their transactions, making it easier to organize and analyze their spending habits. Users can select from these categories when adding new transactions or applying filters to view specific types of transactions in their account details.
+    */
   categories &#x3D; TRANSACTION_CATEGORIES;
 
   /**
-   * User-entered custom search term for filtering transactions by category or description.
-   * Takes precedence over the selected category dropdown when populated.
-   */
+   * The customCategory property is a string that allows users to enter a custom category for filtering transactions. It is used in conjunction with the selectedCategory property to determine which category filter to apply when the user selects a category from the predefined list or enters a custom category. If the user enters a custom category, this property will hold that value, and the applyFilter method will use it to filter the transactions displayed in the UI. This feature provides flexibility for users to categorize their transactions in a way that best suits their needs, especially if the predefined categories do not cover all possible transaction types they may have.
+    */
   customCategory: string &#x3D; &#x27;&#x27;;
 
   /**
-   * Category selected from the dropdown menu for filtering transactions.
-   * Cleared when user inputs a custom search term.
-   */
+   * The selectedCategory property is a string that holds the currently selected category for filtering transactions. It is used in conjunction with the showFilter property to determine which category filter to apply when the user selects a category from the predefined list. When a user selects a category, this property is updated with the selected category value, and the applyFilter method uses this value to filter the transactions displayed in the UI. This allows users to easily view transactions that belong to a specific category, helping them analyze their spending patterns and manage their finances more effectively.
+    */
   selectedCategory: string &#x3D; &#x27;&#x27;;
 
   /**
-   * Controls visibility of the budget form. When true, displays form for entering
-   * budget amount, period selection, and optional custom date range.
-   */
+   * The showBudgetForm property is a boolean that indicates whether the form for setting a budget is currently visible in the UI. It is used to toggle the display of the budget form when the user clicks on the &quot;Set Budget&quot; button. When showBudgetForm is true, the form is displayed; when it is false, the form is hidden. This property allows users to easily access the budget setting functionality when they want to set or update their budget for the account, while keeping the UI clean and organized by hiding the form when it is not needed.
+    */
   showBudgetForm: boolean &#x3D; false;
 
   /**
-   * The monetary amount for the budget. Set by user in the budget form.
-   * Null until user enters a value.
-   */
+   * The budgetAmount property is a number that holds the amount for the budget that the user wants to set for the account. It is used in the submitBudget method to construct the budget object that will be sent to the backend API when the user submits the budget form. This property allows users to specify their desired budget amount, which can help them manage their spending and stay within their financial goals. The value of this property is typically entered by the user in an input field in the UI, and it is important for ensuring that the correct budget amount is applied to the account when setting or updating the budget.
+    */
   budgetAmount: number | null &#x3D; null;
 
   /**
-   * The period over which the budget applies. Valid values are &#x27;weekly&#x27;, &#x27;monthly&#x27;,
-   * &#x27;annual&#x27;, or &#x27;custom&#x27;. When set to &#x27;custom&#x27;, startDate and endDate are used.
+   * The budgetPeriod property is a string that holds the selected period for the budget that the user wants to set for the account. It is used in the submitBudget method to construct the budget object that will be sent to the backend API when the user submits the budget form. This property allows users to specify the time frame for their budget (e.g., monthly, weekly, custom), which can help them manage their finances more effectively by setting appropriate budget limits based on their spending patterns and financial goals. The value of this property is typically selected by the user from a dropdown or set of options in the UI, and it is important for ensuring that the correct budget period is applied to the account when setting or updating the budget. 
    */
   budgetPeriod: string &#x3D; &#x27;&#x27;;
 
   /**
-   * The start date for a custom budget period. Only used when budgetPeriod is set to &#x27;custom&#x27;.
-   * Format: ISO 8601 date string (YYYY-MM-DD)
-   */
+   * The startDate property is a string that holds the start date for a custom budget period when the user selects &quot;custom&quot; as the budget period. It is used in the submitBudget method to construct the budget object that will be sent to the backend API when the user submits the budget form. This property allows users to specify the starting point of their custom budget period, which can help them manage their finances more effectively by setting budget limits based on specific time frames that align with their financial goals and spending habits. The value of this property is typically entered by the user in a date input field in the UI, and it is important for ensuring that the correct start date is applied to the account when setting or updating a custom budget.
+    */
   startDate: string &#x3D; &#x27;&#x27;;
 
   /**
-   * The end date for a custom budget period. Only used when budgetPeriod is set to &#x27;custom&#x27;.
-   * Format: ISO 8601 date string (YYYY-MM-DD)
-   */
+   * The endDate property is a string that holds the end date for a custom budget period when the user selects &quot;custom&quot; as the budget period. It is used in the submitBudget method to construct the budget object that will be sent to the backend API when the user submits the budget form. This property allows users to specify the ending point of their custom budget period, which can help them manage their finances more effectively by setting budget limits based on specific time frames that align with their financial goals and spending habits. The value of this property is typically entered by the user in a date input field in the UI, and it is important for ensuring that the correct end date is applied to the account when setting or updating a custom budget.
+    */
   endDate: string &#x3D; &#x27;&#x27;;
 
   /**
- * List of accounts
- */
+   * The accounts_list property is an array that holds the list of accounts associated with the user. It is initialized as an empty array and will be populated with account data retrieved from the backend API when the component is initialized. Each account object in the array may contain properties such as accountType, balance, currency, nickname, and other relevant information about the account. This property is essential for displaying the list of accounts in the UI and for allowing users to interact with their accounts (e.g., viewing details, adding transactions, setting budgets). It serves as a central data structure for managing and displaying the user&#x27;s accounts within the AccountDetails component.
+   */
   accounts_list: any[] &#x3D; [];
 
   /**
- * Indicates whether the card information is complete for display purposes.
- */
+   * The cardComplete property is a boolean that indicates whether the credit card information form is complete. It is used to enable or disable the submission of the form based on whether all required fields have been filled out correctly. When cardComplete is true, the form can be submitted; when it is false, the form submission is disabled. This property helps ensure that users provide all necessary information before attempting to add or update a credit card, reducing the likelihood of errors and improving the overall user experience.
+   */
   cardComplete: boolean &#x3D; false;
 
   /**
- * Card brand for display purposes (e.g., Visa, MasterCard)
- */
+   * The cardBrand property is a string that holds the brand of the credit card being added or updated. It is used to display the appropriate card brand logo in the UI and may also be used for validation purposes when processing credit card information. This property allows users to easily identify the type of credit card they are working with (e.g., Visa, MasterCard, American Express) and can enhance the visual appeal of the UI by showing the corresponding card brand logo.
+   */
   cardBrand: string &#x3D; &#x27;&#x27;;
 
   /**
- * Menu open state
- */
+   * The menuOpen property is a boolean that indicates whether the options menu for the account details is currently open in the UI. It is used to toggle the display of the options menu when the user clicks on the menu button (e.g., three dots or &quot;Options&quot; button). When menuOpen is true, the options menu is displayed; when it is false, the options menu is hidden. This property allows users to easily access additional actions and settings related to their account details, such as sorting transactions, managing accounts, or accessing other features, while keeping the UI clean and organized by hiding the options menu when it is not needed.
+   */
   menuOpen &#x3D; false;
 
   /**
- * Flag indicating if the sort options dropdown is visible.
- */
+   * The showSortOptions property is a boolean that indicates whether the sorting options for transactions are currently visible in the UI. It is used to toggle the display of the sorting options when the user clicks on the &quot;Sort&quot; button in the options menu. When showSortOptions is true, the sorting options are displayed; when it is false, the sorting options are hidden. This property allows users to easily access and apply sorting to their transaction list, helping them organize their transactions in a way that best suits their needs (e.g., by date, amount, or category), while keeping the UI clean and organized by hiding the sorting options when they are not needed.
+    */
   showSortOptions: boolean &#x3D; false;
 
   /**
- * Currently applied sort option.
- */
+   * The sortOptions property holds the currently selected sorting option for transactions. It can have values such as &#x27;createdAtAsc&#x27; for sorting transactions by creation date in ascending order, &#x27;createdAtDesc&#x27; for sorting by creation date in descending order, or null if no sorting option is selected. This property is used in the applySort method to determine how to sort the transactions displayed in the UI based on the user&#x27;s selection. By allowing users to choose their preferred sorting option, this property enhances the usability of the transaction list and helps users find specific transactions more easily.
+    */
   sortOptions: &#x27;createdAtAsc&#x27; | &#x27;createdAtDesc&#x27; | null &#x3D; null;
 
   /**
-   * Creates an instance of the AccountDetails component.
-   * @param route ActivatedRoute - Used to extract the accountId from the current route parameters
-   * @param router Router - Used to navigate between routes (e.g., to transaction details or back to accounts list)
-   * @param accountService AccountService - Service for fetching and managing account data, transactions, and budgets
-   * @param cdr ChangeDetectorRef - Reference to manually trigger change detection when needed
+   * The utility service provides helper functions used by the template and component logic for formatting and data transformations.
    */
-  constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef, public utility: UtilityService) { }
+  public utility: UtilityService;
 
   /**
-   * Angular lifecycle hook called after the component is initialized.
-   * Fetches the userId from session storage and accountId from route parameters,
-   * then loads both the account details and its associated transactions from the service.
-   * Sets appropriate error messages if data cannot be loaded.
-   * @returns void
+   * The constructor method is responsible for injecting the necessary services and dependencies into the AccountDetails component. It takes in the ActivatedRoute to access route parameters, the Router for navigation, the AccountService to interact with the backend API for account-related operations, the ChangeDetectorRef to trigger UI updates when data changes, and the UtilityService for any utility functions needed within the component. By injecting these services, the constructor allows the component to perform various actions such as fetching account details, managing transactions, navigating between routes, and updating the UI based on user interactions and data changes.
    */
+  constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef, utility: UtilityService) {
+    this.utility &#x3D; utility;
+  }
+
+  /**
+   * The ngOnInit method is a lifecycle hook that is called when the component is initialized. It retrieves the userId from session storage and the accountId from the route parameters. If either of these values is missing, it sets an error message and returns early. If both values are present, it stores the accountId in session storage for later use. The method then makes two API calls using the AccountService: one to fetch the account details and another to fetch the transactions associated with the account. For each API call, it subscribes to the observable returned by the service and handles both the success and error cases. On success, it updates the corresponding properties (account or transactions) and triggers change detection to update the UI. On error, it sets an appropriate error message and triggers change detection to display the error in the UI.
+    */
   ngOnInit() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
     const accountId &#x3D; this.route.snapshot.paramMap.get(&#x27;accountId&#x27;);
@@ -2258,22 +2054,16 @@ export class AccountDetails implements OnInit {
   }
 
   /**
-   * Navigates to the details page for the specified transaction.
-   * @param transactionId The unique identifier of the transaction to display
-   * @returns void
-   */
+   * The openTransaction method is responsible for navigating the user to the details page of a specific transaction. It takes in the transactionId as a parameter, retrieves the accountId from the route parameters, and then uses the Router to navigate to the route that corresponds to the transaction details page (e.g., &#x27;/accounts/:accountId/transactions/:transactionId&#x27;). This allows users to view more detailed information about a specific transaction when they click on it in the transaction list.
+    */
   openTransaction(transactionId: string) {
     const accountId &#x3D; this.route.snapshot.paramMap.get(&#x27;accountId&#x27;);
     this.router.navigate([&#x27;/accounts&#x27;, accountId, &#x27;transactions&#x27;, transactionId]);
   }
 
   /**
-   * Prompts the user for transaction details and adds a new transaction to the account.
-   * Collects description, amount, and merchant information from the user via prompts.
-   * Automatically determines transaction type (credit/debit) based on the amount sign.
-   * Updates both account balance and transaction list on success.
-   * @returns void
-   */
+   * The addTransaction method is responsible for adding a new transaction to the account. It first retrieves the userId and accountId from session storage. If either of these values is missing, it returns early. It then prompts the user to enter the description, amount, and merchant for the new transaction. If any of these values are missing, it returns early. The method then constructs a transaction object with the provided information and calls the addTransaction method of the AccountService to send a request to the backend API to create the new transaction. If the API call is successful, it refreshes the account details and transactions by making additional API calls to fetch the updated data. If there is an error during the API call, it sets an appropriate error message and triggers change detection to display the error in the UI.
+    */
   addTransaction() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
     const accountId &#x3D; sessionStorage.getItem(&#x27;accountId&#x27;);
@@ -2332,12 +2122,8 @@ export class AccountDetails implements OnInit {
   }
 
   /**
-   * Archives the current account after confirming with the user.
-   * Displays a confirmation dialog to ensure the user intentionally wants to archive.
-   * Only allows archiving if the account balance is zero. On success, navigates back
-   * to the accounts list. On failure, displays an error message.
-   * @returns void
-   */
+   * The archiveAccount method is responsible for archiving the current account. It first prompts the user with a confirmation dialog to ensure they want to proceed with archiving the account. If the user confirms, it retrieves the userId and accountId from session storage. If either of these values is missing, it sets an error message and returns early. It then calls the archiveAccount method of the AccountService to send a request to the backend API to archive the account. If the API call is successful, it navigates the user back to the accounts list page. If there is an error during the API call, it sets an appropriate error message and triggers change detection to display the error in the UI.
+    */
   archiveAccount() {
     const confirmArchive &#x3D; confirm(&#x27;Are you sure you want to archive this account?&#x27;);
     if (!confirmArchive) {
@@ -2364,11 +2150,8 @@ export class AccountDetails implements OnInit {
   }
 
   /**
-   * Sets the current account as the default account for the user.
-   * Sends a request to the AccountService to update the default account setting.
-   * On success, updates the local account state to reflect the change. On failure, displays an error message.
-   * @returns void
-   */
+   * The setAsDefault method is responsible for setting the current account as the default account for the user. It retrieves the userId and accountId from session storage. If either of these values is missing, it returns early. It then updates the local account object to set its isDefault property to true, which allows the UI to reflect the change immediately. The method then calls the setDefaultAccount method of the AccountService to send a request to the backend API to update the default account for the user. If there is an error during the API call, it sets an appropriate error message and triggers change detection to display the error in the UI. This method allows users to easily designate a specific account as their default account, which can be useful for quickly accessing it or for setting it as the primary account for transactions.
+    */
   setAsDefault() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
     const accountId &#x3D; sessionStorage.getItem(&#x27;accountId&#x27;);
@@ -2390,11 +2173,8 @@ export class AccountDetails implements OnInit {
   }
 
   /**
-   * Toggles the visibility of the transaction filter UI.
-   * When hiding the filter, also clears any active filter selections
-   * (selected category and custom search term).
-   * @returns void
-   */
+   * The toggleFilter method is responsible for toggling the visibility of the filter options for transactions. When this method is called (e.g., when the user clicks a &quot;Filter&quot; button), it updates the showFilter boolean property to either show or hide the filter options. If the filter options are being hidden, it also resets the selectedCategory and customCategory properties to clear any applied filters. This allows users to easily access and apply filters to their transaction list, and also provides a way to quickly clear filters and return to viewing all transactions.
+    */
   toggleFilter() {
     this.showFilter &#x3D; !this.showFilter;
 
@@ -2405,41 +2185,29 @@ export class AccountDetails implements OnInit {
   }
 
   /**
-   * Getter that returns the active filter term for transactions.
-   * Prioritizes the custom search term if user has entered one,
-   * otherwise returns the selected category from the dropdown.
-   * Used by the filter pipe to display matching transactions.
-   * @returns The effective category or custom search term to filter transactions by
-   */
+   * The effectiveCategory getter is a computed property that returns the effective category filter to be applied to the transactions list. It checks if a custom category has been entered by the user (customCategory) and returns it if it exists; otherwise, it returns the selected category (selectedCategory). This allows the component to determine which category filter to apply when filtering the transactions list, giving priority to the custom category if it is provided by the user. This getter is used in the applyFilter method to determine which category to use for filtering the transactions displayed in the UI.
+    */
   get effectiveCategory(): string {
     return this.customCategory || this.selectedCategory;
   }
 
   /**
-   * Toggles the visibility of the budget form.
-   * @returns void
-   */
+   * The addBudget method is responsible for toggling the visibility of the budget form. When this method is called (e.g., when the user clicks an &quot;Add Budget&quot; button), it updates the showBudgetForm boolean property to either show or hide the budget form. This allows users to easily access and manage their budget settings. When the form is shown, users can enter their desired budget amount and period, and when the form is hidden, it keeps the UI clean and organized by hiding the budget settings when they are not needed.
+    */
   addBudget() {
     this.showBudgetForm &#x3D; !this.showBudgetForm;
   }
 
   /**
-   * Updates the selected budget period.
-   * @param period The budget period to set (&#x27;weekly&#x27;, &#x27;monthly&#x27;, &#x27;annual&#x27;, or &#x27;custom&#x27;)
-   * @returns void
-   */
+   * The selectBudgetPeriod method is responsible for updating the budgetPeriod property based on the user&#x27;s selection. When a user selects a budget period (e.g., monthly, weekly, custom) from the UI, this method is called with the selected period as an argument. It then updates the budgetPeriod property with the selected value, which is used in the submitBudget method to construct the budget object that will be sent to the backend API when the user submits the budget form. This method allows users to specify the time frame for their budget, helping them manage their finances more effectively by setting appropriate budget limits based on their spending patterns and financial goals.
+    */
   selectBudgetPeriod(period: string) {
     this.budgetPeriod &#x3D; period;
   }
 
   /**
-   * Submits the budget form and saves the budget to the account.
-   * Validates that user and account IDs are available, constructs a budget object
-   * with the appropriate date fields based on the selected period, and sends it to
-   * the AccountService. On success, clears the form and reloads account data.
-   * On failure, displays an error message.
-   * @returns void
-   */
+   * The submitBudget method is responsible for submitting the budget information entered by the user to the backend API. It first retrieves the userId and accountId from session storage. If either of these values is missing, it sets an error message and returns early. It then constructs a budget object with the amount, period, and optional start and end dates (if the period is custom) based on the user&#x27;s input. The method calls the setBudget method of the AccountService to send a request to the backend API to set the budget for the account. If the API call is successful, it hides the budget form, resets the budget input fields, and refreshes the account details to reflect the updated budget information. If there is an error during the API call, it sets an appropriate error message and triggers change detection to display the error in the UI. This method allows users to easily set or update their budget for the account, helping them manage their spending and stay within their financial goals.
+    */
   submitBudget() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
     const accountId &#x3D; sessionStorage.getItem(&#x27;accountId&#x27;);
@@ -2475,11 +2243,8 @@ export class AccountDetails implements OnInit {
   }
 
   /**
-   * Calculates the percentage of the budget that has been spent based on the current account balance.
-   * If no budget is set, returns 0. Otherwise, divides the account balance by the budget amount
-   * and multiplies by 100 to get a percentage. Caps the returned value at 100% to avoid overflow.
-   * @returns The percentage of the budget that has been spent (0-100)
-   */
+   * The budgetProgress getter is a computed property that calculates the percentage of the budget that has been spent based on the account&#x27;s budget and the amount spent. It checks if the account has a budget amount defined; if not, it returns 0. If a budget amount exists, it calculates the percentage by dividing the amount spent (account.budgetSpent) by the total budget amount (account.budget.amount) and multiplying by 100 to get a percentage value. The method also ensures that the returned percentage does not exceed 100% by using Math.min. This getter is used to display a progress bar or similar UI element to visually represent how much of the budget has been used, helping users understand their spending in relation to their set budget.
+    */
   get budgetProgress(): number {
     if (!this.account?.budget?.amount) return 0;
 
@@ -2491,44 +2256,37 @@ export class AccountDetails implements OnInit {
   }
 
   /**
-   * Determines if the account balance has exceeded the set budget.
-   * Compares the current account balance against the budget amount.
-   * Returns true if the balance exceeds the budget, false otherwise. If no budget is set, returns false.
-   * @returns boolean indicating whether the budget has been exceeded
-   */
+   * The isBudgetExceeded getter is a computed property that checks if the account&#x27;s current balance exceeds the defined budget amount. It first checks if the account has a budget amount defined; if not, it returns false, indicating that the budget is not exceeded. If a budget amount exists, it compares the account&#x27;s balance (or 0 if balance is undefined) to the budget amount. If the balance exceeds the budget amount, it returns true, indicating that the budget has been exceeded; otherwise, it returns false. This getter can be used to display warnings or alerts in the UI when users have exceeded their set budget, helping them manage their finances more effectively.
+    */
   get isBudgetExceeded(): boolean {
     if (!this.account?.budget?.amount) return false;
     return (this.account.balance || 0) &gt; this.account.budget.amount;
   }
 
   /**
-   * Closes the budget form without saving any changes.
-   * Resets the form fields to their default states.
-   * @returns void
+   * The closeBudgetForm method is responsible for hiding the budget form in the UI. When this method is called (e.g., when the user clicks a &quot;Cancel&quot; button in the budget form), it sets the showBudgetForm boolean property to false, which hides the form from view. This allows users to easily exit the budget setting process without making any changes, keeping the UI clean and organized when the budget form is not needed.
    */
   closeBudgetForm() {
     this.showBudgetForm &#x3D; false;
   }
 
   /**
- * Toggles the kebab menu visibility for adding and managing accounts.
- */
+   * The toggleMenu method is responsible for toggling the visibility of the options menu for the account details. When this method is called (e.g., when the user clicks on the menu button), it updates the menuOpen boolean property to either show or hide the options menu. This allows users to easily access additional actions and settings related to their account details, such as sorting transactions, managing accounts, or accessing other features, while keeping the UI clean and organized by hiding the options menu when it is not needed.
+    */
   toggleMenu() {
     this.menuOpen &#x3D; !this.menuOpen;
   }
 
   /**
-   * Toggles the visibility of the sort options dropdown.
-   */
+   * The toggleSortOptions method is responsible for toggling the visibility of the sorting options for transactions in the options menu. When this method is called (e.g., when the user clicks on the &quot;Sort&quot; button in the options menu), it updates the showSortOptions boolean property to either show or hide the sorting options. This allows users to easily access and apply sorting to their transaction list, helping them organize their transactions in a way that best suits their needs (e.g., by date, amount, or category), while keeping the UI clean and organized by hiding the sorting options when they are not needed.
+    */
   toggleSortOptions() {
     this.showSortOptions &#x3D; !this.showSortOptions;
   }
 
   /**
-   * Applies the selected sort option to the transactions list.
-   * Supports sorting by creation date in ascending or descending order.
-   * @param option The sort option to apply.
-   */
+   * The applySort method is responsible for applying the selected sorting option to the transactions list. It takes in the selected sorting option as a parameter (e.g., &#x27;createdAtAsc&#x27; for sorting by creation date in ascending order, &#x27;createdAtDesc&#x27; for sorting by creation date in descending order) and updates the sortOptions property with the selected option. The method then uses a switch statement to determine how to sort the transactions based on the selected option. It creates a new sorted array of transactions using the JavaScript array sort method, comparing the createdAt timestamps of the transactions to sort them accordingly. After sorting the transactions, it triggers change detection to update the UI with the newly sorted transaction list.
+    */
   applySort(option: &#x27;createdAtAsc&#x27; | &#x27;createdAtDesc&#x27;) {
     this.sortOptions &#x3D; option;
 
@@ -2546,16 +2304,6 @@ export class AccountDetails implements OnInit {
         break;
     }
     this.cdr.detectChanges();
-  }
-
-  /**
- * Retrieves the metadata (icon and color) for a given transaction category.
- * If the category is not found in the predefined metadata, returns default values.
- * @param category The transaction category to look up
- * @returns An object containing the icon class and color associated with the category
- */
-  getCategoryMeta(category: string) {
-    return TRANSACTION_CATEGORY_META[category as keyof typeof TRANSACTION_CATEGORY_META] || { icon: &#x27;fa-question-circle&#x27;, color: &#x27;#9E9E9E&#x27; };
   }
 }</code></pre>
     </div>
@@ -2743,8 +2491,8 @@ export class AccountDetails implements OnInit {
         &lt;li class&#x3D;&quot;list-group-item d-flex justify-content-between transaction-item transaction-spacing&quot;
             (click)&#x3D;&quot;openTransaction(transaction._id)&quot;&gt;
             &lt;div class&#x3D;&quot;d-flex align-items-center gap-2&quot;&gt;
-                &lt;i class&#x3D;&quot;fa&quot; [ngClass]&#x3D;&quot;getCategoryMeta(transaction.category).icon&quot;
-                    [style.color]&#x3D;&quot;getCategoryMeta(transaction.category).color&quot;&gt;&lt;/i&gt;
+                &lt;i class&#x3D;&quot;fa&quot; [ngClass]&#x3D;&quot;utility.getCategoryMeta(transaction.category).icon&quot;
+                    [style.color]&#x3D;&quot;utility.getCategoryMeta(transaction.category).color&quot;&gt;&lt;/i&gt;
                 &lt;div&gt;
                     {{ transaction.description }}&lt;br /&gt;
                     &lt;small class&#x3D;&quot;text-muted&quot;&gt;
@@ -2803,7 +2551,7 @@ export class AccountDetails implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    @if (error) {    <p class="text-danger">{{ error }}</p>    }    @if (account) {    <div class="row mb-3">        <div class="col-sm-12 d-flex justify-content-end">            <button class="kebab-btn" (click)="toggleMenu()">                <i class="fa fa-ellipsis-v"></i>            </button>            @if (menuOpen) {            <div class="menu-dropdown">                <div class="d-flex gap-2 mb-3">                    <button class="btn btn-outline-secondary" (click)="archiveAccount()"                        [disabled]="account?.balance > 0">                        Archive Account                    </button>                    <button class="btn" [ngClass]="account?.isDefault ? \'btn-success\' : \'btn-outline-primary\'"                        (click)="setAsDefault()" [disabled]="account?.isDefault">                        {{ account?.isDefault ? \'Default Account ✓\' : \'Set as Default\' }}                    </button>                    @if (account?.accountType === \'savings\') {                    <button class="btn btn-outline-secondary" (click)="addBudget()">                        {{ showBudgetForm ? \'Cancel\' : \'Set Budget\' }}                    </button>                    }                </div>            </div>            }        </div>    </div>    <div class="stripe-card mb-3">        <div class="stripe-card-top">            <div class="chip"></div>            <div class="card-brand">                {{ cardBrand | uppercase }}            </div>        </div>        <div class="card-number">            {{ utility.maskAccountNumber(account.accountNumber) }}        </div>        <div class="stripe-card-bottom">            <div class="card-holder">                {{ account.accountType | uppercase }}<br>                {{ account.availableBalance | currency: account.currency || \'GBP\' }}<br>                Sort Code: {{ utility.formatSortCode(account.sortCode) }}<br>                {{ account.firstName }} {{ account.lastName }}            </div>            <div class="expiry">                {{ account.expiryDate }}            </div>        </div>    </div>    <div class="balance-card">        @if (account?.budget) {        <div class="balance-label">            Budget ({{ account.budget.period | titlecase }})        </div>        <div class="balance-amount">            <span class="fw-bold">                {{ account.balance | currency: account.currency || \'GBP\' }} / {{ account.budget.amount | currency:                account.currency || \'GBP\' }}            </span>        </div>        <mat-progress-bar class="mt-3" mode="determinate" [value]="budgetProgress"            [color]="isBudgetExceeded ? \'warn\' : \'primary\'"></mat-progress-bar>        } @else {        <div class="balance-label">Balance</div>        <div class="balance-amount">            {{ account?.balance | currency: account.currency || \'GBP\' }}        </div>        }    </div>    @if (account?.accountType === \'savings\') {    @if (showBudgetForm) {    <div class="overlay" (click)="closeBudgetForm()">        <div class="modal-card card p-3" (click)="$event.stopPropagation()">            <div class="mb-3">                <label class="form-label">Budget Amount:</label>                <input type="number" class="form-control" [(ngModel)]="budgetAmount" name="budgetAmount">            </div>            <div class="mb-3">                <label class="form-label d-block">Budget Period:</label>                <div class="btn-group w-100">                    <button class="btn" [class.btn-primary]="budgetPeriod === \'weekly\'"                        [class.btn-outline-primary]="budgetPeriod !== \'weekly\'" (click)="selectBudgetPeriod(\'weekly\')">                        Weekly                    </button>                    <button class="btn" [class.btn-primary]="budgetPeriod === \'monthly\'"                        [class.btn-outline-primary]="budgetPeriod !== \'monthly\'"                        (click)="selectBudgetPeriod(\'monthly\')">                        Monthly                    </button>                    <button class="btn" [class.btn-primary]="budgetPeriod === \'annual\'"                        [class.btn-outline-primary]="budgetPeriod !== \'annual\'" (click)="selectBudgetPeriod(\'annual\')">                        Annually                    </button>                    <button class="btn" [class.btn-primary]="budgetPeriod === \'custom\'"                        [class.btn-outline-primary]="budgetPeriod !== \'custom\'" (click)="selectBudgetPeriod(\'custom\')">                        Custom                    </button>                </div>            </div>            @if (budgetPeriod === \'custom\') {            <div class="mb-3">                <label class="form-label">Start Date</label>                <input type="date" class="form-control" [(ngModel)]="startDate" name="startDate">            </div>            <div class="mb-3">                <label class="form-label">End Date</label>                <input type="date" class="form-control" [(ngModel)]="endDate" name="endDate">            </div>            }            <button class="btn btn-success w-100" (click)="submitBudget()">                Save Budget            </button>        </div>    </div>    }    }    @if (transactions.length > 0) {    <div class="d-flex justify-content-between align-items-center mt-5">        <h5>Transactions:</h5>        <div class="d-flex align-items-center gap-2 flex-wrap">            <button class="btn btn-outline-primary btn-sm" (click)="toggleFilter()">                <i class="fa" [ngClass]="showFilter ? \'fa-times\' : \'fa-filter\'"></i>                {{ showFilter ? \'Close Filter\' : \'Filter\' }}            </button>            <button class="btn btn-outline-primary btn-sm" (click)="toggleSortOptions()">                <i class="fa fa-sort"></i>                {{ showSortOptions ? \'Hide Sort\' : \'Sort\' }}            </button>            @if (showSortOptions) {            <div class="d-flex gap-2">                <button class="btn btn-sm btn-outline-secondary" (click)="applySort(\'createdAtAsc\')">                    Created At ↑                </button>                <button class="btn btn-sm btn-outline-secondary" (click)="applySort(\'createdAtDesc\')">                    Created At ↓                </button>            </div>            }            @if (showFilter) {            <div class="d-flex gap-2 align-items-center flex-wrap">                <select class="form-select form-select-sm w-auto" [(ngModel)]="selectedCategory"                    (change)="customCategory = \'\'">                    <option value="">All Categories:</option>                    @for (category of categories; track category) {                    <option [value]="category">                        {{ category }}                    </option>                    }                </select>                <input type="search" class="form-control form-control-sm w-25" placeholder="Enter category..."                    [(ngModel)]="customCategory" (input)="selectedCategory = \'\'" />            </div>            }        </div>        <div class="plus-minus">            <i class="fa fa-plus" (click)="addTransaction()"></i>        </div>    </div>    <ul class="list-group list-group-flush">        @for (transaction of transactions | filter: effectiveCategory; track transaction._id) {        <li class="list-group-item d-flex justify-content-between transaction-item transaction-spacing"            (click)="openTransaction(transaction._id)">            <div class="d-flex align-items-center gap-2">                <i class="fa" [ngClass]="getCategoryMeta(transaction.category).icon"                    [style.color]="getCategoryMeta(transaction.category).color"></i>                <div>                    {{ transaction.description }}<br />                    <small class="text-muted">                        {{ transaction.category }} • {{ utility.formatTransactionDate(transaction.createdAt) }}                    </small>                </div>                <p>{{ utility.formatTransactionDate(transaction.createdAt) }}</p>            </div>            <span [ngClass]="{                        \'text-success\': transaction.direction === \'in\',                        \'text-danger\': transaction.direction === \'out\'                    }">                {{ transaction.direction === \'out\' ? \'-\' : \'+\' }}                {{ transaction.amount | currency: account.currency || \'GBP\' }}            </span>        </li>        }    </ul>    }    @if (transactions.length === 0 && account) {    <div class="d-flex justify-content-between align-items-center mt-5">        <div class="plus-minus">            <p class="text-muted mt-3">No transactions found for this account. Add a transaction</p>            <i class="fa fa-plus" (click)="addTransaction()"></i>        </div>    </div>    }    }</div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    @if (error) {    <p class="text-danger">{{ error }}</p>    }    @if (account) {    <div class="row mb-3">        <div class="col-sm-12 d-flex justify-content-end">            <button class="kebab-btn" (click)="toggleMenu()">                <i class="fa fa-ellipsis-v"></i>            </button>            @if (menuOpen) {            <div class="menu-dropdown">                <div class="d-flex gap-2 mb-3">                    <button class="btn btn-outline-secondary" (click)="archiveAccount()"                        [disabled]="account?.balance > 0">                        Archive Account                    </button>                    <button class="btn" [ngClass]="account?.isDefault ? \'btn-success\' : \'btn-outline-primary\'"                        (click)="setAsDefault()" [disabled]="account?.isDefault">                        {{ account?.isDefault ? \'Default Account ✓\' : \'Set as Default\' }}                    </button>                    @if (account?.accountType === \'savings\') {                    <button class="btn btn-outline-secondary" (click)="addBudget()">                        {{ showBudgetForm ? \'Cancel\' : \'Set Budget\' }}                    </button>                    }                </div>            </div>            }        </div>    </div>    <div class="stripe-card mb-3">        <div class="stripe-card-top">            <div class="chip"></div>            <div class="card-brand">                {{ cardBrand | uppercase }}            </div>        </div>        <div class="card-number">            {{ utility.maskAccountNumber(account.accountNumber) }}        </div>        <div class="stripe-card-bottom">            <div class="card-holder">                {{ account.accountType | uppercase }}<br>                {{ account.availableBalance | currency: account.currency || \'GBP\' }}<br>                Sort Code: {{ utility.formatSortCode(account.sortCode) }}<br>                {{ account.firstName }} {{ account.lastName }}            </div>            <div class="expiry">                {{ account.expiryDate }}            </div>        </div>    </div>    <div class="balance-card">        @if (account?.budget) {        <div class="balance-label">            Budget ({{ account.budget.period | titlecase }})        </div>        <div class="balance-amount">            <span class="fw-bold">                {{ account.balance | currency: account.currency || \'GBP\' }} / {{ account.budget.amount | currency:                account.currency || \'GBP\' }}            </span>        </div>        <mat-progress-bar class="mt-3" mode="determinate" [value]="budgetProgress"            [color]="isBudgetExceeded ? \'warn\' : \'primary\'"></mat-progress-bar>        } @else {        <div class="balance-label">Balance</div>        <div class="balance-amount">            {{ account?.balance | currency: account.currency || \'GBP\' }}        </div>        }    </div>    @if (account?.accountType === \'savings\') {    @if (showBudgetForm) {    <div class="overlay" (click)="closeBudgetForm()">        <div class="modal-card card p-3" (click)="$event.stopPropagation()">            <div class="mb-3">                <label class="form-label">Budget Amount:</label>                <input type="number" class="form-control" [(ngModel)]="budgetAmount" name="budgetAmount">            </div>            <div class="mb-3">                <label class="form-label d-block">Budget Period:</label>                <div class="btn-group w-100">                    <button class="btn" [class.btn-primary]="budgetPeriod === \'weekly\'"                        [class.btn-outline-primary]="budgetPeriod !== \'weekly\'" (click)="selectBudgetPeriod(\'weekly\')">                        Weekly                    </button>                    <button class="btn" [class.btn-primary]="budgetPeriod === \'monthly\'"                        [class.btn-outline-primary]="budgetPeriod !== \'monthly\'"                        (click)="selectBudgetPeriod(\'monthly\')">                        Monthly                    </button>                    <button class="btn" [class.btn-primary]="budgetPeriod === \'annual\'"                        [class.btn-outline-primary]="budgetPeriod !== \'annual\'" (click)="selectBudgetPeriod(\'annual\')">                        Annually                    </button>                    <button class="btn" [class.btn-primary]="budgetPeriod === \'custom\'"                        [class.btn-outline-primary]="budgetPeriod !== \'custom\'" (click)="selectBudgetPeriod(\'custom\')">                        Custom                    </button>                </div>            </div>            @if (budgetPeriod === \'custom\') {            <div class="mb-3">                <label class="form-label">Start Date</label>                <input type="date" class="form-control" [(ngModel)]="startDate" name="startDate">            </div>            <div class="mb-3">                <label class="form-label">End Date</label>                <input type="date" class="form-control" [(ngModel)]="endDate" name="endDate">            </div>            }            <button class="btn btn-success w-100" (click)="submitBudget()">                Save Budget            </button>        </div>    </div>    }    }    @if (transactions.length > 0) {    <div class="d-flex justify-content-between align-items-center mt-5">        <h5>Transactions:</h5>        <div class="d-flex align-items-center gap-2 flex-wrap">            <button class="btn btn-outline-primary btn-sm" (click)="toggleFilter()">                <i class="fa" [ngClass]="showFilter ? \'fa-times\' : \'fa-filter\'"></i>                {{ showFilter ? \'Close Filter\' : \'Filter\' }}            </button>            <button class="btn btn-outline-primary btn-sm" (click)="toggleSortOptions()">                <i class="fa fa-sort"></i>                {{ showSortOptions ? \'Hide Sort\' : \'Sort\' }}            </button>            @if (showSortOptions) {            <div class="d-flex gap-2">                <button class="btn btn-sm btn-outline-secondary" (click)="applySort(\'createdAtAsc\')">                    Created At ↑                </button>                <button class="btn btn-sm btn-outline-secondary" (click)="applySort(\'createdAtDesc\')">                    Created At ↓                </button>            </div>            }            @if (showFilter) {            <div class="d-flex gap-2 align-items-center flex-wrap">                <select class="form-select form-select-sm w-auto" [(ngModel)]="selectedCategory"                    (change)="customCategory = \'\'">                    <option value="">All Categories:</option>                    @for (category of categories; track category) {                    <option [value]="category">                        {{ category }}                    </option>                    }                </select>                <input type="search" class="form-control form-control-sm w-25" placeholder="Enter category..."                    [(ngModel)]="customCategory" (input)="selectedCategory = \'\'" />            </div>            }        </div>        <div class="plus-minus">            <i class="fa fa-plus" (click)="addTransaction()"></i>        </div>    </div>    <ul class="list-group list-group-flush">        @for (transaction of transactions | filter: effectiveCategory; track transaction._id) {        <li class="list-group-item d-flex justify-content-between transaction-item transaction-spacing"            (click)="openTransaction(transaction._id)">            <div class="d-flex align-items-center gap-2">                <i class="fa" [ngClass]="utility.getCategoryMeta(transaction.category).icon"                    [style.color]="utility.getCategoryMeta(transaction.category).color"></i>                <div>                    {{ transaction.description }}<br />                    <small class="text-muted">                        {{ transaction.category }} • {{ utility.formatTransactionDate(transaction.createdAt) }}                    </small>                </div>                <p>{{ utility.formatTransactionDate(transaction.createdAt) }}</p>            </div>            <span [ngClass]="{                        \'text-success\': transaction.direction === \'in\',                        \'text-danger\': transaction.direction === \'out\'                    }">                {{ transaction.direction === \'out\' ? \'-\' : \'+\' }}                {{ transaction.amount | currency: account.currency || \'GBP\' }}            </span>        </li>        }    </ul>    }    @if (transactions.length === 0 && account) {    <div class="d-flex justify-content-between align-items-center mt-5">        <div class="plus-minus">            <p class="text-muted mt-3">No transactions found for this account. Add a transaction</p>            <i class="fa fa-plus" (click)="addTransaction()"></i>        </div>    </div>    }    }</div></div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'HorizontalBar', 'selector': 'app-horizontal-bar'},{'name': 'Line', 'selector': 'app-line'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Pie', 'selector': 'app-pie'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TestUserService', 'selector': 'app-test-user-service'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AccountDetails'};

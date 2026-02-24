@@ -694,8 +694,7 @@ export class HorizontalBar implements OnChanges {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;highcharts-chart [Highcharts]&#x3D;&quot;Highcharts&quot; [options]&#x3D;&quot;chartOptions&quot; [(update)]&#x3D;&quot;updateFlag&quot;
-    style&#x3D;&quot;width: 100%; height: 400px; display: block;&quot;&gt;&lt;/highcharts-chart&gt;</code></pre>
+        <pre class="line-numbers"><code class="language-html">&lt;highcharts-chart class&#x3D;&quot;chart-container&quot; [Highcharts]&#x3D;&quot;Highcharts&quot; [options]&#x3D;&quot;chartOptions&quot; [(update)]&#x3D;&quot;updateFlag&quot;&gt;&lt;/highcharts-chart&gt;</code></pre>
     </div>
 
 
@@ -724,7 +723,7 @@ export class HorizontalBar implements OnChanges {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" [(update)]="updateFlag"    style="width: 100%; height: 400px; display: block;"></highcharts-chart></div>'
+        var COMPONENT_TEMPLATE = '<div><highcharts-chart class="chart-container" [Highcharts]="Highcharts" [options]="chartOptions" [(update)]="updateFlag"></highcharts-chart></div>'
     var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'HorizontalBar', 'selector': 'app-horizontal-bar'},{'name': 'Line', 'selector': 'app-line'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Pie', 'selector': 'app-pie'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TestUserService', 'selector': 'app-test-user-service'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'HorizontalBar'};
