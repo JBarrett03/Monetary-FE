@@ -73,6 +73,12 @@ export class Spending {
   period_list = ['Weekly', 'Monthly', 'Yearly', 'Custom'];
 
   /**
+   * State variable to track the currently selected time period for analytics. This variable is updated when the user selects a different time period from the dropdown or selection menu. It is used in methods that load charts to determine which time frame of data to fetch and display in the charts.
+   * The selectedPeriod variable is checked in the onPeriodChange method to ensure that the correct data is loaded based on the user's selection, allowing them to analyze their financial habits over different periods such as weekly, monthly, yearly, or custom ranges.
+   */
+  selectedPeriod: string = 'Weekly';
+
+  /**
    * State variable to track the currently selected chart type for displaying analytics. It can be set to 'Pie', 'Bar', 'Line', or null depending on the user's selection. This variable is used to determine which type of chart to render based on the user's preference for visualizing their spending or savings data.
    * The selectedChartType variable is updated in the onChartTypeChange method when the user selects a different chart type, and it is used in the template to conditionally render the appropriate chart component based on the current selection.
    */
@@ -120,6 +126,7 @@ export class Spending {
    */
   showSavings() {
     this.activeView = 'savings';
+    this.resetChartFilters();
     this.loadSavingsChart();
   }
 
@@ -129,8 +136,8 @@ export class Spending {
    */
   showSpent() {
     this.activeView = 'spent';
+    this.resetChartFilters();
     this.loadSpendingChart();
-    this.loadCategoryData('out');
   }
 
   /**
@@ -204,10 +211,12 @@ export class Spending {
   }
 
   /**
-   * Method to handle changes in the selected time period for analytics. This method is triggered when the user selects a different time period from the dropdown or selection menu. It calls the loadChart method with the appropriate direction based on the currently active view (savings or spending) to fetch and display the updated analytics for the newly selected time period.
-   * When this method is called, it ensures that the charts are updated to reflect the data corresponding to the selected time frame, allowing users to analyze their financial habits over different periods such as weekly, monthly, yearly, or custom ranges.
+   * Method to handle changes in the selected time period for analytics. This method is triggered when the user selects a different time period from the dropdown or selection menu. It updates the selectedPeriod state variable and, if there is an active view (savings or spending), it calls the loadChart method with the appropriate direction to fetch and display the data for the newly selected time period.
+   * When this method is called, it ensures that the charts are updated to reflect the new time frame chosen by the user, allowing them to analyze their financial habits over different periods such as weekly, monthly, yearly, or custom ranges based on their preferences.
    */
   onPeriodChange(event: any) {
+    this.selectedPeriod = event.value;
+    if (!this.activeView) return;
     this.loadChart(this.activeView === 'savings' ? 'in' : 'out');
   }
 
@@ -254,5 +263,14 @@ export class Spending {
         });
       });
     });
+  }
+
+  /**
+   * Method to reset the chart filters to their default values. This method is typically called when the user wants to clear any applied filters and return to the default view of the charts. It resets the selectedPeriod to 'Monthly' and clears the selectedChartType, allowing the charts to be reloaded with the default settings.
+   * When this method is called, it ensures that any custom filters or selections made by the user are cleared, providing a way for users to easily return to a standard view of their spending or savings analytics without any specific time period or chart type filters applied.
+   */
+  resetChartFilters() {
+    this.selectedPeriod = 'Weekly';
+    this.selectedChartType = null;
   }
 }
