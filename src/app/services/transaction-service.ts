@@ -49,19 +49,25 @@ export class TransactionService {
   /**
    * Fetch a summary of transactions for a user's account from the API, filtered by direction (in or out).
    * @param userId The ID of the user to retrieve the transaction summary for
-   * @param accountId The ID of the account to retrieve the transaction summary for
    * @param direction The direction of transactions to summarize ('in' for incoming, 'out' for outgoing)
+   * @param period The time period for which to retrieve the summary (optional)
+   * @param accountId The ID of the account to retrieve the summary for (optional)
    * @returns An observable containing the transaction summary data
    */
-  getTransactionSummary(userId: string, accountId: string, direction: 'in' | 'out', period?: string) {
+  getTransactionSummary(userId: string, direction: 'in' | 'out', period?: string) {
     let url = `${this.baseUrl}/users/${userId}/transactions/summary?direction=${direction}`;
 
     if (period) {
       url += `&period=${period}`;
     }
 
-    if (accountId) {
-      url += `&accountId=${accountId}`;
+    return this.http.get<any>(url);
+  }
+
+  getAccountTransactionSummary(userId: string, accountId: string, direction: 'in' | 'out', period?: string) {
+    let url = `${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions/summary?direction=${direction}`;
+    if (period) {
+      url += `&period=${period}`;
     }
 
     return this.http.get<any>(url);

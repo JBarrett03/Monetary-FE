@@ -139,6 +139,7 @@ export class Spending {
     this.activeView = 'savings';
     this.resetChartFilters();
     this.loadSavingsChart();
+    this.loadChartPerAccount();
   }
 
   /**
@@ -165,36 +166,43 @@ export class Spending {
    */
   loadChart(direction: 'in' | 'out') {
     const userId = sessionStorage.getItem('userId');
+
     if (!userId) return;
 
     this.accountService.getAccounts(userId).subscribe(accounts => {
-      const budgetAccounts = accounts.filter((a: any) => a.accountType === 'savings' && a.budget);
+      const budgetAccounts = accounts.filter(a => a?.budget?.amount);
+      const totalBudget = budgetAccounts.reduce((sum: number, a: any) => sum + Number(a.budget.amount || 0), 0);
+
+      this.transactionService.getTransactionSummary(userId, direction, this.selectedPeriod).subscribe(result => {
+        const totalSaved = Number(result.totalAmount || 0);
+        this.primaryValue = totalSaved;
+        this.remainingValue = Math.max(totalBudget - totalSaved, 0);
+      })
+    })
+  }
+
+  loadChartPerAccount() {
+    const userId = sessionStorage.getItem('userId');
+    if (!userId) return;
+
+    this.accountService.getAccounts(userId).subscribe(accounts => {
+      const budgetAccounts = accounts.filter(a => a?.budget?.amount);
       this.accountAnalytics = [];
 
-      if (budgetAccounts.length === 0) return;
-
-      let completed = 0;
-
       budgetAccounts.forEach(account => {
-        this.transactionService.getTransactionSummary(userId, account._id,'in', this.selectedPeriod).subscribe(summary => {
-          const totalIn = Number(summary.totalAmount || 0);
-          const budgetAmount = Number(account.budget.amount || 0);
+        this.transactionService.getAccountTransactionSummary(userId, account._id, 'in', this.selectedPeriod).subscribe(result => {
+          const saved = Number(result.totalAmount || 0);
+          const budget = Number(account.budget.amount || 0);
 
-          this.accountAnalytics.push({
-            accountId: account._id,
-            accountName: account.nickname,
-            primaryValue: totalIn,
-            remainingValue: Math.max(budgetAmount - totalIn, 0)
-          });
-
-          completed++;
-
-          if (completed === budgetAccounts.length) {
-            this.primaryValue = this.accountAnalytics.reduce(
-              (sum, a) => sum + a.primaryValue,
-              0
-            );
-          }
+          this.accountAnalytics = [
+            ...this.accountAnalytics,
+            {
+              accountId: account._id,
+              accountName: account.nickname,
+              primaryValue: saved,
+              remainingValue: Math.max(budget - saved, 0)
+            }
+          ]
         });
       });
     });
@@ -223,7 +231,13 @@ export class Spending {
   onPeriodChange(event: any) {
     this.selectedPeriod = event.value;
     if (!this.activeView) return;
-    this.loadChart(this.activeView === 'savings' ? 'in' : 'out');
+
+    const direction = this.activeView === 'savings' ? 'in' : 'out';
+    this.loadChart(direction);
+
+    if (this.activeView === 'savings') {
+      this.loadChartPerAccount();
+    }
   }
 
   /**
