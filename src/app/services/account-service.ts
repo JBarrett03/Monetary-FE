@@ -31,8 +31,7 @@ export class AccountService {
    * @returns An observable containing the list of accounts
    */
   getAccounts(userId: string): Observable<any[]> {
-    const url = `${this.baseUrl}/users/${userId}/accounts`;
-    return this.http.get<any[]>(url);
+    return this.http.get<any[]>(`${this.baseUrl}/users/${userId}/accounts`);
   }
 
   /**
@@ -42,8 +41,7 @@ export class AccountService {
    * @returns An observable containing the account data
    */
   getAccount(userId: string, accountId: string): Observable<any> {
-    const url = `${this.baseUrl}/users/${userId}/accounts/${accountId}`;
-    return this.http.get<any>(url);
+    return this.http.get<any>(`${this.baseUrl}/users/${userId}/accounts/${accountId}`);
   }
 
   /**
@@ -53,8 +51,7 @@ export class AccountService {
    * @returns An observable containing the HTTP response
    */
   addAccount(userId: string, account: { accountType: string, currency: string }): Observable<any> {
-    const url = `${this.baseUrl}/users/${userId}/accounts`;
-    return this.http.post<any>(url, account);
+    return this.http.post<any>(`${this.baseUrl}/users/${userId}/accounts`, account);
   }
 
   /**
@@ -76,8 +73,7 @@ export class AccountService {
    * @returns An observable containing the list of transactions
    */
   getAccountTransactions(userId: string, accountId: string): Observable<any[]> {
-    const url = `${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions`;
-    return this.http.get<any[]>(url);
+    return this.http.get<any[]>(`${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions`);
   }
 
   /**
@@ -88,8 +84,7 @@ export class AccountService {
   * @returns An observable containing the HTTP response
   */
   addTransaction(userId: string, accountId: string, transaction: { direction: 'in' | 'out', type: string, amount: number, description: string, merchant: string }): Observable<any> {
-    const url = `${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions`;
-    return this.http.post<any>(url, transaction);
+    return this.http.post<any>(`${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions`, transaction);
   }
 
   /**

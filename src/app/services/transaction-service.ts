@@ -32,8 +32,7 @@ export class TransactionService {
    * @returns An observable containing the list of transactions
    */
   getAllTransactions(userId: string, accountId: string):Observable<any[]> {
-    const url = `${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions`;
-    return this.http.get<any[]>(url);
+    return this.http.get<any[]>(`${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions`);
   }
 
   /**
@@ -44,8 +43,7 @@ export class TransactionService {
    * @returns An observable containing the transaction data
    */
   getTransaction(userId: string, accountId: string, transactionId: string): Observable<any> {
-    const url = `${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions/${transactionId}`;
-    return this.http.get<any>(url);
+    return this.http.get<any>(`${this.baseUrl}/users/${userId}/accounts/${accountId}/transactions/${transactionId}`);
   }
   
   /**
