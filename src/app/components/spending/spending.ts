@@ -67,16 +67,16 @@ export class Spending {
   remainingValue = 0;
 
   /**
-   * List of time periods available for selection in the component. This list is used to populate a dropdown or selection menu that allows users to choose the time frame for which they want to view their spending or savings analytics. The options include 'Weekly', 'Monthly', 'Yearly', and 'Custom', providing flexibility for users to analyze their financial data over different periods.
-   * The period_list variable is used in the template to generate the options for the period selection, and the selected period is used in methods that load charts to fetch data corresponding to the chosen time frame.
+   * List of available time periods for analytics. This list is used to populate a dropdown or selection menu that allows users to choose the time frame for which they want to view their spending or savings analytics. The options include 'Last Week', 'Last Month', 'Last Year', and 'Custom', providing users with flexibility in analyzing their financial habits over different periods.
+   * The period_list variable is used in the template to generate the options for the time period selection, and the selectedPeriod variable is updated based on the user's choice to determine which data to fetch and display in the charts.
    */
-  period_list = ['Weekly', 'Monthly', 'Yearly', 'Custom'];
+  period_list = ['Last Week', 'Last Month', 'Last Year', 'Custom'];
 
   /**
    * State variable to track the currently selected time period for analytics. This variable is updated when the user selects a different time period from the dropdown or selection menu. It is used in methods that load charts to determine which time frame of data to fetch and display in the charts.
-   * The selectedPeriod variable is checked in the onPeriodChange method to ensure that the correct data is loaded based on the user's selection, allowing them to analyze their financial habits over different periods such as weekly, monthly, yearly, or custom ranges.
+   * The selectedPeriod variable is checked in the onPeriodChange method to ensure that the correct data is loaded based on the user's selection, allowing them to analyze their financial habits over different periods such as Last Week, Last Month, Last Year, or custom ranges.
    */
-  selectedPeriod: string = 'Weekly';
+  selectedPeriod: string = 'Last Week';
 
   /**
    * State variable to track the currently selected chart type for displaying analytics. It can be set to 'Pie', 'Bar', 'Line', or null depending on the user's selection. This variable is used to determine which type of chart to render based on the user's preference for visualizing their spending or savings data.
@@ -86,7 +86,7 @@ export class Spending {
 
   /**
    * List of available chart types for visualizing analytics. This list is used to populate a dropdown or selection menu that allows users to choose how they want to visualize their spending or savings data. The options include 'Pie', 'Bar', and 'Line', providing users with different ways to interpret their financial data.
-   * The chart_type_list variable is used in the template to generate the options for the chart type selection, and the selected chart type is used in methods that load charts to determine which chart component to render based on the user's choice.
+   * The chart_type_list variable is used in the template to generate the options for the chart type selection, and the selectedChartType variable is used in methods that load charts to determine which chart component to render based on the user's choice.
    */
   chart_type_list = ['Pie', 'Bar', 'Line'];
 
@@ -115,14 +115,15 @@ export class Spending {
         margin: 10,
         filename: 'spending_report.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { 
-          scale: 2, 
-          useCORS: true, 
-          scrollY: 0 },
-        jsPDF: { 
-          unit: 'pt', 
-          format: 'a4', 
-          orientation: 'portrait' 
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          scrollY: 0
+        },
+        jsPDF: {
+          unit: 'pt',
+          format: 'a4',
+          orientation: 'portrait'
         },
         pageBreak: { mode: ['css', 'legacy'] }
       };
@@ -164,40 +165,35 @@ export class Spending {
    */
   loadChart(direction: 'in' | 'out') {
     const userId = sessionStorage.getItem('userId');
-
     if (!userId) return;
 
-    this.primaryValue = 0;
-    this.remainingValue = 0;
-    this.accountAnalytics = [];
-
     this.accountService.getAccounts(userId).subscribe(accounts => {
-      const budgetAccounts = accounts.filter(a => a?.budget?.amount);
+      const budgetAccounts = accounts.filter((a: any) => a.accountType === 'savings' && a.budget);
+      this.accountAnalytics = [];
 
       if (budgetAccounts.length === 0) return;
 
-      let goal = 0;
-      let actual = 0;
       let completed = 0;
 
       budgetAccounts.forEach(account => {
-        goal += Number(account.budget.amount);
-        this.transactionService.getTransactionSummary(userId, account._id, direction).subscribe(summary => {
-          actual += Number(summary?.totalAmount || 0);
-          const accountBalance = Number(summary?.totalAmount || 0);
-          const accountGoal = Number(account.budget.amount);
+        this.transactionService.getTransactionSummary(userId, account._id,'in', this.selectedPeriod).subscribe(summary => {
+          const totalIn = Number(summary.totalAmount || 0);
+          const budgetAmount = Number(account.budget.amount || 0);
 
           this.accountAnalytics.push({
             accountId: account._id,
-            accountName: account.nickname || account.accountNumber,
-            primaryValue: accountBalance,
-            remainingValue: Math.max(accountGoal - accountBalance, 0)
-          })
-          completed += 1;
+            accountName: account.nickname,
+            primaryValue: totalIn,
+            remainingValue: Math.max(budgetAmount - totalIn, 0)
+          });
+
+          completed++;
 
           if (completed === budgetAccounts.length) {
-            this.primaryValue = actual;
-            this.remainingValue = Math.max(goal - actual, 0);
+            this.primaryValue = this.accountAnalytics.reduce(
+              (sum, a) => sum + a.primaryValue,
+              0
+            );
           }
         });
       });
@@ -221,8 +217,8 @@ export class Spending {
   }
 
   /**
-   * Method to handle changes in the selected time period for analytics. This method is triggered when the user selects a different time period from the dropdown or selection menu. It updates the selectedPeriod state variable and, if there is an active view (savings or spending), it calls the loadChart method with the appropriate direction to fetch and display the data for the newly selected time period.
-   * When this method is called, it ensures that the charts are updated to reflect the new time frame chosen by the user, allowing them to analyze their financial habits over different periods such as weekly, monthly, yearly, or custom ranges based on their preferences.
+   * Method to handle changes in the selected time period for analytics. This method is triggered when the user selects a different time period from the dropdown or selection menu. It updates the selectedPeriod state variable and, if there is an active view (savings or spending), it calls the loadChart method with the appropriate direction to fetch and display the analytics for the newly selected time period.
+   * When this method is called, it ensures that the charts are updated to reflect the new time frame chosen by the user, allowing them to analyze their financial habits over different periods such as Last Week, Last Month, Last Year, or custom ranges based on their preferences.
    */
   onPeriodChange(event: any) {
     this.selectedPeriod = event.value;
@@ -261,7 +257,7 @@ export class Spending {
       }
 
       accounts.forEach(account => {
-        this.transactionService.getCategorySummary(userId, account._id, direction).subscribe(data => {
+        this.transactionService.getCategorySummary(userId, account._id, direction, this.selectedPeriod).subscribe(data => {
           data.forEach((item: any) => {
             totals[item.category] = (totals[item.category] || 0) + Number(item.totalAmount || 0);
           });
@@ -276,11 +272,11 @@ export class Spending {
   }
 
   /**
-   * Method to reset the chart filters to their default values. This method is typically called when the user wants to clear any applied filters and return to the default view of the charts. It resets the selectedPeriod to 'Monthly' and clears the selectedChartType, allowing the charts to be reloaded with the default settings.
+   * Method to reset the chart filters to their default values. This method is typically called when the user wants to clear any applied filters and return to the default view of the charts. It resets the selectedPeriod to 'Last Week' and clears the selectedChartType, allowing the charts to be reloaded with the default settings.
    * When this method is called, it ensures that any custom filters or selections made by the user are cleared, providing a way for users to easily return to a standard view of their spending or savings analytics without any specific time period or chart type filters applied.
    */
   resetChartFilters() {
-    this.selectedPeriod = 'Weekly';
+    this.selectedPeriod = 'Last Week';
     this.selectedChartType = null;
   }
 }
