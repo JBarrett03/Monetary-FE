@@ -70,10 +70,22 @@ export class Payments implements OnInit {
   amountToAdd: number | null = null;
 
   /**
+ * List of all payees available for balance transfer. This can be used to display a dropdown or autocomplete list of payees when the user is entering transfer details.
+ * Initially set to an empty array until data is loaded from the API.
+ */
+  allPayees: any[] = [];
+
+  /**
    * List of recent payees for the user. This can be used to display a history of recent transactions or frequent transfer recipients.
    * Initially set to an empty array until data is loaded from the API.
    */
   recentPayees: any[] = [];
+
+  /**
+ * Boolean flag indicating whether the full list of recent payees is currently displayed.
+ * Initially set to false, meaning only a limited number of recent payees are shown until the user chooses to view all.
+ */
+  showRecentPayees: boolean = false;
 
   /**
  * Lifecycle hook that is called after the component has been initialized. It retrieves the user ID and account ID from session storage,
@@ -90,7 +102,9 @@ export class Payments implements OnInit {
 
     const storedPayees = localStorage.getItem(`recentPayees_${userId}`);
     if (storedPayees) {
-      this.recentPayees = JSON.parse(storedPayees).slice(0, 3);
+      const parsedPayees = JSON.parse(storedPayees);
+      this.recentPayees = parsedPayees.slice(0, 3);
+      this.allPayees = parsedPayees;
     }
 
     this.accountService.getAccount(userId, accountId).subscribe({
@@ -116,12 +130,25 @@ export class Payments implements OnInit {
   }
 
   /**
+ * Opens the recent payees view, allowing the user to see a list of their recent payees. Sets the showRecentPayees flag to true to display the view.
+ */
+  openShowRecentPayees() {
+    this.showRecentPayees = true;
+  }
+
+  /**
+ * Closes the recent payees view, hiding the list of recent payees from the user. Sets the showRecentPayees flag to false to hide the view.
+ */
+  closeShowRecentPayees() {
+    this.showRecentPayees = false;
+  }
+
+  /**
  * Adds balance to the user's account after validating the input. Checks if the user and account IDs are present,
  * verifies that the confirmed account number matches the actual account number, and ensures that the amount to add is valid.
  * If validation passes, it calls the AccountService to add the balance and updates the account information on success. Displays error messages for any validation or operation failures.
  */
   addBalance() {
-    console.log("Add balance clicked")
     const userId = sessionStorage.getItem('userId');
     const accountId = sessionStorage.getItem('accountId');
 
@@ -138,40 +165,32 @@ export class Payments implements OnInit {
     const cleanAccountNumber = this.confirmAccountNumber.replace(/\s/g, '');
     const cleanSortCode = this.confirmSortCode.replace(/-/g, '');
 
-    console.log("Before")
     this.accountService.getAccountByNumber(userId, cleanAccountNumber, cleanSortCode).subscribe({
       next: (account) => {
-        console.log("AFter")
         const payeeAccountId = account._id;
 
         this.accountService.addBalance(userId, payeeAccountId, this.amountToAdd!).subscribe({
           next: () => {
-            console.log("Inside add balance success")
             this.accountService.getAccount(userId, accountId).subscribe(updatedAccount => {
               this.account = updatedAccount;
               this.cdr.detectChanges();
             });
 
-            const exists = this.recentPayees.find(p => p._id === payeeAccountId);
-
-            if (!exists) {
-              this.recentPayees.unshift(account);
+            if (!this.allPayees) {
+              this.allPayees = [];
             }
 
-            this.recentPayees.unshift(account);
-            this.recentPayees = this.recentPayees.slice(0, 3);
+            this.allPayees.unshift(account);
 
-            localStorage.setItem(`recentPayees_${userId}`, JSON.stringify(this.recentPayees));
+            localStorage.setItem(`recentPayees_${userId}`, JSON.stringify(this.allPayees));
 
+            this.recentPayees = this.allPayees.slice(0, 3);
             this.showAddBalanceForm = false;
             this.confirmAccountNumber = '';
             this.confirmSortCode = '';
             this.amountToAdd = null;
             this.error = null;
             this.cdr.detectChanges();
-
-            console.log("Updated account:", payeeAccountId);
-            console.log("Currently viewed account:", accountId);
           },
           error: () => {
             this.error = 'Account number not found';
@@ -186,4 +205,12 @@ export class Payments implements OnInit {
     });
   }
 
+  /**
+   * Displays the full list of recent payees for the user. This method retrieves the user ID from session storage,
+   * then loads the recent payees from local storage and updates the component's state to show all payees.
+   * It also refreshes the account information to ensure any recent changes are reflected.
+   */
+  showAllPayees() {
+    this.showRecentPayees = true;
+  }
 }

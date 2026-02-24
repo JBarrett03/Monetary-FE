@@ -57,9 +57,7 @@ export class Login {
       error: (err) => {
         if (err.status === 401) {
           alert('Invalid email or password. Please try again.');
-        } else {
-          console.log('Login error:', err);
-        }
+        } 
       }
     });
   }
