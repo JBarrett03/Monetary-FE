@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 @Component({
   standalone: true,
   selector: 'app-login',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -31,6 +32,11 @@ export class Login {
    * User password
    */
   password: string = '';
+
+  /**
+   * Error message to display in case of login failure
+   */
+  errorMessage: string = '';
 
   /**
    * Constructor for the Login component.
@@ -55,9 +61,8 @@ export class Login {
         this.router.navigate(['/']);
       },
       error: (err) => {
-        if (err.status === 401) {
-          alert('Invalid email or password. Please try again.');
-        } 
+        console.log("Login error:", err);
+        this.errorMessage = err.error?.error || 'Login failed. Please try again.'
       }
     });
   }

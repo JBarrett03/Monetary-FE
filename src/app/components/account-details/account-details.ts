@@ -115,16 +115,9 @@ export class AccountDetails implements OnInit {
   sortOptions: 'createdAtAsc' | 'createdAtDesc' | null = null;
 
   /**
-   * The utility service provides helper functions used by the template and component logic for formatting and data transformations.
-   */
-  public utility: UtilityService;
-
-  /**
    * The constructor method is responsible for injecting the necessary services and dependencies into the AccountDetails component. It takes in the ActivatedRoute to access route parameters, the Router for navigation, the AccountService to interact with the backend API for account-related operations, the ChangeDetectorRef to trigger UI updates when data changes, and the UtilityService for any utility functions needed within the component. By injecting these services, the constructor allows the component to perform various actions such as fetching account details, managing transactions, navigating between routes, and updating the UI based on user interactions and data changes.
    */
-  constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef, utility: UtilityService) {
-    this.utility = utility;
-  }
+  constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef, public utility: UtilityService) { }
 
   /**
    * The ngOnInit method is a lifecycle hook that is called when the component is initialized. It retrieves the userId from session storage and the accountId from the route parameters. If either of these values is missing, it sets an error message and returns early. If both values are present, it stores the accountId in session storage for later use. The method then makes two API calls using the AccountService: one to fetch the account details and another to fetch the transactions associated with the account. For each API call, it subscribes to the observable returned by the service and handles both the success and error cases. On success, it updates the corresponding properties (account or transactions) and triggers change detection to update the UI. On error, it sets an appropriate error message and triggers change detection to display the error in the UI.
