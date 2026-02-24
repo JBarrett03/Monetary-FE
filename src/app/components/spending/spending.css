@@ -76,3 +76,20 @@
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.03);
 }
+
+.account-chart-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 40px;
+}
+
+.main-chart {
+    margin-bottom: 40px;
+}
+
+.export-wrapper {
+    padding: 20px;
+    display: block;
+    height: auto !important;
+    overflow: visible !important;
+}

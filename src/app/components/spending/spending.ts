@@ -110,14 +110,24 @@ export class Spending {
     if (!this.chartContainer?.nativeElement) return;
 
     const content = this.chartContainer.nativeElement;
-    const options = {
-      margin: 10,
-      filename: 'spending_report.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' }
-    };
-    (html2pdf as any)().set(options).from(content).save();
+    setTimeout(() => {
+      const options = {
+        margin: 10,
+        filename: 'spending_report.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+          scale: 2, 
+          useCORS: true, 
+          scrollY: 0 },
+        jsPDF: { 
+          unit: 'pt', 
+          format: 'a4', 
+          orientation: 'portrait' 
+        },
+        pageBreak: { mode: ['css', 'legacy'] }
+      };
+      (html2pdf as any)().set(options).from(content).save();
+    }, 500);
   }
 
   /**

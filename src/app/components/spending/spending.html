@@ -34,32 +34,34 @@
             Please select a chart type to display analytics.
         </p>
 
-        <div #chartContainer *ngIf="selectedChartType">
+        <div #chartContainer *ngIf="selectedChartType" class="export-wrapper">
             <h2 class="panel-title">
                 {{ activeView === 'savings' ? 'Savings Analytics' : 'Spending Analytics' }}
             </h2>
-            <ng-container [ngSwitch]="selectedChartType">
-                <app-pie *ngSwitchCase="'Pie'" [mode]="activeView" [primaryValue]="primaryValue"
-                    [remainingValue]="remainingValue"></app-pie>
-                <app-horizontal-bar *ngSwitchCase="'Bar'" [categoryData]="categoryData"></app-horizontal-bar>
-                <app-line *ngSwitchCase="'Line'" [mode]="activeView" [primaryValue]="primaryValue"
-                    [remainingValue]="remainingValue"></app-line>
-            </ng-container>
-        </div>
-
-        <div class="account-breakdown" *ngIf="selectedChartType && accountAnalytics.length > 0">
-            <h3 class="mt-4">Account Breakdown</h3>
-            <div *ngFor="let account of accountAnalytics" class="account-chart-card">
-                <h4>{{ account.accountName }}</h4>
+            <div class="main-chart">
                 <ng-container [ngSwitch]="selectedChartType">
-                    <app-pie *ngSwitchCase="'Pie'" [mode]="activeView" [primaryValue]="account.primaryValue"
-                        [remainingValue]="account.remainingValue"></app-pie>
+                    <app-pie *ngSwitchCase="'Pie'" [mode]="activeView" [primaryValue]="primaryValue"
+                        [remainingValue]="remainingValue"></app-pie>
                     <app-horizontal-bar *ngSwitchCase="'Bar'" [categoryData]="categoryData"></app-horizontal-bar>
-                    <app-line *ngSwitchCase="'Line'" [mode]="activeView" [primaryValue]="account.primaryValue"
-                        [remainingValue]="account.remainingValue"></app-line>
+                    <app-line *ngSwitchCase="'Line'" [mode]="activeView" [primaryValue]="primaryValue"
+                        [remainingValue]="remainingValue"></app-line>
                 </ng-container>
             </div>
+
+            <div class="account-breakdown" *ngIf="accountAnalytics.length > 0">
+                <h3 class="mt-4">Account Breakdown</h3>
+                <div *ngFor="let account of accountAnalytics" class="account-chart-card">
+                    <h4>{{ account.accountName }}</h4>
+                    <ng-container [ngSwitch]="selectedChartType">
+                        <app-pie *ngSwitchCase="'Pie'" [mode]="activeView" [primaryValue]="account.primaryValue"
+                            [remainingValue]="account.remainingValue"></app-pie>
+                        <app-horizontal-bar *ngSwitchCase="'Bar'" [categoryData]="categoryData"></app-horizontal-bar>
+                        <app-line *ngSwitchCase="'Line'" [mode]="activeView" [primaryValue]="account.primaryValue"
+                            [remainingValue]="account.remainingValue"></app-line>
+                    </ng-container>
+                </div>
+            </div>
         </div>
-        
+
     </div>
 </div>
