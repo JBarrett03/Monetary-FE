@@ -93,3 +93,9 @@
     height: auto !important;
     overflow: visible !important;
 }
+
+.percentage-label {
+    margin-top: 8px;
+    font-weight: 500;
+    opacity: 0.85s;
+}

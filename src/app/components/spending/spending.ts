@@ -61,6 +61,12 @@ export class Spending {
   remainingValue = 0;
 
   /**
+   * State variable to hold the percentage of the goal that is remaining. This variable is calculated based on the primaryValue and remainingValue and is used in the charts to visually represent how much of the goal is left to achieve.
+   * The remainingPercentage variable is calculated in the loadChart method by dividing the remainingValue by the total goal and multiplying by 100, providing users with a visual representation of how much they have left to save or spend to reach their financial goals.
+   */
+  remainingPercentage = 0;
+
+  /**
    * List of available time periods for analytics. This list is used to populate a dropdown or selection menu that allows users to choose the time frame for which they want to view their spending or savings analytics. The options include 'Last Week', 'Last Month', 'Last Year', and 'Custom', providing users with flexibility in analyzing their financial habits over different periods.
    * The period_list variable is used in the template to generate the options for the time period selection, and the selectedPeriod variable is updated based on the user's choice to determine which data to fetch and display in the charts.
    */
@@ -94,7 +100,7 @@ export class Spending {
    * State variable to hold the account analytics data for detailed breakdowns. This variable is an array of objects, where each object contains information about an account, including its ID, name, primary value (such as total amount spent or saved), and remaining value (such as remaining budget or savings goal). This data is used to populate charts that show account-level analytics, providing users with insights into how each of their accounts is performing in terms of spending or savings.
    * The accountAnalytics variable is updated in the loadChart method based on the data fetched from the services for each account, and it is used in the template to render charts that display account analytics when the user selects a chart type that requires this data.
    */
-  accountAnalytics: { accountId: string, accountName: string, primaryValue: number, remainingValue: number, categoryData: { name: string, value: number }[] }[] = [];
+  accountAnalytics: { accountId: string, accountName: string, primaryValue: number, remainingValue: number, categoryData: { name: string, value: number }[], remainingPercentage: number }[] = [];
 
   /**
    * Method to generate a PDF report of the current chart view. This method uses the html2pdf library to capture the content of the chart container and create a PDF file that can be downloaded by the user. The method checks if the chart container element is available, and if so, it sets the options for the PDF generation, including margins, filename, image quality, and PDF format. It then calls the html2pdf function to create and save the PDF based on the current chart view.
@@ -169,9 +175,15 @@ export class Spending {
       const totalBudget = budgetAccounts.reduce((sum: number, a: any) => sum + Number(a.budget.amount || 0), 0);
 
       this.transactionService.getTransactionSummary(userId, direction, this.selectedPeriod).subscribe(result => {
-        const totalSaved = Number(result.totalAmount || 0);
-        this.primaryValue = totalSaved;
-        this.remainingValue = Math.max(totalBudget - totalSaved, 0);
+        const totalAmount = Number(result.totalAmount || 0);
+        this.primaryValue = totalAmount;
+        this.remainingValue = Math.max(totalBudget - totalAmount, 0);
+
+        if (direction === 'in') {
+          this.remainingPercentage = totalBudget > 0 ? ((totalBudget - totalAmount) / totalBudget) * 100 : 0;
+        } else {
+          this.remainingPercentage = 0;
+        }
       })
     })
   }
@@ -180,17 +192,18 @@ export class Spending {
     const userId = sessionStorage.getItem('userId');
     if (!userId) return;
 
+    const direction = this.activeView === 'savings' ? 'in' : 'out';
+
     this.accountService.getAccounts(userId).subscribe(accounts => {
       const budgetAccounts = accounts.filter(a => a?.budget?.amount);
       this.accountAnalytics = [];
 
       budgetAccounts.forEach(account => {
-        const direction = this.activeView === 'savings' ? 'in' : 'out';
-        
         this.transactionService.getAccountTransactionSummary(userId, account._id, direction, this.selectedPeriod).subscribe(result => {
           const total = Number(result.totalAmount || 0);
           const budget = Number(account.budget?.amount || 0);
-
+          const remaining = Math.max(budget - total, 0);
+          const remainingPercentage = budget > 0 ? (remaining / budget) * 100 : 0;
           this.transactionService.getCategorySummary(userId, account._id, direction, this.selectedPeriod).subscribe(categoryResult => {
             const formattedCategoryData = categoryResult.map((item: any) => ({
               name: item.category,
@@ -201,8 +214,9 @@ export class Spending {
               accountId: account._id,
               accountName: account.nickname || account.accountNumber,
               primaryValue: total,
-              remainingValue: Math.max(budget - total, 0),
-              categoryData: formattedCategoryData
+              remainingValue: remaining,
+              categoryData: formattedCategoryData,
+              remainingPercentage: remainingPercentage
             });
           })
         });
@@ -277,7 +291,7 @@ export class Spending {
           data.forEach((item: any) => {
             totals[item.category] = (totals[item.category] || 0) + Number(item.totalAmount || 0);
           });
-          completed += 1;
+          completed++;
 
           if (completed === accounts.length) {
             this.categoryData = Object.entries(totals).map(([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value);
