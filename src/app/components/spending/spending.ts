@@ -188,6 +188,10 @@ export class Spending {
     })
   }
 
+  /**
+   * Method to load the chart data for each account based on the specified direction ('in' for savings and 'out' for spending). This method retrieves the user's accounts and their corresponding transaction summaries to calculate the primary and remaining values for each account. It updates the accountAnalytics array with detailed information for each account, including the account name, primary value, remaining value, category data, and remaining percentage.
+   * The method iterates through each account with a budget and fetches the transaction summary for that account to calculate the analytics. It also fetches the category summary for each account to provide a breakdown of spending or savings by category. This method is called by both loadSavingsChart and loadSpendingChart methods to fetch and display the appropriate data based on the selected view.
+   */
   loadChartPerAccount() {
     const userId = sessionStorage.getItem('userId');
     if (!userId) return;

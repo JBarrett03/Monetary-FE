@@ -41,7 +41,7 @@
             <div class="main-chart">
                 <ng-container [ngSwitch]="selectedChartType">
                     <p *ngIf="activeView === 'savings'" class="percentage-label">
-                        {{ remainingPercentage | number: '1.0-1' }}% of total budget saved
+                        {{ remainingPercentage | number: '1.0-1' }}% of total budget remaining
                     </p>
                     <app-pie *ngSwitchCase="'Pie'" [mode]="activeView" [primaryValue]="primaryValue"
                         [remainingValue]="remainingValue"></app-pie>
@@ -55,7 +55,7 @@
                 <h3 class="mt-4">Account Breakdown</h3>
                 <div *ngFor="let account of accountAnalytics" class="account-chart-card">
                     <p *ngIf="activeView === 'savings'" class="percentage-label">
-                        {{ account.remainingPercentage }}% of total budget saved
+                        {{ account.remainingPercentage }}% of total budget remaining
                     </p>
                     <h4>{{ account.accountName }}</h4>
                     <ng-container [ngSwitch]="selectedChartType">
