@@ -180,7 +180,7 @@ export class Spending {
         this.remainingValue = Math.max(totalBudget - totalAmount, 0);
 
         if (direction === 'in') {
-          this.remainingPercentage = totalBudget > 0 ? ((totalBudget - totalAmount) / totalBudget) * 100 : 0;
+          this.remainingPercentage = totalBudget > 0 ? Math.round(((totalBudget - totalAmount) / totalBudget) * 100) : 0;
         } else {
           this.remainingPercentage = 0;
         }
@@ -207,7 +207,7 @@ export class Spending {
           const total = Number(result.totalAmount || 0);
           const budget = Number(account.budget?.amount || 0);
           const remaining = Math.max(budget - total, 0);
-          const remainingPercentage = budget > 0 ? (remaining / budget) * 100 : 0;
+          const remainingPercentage = budget > 0 ? Math.round((remaining / budget) * 100) : 0;
           this.transactionService.getCategorySummary(userId, account._id, direction, this.selectedPeriod).subscribe(categoryResult => {
             const formattedCategoryData = categoryResult.map((item: any) => ({
               name: item.category,

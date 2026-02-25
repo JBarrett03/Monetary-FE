@@ -346,12 +346,12 @@ export class AccountDetails implements OnInit {
   }
 
   /**
-   * The budgetProgress getter is a computed property that calculates the percentage of the budget that has been spent based on the account's budget and the amount spent. It checks if the account has a budget amount defined; if not, it returns 0. If a budget amount exists, it calculates the percentage by dividing the amount spent (account.budgetSpent) by the total budget amount (account.budget.amount) and multiplying by 100 to get a percentage value. The method also ensures that the returned percentage does not exceed 100% by using Math.min. This getter is used to display a progress bar or similar UI element to visually represent how much of the budget has been used, helping users understand their spending in relation to their set budget.
+   * The budgetProgress getter is a computed property that calculates the percentage of the budget remaining based on the account's budget and the amount spent. It checks if the account has a budget amount defined; if not, it returns 0. If a budget amount exists, it calculates the remaining percentage by dividing the account balance (which represents spending) by the total budget amount (account.budget.amount) and multiplying by 100 to get a percentage value. The method also ensures that the returned percentage does not exceed 100% by using Math.min. This getter is used to display a progress bar or similar UI element to visually represent how much of the budget remains, helping users understand their spending in relation to their set budget.
     */
   get budgetProgress(): number {
     if (!this.account?.budget?.amount) return 0;
 
-    const spent = this.account.budgetSpent || 0;
+    const spent = this.account.balance || 0;
     const budgetAmount = this.account.budget.amount;
 
     const percentage = (spent / budgetAmount) * 100;
