@@ -55,7 +55,7 @@
                     <ng-container [ngSwitch]="selectedChartType">
                         <app-pie *ngSwitchCase="'Pie'" [mode]="activeView" [primaryValue]="account.primaryValue"
                             [remainingValue]="account.remainingValue"></app-pie>
-                        <app-horizontal-bar *ngSwitchCase="'Bar'" [categoryData]="categoryData"></app-horizontal-bar>
+                        <app-horizontal-bar *ngSwitchCase="'Bar'" [categoryData]="account.categoryData"></app-horizontal-bar>
                         <app-line *ngSwitchCase="'Line'" [mode]="activeView" [primaryValue]="account.primaryValue"
                             [remainingValue]="account.remainingValue"></app-line>
                     </ng-container>

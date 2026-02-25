@@ -43,12 +43,6 @@ export class Spending {
   constructor(private accountService: AccountService, private transactionService: TransactionService) { }
 
   /**
-   * State variable to hold the currently selected account for analytics. This variable is used to determine which account's data to fetch and display in the charts. It can be set to null when no account is selected or when the component is initialized without a specific account context.
-   * The account variable is used in methods that load charts and category data to ensure that the correct account's information is being analyzed and displayed to the user.
-   */
-  account: any | null = null;
-
-  /**
    * State variable to track the currently active view in the component. It can be set to 'savings', 'spent', or null depending on the user's selection. This variable is used to determine which chart and data to display based on whether the user wants to see their savings, spending, or if no view is currently active.
    * The activeView variable is checked in various methods to load the appropriate charts and data when the user interacts with the component's UI elements.
    */
@@ -100,7 +94,7 @@ export class Spending {
    * State variable to hold the account analytics data for detailed breakdowns. This variable is an array of objects, where each object contains information about an account, including its ID, name, primary value (such as total amount spent or saved), and remaining value (such as remaining budget or savings goal). This data is used to populate charts that show account-level analytics, providing users with insights into how each of their accounts is performing in terms of spending or savings.
    * The accountAnalytics variable is updated in the loadChart method based on the data fetched from the services for each account, and it is used in the template to render charts that display account analytics when the user selects a chart type that requires this data.
    */
-  accountAnalytics: { accountId: string, accountName: string, primaryValue: number, remainingValue: number }[] = [];
+  accountAnalytics: { accountId: string, accountName: string, primaryValue: number, remainingValue: number, categoryData: { name: string, value: number }[] }[] = [];
 
   /**
    * Method to generate a PDF report of the current chart view. This method uses the html2pdf library to capture the content of the chart container and create a PDF file that can be downloaded by the user. The method checks if the chart container element is available, and if so, it sets the options for the PDF generation, including margins, filename, image quality, and PDF format. It then calls the html2pdf function to create and save the PDF based on the current chart view.
@@ -150,6 +144,7 @@ export class Spending {
     this.activeView = 'spent';
     this.resetChartFilters();
     this.loadSpendingChart();
+    this.loadChartPerAccount();
   }
 
   /**
@@ -190,19 +185,26 @@ export class Spending {
       this.accountAnalytics = [];
 
       budgetAccounts.forEach(account => {
-        this.transactionService.getAccountTransactionSummary(userId, account._id, 'in', this.selectedPeriod).subscribe(result => {
-          const saved = Number(result.totalAmount || 0);
-          const budget = Number(account.budget.amount || 0);
+        const direction = this.activeView === 'savings' ? 'in' : 'out';
+        
+        this.transactionService.getAccountTransactionSummary(userId, account._id, direction, this.selectedPeriod).subscribe(result => {
+          const total = Number(result.totalAmount || 0);
+          const budget = Number(account.budget?.amount || 0);
 
-          this.accountAnalytics = [
-            ...this.accountAnalytics,
-            {
+          this.transactionService.getCategorySummary(userId, account._id, direction, this.selectedPeriod).subscribe(categoryResult => {
+            const formattedCategoryData = categoryResult.map((item: any) => ({
+              name: item.category,
+              value: Number(item.totalAmount)
+            }));
+
+            this.accountAnalytics.push({
               accountId: account._id,
-              accountName: account.nickname,
-              primaryValue: saved,
-              remainingValue: Math.max(budget - saved, 0)
-            }
-          ]
+              accountName: account.nickname || account.accountNumber,
+              primaryValue: total,
+              remainingValue: Math.max(budget - total, 0),
+              categoryData: formattedCategoryData
+            });
+          })
         });
       });
     });
