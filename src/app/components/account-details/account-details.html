@@ -21,11 +21,9 @@
                         {{ account?.isDefault ? 'Default Account ✓' : 'Set as Default' }}
                     </button>
 
-                    @if (account?.accountType === 'savings') {
                     <button class="btn btn-outline-secondary" (click)="addBudget()">
                         {{ showBudgetForm ? 'Cancel' : 'Set Budget' }}
                     </button>
-                    }
                 </div>
             </div>
             }
