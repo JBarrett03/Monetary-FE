@@ -133,18 +133,24 @@ export class Spending {
         if (direction === 'in') {
           forkJoin({
             in: this.transactionService.getAccountTransactionSummary(userId, account._id, 'in', this.selectedPeriod),
-            out: this.transactionService.getAccountTransactionSummary(userId, account._id, 'out', this.selectedPeriod)
-          }).subscribe(({ in: inResult, out: outResult }) => {
+            out: this.transactionService.getAccountTransactionSummary(userId, account._id, 'out', this.selectedPeriod),
+            categories: this.transactionService.getCategorySummary(userId, account._id, 'in', this.selectedPeriod)
+          }).subscribe(({ in: inResult, out: outResult, categories }) => {
             const netSavings = Number(inResult.totalAmount || 0) - Number(outResult.totalAmount || 0);
             const budget = Number(account.budget?.amount || 0);
             const calc = this.calculateRemaining(netSavings, budget);
+
+            const formattedCategoryData = categories.map((item: any) => ({
+              name: item.category,
+              value: Number(item.totalAmount)
+            }));
 
             this.accountAnalytics.push({
               accountId: account._id,
               accountName: account.nickname || account.accountNumber,
               primaryValue: netSavings,
               remainingValue: calc.remaining,
-              categoryData: [],
+              categoryData: formattedCategoryData,
               remainingPercentage: calc.percentage
             });
           });
@@ -161,6 +167,7 @@ export class Spending {
                     name: item.category,
                     value: Number(item.totalAmount)
                   }));
+                  console.log('categories for', account.nickname, formattedCategoryData);
 
                   this.accountAnalytics.push({
                     accountId: account._id,
@@ -199,6 +206,7 @@ export class Spending {
     if (this.selectedChartType === 'Bar') {
       const direction = this.activeView === 'savings' ? 'in' : 'out';
       this.loadCategoryData(direction);
+      this.loadChartPerAccount();
     }
   }
 
