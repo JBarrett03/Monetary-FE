@@ -18,8 +18,8 @@
   </ul>
   }
 
-  @if (getUserId()) {
-  <a [routerLink]="['/user-details', getUserId()]" class="profile-icon me-3" aria-label="Profile">
+  @if (userId) {
+  <a [routerLink]="['/user-details', userId]" class="profile-icon me-3" aria-label="Profile">
     <i class="fa fa-user"></i>
   </a>
   }
