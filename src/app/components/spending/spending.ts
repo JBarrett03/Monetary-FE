@@ -244,4 +244,39 @@ export class Spending {
     this.selectedPeriod = 'Last Week';
     this.selectedChartType = null;
   }
+
+  generateCSV(): void {
+    const rows: string[] = [];
+
+    rows.push(`Section,Name,Primary Value,Remaining,Remaining %,Category,Amount`);
+    rows.push(`Overall,Total,${this.primaryValue},${this.remainingValue},${this.remainingPercentage},,`);
+
+    if (this.categoryData?.length) {
+      this.categoryData.forEach(category => {
+        rows.push(`Category Total,,,,,${category.name},${category.value}`);
+      });
+    }
+
+    if (this.accountAnalytics?.length) {
+      this.accountAnalytics.forEach(account => {
+        rows.push(`Account,${account.accountName},${account.primaryValue},${account.remainingValue},${account.remainingPercentage},,`);
+
+        account.categoryData?.forEach(category => {
+          rows.push(`Account Category,${account.accountName},,, ,${category.name},${category.value}`);
+        });
+      });
+    }
+
+    const csvContent = "\uFEFF" + rows.join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    
+    link.download = `spending-report-${this.selectedPeriod.replace(' ', '-')}.csv`;
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 }
