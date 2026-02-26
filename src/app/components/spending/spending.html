@@ -8,67 +8,84 @@
         <button class="close-btn" (click)="closeView()">X</button>
     </div>
 
-    <div class="panel-content" *ngIf="activeView">
-
+    @if (activeView) {
+    <div class="panel-content">
         <div class="period-actions">
-
             <mat-form-field appearance="fill">
                 <mat-label>Period</mat-label>
                 <mat-select [(value)]="selectedPeriod" (selectionChange)="onPeriodChange($event)">
-                    <mat-option *ngFor="let period of period_list" [value]="period">{{ period }}</mat-option>
+                    @for (period of period_list; track period) {
+                    <mat-option [value]="period">{{ period }}</mat-option>
+                    }
                 </mat-select>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <mat-label>Chart Type</mat-label>
                 <mat-select [(value)]="selectedChartType" (selectionChange)="onChartTypeChange($event)">
-                    <mat-option *ngFor="let chartType of chart_type_list" [value]="chartType">{{ chartType
-                        }}</mat-option>
+                    @for (chartType of chart_type_list; track chartType) {
+                    <mat-option [value]="chartType">{{ chartType }}</mat-option>
+                    }
                 </mat-select>
             </mat-form-field>
 
-            <button class="btn btn-primary" (click)="generatePDF()">Export Data</button>
+            <button class="btn btn-primary" (click)="generatePDF()">Export Data to PDF</button>
         </div>
 
-        <p *ngIf="!selectedChartType" class="text-muted">
-            Please select a chart type to display analytics.
-        </p>
+        @if (!selectedChartType) {
+        <p class="text-muted">Please select a chart type to display analytics.</p>
+        }
 
-        <div #chartContainer *ngIf="selectedChartType" class="export-wrapper">
+        @if (selectedChartType) {
+        <div #chartContainer class="export-wrapper">
             <h2 class="panel-title">
                 {{ activeView === 'savings' ? 'Savings Analytics' : 'Spending Analytics' }}
             </h2>
             <div class="main-chart">
-                <ng-container [ngSwitch]="selectedChartType">
-                    <p *ngIf="activeView === 'savings'" class="percentage-label">
-                        {{ remainingPercentage | number: '1.0-1' }}% of total budget remaining
-                    </p>
-                    <app-pie *ngSwitchCase="'Pie'" [mode]="activeView" [primaryValue]="primaryValue"
-                        [remainingValue]="remainingValue"></app-pie>
-                    <app-horizontal-bar *ngSwitchCase="'Bar'" [categoryData]="categoryData"></app-horizontal-bar>
-                    <app-line *ngSwitchCase="'Line'" [mode]="activeView" [primaryValue]="primaryValue"
-                        [remainingValue]="remainingValue"></app-line>
-                </ng-container>
+                @if (activeView === 'savings') {
+                <p class="percentage-label">{{ remainingPercentage }}% of budget remaining</p>
+                }
+                @switch (selectedChartType) {
+                @case ('Pie') {
+                <app-pie [mode]="activeView" [primaryValue]="primaryValue" [remainingValue]="remainingValue"></app-pie>
+                }
+                @case ('Bar') {
+                <app-horizontal-bar [categoryData]="categoryData"></app-horizontal-bar>
+                }
+                @case ('Line') {
+                <app-line [mode]="activeView" [primaryValue]="primaryValue"
+                    [remainingValue]="remainingValue"></app-line>
+                }
+                }
             </div>
 
-            <div class="account-breakdown" *ngIf="accountAnalytics.length > 0">
+            @if (accountAnalytics.length > 0) {
+            <div class="account-breakdown">
                 <h3 class="mt-4">Account Breakdown</h3>
-                <div *ngFor="let account of accountAnalytics" class="account-chart-card">
-                    <p *ngIf="activeView === 'savings'" class="percentage-label">
-                        {{ account.remainingPercentage }}% of total budget remaining
-                    </p>
+                @for (account of accountAnalytics; track account.accountId) {
+                <div class="account-chart-card">
+                    @if (activeView === 'savings') {
+                    <p class="percentage-label">{{ account.remainingPercentage }}% of budget remaining</p>
+                    }
                     <h4>{{ account.accountName }}</h4>
-                    <ng-container [ngSwitch]="selectedChartType">
-                        <app-pie *ngSwitchCase="'Pie'" [mode]="activeView" [primaryValue]="account.primaryValue"
-                            [remainingValue]="account.remainingValue"></app-pie>
-                        <app-horizontal-bar *ngSwitchCase="'Bar'"
-                            [categoryData]="account.categoryData"></app-horizontal-bar>
-                        <app-line *ngSwitchCase="'Line'" [mode]="activeView" [primaryValue]="account.primaryValue"
-                            [remainingValue]="account.remainingValue"></app-line>
-                    </ng-container>
+                    @switch (selectedChartType) {
+                    @case ('Pie') {
+                    <app-pie [mode]="activeView" [primaryValue]="account.primaryValue"
+                        [remainingValue]="account.remainingValue"></app-pie>
+                    }
+                    @case ('Bar') {
+                    <app-horizontal-bar [categoryData]="account.categoryData"></app-horizontal-bar>
+                    }
+                    @case ('Line') {
+                    <app-line [mode]="activeView" [primaryValue]="account.primaryValue"
+                        [remainingValue]="account.remainingValue"></app-line>
+                    }
+                    }
                 </div>
+                }
             </div>
+            }
         </div>
-
+        }
     </div>
-</div>
+    }
