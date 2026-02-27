@@ -12,8 +12,7 @@ import { UserService } from '../../services/user-service';
   standalone: true,
   selector: 'app-create-account',
   imports: [FormsModule],
-  templateUrl: './create-account.html',
-  styleUrl: './create-account.css',
+  templateUrl: './create-account.html'
 })
 
 /**

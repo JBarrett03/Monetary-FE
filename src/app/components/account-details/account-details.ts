@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,6 +7,7 @@ import { UtilityService } from '../../services/utility-service';
 import { FilterPipe } from '../../pipes/filter-pipe';
 import { TRANSACTION_CATEGORIES } from '../../constants/transaction-categories';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 /**
  * The AccountDetails component is responsible for displaying the details of a specific account, including its transactions, and providing functionality to manage the account. It retrieves the account information and transactions from the backend API using the AccountService, and allows users to add new transactions, set budgets, and archive the account. The component also includes filtering and sorting options for transactions, as well as error handling for various operations. It uses Angular's reactive programming model to handle asynchronous data retrieval and updates the UI accordingly.
@@ -14,7 +15,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 @Component({
   standalone: true,
   selector: 'app-account-details',
-  imports: [CommonModule, RouterModule, FormsModule, FilterPipe, MatProgressBarModule],
+  imports: [CommonModule, RouterModule, FormsModule, FilterPipe, MatProgressBarModule, MatSnackBarModule],
   templateUrl: './account-details.html',
   styleUrl: './account-details.css',
 })
@@ -114,6 +115,8 @@ export class AccountDetails implements OnInit {
     */
   sortOptions: 'createdAtAsc' | 'createdAtDesc' | null = null;
 
+  protected snackBar = inject(MatSnackBar);
+
   /**
    * The constructor method is responsible for injecting the necessary services and dependencies into the AccountDetails component. It takes in the ActivatedRoute to access route parameters, the Router for navigation, the AccountService to interact with the backend API for account-related operations, the ChangeDetectorRef to trigger UI updates when data changes, and the UtilityService for any utility functions needed within the component. By injecting these services, the constructor allows the component to perform various actions such as fetching account details, managing transactions, navigating between routes, and updating the UI based on user interactions and data changes.
    */
@@ -211,16 +214,23 @@ export class AccountDetails implements OnInit {
             this.accountService.getAccountTransactions(userId, accountId).subscribe({
               next: (transactions) => {
                 this.transactions = transactions;
+                this.snackBar.open('Transaction added successfully', 'Dismiss', {
+                  duration: 3000,
+                  panelClass: ['snackbar-success']
+                });
+                this.cdr.detectChanges();
+              },
+              error: () => {
+                this.snackBar.open('Failed to add transaction', 'Dismiss', {
+                  duration: 3000,
+                  panelClass: ['snackbar-error']
+                });
                 this.cdr.detectChanges();
               }
             })
           }
         })
       },
-      error: () => {
-        this.error = 'Failed to add transaction';
-        this.cdr.detectChanges();
-      }
     });
   }
 
@@ -243,10 +253,17 @@ export class AccountDetails implements OnInit {
 
     this.accountService.archiveAccount(userId, accountId).subscribe({
       next: () => {
+        this.snackBar.open('Account archived successfully', 'Dismiss', {
+          duration: 3000,
+          panelClass: ['snackbar-success']
+        });
         this.router.navigate(['/accounts']);
       },
       error: () => {
-        this.error = 'Failed to archive account';
+        this.snackBar.open('Failed to archive account', 'Dismiss', {
+          duration: 3000,
+          panelClass: ['snackbar-error']
+        });
         this.cdr.detectChanges();
       }
     });
@@ -336,11 +353,18 @@ export class AccountDetails implements OnInit {
 
         this.accountService.getAccount(userId, accountId).subscribe(account => {
           this.account = account;
+          this.snackBar.open('Budget set successfully', 'Dismiss', {
+            duration: 3000,
+            panelClass: ['snackbar-success']
+          });
           this.cdr.detectChanges();
         });
       },
       error: () => {
-        this.error = 'Failed to set budget';
+        this.snackBar.open('Failed to set budget', 'Dismiss', {
+          duration: 3000,
+          panelClass: ['snackbar-error']
+        });
       }
     });
   }

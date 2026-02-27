@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 /**
  * Login component - handles user authentication and session initialization.
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 @Component({
   standalone: true,
   selector: 'app-login',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, MatSnackBarModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -27,6 +28,8 @@ export class Login {
    * User email address
    */
   email: string = '';
+
+  protected snackBar = inject(MatSnackBar);
 
   /**
    * User password
@@ -58,11 +61,17 @@ export class Login {
       next: (res) => {
         sessionStorage.setItem('userId', res.userId);
         sessionStorage.setItem('token', res.token);
+        this.snackBar.open('Login successful', 'Dismiss', {
+          duration: 3000,
+          panelClass: ['snackbar-success']
+        });
         this.router.navigate(['/']);
       },
-      error: (err) => {
-        console.log("Login error:", err);
-        this.errorMessage = err.error?.error || 'Login failed. Please try again.'
+      error: () => {
+        this.snackBar.open('Please fill in all required fields.', 'OK', {
+          duration: 3000,
+          panelClass: ['snackbar-error']
+        });
       }
     });
   }

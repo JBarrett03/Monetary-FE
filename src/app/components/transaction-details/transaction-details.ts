@@ -12,8 +12,7 @@ import { TransactionService } from '../../services/transaction-service';
   standalone: true,
   selector: 'app-transaction-details',
   imports: [CommonModule],
-  templateUrl: './transaction-details.html',
-  styleUrl: './transaction-details.css',
+  templateUrl: './transaction-details.html'
 })
 
 /**

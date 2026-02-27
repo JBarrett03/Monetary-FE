@@ -9,8 +9,7 @@ import { Navigation } from './components/navigation/navigation';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, Navigation],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  templateUrl: './app.html'
 })
 
 /**

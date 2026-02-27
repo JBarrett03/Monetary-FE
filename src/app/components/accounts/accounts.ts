@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { AccountService } from '../../services/account-service';
 import { UserService } from '../../services/user-service';
 import { UtilityService } from '../../services/utility-service';
@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ACCOUNT_CATEGORIES } from '../../constants/account-categories';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 /**
  * The Accounts component is responsible for displaying a list of the user's financial accounts and providing functionality to manage those accounts. It allows users to view their accounts, add new accounts, filter accounts by category, and navigate to account details or management pages. The component interacts with the AccountService to fetch and manage account data, and with the UserService to retrieve user information. It also uses the UtilityService for common utility functions. The component's template and styles are defined in separate HTML and CSS files, respectively.
@@ -13,7 +14,7 @@ import { ACCOUNT_CATEGORIES } from '../../constants/account-categories';
 @Component({
   standalone: true,
   selector: 'app-accounts',
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, MatSnackBarModule],
   templateUrl: './accounts.html',
   styleUrl: './accounts.css',
 })
@@ -47,7 +48,7 @@ export class Accounts implements OnInit {
    * The lastName property holds the last name of the user. It is retrieved from the backend API using the UserService when the component initializes. This property can be used in conjunction with the firstName property to display the user's full name in the UI, providing a more personalized experience on the accounts page.
    */
   lastName: string = '';
-  
+
   /**
    * The cardBrand property holds the brand of a credit card when adding a new credit card account. It is used in the addAccount method to specify the type of credit card being added (e.g., Visa, MasterCard, American Express). This property allows users to provide additional information about their credit card accounts, which can be useful for categorization and display purposes in the UI.
    */
@@ -97,6 +98,8 @@ export class Accounts implements OnInit {
    * The showFilter property is a boolean that indicates whether the filter options for accounts are currently visible in the UI. It is used to toggle the display of the filter options when the user clicks on a "Filter" button. When showFilter is true, the filter options are displayed; when it is false, the filter options are hidden. This allows users to easily access and apply filters to their account list to find specific accounts based on categories or other criteria.
    */
   showFilter: boolean = false;
+
+  protected snackBar = inject(MatSnackBar);
 
   /**
    * The constructor for the Accounts component injects several services that are used to manage account data, user information, and utility functions. The AccountService is used to interact with the backend API for fetching and managing accounts, while the UserService is used to retrieve user details. The ChangeDetectorRef is used to trigger change detection when data is updated, ensuring that the UI reflects the latest information. The Router is used for navigation between different pages in the application, and the UtilityService provides common utility functions that can be used across the component.
@@ -170,6 +173,10 @@ export class Accounts implements OnInit {
           this.newAccountType = '';
           this.newAccountCurrency = '';
           this.newAccountNickname = '';
+          this.snackBar.open('Account added successfully', 'Dismiss', {
+            duration: 3000,
+            panelClass: ['snackbar-success']
+          });
           this.cdr.detectChanges();
         })
       }
