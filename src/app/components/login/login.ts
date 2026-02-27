@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { AuthService } from '../../services/auth-service';
 
 @Component({
   standalone: true,
@@ -24,7 +23,7 @@ export class Login {
 
   errorMessage: string = '';
 
-  constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   onSubmit() {
     this.http.post<any>('http://localhost:5000/api/v1.0/login', {
@@ -32,7 +31,9 @@ export class Login {
       password: this.password
     }).subscribe({
       next: (res) => {
-        this.authService.login(res.userId, res.token);
+        sessionStorage.clear();
+        sessionStorage.setItem('userId', res.userId);
+        sessionStorage.setItem('token', res.token);
         this.snackBar.open('Login successful', 'Dismiss', {
           duration: 3000,
           panelClass: ['snackbar-success']
