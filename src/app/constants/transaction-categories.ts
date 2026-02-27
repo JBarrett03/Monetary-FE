@@ -1,8 +1,3 @@
-/**
- * This file defines a constant array of transaction categories used in the application.
- * Each category represents a type of transaction that users can classify their expenses or income under.
- * The categories are defined as a tuple of string literals to ensure type safety when used throughout the app.
- */
 export const TRANSACTION_CATEGORIES = [
     'Groceries',
     'Dining',
@@ -19,11 +14,6 @@ export const TRANSACTION_CATEGORIES = [
     'Miscellaneous'
 ] as const;
 
-/**
- * This constant defines metadata for each transaction category, including an associated icon and color.
- * The metadata is used to enhance the visual representation of transactions in the UI, allowing users
- * to quickly identify the category of each transaction based on its icon and color.
- */
 export const TRANSACTION_CATEGORY_META: Record<typeof TRANSACTION_CATEGORIES[number], { icon: string, color: string }> = {
     'Groceries': { icon: 'fa-shopping-cart', color: '#4CAF50' },
     'Dining': { icon: 'fa-utensils', color: '#FF9800' },

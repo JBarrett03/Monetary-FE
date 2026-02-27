@@ -3,12 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../../services/account-service';
 import { UtilityService } from '../../services/utility-service';
-/**
- * Payments component - handles balance transfers between user accounts.
- * Allows users to search for recipient accounts by account number and sort code,
- * transfer balance between accounts, and maintains a history of recent payees.
- * Includes form validation and error handling for transfer operations.
- */
 @Component({
   selector: 'app-payments',
   standalone: true,
@@ -17,81 +11,28 @@ import { UtilityService } from '../../services/utility-service';
   styleUrl: './payments.css',
 })
 
-/**
- * Component logic for balance transfer operations.
- * Manages form state, account lookups, transfers, and recent payee tracking.
- */
 export class Payments implements OnInit {
 
-  /**
-   * Constructor for Payments component.
-   * @param accountService Service for account operations and balance transfers
-   * @param cdr ChangeDetectorRef for manual change detection after async operations
-   * @param utility UtilityService for shared utility methods
-   */
   constructor(private accountService: AccountService, private cdr: ChangeDetectorRef, public utility: UtilityService) { }
 
-  /**
- * The account object containing account information such as balance, account number,
- * currency, and account type (e.g., 'savings', 'checking'). Null until account data is loaded.
- */
   account: any | null = null;
 
-  /**
- * Error message displayed to the user when operations fail or data cannot be loaded.
- * Null when no error is present.
- */
   error: string | null = null;
 
-  /**
-   * Boolean flag indicating whether the form for adding balance to the account is currently visible.
-   * Initially set to false, meaning the form is hidden until the user chooses to open it.
-   */
   showAddBalanceForm: boolean = false;
 
-  /**
- * The account number entered by the user to confirm their identity before adding balance.
- * This should match the actual account number of the user's account for validation to succeed.
- * Initially set to an empty string until the user inputs a value.
- */
   confirmAccountNumber: string = '';
 
-  /**
- * The sort code entered by the user to confirm their identity before adding balance.
- * This should match the actual sort code of the user's account for validation to succeed.
- * Initially set to an empty string until the user inputs a value.
- */
   confirmSortCode: string = '';
 
-  /**
- * The amount entered by the user to add to their account balance.
- * This should be a positive number. Initially set to null until the user inputs a value.
- */
   amountToAdd: number | null = null;
 
-  /**
- * List of all payees available for balance transfer. This can be used to display a dropdown or autocomplete list of payees when the user is entering transfer details.
- * Initially set to an empty array until data is loaded from the API.
- */
   allPayees: any[] = [];
 
-  /**
-   * List of recent payees for the user. This can be used to display a history of recent transactions or frequent transfer recipients.
-   * Initially set to an empty array until data is loaded from the API.
-   */
   recentPayees: any[] = [];
 
-  /**
- * Boolean flag indicating whether the full list of recent payees is currently displayed.
- * Initially set to false, meaning only a limited number of recent payees are shown until the user chooses to view all.
- */
   showRecentPayees: boolean = false;
 
-  /**
- * Lifecycle hook that is called after the component has been initialized. It retrieves the user ID and account ID from session storage,
- * then uses the AccountService to fetch the account details. If successful, it stores the account information in the component's state.
- * If either the user ID or account ID is missing, it simply returns without attempting to fetch data.
- */
   ngOnInit() {
     const userId = sessionStorage.getItem('userId');
     const accountId = sessionStorage.getItem('accountId');
@@ -115,39 +56,22 @@ export class Payments implements OnInit {
     });
   }
 
-  /**
- * Opens the form for adding balance to the user's account. Resets the confirmation account number and amount to add fields to their default states.
- */
   openBalanceForm() {
     this.showAddBalanceForm = true;
   }
 
-  /**
- * Closes the form for adding balance to the user's account. Hides the form without making any changes to the account or input fields.
- */
   closeBalanceForm() {
     this.showAddBalanceForm = false;
   }
 
-  /**
- * Opens the recent payees view, allowing the user to see a list of their recent payees. Sets the showRecentPayees flag to true to display the view.
- */
   openShowRecentPayees() {
     this.showRecentPayees = true;
   }
 
-  /**
- * Closes the recent payees view, hiding the list of recent payees from the user. Sets the showRecentPayees flag to false to hide the view.
- */
   closeShowRecentPayees() {
     this.showRecentPayees = false;
   }
 
-  /**
- * Adds balance to the user's account after validating the input. Checks if the user and account IDs are present,
- * verifies that the confirmed account number matches the actual account number, and ensures that the amount to add is valid.
- * If validation passes, it calls the AccountService to add the balance and updates the account information on success. Displays error messages for any validation or operation failures.
- */
   addBalance() {
     const userId = sessionStorage.getItem('userId');
     const accountId = sessionStorage.getItem('accountId');
@@ -205,11 +129,6 @@ export class Payments implements OnInit {
     });
   }
 
-  /**
-   * Displays the full list of recent payees for the user. This method retrieves the user ID from session storage,
-   * then loads the recent payees from local storage and updates the component's state to show all payees.
-   * It also refreshes the account information to ensure any recent changes are reflected.
-   */
   showAllPayees() {
     this.showRecentPayees = true;
   }

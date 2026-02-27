@@ -3,12 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user-service';
 import { CommonModule } from '@angular/common';
 
-/**
- * UserDetails component for displaying individual user details.
- * 
- * This component retrieves and displays user information based on the user ID
- * provided in the route parameters.
- */
 @Component({
   selector: 'app-user',
   templateUrl: './user-details.html',
@@ -18,27 +12,11 @@ import { CommonModule } from '@angular/common';
 })
 export class UserDetails implements OnInit {
 
-  /**
-   * Current user data (stored as array with single user object).
-   */
   user_list: any = [];
-  /**
-   * Error message
-   */
   error: string | null = null;
 
-  /**
-   * Constructor for the User component.
-   * @param userService Service for retrieving user data
-   * @param route Activated route for accessing route parameters
-   * @param router Router for navigation
-   */
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private cdr: ChangeDetectorRef) { }
 
-  /**
-   * Angular lifecycle hook that initializes the component.
-   * Retrieves user data based on the user ID from the route parameters.
-   */
   ngOnInit() {
     const userId = this.route.snapshot.paramMap.get('userId');
 
@@ -59,9 +37,6 @@ export class UserDetails implements OnInit {
     })
   }
 
-  /**
-   * Edits the current user's details.
-   */
   editUser() {
     const userId = sessionStorage.getItem('userId');
 
@@ -105,9 +80,6 @@ export class UserDetails implements OnInit {
     })
   }
 
-  /**
- * Logs out the current user.
- */
   logout(event?: Event): void {
     if (event) {
       event.preventDefault();
@@ -116,10 +88,6 @@ export class UserDetails implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  /**
-   * Checks if the user is logged in.
-   * @returns True if the user is logged in, false otherwise.
-   */
   get isLoggedIn(): boolean {
     return !!sessionStorage.getItem('userId');
   }

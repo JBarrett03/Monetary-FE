@@ -3,11 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TransactionService } from '../../services/transaction-service';
 
-/**
- * TransactionDetails component - displays detailed information for a single transaction.
- * Retrieves transaction data from the TransactionService using route parameters (accountId and transactionId).
- * Shows transaction source, destination, amount, date, and other relevant details.
- */
 @Component({
   standalone: true,
   selector: 'app-transaction-details',
@@ -15,33 +10,13 @@ import { TransactionService } from '../../services/transaction-service';
   templateUrl: './transaction-details.html'
 })
 
-/**
- * Component logic for displaying transaction details.
- * Loads transaction information from the backend based on route parameters.
- */
 export class TransactionDetails implements OnInit {
 
-  /**
-   * Transaction data
-   */
   transaction: any | null = null;
-  /**
-   * Error message
-   */
   error: string | null = null;
 
-  /**
-   * Creates an instance of TransactionDetails component.
-   * @param route ActivatedRoute for accessing route parameters.
-   * @param transactionService Service for transaction operations.
-   * @param cdr Change detector reference.
-   */
   constructor(private route: ActivatedRoute, private transactionService: TransactionService, private cdr: ChangeDetectorRef) { }
 
-  /**
-   * Initializes the component and loads the transaction details.
-   * @returns void
-   */
   ngOnInit() {
     const userId = sessionStorage.getItem('userId');
 
