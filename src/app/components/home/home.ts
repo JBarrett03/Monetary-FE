@@ -71,7 +71,7 @@ export class Home implements OnInit {
 
     this.accountService.getAccountTransactions(userId, accountId).subscribe({
       next: (transactions) => {
-        this.transactions = transactions;
+        this.transactions = transactions.slice(0, 5);
         this.cdr.detectChanges();
       },
       error: () => {
