@@ -2,13 +2,13 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   standalone: true,
   selector: 'app-login',
-  imports: [FormsModule, CommonModule, MatSnackBarModule],
+  imports: [FormsModule, CommonModule, RouterModule, MatSnackBarModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -17,11 +17,13 @@ export class Login {
 
   email: string = '';
 
-  protected snackBar = inject(MatSnackBar);
-
   password: string = '';
 
   errorMessage: string = '';
+
+  showLoginModal = true;
+
+  protected snackBar = inject(MatSnackBar);
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -47,6 +49,11 @@ export class Login {
         });
       }
     });
+  }
+
+  closeLogin() {
+    this.showLoginModal = false;
+    this.router.navigate(['/']);
   }
 
 }
