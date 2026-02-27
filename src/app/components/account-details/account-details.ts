@@ -73,6 +73,21 @@ export class AccountDetails implements OnInit {
     this.accountService.getAccount(userId, accountId).subscribe({
       next: (account) => {
         this.account = account;
+        const milestone = this.utility.checkSavingsProgress(account);
+
+        if (milestone) {
+          const toastNotification: Record<number, string> = {
+            25: "🎉 Congratulations! You’ve reached 25% of your savings goal!",
+            50: "💪 Halfway there! 50% saved — keep going!",
+            75: "🔥 Amazing! 75% of your goal achieved!",
+            100: "🏆 Goal complete! You reached your savings target!"
+          };
+
+          this.snackBar.open(toastNotification[milestone], 'Nice!', {
+            duration: 5000,
+            panelClass: ['snackbar-success']
+          });
+        }
         this.cdr.detectChanges();
       },
       error: () => {

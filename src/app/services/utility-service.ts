@@ -6,7 +6,9 @@ import { TRANSACTION_CATEGORY_META } from '../constants/transaction-categories';
 })
 
 export class UtilityService {
-  
+
+  account: any | null = null;
+
   maskAccountNumber(accountNumber: string): string {
     if (!accountNumber) return '•••• •••• •••• ••••';
     if (accountNumber.length < 4) return accountNumber;
@@ -66,5 +68,25 @@ export class UtilityService {
 
   getCategoryMeta(category: string): { icon: string; color: string } {
     return TRANSACTION_CATEGORY_META[category as keyof typeof TRANSACTION_CATEGORY_META] || { icon: 'fa-question-circle', color: '#9E9E9E' };
+  }
+
+  checkSavingsProgress(account: any): number | void {
+    if (!account?.budget?.amount) return;
+
+    const goal = account.budget.amount;
+    const currentBalance = account.balance || 0;
+    const percent = Math.floor((currentBalance / goal) * 100);
+    const milestones = [25, 50, 75, 90, 100];
+    const storageKey = `milestones_${account._id}`;
+    const reached = JSON.parse(localStorage.getItem(storageKey) || '[]');
+
+    const reachedMilestones = milestones.find(m => percent >= m && !reached.includes(m));
+
+    if (!reachedMilestones) return;
+
+    reached.push(reachedMilestones);
+    localStorage.setItem(storageKey, JSON.stringify(reached));
+
+    return reachedMilestones;
   }
 }
