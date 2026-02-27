@@ -47,11 +47,3 @@ button {
 .close-btn {
     background: #ccc;
 }
-
-.error-box {
-    margin-top: 1rem;
-    background: #ffe5e5;
-    padding: 0.5rem;
-    border-radius: 4px;
-    color: #d8000c;
-}

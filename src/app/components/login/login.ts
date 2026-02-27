@@ -19,8 +19,6 @@ export class Login {
 
   password: string = '';
 
-  errorMessage: string = '';
-
   showLoginModal = true;
 
   protected snackBar = inject(MatSnackBar);
