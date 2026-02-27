@@ -5,6 +5,7 @@
   font-size: 40px;
   font-weight: 400;
   letter-spacing: 0.05em;
+  margin-left: 10px;
 }
 
 .home-item {
@@ -43,4 +44,13 @@
 
 .profile-icon:hover {
   background-color: #d5d5d5;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-item {
+  align-items: center;
 }
