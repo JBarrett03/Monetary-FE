@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navigation } from './components/navigation/navigation';
+import { AuthService } from './services/auth-service';
 
 /**
  * The main application component that serves as the root of the Angular application.
@@ -9,7 +10,8 @@ import { Navigation } from './components/navigation/navigation';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, Navigation],
-  templateUrl: './app.html'
+  templateUrl: './app.html',
+  styleUrl: './app.css'
 })
 
 /**
@@ -17,5 +19,13 @@ import { Navigation } from './components/navigation/navigation';
  * It provides the main layout structure with navigation and routed content display.
  */
 export class App {
-  
+  constructor(private authService: AuthService) { }
+
+  @HostListener('window:mousemove') onMouseMove() {
+    this.authService.simulateUserActivity();
+  }
+
+  @HostListener('window:keypress') onKeyPress() {
+    this.authService.simulateUserActivity();
+  }
 }
