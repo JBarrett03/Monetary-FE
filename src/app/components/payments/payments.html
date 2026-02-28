@@ -1,6 +1,3 @@
-<button class="btn btn-success" (click)="openBalanceForm()">
-    Add Balance
-</button>
 
 <div class="payees-header-row" *ngIf="recentPayees.length > 0">
     <h5 class="mt-4 mb-0">Recent Payees</h5>
@@ -9,6 +6,16 @@
     </span>
 </div>
 
+<div *ngIf="recentPayees.length > 0">
+    <div class="card p-2 mb-2" *ngFor="let payee of recentPayees">
+        <strong>{{ account.nickname }}</strong>
+        Sort Code: {{ utility.formatSortCode(payee.sortCode) || '-' }}
+    </div>
+</div>
+
+<button class="btn btn-success mt-3" (click)="openBalanceForm()">
+    Add Balance
+</button>
 
 @if (showRecentPayees) {
 <div class="overlay" (click)="closeShowRecentPayees()">
@@ -17,18 +24,16 @@
             <strong>{{ account.nickname }}</strong>
             Sort Code: {{ utility.formatSortCode(payee.sortCode) || '-' }}
         </div>
-        <mat-paginator [length]="allPayees.length" [pageSize]="pageSize" [hidePageSize]="true"
-            (page)="onPageChange($event)"></mat-paginator>
+        <div class="paginator-center">
+            <mat-paginator [length]="allPayees.length" [pageSize]="pageSize" [hidePageSize]="true"
+                (page)="onPageChange($event)"></mat-paginator>
+        </div>
     </div>
 </div>
 }
 
-<div *ngIf="recentPayees.length > 0">
-    <div class="card p-2 mb-2" *ngFor="let payee of recentPayees">
-        <strong>{{ account.nickname }}</strong>
-        Sort Code: {{ utility.formatSortCode(payee.sortCode) || '-' }}
-    </div>
-</div>
+
+
 
 @if (showAddBalanceForm) {
 <div class="overlay" (click)="closeBalanceForm()">
