@@ -22,4 +22,8 @@ export class UserService {
   editUser(userId: string, updatedUser: { firstName: string, lastName: string, email: string, phone: string, address: string }) {
     return this.http.put(`${this.apiUrl}/${userId}`, updatedUser);
   }
+
+  changePassword(userId: string, currentPassword: string, newPassword: string) {
+    return this.http.put(`${this.apiUrl}/${userId}/change-password`, { currentPassword, newPassword });
+  }
 }
