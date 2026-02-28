@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../../services/account-service';
 import { UtilityService } from '../../services/utility-service';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-payments',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatPaginatorModule],
   templateUrl: './payments.html',
   styleUrl: './payments.css',
 })
@@ -34,6 +35,10 @@ export class Payments implements OnInit {
 
   showRecentPayees: boolean = false;
 
+  pageSize = 5;
+
+  pageIndex = 0;
+
   ngOnInit() {
     const userId = sessionStorage.getItem('userId');
     const accountId = sessionStorage.getItem('accountId');
@@ -55,6 +60,16 @@ export class Payments implements OnInit {
         this.cdr.detectChanges();
       }
     });
+  }
+
+  get pagedPayees() {
+    const start = this.pageIndex * this.pageSize;
+    return this.allPayees.slice(start, start + this.pageSize);
+  }
+
+  onPageChange(event: PageEvent) {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
   }
 
   openBalanceForm() {
@@ -131,6 +146,7 @@ export class Payments implements OnInit {
   }
 
   showAllPayees() {
+    this.pageIndex = 0;
     this.showRecentPayees = true;
   }
 }

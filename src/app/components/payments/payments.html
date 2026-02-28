@@ -2,27 +2,30 @@
     Add Balance
 </button>
 
-<h5 class="mt-4" *ngIf="recentPayees.length > 0">Recent Payees</h5>
-<button class="btn btn-outline-secondary mb-3" (click)="showAllPayees()" *ngIf="recentPayees.length > 0">
-    View All Payees
-</button>
+<div class="payees-header-row" *ngIf="recentPayees.length > 0">
+    <h5 class="mt-4 mb-0">Recent Payees</h5>
+    <span class="view-all-link" (click)="showAllPayees()">
+        View All Payees
+    </span>
+</div>
+
 
 @if (showRecentPayees) {
 <div class="overlay" (click)="closeShowRecentPayees()">
     <div class="modal-card card p-3" (click)="$event.stopPropagation()">
-        <div class="card p-2 mb-2" *ngFor="let payee of allPayees">
-            <strong>{{ utility.formatAccountNumber(payee.accountNumber) }}</strong><br>
-            {{ payee.accountType }}: {{ payee.currency }}
+        <div class="card p-2 mb-2" *ngFor="let payee of pagedPayees">
+            <strong>{{ account.nickname }}</strong>
             Sort Code: {{ utility.formatSortCode(payee.sortCode) || '-' }}
         </div>
+        <mat-paginator [length]="allPayees.length" [pageSize]="pageSize" [hidePageSize]="true"
+            (page)="onPageChange($event)"></mat-paginator>
     </div>
 </div>
 }
 
 <div *ngIf="recentPayees.length > 0">
     <div class="card p-2 mb-2" *ngFor="let payee of recentPayees">
-        <strong>{{ utility.formatAccountNumber(payee.accountNumber) }}</strong><br>
-        {{ payee.accountType }}: {{ payee.currency }}
+        <strong>{{ account.nickname }}</strong>
         Sort Code: {{ utility.formatSortCode(payee.sortCode) || '-' }}
     </div>
 </div>

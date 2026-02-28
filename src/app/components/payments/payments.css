@@ -17,3 +17,24 @@
     border-radius: 10px;
     background: white;
 }
+
+.payees-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.view-all-link {
+        color: #0d6efd;
+        cursor: pointer;
+        font-size: 0.9rem;
+        margin-left: auto;
+        margin-right: 12px;
+        white-space: nowrap;
+}
+
+.view-all-link:hover {
+    text-decoration: underline;
+}
