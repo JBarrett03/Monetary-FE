@@ -27,23 +27,6 @@ export class UtilityService {
     return digits.slice(0, 2) + '-' + digits.slice(2, 4) + '-' + digits.slice(4);
   }
 
-  formatTransactionDate(dateString: string): string {
-    if (!dateString) return '';
-
-    const match = dateString.match(/^(\d{4})-(\d{2})-(\d{2})/);
-
-    if (!match) return dateString;
-
-    const year = Number(match[1]);
-    const monthIndex = Number(match[2]) - 1;
-    const day = Number(match[3]);
-
-    const suffix = day >= 11 && day <= 13 ? 'th' : { 1: 'st', 2: 'nd', 3: 'rd' }[day % 10] || 'th';
-    const month = new Date(year, monthIndex).toLocaleString('en-GB', { month: 'long' });
-
-    return `${month} ${day}${suffix}`;
-  }
-
   toTime(value?: string): number {
     if (!value) return 0;
     const normalized = value.replace(/Z$/, '');
@@ -88,5 +71,22 @@ export class UtilityService {
     localStorage.setItem(storageKey, JSON.stringify(reached));
 
     return reachedMilestones;
+  }
+
+  getTransactionDate(dateString: string): string {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const suffix =
+      day % 10 === 1 && day !== 11 ? 'st' :
+      day % 10 === 2 && day !== 12 ? 'nd' :
+      day % 10 === 3 && day !== 13 ? 'rd' : 'th';
+    const month = date.toLocaleString('en-GB', { month: 'long' });
+    const year = date.getFullYear();
+    return `${day}${suffix} ${month} ${year}`;
+  }
+
+  getTransactionTime(dateString: string): string {
+    const date = new Date(dateString);
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
   }
 }

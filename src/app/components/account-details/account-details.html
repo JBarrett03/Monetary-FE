@@ -183,10 +183,10 @@
                 <div>
                     {{ transaction.description }}<br />
                     <small class="text-muted">
-                        {{ transaction.category }} • {{ utility.formatTransactionDate(transaction.createdAt) }}
+                        {{ transaction.category }} • {{ utility.getTransactionDate(transaction.createdAt) }} {{ utility.getTransactionTime(transaction.createdAt) }}
                     </small>
                 </div>
-                <p>{{ utility.formatTransactionDate(transaction.createdAt) }}</p>
+                <p>{{ utility.getTransactionDate(transaction.createdAt) }} {{ utility.getTransactionTime(transaction.createdAt) }}</p>
             </div>
             <span [ngClass]="{
                         'text-success': transaction.direction === 'in',

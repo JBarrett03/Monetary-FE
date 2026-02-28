@@ -22,10 +22,6 @@ export class Home implements OnInit {
 
   error: string | null = null;
 
-  firstName: string = '';
-
-  lastName: string = '';
-
   cardBrand: string = '';
 
   account: any | null = null;
