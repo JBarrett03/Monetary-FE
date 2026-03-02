@@ -2,8 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AccountDetails } from './account-details';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from '../../services/account-service';
-import { UtilityService } from '../../services/utility-service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ChangeDetectorRef } from '@angular/core';
 
 describe('AccountDetails', () => {
@@ -17,8 +15,6 @@ describe('AccountDetails', () => {
         { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => '123' } } } },
         { provide: Router, useValue: {} },
         { provide: AccountService, useValue: {} },
-        { provide: UtilityService, useValue: { toTime: (date: string) => new Date(date).getTime() } },
-        { provide: MatSnackBar, useValue: { open: () => { } } },
         { provide: ChangeDetectorRef, useValue: { detectChanges: () => { } } }
       ]
     })
