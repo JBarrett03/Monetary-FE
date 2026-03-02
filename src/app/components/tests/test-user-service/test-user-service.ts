@@ -13,6 +13,8 @@ export class TestUserService {
 
   test_output: string[] = [];
 
+  userId = '6985caceef72e64ca33d5914';
+
   constructor(private userService: UserService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
@@ -23,7 +25,7 @@ export class TestUserService {
   }
 
   private testGetUser() {
-    this.userService.getUser('6985caceef72e64ca33d5914').subscribe((response: any) => {
+    this.userService.getUser(this.userId).subscribe((response: any) => {
       if (response && typeof response === 'object')
         this.test_output.push("Page of user fetched... PASS");
       else
@@ -53,7 +55,6 @@ export class TestUserService {
   }
 
   private testEditUser() {
-    const userId = '6985caceef72e64ca33d5914';
     const updatedUser = {
       firstName: 'Updated',
       lastName: 'User',
@@ -62,7 +63,7 @@ export class TestUserService {
       address: '456 Updated St, Updated City, US 54321'
     };
 
-    this.userService.editUser(userId, updatedUser).subscribe((response: any) => {
+    this.userService.editUser(this.userId, updatedUser).subscribe((response: any) => {
       if (response && response.message === 'User updated successfully')
         this.test_output.push("Edit user... PASS");
       else

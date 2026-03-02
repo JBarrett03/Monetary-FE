@@ -11,6 +11,7 @@ import { Spending } from './components/spending/spending';
 import { ManageAccounts } from './components/manage-accounts/manage-accounts';
 import { TestUserService } from './components/tests/test-user-service/test-user-service';
 import { TestUtilityService } from './components/tests/test-utility-service/test-utility-service';
+import { TestTransactionService } from './components/tests/test-transaction-service/test-transaction-service';
 
 export const routes: Routes = [
     {
@@ -60,5 +61,9 @@ export const routes: Routes = [
     {
         path: 'test-utility-service',
         component: TestUtilityService
+    },
+    {
+        path: 'test-transaction-service',
+        component: TestTransactionService
     }
 ];
