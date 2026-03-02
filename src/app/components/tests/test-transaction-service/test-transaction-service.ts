@@ -54,9 +54,7 @@ export class TestTransactionService {
   private testGetTransactionSummary() {
     this.transactionService.getTransactionSummary(this.userId, 'in', 'Last Month').subscribe({
       next: (response: any) => {
-        const success =
-          response &&
-          typeof response.totalAmount === 'number';
+        const success = response && typeof response.totalAmount === 'number';
         if (success) {
           this.test_output.push("Get transaction summary... PASS");
         } else {
@@ -70,9 +68,7 @@ export class TestTransactionService {
   private testGetAccountTransactionSummary() {
     this.transactionService.getAccountTransactionSummary(this.userId, this.accountId, 'in', 'Last Month').subscribe({
       next: (response: any) => {
-        const success =
-          response &&
-          typeof response.totalAmount === 'number';
+        const success = response && typeof response.totalAmount === 'number';
         if (success) {
           this.test_output.push("Get account transaction summary... PASS");
         } else {
@@ -86,10 +82,7 @@ export class TestTransactionService {
   private testGetCategorySummary() {
     this.transactionService.getCategorySummary(this.userId, this.accountId, 'in', 'Last Month').subscribe({
       next: (response: any) => {
-        const success =
-          Array.isArray(response) &&
-          (response.length === 0 ||
-            (response[0].category && typeof response[0].totalAmount === 'number'));
+        const success = Array.isArray(response) && (response.length === 0 || (response[0].category && typeof response[0].totalAmount === 'number'));
         if (success) {
           this.test_output.push("Get category summary... PASS");
         } else {
