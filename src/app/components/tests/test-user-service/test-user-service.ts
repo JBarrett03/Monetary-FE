@@ -26,10 +26,11 @@ export class TestUserService {
 
   private testGetUser() {
     this.userService.getUser(this.userId).subscribe((response: any) => {
-      if (response && typeof response === 'object')
+      if (response && typeof response === 'object') {
         this.test_output.push("Page of user fetched... PASS");
-      else
+      } else {
         this.test_output.push("Page of user fetched... FAIL");
+      }
       this.cdr.detectChanges();
     });
   }
@@ -46,10 +47,11 @@ export class TestUserService {
     };
 
     this.userService.createUser(newUser).subscribe((response: any) => {
-      if (response && response.id)
+      if (response && response.id) {
         this.test_output.push("Create user... PASS");
-      else
+      } else {
         this.test_output.push("Create user... FAIL");
+      }
       this.cdr.detectChanges();
     });
   }
@@ -64,10 +66,11 @@ export class TestUserService {
     };
 
     this.userService.editUser(this.userId, updatedUser).subscribe((response: any) => {
-      if (response && response.message === 'User updated successfully')
+      if (response && response.message === 'User updated successfully') {
         this.test_output.push("Edit user... PASS");
-      else
+      } else {
         this.test_output.push("Edit user... FAIL");
+      }
       this.cdr.detectChanges();
     });
   }
@@ -86,10 +89,11 @@ export class TestUserService {
     this.userService.createUser(newUser).subscribe((createdResponse: any) => {
       const userId = createdResponse.id;
       this.userService.changePassword(userId, 'InitialPass123', 'NewPass456').subscribe((changeResponse: any) => {
-        if (changeResponse && changeResponse.message === 'Password changed successfully')
+        if (changeResponse && changeResponse.message === 'Password changed successfully') {
           this.test_output.push("Change password... PASS");
-        else
+        } else {
           this.test_output.push("Change password... FAIL");
+        }
         this.cdr.detectChanges();
       })
     });

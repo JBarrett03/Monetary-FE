@@ -29,20 +29,22 @@ export class TestUtilityService {
   private testMaskAccountNumber() {
     const accountNumber = '12345678';
     const masked = this.utilityService.maskAccountNumber(accountNumber);
-    if (masked === '•••• •••• •••• 5678')
+    if (masked === '•••• •••• •••• 5678') {
       this.test_output.push("Mask account number... PASS");
-    else
+    } else {
       this.test_output.push("Mask account number... FAIL");
+    }
     this.cdr.detectChanges();
   }
 
   private testFormatSortCode() {
     const sortCode = '123456';
     const formatted = this.utilityService.formatSortCode(sortCode);
-    if (formatted === '12-34-56')
+    if (formatted === '12-34-56') {
       this.test_output.push("Format sort code... PASS");
-    else
+    } else {
       this.test_output.push("Format sort code... FAIL");
+    }
     this.cdr.detectChanges();
   }
 
@@ -50,20 +52,22 @@ export class TestUtilityService {
     const dateString = '2024-01-01T12:34:56';
     const time = this.utilityService.toTime(dateString);
     const expected = new Date(dateString).getTime();
-    if (time === expected)
+    if (time === expected) {
       this.test_output.push("Convert to time... PASS");
-    else
+    } else {
       this.test_output.push("Convert to time... FAIL");
+    }
     this.cdr.detectChanges();
   }
 
   private testFormatAccountNumber() {
     const accountNumber = '1234567890123456';
     const formatted = this.utilityService.formatAccountNumber(accountNumber);
-    if (formatted === '1234 5678 9012 3456')
+    if (formatted === '1234 5678 9012 3456') {
       this.test_output.push("Format account number... PASS");
-    else
+    } else {
       this.test_output.push("Format account number... FAIL");
+    }
     this.cdr.detectChanges();
   }
 
@@ -72,20 +76,22 @@ export class TestUtilityService {
     let prevented = false;
     event.preventDefault = () => { prevented = true; };
     this.utilityService.numbersOnly(event);
-    if (prevented)
+    if (prevented) {
       this.test_output.push("Numbers only input... PASS");
-    else
+    } else {
       this.test_output.push("Numbers only input... FAIL");
+    }
     this.cdr.detectChanges();
   }
 
   private testGetCategoryMeta() {
     const category = 'Dining';
     const meta = this.utilityService.getCategoryMeta(category);
-    if (meta.icon === 'fa-utensils')
+    if (meta.icon === 'fa-utensils') {
       this.test_output.push("Get category meta... PASS");
-    else
+    } else {
       this.test_output.push("Get category meta... FAIL");
+    }
     this.cdr.detectChanges();
   }
 
@@ -109,10 +115,11 @@ export class TestUtilityService {
   private testGetTransactionDate() {
     const dateString = '2024-01-01T12:34:56Z';
     const formatted = this.utilityService.getTransactionDate(dateString);
-    if (formatted === '1st January 2024')
+    if (formatted === '1st January 2024') {
       this.test_output.push("Get transaction date... PASS");
-    else
+    } else {
       this.test_output.push("Get transaction date... FAIL");
+    }
     this.cdr.detectChanges();
   }
 
