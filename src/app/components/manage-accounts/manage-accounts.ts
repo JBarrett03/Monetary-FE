@@ -6,10 +6,6 @@ import { AccountService } from '../../services/account-service';
 import { UserService } from '../../services/user-service';
 import { UtilityService } from '../../services/utility-service';
 
-/**
- * Manage Accounts component allows users to reorder, sort, and restore archived accounts.
- * Features include drag-and-drop reordering, sorting by balance or opened date, and restoring archived accounts.
- */
 @Component({
   selector: 'app-manage-accounts',
   standalone: true,
@@ -17,66 +13,29 @@ import { UtilityService } from '../../services/utility-service';
   templateUrl: './manage-accounts.html',
   styleUrl: './manage-accounts.css',
 })
+
 export class ManageAccounts implements OnInit {
 
-  /**
-   * List of accounts
-   */
   accounts_list: any[] = [];
 
-  /**
-   * List of archived accounts
-   */
   archived_list: any[] = [];
 
-  /**
-   * Flag indicating if the component is in reordering mode.
-   */
   isReordering = false;
 
-  /**
-   * Archived accounts open state
-   */
   showingArchived = false;
 
-  /**
-   * Currently open menu ID for an account (kebab menu).
-   */
   openMenu: string | null = null;
 
-  /**
-   * Flag indicating if the sort options dropdown is visible.
-   */
   showSortOptions: boolean = false;
 
-  /**
-   * Customer's first name
-   */
   firstName: string = '';
 
-  /**
-   * Customer's last name
-   */
   lastName: string = '';
 
-  /**
-   * Card brand for display purposes (e.g., Visa, MasterCard)
-   */
   cardBrand: string = '';
 
-  /**
-   * Constructor for the ManageAccounts component.
-   * @param accountService Service for account operations.
-   * @param userService Service for user operations.
-   * @param cdr Change detector reference.
-   * @param router Router for navigation.
-   */
   constructor(private accountService: AccountService, private userService: UserService, private cdr: ChangeDetectorRef, private router: Router, public utility: UtilityService) { }
 
-  /**
-   * Angular lifecycle hook that runs when the component is initialized.
-   * Loads the user details and active accounts list.
-   */
   ngOnInit() {
     const userId = sessionStorage.getItem('userId');
     if (!userId) {
@@ -99,10 +58,6 @@ export class ManageAccounts implements OnInit {
     });
   }
 
-  /**
-   * Handles the drop event when reordering accounts via drag and drop.
-   * @param event The drag and drop event containing the previous and current index.
-   */
   drop(event: CdkDragDrop<any[]>) {
     moveItemInArray(
       this.accounts_list,
@@ -112,9 +67,6 @@ export class ManageAccounts implements OnInit {
     this.cdr.detectChanges();
   }
 
-  /**
-   * Saves the new account order after reordering and navigates back to accounts page.
-   */
   saveOrder() {
     const userId = sessionStorage.getItem('userId');
 
@@ -140,18 +92,10 @@ export class ManageAccounts implements OnInit {
     })
   }
 
-  /**
-   * Toggles the visibility of the sort options dropdown.
-   */
   toggleSortOptions() {
     this.showSortOptions = !this.showSortOptions;
   }
 
-  /**
-   * Applies the selected sort option to the accounts list.
-   * Supports sorting by balance or opened date in ascending or descending order.
-   * @param option The sort option to apply.
-   */
   applySort(option: 'balanceAsc' | 'balanceDesc' | 'openedAtAsc' | 'openedAtDesc') {
     switch (option) {
       case 'balanceAsc':
@@ -181,9 +125,6 @@ export class ManageAccounts implements OnInit {
     this.cdr.detectChanges();
   }
 
-  /**
-   * Enables reordering mode and loads accounts for reordering.
-   */
   sortAccounts() {
     const userId = sessionStorage.getItem('userId');
 
@@ -202,9 +143,6 @@ export class ManageAccounts implements OnInit {
     })
   }
 
-  /**
-   * Switches to displaying archived accounts instead of active accounts.
-   */
   showArchivedAccounts() {
     const userId = sessionStorage.getItem('userId');
     if (!userId) {
@@ -222,18 +160,10 @@ export class ManageAccounts implements OnInit {
     });
   }
 
-  /**
-   * Toggles the kebab menu visibility for a specific account.
-   * @param accountId The ID of the account whose menu should be toggled.
-   */
   toggleMenu(accountId: string) {
     this.openMenu = this.openMenu === accountId ? null : accountId;
   }
 
-  /**
-   * Restores an archived account back to the active accounts list.
-   * @param accountId The ID of the account to restore.
-   */
   restoreArchivedAccount(accountId: string) {
     const userId = sessionStorage.getItem('userId');
     if (!userId) {
@@ -257,6 +187,4 @@ export class ManageAccounts implements OnInit {
       }
     });
   }
-
-
 }

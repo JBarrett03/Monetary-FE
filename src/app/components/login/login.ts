@@ -1,67 +1,57 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
-/**
- * Login component - handles user authentication and session initialization.
- * Presents a login form for collecting email and password credentials.
- * Authenticates users via the backend API and initializes the session with user data upon successful login.
- */
 @Component({
   standalone: true,
   selector: 'app-login',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule, RouterModule, MatSnackBarModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 
-/**
- * Component logic for user authentication.
- * Manages login form input, validation, and authentication flow.
- */
 export class Login {
 
-  /**
-   * User email address
-   */
   email: string = '';
 
-  /**
-   * User password
-   */
   password: string = '';
 
-  /**
-   * Constructor for the Login component.
-   * @param http HTTP client for making API requests
-   * @param router Router for navigation
-   */
+  showLoginModal = true;
+
+  protected snackBar = inject(MatSnackBar);
+
   constructor(private http: HttpClient, private router: Router) { }
 
-  /**
-   * Handles login form submission.
-   * Sends user credentials to the backend API and handles the response.
-   */
   onSubmit() {
-    sessionStorage.clear();
     this.http.post<any>('http://localhost:5000/api/v1.0/login', {
       email: this.email,
       password: this.password
     }).subscribe({
       next: (res) => {
+        sessionStorage.clear();
         sessionStorage.setItem('userId', res.userId);
         sessionStorage.setItem('token', res.token);
+        this.snackBar.open('Login successful', 'Dismiss', {
+          duration: 3000,
+          panelClass: ['snackbar-success']
+        });
         this.router.navigate(['/']);
       },
-      error: (err) => {
-        if (err.status === 401) {
-          alert('Invalid email or password. Please try again.');
-        } else {
-          console.log('Login error:', err);
-        }
+      error: () => {
+        this.snackBar.open('Please fill in all required fields.', 'OK', {
+          duration: 3000,
+          panelClass: ['snackbar-error']
+        });
       }
     });
+  }
+
+  closeLogin() {
+    this.showLoginModal = false;
+    this.router.navigate(['/']);
   }
 
 }

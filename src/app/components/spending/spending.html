@@ -1,10 +1,6 @@
 <div class="toggle-container">
-    <button class="toggle-btn" [class.active]="activeView === 'savings'" (click)="showSavings()">
-        Savings
-    </button>
-    <button class="toggle-btn" [class.active]="activeView === 'spent'" (click)="showSpent()">
-        Spending
-    </button>
+    <button class="toggle-btn" [class.active]="activeView === 'savings'" (click)="showSavings()">Savings</button>
+    <button class="toggle-btn" [class.active]="activeView === 'spent'" (click)="showSpent()">Spending</button>
 </div>
 
 <div class="slide-panel" [class.open]="activeView !== null">
@@ -12,32 +8,85 @@
         <button class="close-btn" (click)="closeView()">X</button>
     </div>
 
+    @if (activeView) {
     <div class="panel-content">
-        <div *ngIf="activeView === 'savings'">
-            <div class="period-actions">
-                <mat-form-field appearance="fill">
-                    <mat-label>Period</mat-label>
-                    <mat-select (selectionChange)="onChange($event)">
-                        <mat-option *ngFor="let period of period_list" [value]="period">{{ period }}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <button class="btn btn-primary">Export Data</button>
-            </div>
-            <h2 class="panel-title">Total Savings</h2>
-            <app-pie mode="savings" [primaryValue]="primaryValue" [remainingValue]="remainingValue"></app-pie>
+        <div class="period-actions">
+            <mat-form-field appearance="fill">
+                <mat-label>Period</mat-label>
+                <mat-select [(value)]="selectedPeriod" (selectionChange)="onPeriodChange($event)">
+                    @for (period of period_list; track period) {
+                    <mat-option [value]="period">{{ period }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Chart Type</mat-label>
+                <mat-select [(value)]="selectedChartType" (selectionChange)="onChartTypeChange($event)">
+                    @for (chartType of chart_type_list; track chartType) {
+                    <mat-option [value]="chartType">{{ chartType }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <button class="btn btn-primary" (click)="generatePDF()">Export Data to PDF</button>
+            <button class="btn btn-primary" (click)="generateCSV()">Export Data to CSV</button>
         </div>
-        <div *ngIf="activeView === 'spent'">
-            <div class="period-actions">
-                <mat-form-field appearance="fill">
-                    <mat-label>Period</mat-label>
-                    <mat-select (selectionChange)="onChange($event)">
-                        <mat-option *ngFor="let period of period_list" [value]="period">{{ period }}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <button class="btn btn-primary">Export Data</button>
+
+        @if (!selectedChartType) {
+        <p class="text-muted">Please select a chart type to display analytics.</p>
+        }
+
+        @if (selectedChartType) {
+        <div #chartContainer class="export-wrapper">
+            <h2 class="panel-title">
+                {{ activeView === 'savings' ? 'Savings Analytics' : 'Spending Analytics' }}
+            </h2>
+            <div class="main-chart">
+                @if (activeView === 'savings') {
+                <p class="percentage-label">{{ remainingPercentage }}% of budget remaining</p>
+                }
+                @switch (selectedChartType) {
+                @case ('Pie') {
+                <app-pie [mode]="activeView" [primaryValue]="primaryValue" [remainingValue]="remainingValue"></app-pie>
+                }
+                @case ('Bar') {
+                <app-horizontal-bar [categoryData]="categoryData"></app-horizontal-bar>
+                }
+                @case ('Line') {
+                <app-line [mode]="activeView" [primaryValue]="primaryValue"
+                    [remainingValue]="remainingValue"></app-line>
+                }
+                }
             </div>
-            <h2 class="panel-title">Total Spending</h2>
-            <app-pie mode="spent" [primaryValue]="primaryValue" [remainingValue]="remainingValue"></app-pie>
+
+            @if (accountAnalytics.length > 0) {
+            <div class="account-breakdown">
+                <h3 class="mt-4">Account Breakdown</h3>
+                @for (account of accountAnalytics; track account.accountId) {
+                <div class="account-chart-card">
+                    @if (activeView === 'savings') {
+                    <p class="percentage-label">{{ account.remainingPercentage }}% of budget remaining</p>
+                    }
+                    <h4>{{ account.accountName }}</h4>
+                    @switch (selectedChartType) {
+                    @case ('Pie') {
+                    <app-pie [mode]="activeView" [primaryValue]="account.primaryValue"
+                        [remainingValue]="account.remainingValue"></app-pie>
+                    }
+                    @case ('Bar') {
+                    <app-horizontal-bar [categoryData]="account.categoryData"></app-horizontal-bar>
+                    }
+                    @case ('Line') {
+                    <app-line [mode]="activeView" [primaryValue]="account.primaryValue"
+                        [remainingValue]="account.remainingValue"></app-line>
+                    }
+                    }
+                </div>
+                }
+            </div>
+            }
         </div>
+        }
     </div>
-</div>
+    }

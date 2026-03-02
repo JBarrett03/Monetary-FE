@@ -1,142 +1,282 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { forkJoin } from 'rxjs';
 import { AccountService } from '../../services/account-service';
 import { TransactionService } from '../../services/transaction-service';
 import { Pie } from '../charts/pie/pie';
+import { HorizontalBar } from '../charts/horizontal-bar/horizontal-bar';
 import { MatSelectModule } from '@angular/material/select';
-/**
- * Spending component - displays budget and spending analytics with interactive charts.
- * Provides two views: 'savings' (remaining budget) and 'spent' (amount spent from budget).
- * Uses Highcharts to visualize budget breakdown and spending patterns.
- * Includes slide-in panel animation for viewing details and data export capability.
- */
+import { Line } from '../charts/line/line';
+import html2pdf from 'html2pdf.js';
+
 @Component({
   selector: 'app-spending',
   standalone: true,
-  imports: [CommonModule, Pie, MatSelectModule],
+  imports: [CommonModule, Pie, HorizontalBar, Line, MatSelectModule],
   templateUrl: './spending.html',
   styleUrl: './spending.css',
 })
-
-/**
- * Component logic for budget analytics and spending visualization.
- * Toggles between savings and spending views, loads account data, and renders Highcharts visualizations.
- */
 export class Spending {
+  @ViewChild('chartContainer', { static: false }) chartContainer!: ElementRef;
 
-  /**
-   * Constructor for Spending component.
-   * @param accountService Service for fetching account and budget data
-   * @param transactionService Service for fetching transaction data
-   */
+  activeView: 'savings' | 'spent' | null = null;
+  primaryValue = 0;
+  remainingValue = 0;
+  remainingPercentage = 0;
+
+  period_list = ['Last Week', 'Last Month', 'Last Year', 'Custom'];
+  selectedPeriod: string = 'Last Week';
+
+  chart_type_list = ['Pie', 'Bar', 'Line'];
+  selectedChartType: 'Pie' | 'Bar' | 'Line' | null = null;
+
+  categoryData: { name: string; value: number }[] = [];
+  accountAnalytics: {
+    accountId: string;
+    accountName: string;
+    primaryValue: number;
+    remainingValue: number;
+    categoryData: { name: string; value: number }[];
+    remainingPercentage: number;
+  }[] = [];
+
   constructor(private accountService: AccountService, private transactionService: TransactionService) { }
 
-  /**
- * The account object containing account information such as balance, account number,
- * currency, and account type (e.g., 'savings', 'checking'). Null until account data is loaded.
- */
-  account: any | null = null;
+  generatePDF(): void {
+    if (!this.chartContainer?.nativeElement) return;
 
-  /**
-   * The active view for spending analytics, which can be 'savings', 'spent', or null (no view).
-   * This variable controls which spending analytics view is currently displayed to the user.
-   */
-  activeView: 'savings' | 'spent' | null = null;
+    setTimeout(() => {
+      const options = {
+        margin: 10,
+        filename: 'spending_report.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
+        jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' },
+        pageBreak: { mode: ['css', 'legacy'] }
+      };
+      (html2pdf as any)().set(options).from(this.chartContainer.nativeElement).save();
+    }, 500);
+  }
 
-  /**
-   * Calculated primary chart value for the selected mode.
-   */
-  primaryValue = 0;
-
-  /**
-   * Calculated remaining chart value for the selected mode.
-   */
-  remainingValue = 0;
-
-  /**
-   * List of available time periods for filtering analytics data.
-   */
-  period_list = ['Weekly', 'Monthly', 'Yearly', 'Custom'];
-
-  /**
-   * Method to show the savings view, which displays analytics related to money saved.
-   * Sets the activeView variable to 'savings' to trigger the display of the savings analytics.
-   */
-  showSavings() {
+  showSavings(): void {
     this.activeView = 'savings';
-    setTimeout(() => {
-      this.loadSavingsChart();
-    });
+    this.resetChartFilters();
+    this.loadSavingsChart();
+    this.loadChartPerAccount();
   }
 
-  /**
-   * Method to show the spent view, which displays analytics related to money spent.
-   * Sets the activeView variable to 'spent' to trigger the display of the spending analytics.
-   */
-  showSpent() {
+  showSpent(): void {
     this.activeView = 'spent';
-    setTimeout(() => {
-      this.loadSpendingChart();
-    });
+    this.resetChartFilters();
+    this.loadSpendingChart();
+    this.loadChartPerAccount();
   }
 
-  /**
-   * Method to close the currently active view and return to the default state with no analytics displayed.
-   * Sets the activeView variable to null, which hides any active analytics view.
-   */
-  closeView() {
+  closeView(): void {
     this.activeView = null;
   }
 
-  /**
-  * Loads the savings chart data and updates chart input values.
-   */
-  loadSavingsChart() {
+  private getTotalBudget(accounts: any[]): number {
+    return accounts
+      .filter(a => a?.budget?.amount)
+      .reduce((sum, a) => sum + Number(a.budget.amount || 0), 0);
+  }
+
+  private calculateRemaining(spent: number, budget: number): { remaining: number; percentage: number } {
+    return {
+      remaining: Math.max(budget - spent, 0),
+      percentage: budget > 0 ? Math.round((Math.max(budget - spent, 0) / budget) * 100) : 0
+    };
+  }
+
+  loadChart(direction: 'in' | 'out'): void {
     const userId = sessionStorage.getItem('userId');
-    const accountId = sessionStorage.getItem('accountId');
+    if (!userId) return;
 
-    if (!userId || !accountId) return;
+    this.accountService.getAccounts(userId).subscribe(accounts => {
+      const totalBudget = this.getTotalBudget(accounts);
 
-    this.accountService.getAccount(userId, accountId).subscribe(account => {
-      if (!account.budget) return;
+      if (direction === 'in') {
+        forkJoin({
+          in: this.transactionService.getTransactionSummary(userId, 'in', this.selectedPeriod),
+          out: this.transactionService.getTransactionSummary(userId, 'out', this.selectedPeriod)
+        }).subscribe(({ in: inResult, out: outResult }) => {
+          const netSavings = Number(inResult.totalAmount || 0) - Number(outResult.totalAmount || 0);
+          const calc = this.calculateRemaining(netSavings, totalBudget);
+          this.primaryValue = netSavings;
+          this.remainingValue = calc.remaining;
+          this.remainingPercentage = calc.percentage;
+        });
+      } else {
+        this.transactionService.getTransactionSummary(userId, 'out', this.selectedPeriod).subscribe(result => {
+          const totalSpent = Number(result.totalAmount || 0);
+          const calc = this.calculateRemaining(totalSpent, totalBudget);
+          this.primaryValue = totalSpent;
+          this.remainingValue = calc.remaining;
+          this.remainingPercentage = calc.percentage;
+        });
+      }
+    });
+  }
 
-      const totalBudget = account.budget.amount;
+  loadChartPerAccount(): void {
+    const userId = sessionStorage.getItem('userId');
+    if (!userId) return;
 
-      this.transactionService.getTransactionSummary(userId, accountId, 'in').subscribe(summary => {
-        const budget = summary.totalAmount || 0;
-        const remaining = Math.max(totalBudget - budget, 0);
+    const direction = this.activeView === 'savings' ? 'in' : 'out';
 
-        this.primaryValue = budget;
-        this.remainingValue = remaining;
+    this.accountService.getAccounts(userId).subscribe(accounts => {
+      const budgetAccounts = accounts.filter(a => a?.budget?.amount);
+      this.accountAnalytics = [];
+
+      budgetAccounts.forEach(account => {
+        if (direction === 'in') {
+          forkJoin({
+            in: this.transactionService.getAccountTransactionSummary(userId, account._id, 'in', this.selectedPeriod),
+            out: this.transactionService.getAccountTransactionSummary(userId, account._id, 'out', this.selectedPeriod),
+            categories: this.transactionService.getCategorySummary(userId, account._id, 'in', this.selectedPeriod)
+          }).subscribe(({ in: inResult, out: outResult, categories }) => {
+            const netSavings = Number(inResult.totalAmount || 0) - Number(outResult.totalAmount || 0);
+            const budget = Number(account.budget?.amount || 0);
+            const calc = this.calculateRemaining(netSavings, budget);
+
+            const formattedCategoryData = categories.map((item: any) => ({
+              name: item.category,
+              value: Number(item.totalAmount)
+            }));
+
+            this.accountAnalytics.push({
+              accountId: account._id,
+              accountName: account.nickname || account.accountNumber,
+              primaryValue: netSavings,
+              remainingValue: calc.remaining,
+              categoryData: formattedCategoryData,
+              remainingPercentage: calc.percentage
+            });
+          });
+        } else {
+          this.transactionService.getAccountTransactionSummary(userId, account._id, 'out', this.selectedPeriod)
+            .subscribe(result => {
+              const total = Number(result.totalAmount || 0);
+              const budget = Number(account.budget?.amount || 0);
+              const calc = this.calculateRemaining(total, budget);
+
+              this.transactionService.getCategorySummary(userId, account._id, direction, this.selectedPeriod)
+                .subscribe(categoryResult => {
+                  const formattedCategoryData = categoryResult.map((item: any) => ({
+                    name: item.category,
+                    value: Number(item.totalAmount)
+                  }));
+                  console.log('categories for', account.nickname, formattedCategoryData);
+
+                  this.accountAnalytics.push({
+                    accountId: account._id,
+                    accountName: account.nickname || account.accountNumber,
+                    primaryValue: total,
+                    remainingValue: calc.remaining,
+                    categoryData: formattedCategoryData,
+                    remainingPercentage: calc.percentage
+                  });
+                });
+            });
+        }
       });
     });
   }
 
-  /**
-   * Loads the spending chart data and updates chart input values.
-   */
-  loadSpendingChart() {
-    const userId = sessionStorage.getItem('userId');
-    const accountId = sessionStorage.getItem('accountId');
-
-    if (!userId || !accountId) return;
-
-    this.accountService.getAccount(userId, accountId).subscribe(account => {
-      if (!account.budget) return;
-
-      const totalSpent = account.budget.amount - account.budget.remaining;
-
-      this.transactionService.getTransactionSummary(userId, accountId, 'out').subscribe(summary => {
-        const spent = summary.totalAmount || 0;
-        const remaining = Math.max(totalSpent - spent, 0);
-
-        this.primaryValue = spent;
-        this.remainingValue = remaining;
-      });
-    })
+  loadSavingsChart(): void {
+    this.loadChart('in');
   }
 
-  onChange(event: any) {
-    console.log('Selected period:', event.value);
+  loadSpendingChart(): void {
+    this.loadChart('out');
+  }
+
+  onPeriodChange(event: any): void {
+    this.selectedPeriod = event.value;
+    if (!this.activeView) return;
+
+    const direction = this.activeView === 'savings' ? 'in' : 'out';
+    this.loadChart(direction);
+    this.loadChartPerAccount();
+  }
+
+  onChartTypeChange(event: any): void {
+    this.selectedChartType = event.value;
+    if (this.selectedChartType === 'Bar') {
+      const direction = this.activeView === 'savings' ? 'in' : 'out';
+      this.loadCategoryData(direction);
+      this.loadChartPerAccount();
+    }
+  }
+
+  loadCategoryData(direction: 'in' | 'out'): void {
+    const userId = sessionStorage.getItem('userId');
+    if (!userId) return;
+
+    this.accountService.getAccounts(userId).subscribe(accounts => {
+      if (!accounts?.length) {
+        this.categoryData = [];
+        return;
+      }
+
+      const totals: Record<string, number> = {};
+      let completed = 0;
+
+      accounts.forEach(account => {
+        this.transactionService.getCategorySummary(userId, account._id, direction, this.selectedPeriod)
+          .subscribe(data => {
+            data.forEach((item: any) => {
+              totals[item.category] = (totals[item.category] || 0) + Number(item.totalAmount || 0);
+            });
+
+            if (++completed === accounts.length) {
+              this.categoryData = Object.entries(totals)
+                .map(([name, value]) => ({ name, value }))
+                .sort((a, b) => b.value - a.value);
+            }
+          });
+      });
+    });
+  }
+
+  resetChartFilters(): void {
+    this.selectedPeriod = 'Last Week';
+    this.selectedChartType = null;
+  }
+
+  generateCSV(): void {
+    const rows: string[] = [];
+
+    rows.push(`Section,Name,Primary Value,Remaining,Remaining %,Category,Amount`);
+    rows.push(`Overall,Total,${this.primaryValue},${this.remainingValue},${this.remainingPercentage},,`);
+
+    if (this.categoryData?.length) {
+      this.categoryData.forEach(category => {
+        rows.push(`Category Total,,,,,${category.name},${category.value}`);
+      });
+    }
+
+    if (this.accountAnalytics?.length) {
+      this.accountAnalytics.forEach(account => {
+        rows.push(`Account,${account.accountName},${account.primaryValue},${account.remainingValue},${account.remainingPercentage},,`);
+
+        account.categoryData?.forEach(category => {
+          rows.push(`Account Category,${account.accountName},,, ,${category.name},${category.value}`);
+        });
+      });
+    }
+
+    const csvContent = "\uFEFF" + rows.join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    
+    link.download = `spending-report-${this.selectedPeriod.replace(' ', '-')}.csv`;
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 }

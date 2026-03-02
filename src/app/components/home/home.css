@@ -86,6 +86,9 @@
   border: 1px solid #dee2e6 !important;
   border-radius: 4px !important;
   background-color: #f8f9fa !important;
+  min-width: 600px;
+  width: 100%;
+  max-width: 900px;
 }
 
 .transaction-item strong {
@@ -95,3 +98,15 @@
 .transaction-item span {
   font-size: 24px;
 }
+
+.transaction-icon {
+  margin-right: 18px;
+}
+
+
+.transaction-date-small {
+  font-size: 1.1rem !important;
+  color: #888;
+  line-height: 1.1;
+}
+

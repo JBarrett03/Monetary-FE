@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TestUserService } from './test-user-service';
+import { HorizontalBar } from './horizontal-bar';
 
-describe('TestUserService', () => {
-  let component: TestUserService;
-  let fixture: ComponentFixture<TestUserService>;
+describe('HorizontalBar', () => {
+  let component: HorizontalBar;
+  let fixture: ComponentFixture<HorizontalBar>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TestUserService]
+      imports: [HorizontalBar]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TestUserService);
+    fixture = TestBed.createComponent(HorizontalBar);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

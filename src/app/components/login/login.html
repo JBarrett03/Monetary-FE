@@ -1,12 +1,30 @@
-<div>
-    <form (ngSubmit)="onSubmit()">
-        <label for="email">Email:</label>
-        <input type="text" id="email" [(ngModel)]="email" name="email" placeholder="Enter your email" required>
+<div class="overlay" *ngIf="showLoginModal" (click)="closeLogin()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+        <h2>Login</h2>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="Enter your password"
-            required>
+        <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
 
-        <button type="submit">Login</button>
-    </form>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" name="email" [(ngModel)]="email" required #emailCtrl="ngModel">
+            </div>
+
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" name="password" [(ngModel)]="password" required #passwordCtrl="ngModel">
+            </div>
+
+            <p>Don't have an account? <a routerLink="/create-account">Register here</a></p>
+
+            <button type="submit" [disabled]="loginForm.invalid">
+                Login
+            </button>
+
+            <button type="button" class="close-btn" (click)="closeLogin()">
+                Cancel
+            </button>
+
+        </form>
+
+    </div>
 </div>

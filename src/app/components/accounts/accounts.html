@@ -28,7 +28,7 @@
                                 }
                             </select>
 
-                            <input type="search" class="form-control form-control-sm w-25"
+                            <input type="search" class="form-control form-control-sm w-50"
                                 placeholder="Enter category..." [(ngModel)]="customCategory"
                                 (input)="selectedCategory = ''; applyFilter()" />
                         </div>
@@ -83,13 +83,9 @@
             }
 
             @for (account of accounts_list; track account._id) {
-            <div class="stripe-card mb-3 clickable-card" [routerLink]="['/accounts', account._id]"
-                [class.complete]="cardComplete">
+            <div class="stripe-card mb-3 clickable-card" [routerLink]="['/accounts', account._id]">
                 <div class="stripe-card-top">
                     <div class="chip"></div>
-                    <div class="card-brand">
-                        {{ cardBrand | uppercase }}
-                    </div>
                 </div>
 
                 <div class="card-number">
@@ -103,7 +99,6 @@
                         </strong>
                         {{ account.availableBalance | currency: (account.currency || 'GBP') }}<br>
                         Sort Code: {{ utility.formatSortCode(account.sortCode) }}<br>
-                        {{ account.firstName }} {{ account.lastName }}
                     </div>
                     <div class="expiry">
                         {{ account.expiryDate }}

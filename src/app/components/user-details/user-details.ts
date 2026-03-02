@@ -1,44 +1,48 @@
 import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user-service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
-/**
- * UserDetails component for displaying individual user details.
- * 
- * This component retrieves and displays user information based on the user ID
- * provided in the route parameters.
- */
 @Component({
   selector: 'app-user',
   templateUrl: './user-details.html',
   styleUrl: './user-details.css',
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, FormsModule, MatSnackBarModule, RouterModule]
 })
+
 export class UserDetails implements OnInit {
 
-  /**
-   * Current user data (stored as array with single user object).
-   */
   user_list: any = [];
-  /**
-   * Error message
-   */
+
   error: string | null = null;
 
-  /**
-   * Constructor for the User component.
-   * @param userService Service for retrieving user data
-   * @param route Activated route for accessing route parameters
-   * @param router Router for navigation
-   */
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private cdr: ChangeDetectorRef) { }
+  showEditModal: boolean = false;
 
-  /**
-   * Angular lifecycle hook that initializes the component.
-   * Retrieves user data based on the user ID from the route parameters.
-   */
+  editFirstName = '';
+
+  editLastName = '';
+
+  editEmail = '';
+
+  editPhone = '';
+
+  editAddress = '';
+
+  changePasswordModal: boolean = false;
+
+  currentPassword = '';
+
+  newPassword = '';
+
+  showPassword: boolean = false;
+
+  showUserMenu = false;
+
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private cdr: ChangeDetectorRef, private snackBar: MatSnackBar) { }
+
   ngOnInit() {
     const userId = this.route.snapshot.paramMap.get('userId');
 
@@ -59,34 +63,30 @@ export class UserDetails implements OnInit {
     })
   }
 
-  /**
-   * Edits the current user's details.
-   */
   editUser() {
     const userId = sessionStorage.getItem('userId');
-
-    if (!userId) {
-      return;
-    }
+    if (!userId) return;
 
     const user = this.user_list[0];
 
-    const firstName = prompt('First Name:', user.firstName);
-    const lastName = prompt('Last Name:', user.lastName);
-    const email = prompt('Email:', user.email);
-    const phone = prompt('Phone:', user.phone);
-    const address = prompt('Address:', user.address);
+    this.editFirstName = user.firstName;
+    this.editLastName = user.lastName;
+    this.editEmail = user.email;
+    this.editPhone = user.phone;
+    this.editAddress = user.address;
+    this.showEditModal = true;
+  }
 
-    if (firstName === null || lastName === null || email === null || phone === null || address === null) {
-      return;
-    }
+  submitEdit() {
+    const userId = sessionStorage.getItem('userId');
+    if (!userId) return;
 
     const updatedUser = {
-      firstName,
-      lastName,
-      email,
-      phone,
-      address
+      firstName: this.editFirstName,
+      lastName: this.editLastName,
+      email: this.editEmail,
+      phone: this.editPhone,
+      address: this.editAddress
     };
 
     this.userService.editUser(userId, updatedUser).subscribe({
@@ -94,32 +94,79 @@ export class UserDetails implements OnInit {
         this.userService.getUser(userId).subscribe({
           next: (updated) => {
             this.user_list = [updated];
+            this.showEditModal = false;
+            this.snackBar.open('Account updated successfully', 'Dismiss', {
+              duration: 3000,
+              panelClass: ['snackbar-success']
+            });
             this.cdr.detectChanges();
           }
         });
       },
       error: () => {
-        this.error = 'Failed to update user';
+        this.error = 'Failed to update user details';
+        this.snackBar.open('Failed to update account', 'Dismiss', {
+          duration: 3000,
+          panelClass: ['snackbar-error']
+        });
         this.cdr.detectChanges();
       }
-    })
+    });
   }
 
-  /**
- * Logs out the current user.
- */
+  submitPasswordChange() {
+    const userId = sessionStorage.getItem('userId');
+    if (!userId) return;
+
+    this.closePasswordModal();
+
+    this.userService.changePassword(userId, this.currentPassword, this.newPassword).subscribe({
+      next: () => {
+        this.currentPassword = '';
+        this.newPassword = '';
+        this.snackBar.open('Password changed successfully', 'Dismiss', {
+          duration: 3000,
+          panelClass: ['snackbar-success']
+        });
+      },
+      error: () => {
+        this.snackBar.open('Failed to change password', 'Dismiss', {
+          duration: 3000,
+          panelClass: ['snackbar-error']
+        });
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+  changePassword() {
+    this.changePasswordModal = true;
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  closePasswordModal() {
+    this.changePasswordModal = false;
+  }
+
+  toggleUserMenu() {
+    this.showUserMenu = !this.showUserMenu;
+  }
+
+  closeUserMenu() {
+    this.showUserMenu = false;
+  }
+
   logout(event?: Event): void {
     if (event) {
       event.preventDefault();
     }
     sessionStorage.clear();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
-  /**
-   * Checks if the user is logged in.
-   * @returns True if the user is logged in, false otherwise.
-   */
   get isLoggedIn(): boolean {
     return !!sessionStorage.getItem('userId');
   }

@@ -9,87 +9,46 @@ import { TransactionDetails } from './components/transaction-details/transaction
 import { Payments } from './components/payments/payments';
 import { Spending } from './components/spending/spending';
 import { ManageAccounts } from './components/manage-accounts/manage-accounts';
-import { TestUserService } from './components/test-user-service/test-user-service';
 
-/**
- * Routes for the application.
- */
 export const routes: Routes = [
-    /**
-     * Home route.
-     */
     {
         path: '',
         component: Home
     },
-    /**
-     * Login route.
-     */
     {
         path: 'login',
         component: Login
     },
-    /**
-     * Create account route.
-     */
     {
         path: 'create-account',
         component: CreateAccount
     },
-    /**
-     * Accounts route.
-     */
     {
         path: 'accounts',
         component: Accounts
     },
-    /**
-     * Account details route.
-     */
     {
         path: 'accounts/:accountId',
         component: AccountDetails
     },
-    /**
-     * Transaction details route.
-     */
     {
         path: 'accounts/:accountId/transactions/:transactionId',
         component: TransactionDetails
     },
-    /**
-     * User details route.
-     */
     {
         path: 'user-details/:userId',
         component: UserDetails
     },
-    /**
-     * Payments route.
-     */
     {
         path: 'payments',
         component: Payments
     },
-    /**
-     * Spending route.
-     */
     {
         path: 'spending',
         component: Spending
     },
-    /**
-     * Manage accounts route.
-     */
     {
         path: 'manage-accounts',
         component: ManageAccounts
-    },
-    /**
-     * Test user service route.
-     */
-    {
-        path: 'test',
-        component: TestUserService
     }
 ];

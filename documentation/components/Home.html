@@ -142,9 +142,7 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Home component - displays the authenticated user&#39;s dashboard.
-Shows the default account with card details, recent transactions, and transaction filtering/search capabilities.
-Allows users to navigate to transaction details and manage account information.</p>
+        <p>Home component that displays the user&#39;s default account information and recent transactions. It allows users to view their account details, filter transactions by category, and navigate to transaction details. The component fetches the default account and its transactions on initialization and handles any errors that may occur during data retrieval.</p>
 
     </p>
 
@@ -261,6 +259,10 @@ Allows users to navigate to transaction details and manage account information.<
                             <li>
                                 <a href="#transactions" >transactions</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#utility" >utility</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -273,12 +275,6 @@ Allows users to navigate to transaction details and manage account information.<
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
-                            <li>
-                                <a href="#formatTransactionDate" >formatTransactionDate</a>
-                            </li>
-                            <li>
-                                <a href="#maskAccountNumber" >maskAccountNumber</a>
-                            </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
@@ -320,18 +316,18 @@ Allows users to navigate to transaction details and manage account information.<
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, accountService: <a href="../injectables/AccountService.html" target="_self">AccountService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>)</code>
+<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, accountService: <a href="../injectables/AccountService.html" target="_self">AccountService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>, utility: <a href="../injectables/UtilityService.html" target="_self">UtilityService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/components/home/home.ts:90</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/components/home/home.ts:80</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Constructor for the Home component. It injects the AccountService to allow fetching account data from the API.</p>
+                            <div class="io-description"><p>The Home component&#39;s constructor is responsible for injecting the necessary services and dependencies required for the component to function properly. It takes in the Router service for navigation, the AccountService for fetching account and transaction data, the ChangeDetectorRef for manually triggering change detection when data is updated, and the UtilityService for any utility functions needed within the component. These injected services are essential for handling data retrieval, navigation, and UI updates within the Home component.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -346,20 +342,6 @@ Allows users to navigate to transaction details and manage account information.<
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>route</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                        </td>
-                                                </tr>
-                                                <tr>
                                                         <td>router</td>
                                                   
                                                         <td>
@@ -371,6 +353,10 @@ Allows users to navigate to transaction details and manage account information.<
                                                     </td>
                                                     
                                                         <td>
+                                                                <ul>
+<li>The Router service used for navigating to different routes within the application.</li>
+</ul>
+
                                                         </td>
                                                 </tr>
                                                 <tr>
@@ -385,7 +371,9 @@ Allows users to navigate to transaction details and manage account information.<
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>The service used to interact with account-related API endpoints.</p>
+                                                                <ul>
+<li>The AccountService used for fetching account information and transactions from the backend.</li>
+</ul>
 
                                                         </td>
                                                 </tr>
@@ -401,7 +389,27 @@ Allows users to navigate to transaction details and manage account information.<
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>ChangeDetectorRef - Reference to manually trigger change detection when needed</p>
+                                                                <ul>
+<li>The ChangeDetectorRef used for manually triggering change detection when data is updated.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>utility</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UtilityService.html" target="_self" >UtilityService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>The UtilityService that provides utility functions for use within the component.</li>
+</ul>
 
                                                         </td>
                                                 </tr>
@@ -427,158 +435,6 @@ Allows users to navigate to transaction details and manage account information.<
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="formatTransactionDate"></a>
-                    <span class="name">
-                        <span ><b>formatTransactionDate</b></span>
-                        <a href="#formatTransactionDate"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>formatTransactionDate(dateString: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="163"
-                                    class="link-to-prism">src/app/components/home/home.ts:163</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Converts an ISO date string into a human-readable format with proper ordinal suffix.
-Example: &quot;2025-02-12&quot; becomes &quot;February 12th&quot;</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>dateString</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The date string to format (ISO 8601 format: YYYY-MM-DD hh:mm:ss)</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The formatted date string with month name and day with ordinal suffix (e.g., &quot;February 12th&quot;)</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="maskAccountNumber"></a>
-                    <span class="name">
-                        <span ><b>maskAccountNumber</b></span>
-                        <a href="#maskAccountNumber"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>maskAccountNumber(accountNumber: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="149"
-                                    class="link-to-prism">src/app/components/home/home.ts:149</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Utility method to mask the account number for display purposes. It replaces all but the last 4 digits with &#39;••••&#39;.
-If the account number is not available, it returns a placeholder string.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>accountNumber</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The full account number to be masked.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>A masked version of the account number for display.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <span ><b>ngOnInit</b></span>
@@ -595,17 +451,15 @@ If the account number is not available, it returns a placeholder string.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="104"
-                                    class="link-to-prism">src/app/components/home/home.ts:104</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="94"
+                                    class="link-to-prism">src/app/components/home/home.ts:94</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Lifecycle hook that is called after the component has been initialized. It retrieves the user ID from session storage,
-then uses the AccountService to fetch the default account details. If successful, it stores the account information in the component&#39;s state.
-If there is an error (such as no default account set), it sets an appropriate error message.</p>
+                        <div class="io-description"><p>The ngOnInit method is a lifecycle hook that is called after the component has been initialized. In this method, the component retrieves the userId and accountId from session storage to fetch the default account and its transactions. It uses the AccountService to make API calls to get the default account information and the transactions associated with the account. If any of the API calls fail, it sets appropriate error messages to be displayed in the UI. The method also ensures that change detection is triggered after data is updated to reflect the changes in the UI.</p>
 </div>
 
                         <div class="io-description">
@@ -636,15 +490,15 @@ If there is an error (such as no default account set), it sets an appropriate er
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="185"
-                                    class="link-to-prism">src/app/components/home/home.ts:185</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="137"
+                                    class="link-to-prism">src/app/components/home/home.ts:137</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Navigates to the details page for the specified transaction.</p>
+                        <div class="io-description"><p>Method to navigate to the transaction details page for a specific transaction. This method takes in the transactionId as a parameter and uses the Router service to navigate to the route that displays the details of the selected transaction. The route is constructed using the default account&#39;s ID and the transaction ID, allowing users to view detailed information about their transactions when they click on a transaction in the UI.</p>
 </div>
 
                             <div class="io-description">
@@ -672,7 +526,9 @@ If there is an error (such as no default account set), it sets an appropriate er
 
 
                                             <td>
-                                                    <p>The unique identifier of the transaction to display</p>
+                                                    <ul>
+<li>The ID of the transaction for which to display details.</li>
+</ul>
 
                                             </td>
                                         </tr>
@@ -684,8 +540,7 @@ If there is an error (such as no default account set), it sets an appropriate er
 
                         </div>
                             <div class="io-description">
-                                <p>void</p>
-
+                                
                             </div>
                 </td>
             </tr>
@@ -711,27 +566,21 @@ If there is an error (such as no default account set), it sets an appropriate er
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="198"
-                                    class="link-to-prism">src/app/components/home/home.ts:198</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="147"
+                                    class="link-to-prism">src/app/components/home/home.ts:147</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Toggles the visibility of the transaction filter UI.
-When hiding the filter, also clears any active filter selections
-(selected category and custom search term).</p>
+                        <div class="io-description"><p>Method to toggle the visibility of the transaction filter options in the user interface. This method updates the showFilter boolean property to show or hide the filter options when the user interacts with the UI (e.g., clicking a &quot;Filter&quot; button). If the filter options are being hidden (i.e., showFilter is set to false), it also resets the selectedCategory and customCategory properties to their default values, ensuring that any previously applied filters are cleared when the filter options are hidden.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                <p>void</p>
-
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -766,14 +615,13 @@ When hiding the filter, also clears any active filter selections
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/home/home.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/home/home.ts:55</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The currently selected account from sessionStorage. Used to fetch account-specific transactions.
-Set from session storage during component initialization.</p>
+                    <div class="io-description"><p>The account property holds the detailed information of the user&#39;s account. It is initialized to null and is populated with data retrieved from the AccountService when the component initializes. This property is used to display comprehensive account details, including balance, transaction history, and other relevant information that may be necessary for the user to manage their finances effectively.</p>
 </div>
                 </td>
             </tr>
@@ -804,13 +652,13 @@ Set from session storage during component initialization.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/home/home.ts:54</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/components/home/home.ts:50</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Card brand for display purposes (e.g., Visa, MasterCard)</p>
+                    <div class="io-description"><p>The cardBrand property is used to store the brand of the user&#39;s payment card (e.g., Visa, MasterCard, etc.). This information can be retrieved from the AccountService or other related services that provide details about the user&#39;s payment methods. The cardBrand property is typically used to display the type of card associated with the account or transactions, providing users with a visual cue about their payment methods.</p>
 </div>
                 </td>
             </tr>
@@ -841,14 +689,13 @@ Set from session storage during component initialization.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/components/home/home.ts:78</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/components/home/home.ts:70</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>List of all available transaction categories imported from the constants file.
-Used to populate the category dropdown filter in the UI.</p>
+                    <div class="io-description"><p>The categories property holds the list of transaction categories that can be used for filtering transactions in the user interface. It is initialized with the TRANSACTION_CATEGORIES constant, which contains predefined categories for transactions (e.g., Food, Entertainment, Utilities, etc.). This property is used to populate the category filter options in the UI, allowing users to select a category and filter their transactions accordingly.</p>
 </div>
                 </td>
             </tr>
@@ -879,14 +726,13 @@ Used to populate the category dropdown filter in the UI.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/components/home/home.ts:84</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/components/home/home.ts:75</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>User-entered custom search term for filtering transactions by category or description.
-Takes precedence over the selected category dropdown when populated.</p>
+                    <div class="io-description"><p>The customCategory property is used to store a user-defined category for filtering transactions. It is initialized as an empty string and can be updated based on user input in the UI. This property allows users to create and use custom categories for their transactions, providing more flexibility in how they organize and filter their financial data. When a user enters a custom category, it can be used in conjunction with the selectedCategory property to filter transactions accordingly.</p>
 </div>
                 </td>
             </tr>
@@ -917,15 +763,13 @@ Takes precedence over the selected category dropdown when populated.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/home/home.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/home/home.ts:30</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The default account for the user, if available. This will be displayed on the home page if the user is logged in.
-It contains account information such as balance, account number, currency, and account type.
-Initially set to null until the account data is loaded from the API.</p>
+                    <div class="io-description"><p>The defaultAccount property holds the information of the user&#39;s default account. It is initialized to null and is populated with data retrieved from the AccountService when the component initializes. This property is used to display account details and to navigate to transaction details related to the default account.</p>
 </div>
                 </td>
             </tr>
@@ -956,14 +800,13 @@ Initially set to null until the account data is loaded from the API.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/home/home.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/home/home.ts:35</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Error message to display if there is an issue loading the default account. This could occur if the user has no default account set.
-Initially set to null until an error occurs.</p>
+                    <div class="io-description"><p>The error property is used to store any error messages that may occur during the retrieval of account information or transactions. It is initialized to null and is updated with appropriate error messages if any issues arise while fetching data from the AccountService. This property is used to display error messages to the user in the UI when necessary.</p>
 </div>
                 </td>
             </tr>
@@ -994,13 +837,13 @@ Initially set to null until an error occurs.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/components/home/home.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/home/home.ts:40</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Customer&#39;s first name</p>
+                    <div class="io-description"><p>The firstName and lastName properties are used to store the user&#39;s first and last names, respectively. These properties can be populated with user information retrieved from the AccountService or other user-related services. They are typically used to personalize the user interface by displaying the user&#39;s name in greetings or account information sections.</p>
 </div>
                 </td>
             </tr>
@@ -1031,13 +874,13 @@ Initially set to null until an error occurs.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/home/home.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/home/home.ts:45</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Customer&#39;s last name</p>
+                    <div class="io-description"><p>The lastName property is used to store the user&#39;s last name. Similar to the firstName property, it can be populated with user information and is used for personalization in the user interface. It allows the application to display the user&#39;s full name or last name in various sections of the UI, enhancing the user experience by providing a more personalized touch.</p>
 </div>
                 </td>
             </tr>
@@ -1068,14 +911,13 @@ Initially set to null until an error occurs.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/components/home/home.ts:90</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/components/home/home.ts:80</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Category selected from the dropdown menu for filtering transactions.
-Cleared when user inputs a custom search term.</p>
+                    <div class="io-description"><p>The selectedCategory property is used to store the currently selected category for filtering transactions. It is initialized as an empty string and is updated when the user selects a category from the predefined list of categories in the UI. This property works in conjunction with the customCategory property to determine the effective category used for filtering transactions. When a user selects a category, it can be used to filter the transactions displayed in the UI, allowing users to view only those transactions that belong to the selected category.</p>
 </div>
                 </td>
             </tr>
@@ -1106,14 +948,13 @@ Cleared when user inputs a custom search term.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/components/home/home.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/home/home.ts:60</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Controls the visibility of the transaction filter UI. When true, displays category
-dropdown and custom search input for filtering transactions.</p>
+                    <div class="io-description"><p>The showFilter property is a boolean that indicates whether the transaction filter options are currently visible in the user interface. It is initialized to false, meaning that the filter options are hidden by default. When the user interacts with the UI to toggle the filter options, this property is updated accordingly to show or hide the filtering interface, allowing users to filter their transactions based on categories or other criteria.</p>
 </div>
                 </td>
             </tr>
@@ -1144,15 +985,46 @@ dropdown and custom search input for filtering transactions.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/components/home/home.ts:72</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/components/home/home.ts:65</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Array of transaction objects associated with this account. Each transaction contains
-details such as type (credit/debit), amount, description, merchant, and timestamp.</p>
+                    <div class="io-description"><p>The transactions property is an array that holds the list of transactions associated with the user&#39;s account. It is initialized as an empty array and is populated with transaction data retrieved from the AccountService when the component initializes. This property is used to display the user&#39;s recent transactions in the UI, allowing them to view their transaction history and details. The transactions can be filtered based on categories or other criteria using the filtering options provided in the UI.</p>
 </div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="utility"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>utility</b></span>
+                        <a href="#utility"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/UtilityService.html" target="_self" >UtilityService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/components/home/home.ts:89</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description">- The UtilityService that provides utility functions for use within the component.</div>
                 </td>
             </tr>
 
@@ -1180,19 +1052,14 @@ details such as type (credit/debit), amount, description, merchant, and timestam
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/app/components/home/home.ts:214</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/app/components/home/home.ts:159</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Getter that returns the active filter term for transactions.
-Prioritizes the custom search term if user has entered one,
-otherwise returns the selected category from the dropdown.
-Used by the filter pipe to display matching transactions.</p>
+                                <div class="io-description"><p>Getter to determine the effective category for filtering transactions. This getter returns the customCategory if it is set (i.e., not an empty string), otherwise it returns the selectedCategory. This allows the component to use either a user-defined custom category or a predefined selected category for filtering transactions in the UI, providing flexibility in how users can organize and view their transaction data.</p>
 </div>
 
-                                <div>
-                                </div>
                                 <div class="io-description">
                                     <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
@@ -1209,16 +1076,16 @@ Used by the filter pipe to display matching transactions.</p>
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { AccountService } from &#x27;../../services/account-service&#x27;;
+import { UtilityService } from &#x27;../../services/utility-service&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import { FormsModule } from &#x27;@angular/forms&#x27;;
-import { RouterModule, Router, ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { RouterModule, Router } from &#x27;@angular/router&#x27;;
 import { ChangeDetectorRef } from &#x27;@angular/core&#x27;;
 import { FilterPipe } from &#x27;../../pipes/filter-pipe&#x27;;
 import { TRANSACTION_CATEGORIES } from &#x27;../../constants/transaction-categories&#x27;;
+
 /**
- * Home component - displays the authenticated user&#x27;s dashboard.
- * Shows the default account with card details, recent transactions, and transaction filtering/search capabilities.
- * Allows users to navigate to transaction details and manage account information.
+ * Home component that displays the user&#x27;s default account information and recent transactions. It allows users to view their account details, filter transactions by category, and navigate to transaction details. The component fetches the default account and its transactions on initialization and handles any errors that may occur during data retrieval.
  */
 @Component({
   selector: &#x27;app-home&#x27;,
@@ -1229,86 +1096,76 @@ import { TRANSACTION_CATEGORIES } from &#x27;../../constants/transaction-categor
 })
 
 /**
- * Component logic for the user dashboard.
- * Manages account display, transaction loading, filtering, and navigation.
+ * The Home class is the main component for the home page of the application. It implements the OnInit interface to perform initialization tasks when the component is created. The class manages the state of the default account, transactions, and filtering options for displaying transaction data. It interacts with the AccountService to fetch account information and transactions, and it uses the Router to navigate to transaction details. The component also handles error states and provides a user interface for filtering transactions by category.
  */
 export class Home implements OnInit {
 
   /**
-   * The default account for the user, if available. This will be displayed on the home page if the user is logged in.
-   * It contains account information such as balance, account number, currency, and account type.
-   * Initially set to null until the account data is loaded from the API.
+   * The defaultAccount property holds the information of the user&#x27;s default account. It is initialized to null and is populated with data retrieved from the AccountService when the component initializes. This property is used to display account details and to navigate to transaction details related to the default account.
    */
   defaultAccount: any &#x3D; null;
 
   /**
-   * Error message to display if there is an issue loading the default account. This could occur if the user has no default account set.
-   * Initially set to null until an error occurs.
+   * The error property is used to store any error messages that may occur during the retrieval of account information or transactions. It is initialized to null and is updated with appropriate error messages if any issues arise while fetching data from the AccountService. This property is used to display error messages to the user in the UI when necessary.
    */
   error: string | null &#x3D; null;
 
   /**
- * Customer&#x27;s first name
- */
+   * The firstName and lastName properties are used to store the user&#x27;s first and last names, respectively. These properties can be populated with user information retrieved from the AccountService or other user-related services. They are typically used to personalize the user interface by displaying the user&#x27;s name in greetings or account information sections.
+   */
   firstName: string &#x3D; &#x27;&#x27;;
 
   /**
-   * Customer&#x27;s last name
+   * The lastName property is used to store the user&#x27;s last name. Similar to the firstName property, it can be populated with user information and is used for personalization in the user interface. It allows the application to display the user&#x27;s full name or last name in various sections of the UI, enhancing the user experience by providing a more personalized touch.
    */
   lastName: string &#x3D; &#x27;&#x27;;
 
   /**
-   * Card brand for display purposes (e.g., Visa, MasterCard)
+   * The cardBrand property is used to store the brand of the user&#x27;s payment card (e.g., Visa, MasterCard, etc.). This information can be retrieved from the AccountService or other related services that provide details about the user&#x27;s payment methods. The cardBrand property is typically used to display the type of card associated with the account or transactions, providing users with a visual cue about their payment methods.
    */
   cardBrand: string &#x3D; &#x27;&#x27;;
 
   /**
-   * The currently selected account from sessionStorage. Used to fetch account-specific transactions.
-   * Set from session storage during component initialization.
+   * The account property holds the detailed information of the user&#x27;s account. It is initialized to null and is populated with data retrieved from the AccountService when the component initializes. This property is used to display comprehensive account details, including balance, transaction history, and other relevant information that may be necessary for the user to manage their finances effectively.
    */
   account: any | null &#x3D; null;
 
   /**
- * Controls the visibility of the transaction filter UI. When true, displays category
- * dropdown and custom search input for filtering transactions.
- */
+   * The showFilter property is a boolean that indicates whether the transaction filter options are currently visible in the user interface. It is initialized to false, meaning that the filter options are hidden by default. When the user interacts with the UI to toggle the filter options, this property is updated accordingly to show or hide the filtering interface, allowing users to filter their transactions based on categories or other criteria.
+   */
   showFilter: boolean &#x3D; false;
 
   /**
- * Array of transaction objects associated with this account. Each transaction contains
- * details such as type (credit/debit), amount, description, merchant, and timestamp.
- */
+   * The transactions property is an array that holds the list of transactions associated with the user&#x27;s account. It is initialized as an empty array and is populated with transaction data retrieved from the AccountService when the component initializes. This property is used to display the user&#x27;s recent transactions in the UI, allowing them to view their transaction history and details. The transactions can be filtered based on categories or other criteria using the filtering options provided in the UI.
+   */
   transactions: any[] &#x3D; [];
 
   /**
-   * List of all available transaction categories imported from the constants file.
-   * Used to populate the category dropdown filter in the UI.
+   * The categories property holds the list of transaction categories that can be used for filtering transactions in the user interface. It is initialized with the TRANSACTION_CATEGORIES constant, which contains predefined categories for transactions (e.g., Food, Entertainment, Utilities, etc.). This property is used to populate the category filter options in the UI, allowing users to select a category and filter their transactions accordingly.
    */
   categories &#x3D; TRANSACTION_CATEGORIES;
 
   /**
- * User-entered custom search term for filtering transactions by category or description.
- * Takes precedence over the selected category dropdown when populated.
- */
+   * The customCategory property is used to store a user-defined category for filtering transactions. It is initialized as an empty string and can be updated based on user input in the UI. This property allows users to create and use custom categories for their transactions, providing more flexibility in how they organize and filter their financial data. When a user enters a custom category, it can be used in conjunction with the selectedCategory property to filter transactions accordingly.
+   */
   customCategory: string &#x3D; &#x27;&#x27;;
 
   /**
-   * Category selected from the dropdown menu for filtering transactions.
-   * Cleared when user inputs a custom search term.
+   * The selectedCategory property is used to store the currently selected category for filtering transactions. It is initialized as an empty string and is updated when the user selects a category from the predefined list of categories in the UI. This property works in conjunction with the customCategory property to determine the effective category used for filtering transactions. When a user selects a category, it can be used to filter the transactions displayed in the UI, allowing users to view only those transactions that belong to the selected category.
    */
   selectedCategory: string &#x3D; &#x27;&#x27;;
 
   /**
-   * Constructor for the Home component. It injects the AccountService to allow fetching account data from the API.
-   * @param accountService The service used to interact with account-related API endpoints.
-   * @param cdr ChangeDetectorRef - Reference to manually trigger change detection when needed
+   * The Home component&#x27;s constructor is responsible for injecting the necessary services and dependencies required for the component to function properly. It takes in the Router service for navigation, the AccountService for fetching account and transaction data, the ChangeDetectorRef for manually triggering change detection when data is updated, and the UtilityService for any utility functions needed within the component. These injected services are essential for handling data retrieval, navigation, and UI updates within the Home component.
+   * @param router - The Router service used for navigating to different routes within the application.
+   * @param accountService - The AccountService used for fetching account information and transactions from the backend.
+   * @param cdr - The ChangeDetectorRef used for manually triggering change detection when data is updated.
+   * @param utility - The UtilityService that provides utility functions for use within the component.
    */
-  constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef) { }
+  constructor(private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef, public utility: UtilityService) { }
 
   /**
-   * Lifecycle hook that is called after the component has been initialized. It retrieves the user ID from session storage,
-   * then uses the AccountService to fetch the default account details. If successful, it stores the account information in the component&#x27;s state.
-   * If there is an error (such as no default account set), it sets an appropriate error message.
+   * The ngOnInit method is a lifecycle hook that is called after the component has been initialized. In this method, the component retrieves the userId and accountId from session storage to fetch the default account and its transactions. It uses the AccountService to make API calls to get the default account information and the transactions associated with the account. If any of the API calls fail, it sets appropriate error messages to be displayed in the UI. The method also ensures that change detection is triggered after data is updated to reflect the changes in the UI.
    */
   ngOnInit() {
     const userId &#x3D; sessionStorage.getItem(&#x27;userId&#x27;);
@@ -1331,7 +1188,7 @@ export class Home implements OnInit {
         this.account &#x3D; account;
         this.cdr.detectChanges();
       },
-      error: (err) &#x3D;&gt; {
+      error: () &#x3D;&gt; {
         this.error &#x3D; &#x27;Account not found&#x27;;
         this.cdr.detectChanges();
       }
@@ -1342,7 +1199,7 @@ export class Home implements OnInit {
         this.transactions &#x3D; transactions;
         this.cdr.detectChanges();
       },
-      error: (err) &#x3D;&gt; {
+      error: () &#x3D;&gt; {
         this.error &#x3D; &#x27;Could not load transactions&#x27;;
         this.cdr.detectChanges();
       }
@@ -1350,47 +1207,9 @@ export class Home implements OnInit {
   }
 
   /**
-   * Utility method to mask the account number for display purposes. It replaces all but the last 4 digits with &#x27;••••&#x27;.
-   * If the account number is not available, it returns a placeholder string.
-   * @param accountNumber The full account number to be masked.
-   * @returns A masked version of the account number for display.
+   * Method to navigate to the transaction details page for a specific transaction. This method takes in the transactionId as a parameter and uses the Router service to navigate to the route that displays the details of the selected transaction. The route is constructed using the default account&#x27;s ID and the transaction ID, allowing users to view detailed information about their transactions when they click on a transaction in the UI.
+   * @param transactionId - The ID of the transaction for which to display details.
    */
-  maskAccountNumber(accountNumber: string): string {
-    if (!accountNumber) return &#x27;•••• •••• •••• ••••&#x27;;
-
-    const clean &#x3D; accountNumber.replace(/\s/g, &#x27;&#x27;);
-    const last4 &#x3D; clean.slice(-4);
-    return &#x60;•••• •••• •••• ${last4}&#x60;;
-  }
-
-  /**
- * Converts an ISO date string into a human-readable format with proper ordinal suffix.
- * Example: &quot;2025-02-12&quot; becomes &quot;February 12th&quot;
- * @param dateString The date string to format (ISO 8601 format: YYYY-MM-DD hh:mm:ss)
- * @returns The formatted date string with month name and day with ordinal suffix (e.g., &quot;February 12th&quot;)
- */
-  formatTransactionDate(dateString: string): string {
-    if (!dateString) return &#x27;&#x27;;
-
-    const match &#x3D; dateString.match(/^(\d{4})-(\d{2})-(\d{2})/);
-
-    if (!match) return dateString;
-
-    const year &#x3D; Number(match[1]);
-    const monthIndex &#x3D; Number(match[2]) - 1;
-    const day &#x3D; Number(match[3]);
-
-    const suffix &#x3D; day &gt;&#x3D; 11 &amp;&amp; day &lt;&#x3D; 13 ? &#x27;th&#x27; : { 1: &#x27;st&#x27;, 2: &#x27;nd&#x27;, 3: &#x27;rd&#x27; }[day % 10] || &#x27;th&#x27;;
-    const month &#x3D; new Date(year, monthIndex).toLocaleString(&#x27;en-GB&#x27;, { month: &#x27;long&#x27; });
-
-    return &#x60;${month} ${day}${suffix}&#x60;;
-  }
-
-  /**
- * Navigates to the details page for the specified transaction.
- * @param transactionId The unique identifier of the transaction to display
- * @returns void
- */
   openTransaction(transactionId: string) {
     if (!this.defaultAccount) {
       return;
@@ -1399,10 +1218,7 @@ export class Home implements OnInit {
   }
 
   /**
-   * Toggles the visibility of the transaction filter UI.
-   * When hiding the filter, also clears any active filter selections
-   * (selected category and custom search term).
-   * @returns void
+   * Method to toggle the visibility of the transaction filter options in the user interface. This method updates the showFilter boolean property to show or hide the filter options when the user interacts with the UI (e.g., clicking a &quot;Filter&quot; button). If the filter options are being hidden (i.e., showFilter is set to false), it also resets the selectedCategory and customCategory properties to their default values, ensuring that any previously applied filters are cleared when the filter options are hidden.
    */
   toggleFilter() {
     this.showFilter &#x3D; !this.showFilter;
@@ -1413,12 +1229,8 @@ export class Home implements OnInit {
     }
   }
 
-    /**
-   * Getter that returns the active filter term for transactions.
-   * Prioritizes the custom search term if user has entered one,
-   * otherwise returns the selected category from the dropdown.
-   * Used by the filter pipe to display matching transactions.
-   * @returns The effective category or custom search term to filter transactions by
+  /**
+   * Getter to determine the effective category for filtering transactions. This getter returns the customCategory if it is set (i.e., not an empty string), otherwise it returns the selectedCategory. This allows the component to use either a user-defined custom category or a predefined selected category for filtering transactions in the UI, providing flexibility in how users can organize and view their transaction data.
    */
   get effectiveCategory(): string {
     return this.customCategory || this.selectedCategory;
@@ -1442,24 +1254,20 @@ export class Home implements OnInit {
                     &lt;/div&gt;
                 &lt;/div&gt;
                 &lt;div class&#x3D;&quot;card-number&quot;&gt;
-                    {{ maskAccountNumber(defaultAccount.accountNumber) }}
+                    {{ utility.maskAccountNumber(defaultAccount.accountNumber) }}
                 &lt;/div&gt;
 
                 &lt;div class&#x3D;&quot;stripe-card-bottom&quot;&gt;
                     &lt;div class&#x3D;&quot;card-holder&quot;&gt;
                         {{ defaultAccount.accountType | uppercase }}&lt;br&gt;
                         {{ defaultAccount.availableBalance | currency: (defaultAccount.currency || &#x27;GBP&#x27;) }}&lt;br&gt;
-                        Sort Code: {{ defaultAccount.sortCode }}&lt;br&gt;
+                        Sort Code: {{ utility.formatSortCode(defaultAccount.sortCode) }}&lt;br&gt;
                     &lt;/div&gt;
                     &lt;div class&#x3D;&quot;expiry&quot;&gt;
                         {{ defaultAccount.expiryDate }}
                     &lt;/div&gt;
                 &lt;/div&gt;
             &lt;/div&gt;
-            &lt;div *ngIf&#x3D;&quot;!defaultAccount&quot;&gt;
-                &lt;p&gt;No default account set&lt;/p&gt;
-            &lt;/div&gt;
-
             @if (transactions.length &gt; 0) {
             &lt;div class&#x3D;&quot;d-flex justify-content-between align-items-center mt-5&quot;&gt;
                 &lt;h5&gt;Transactions:&lt;/h5&gt;
@@ -1490,10 +1298,10 @@ export class Home implements OnInit {
                 @for (transaction of transactions | filter: effectiveCategory; track transaction._id) {
                 &lt;li class&#x3D;&quot;list-group-item d-flex justify-content-between transaction-item transaction-spacing&quot;
                     (click)&#x3D;&quot;openTransaction(transaction._id)&quot;&gt;
-                    &lt;div&gt;
-                        {{ transaction.description }}&lt;br /&gt;
-                        {{ transaction.category }}&lt;br /&gt;
-                        &lt;p&gt;{{ formatTransactionDate(transaction.createdAt) }}&lt;/p&gt;
+                    &lt;div class&#x3D;&quot;d-flex align-items-center gap-2&quot;&gt;
+                        &lt;i class&#x3D;&quot;fa&quot; [ngClass]&#x3D;&quot;utility.getCategoryMeta(transaction.category).icon&quot;
+                            [style.color]&#x3D;&quot;utility.getCategoryMeta(transaction.category).color&quot;&gt;&lt;/i&gt;
+                        &lt;p class&#x3D;&quot;mb-0&quot;&gt;{{ transaction.category }} • {{ utility.formatTransactionDate(transaction.createdAt) }}&lt;/p&gt;
                     &lt;/div&gt;
                     &lt;span [ngClass]&#x3D;&quot;{
                         &#x27;text-success&#x27;: transaction.type &#x3D;&#x3D;&#x3D; &#x27;credit&#x27;,
@@ -1544,8 +1352,8 @@ export class Home implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12 d-flex flex-column align-items-center">            <div *ngIf="defaultAccount" class="stripe-card mb-3 clickable-card"                [routerLink]="[\'/accounts\', defaultAccount._id]">                <div class="stripe-card-top">                    <div class="chip"></div>                    <div class="card-brand">                        {{ cardBrand | uppercase }}                    </div>                </div>                <div class="card-number">                    {{ maskAccountNumber(defaultAccount.accountNumber) }}                </div>                <div class="stripe-card-bottom">                    <div class="card-holder">                        {{ defaultAccount.accountType | uppercase }}<br>                        {{ defaultAccount.availableBalance | currency: (defaultAccount.currency || \'GBP\') }}<br>                        Sort Code: {{ defaultAccount.sortCode }}<br>                    </div>                    <div class="expiry">                        {{ defaultAccount.expiryDate }}                    </div>                </div>            </div>            <div *ngIf="!defaultAccount">                <p>No default account set</p>            </div>            @if (transactions.length > 0) {            <div class="d-flex justify-content-between align-items-center mt-5">                <h5>Transactions:</h5>                <div class="d-flex align-items-center gap-2">                    <button class="btn btn-outline-primary btn-sm" (click)="toggleFilter()">                        <i class="fa" [ngClass]="showFilter ? \'fa-times\' : \'fa-filter\'"></i>                        {{ showFilter ? \'Close Filter\' : \'Filter\' }}                    </button>                    @if (showFilter) {                    <div class="d-flex gap-2 align-items-center">                        <select class="form-select form-select-sm w-25" [(ngModel)]="selectedCategory"                            (change)="customCategory = \'\'">                            <option value="">All Categories:</option>                            @for (category of categories; track category) {                            <option [value]="category">                                {{ category }}                            </option>                            }                        </select>                        <input type="search" class="form-control form-control-sm w-25" placeholder="Enter category..."                            [(ngModel)]="customCategory" (input)="selectedCategory = \'\'" />                    </div>                    }                </div>            </div>            <ul class="list-group list-group-flush">                @for (transaction of transactions | filter: effectiveCategory; track transaction._id) {                <li class="list-group-item d-flex justify-content-between transaction-item transaction-spacing"                    (click)="openTransaction(transaction._id)">                    <div>                        {{ transaction.description }}<br />                        {{ transaction.category }}<br />                        <p>{{ formatTransactionDate(transaction.createdAt) }}</p>                    </div>                    <span [ngClass]="{                        \'text-success\': transaction.type === \'credit\',                        \'text-danger\': transaction.type === \'debit\'                    }">                        {{ transaction.amount | currency: defaultAccount.currency || \'GBP\' }}                    </span>                </li>                }            </ul>            }            @if (transactions.length === 0 && defaultAccount) {            <div class="d-flex justify-content-between align-items-center mt-5">                <div class="plus-minus">                    <p class="text-muted mt-3">No transactions found for this account. Add a transaction</p>                </div>            </div>            }        </div>    </div></div></div>'
-    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TestUserService', 'selector': 'app-test-user-service'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container container-top-margin">    <div class="row">        <div class="col-sm-12 d-flex flex-column align-items-center">            <div *ngIf="defaultAccount" class="stripe-card mb-3 clickable-card"                [routerLink]="[\'/accounts\', defaultAccount._id]">                <div class="stripe-card-top">                    <div class="chip"></div>                    <div class="card-brand">                        {{ cardBrand | uppercase }}                    </div>                </div>                <div class="card-number">                    {{ utility.maskAccountNumber(defaultAccount.accountNumber) }}                </div>                <div class="stripe-card-bottom">                    <div class="card-holder">                        {{ defaultAccount.accountType | uppercase }}<br>                        {{ defaultAccount.availableBalance | currency: (defaultAccount.currency || \'GBP\') }}<br>                        Sort Code: {{ utility.formatSortCode(defaultAccount.sortCode) }}<br>                    </div>                    <div class="expiry">                        {{ defaultAccount.expiryDate }}                    </div>                </div>            </div>            @if (transactions.length > 0) {            <div class="d-flex justify-content-between align-items-center mt-5">                <h5>Transactions:</h5>                <div class="d-flex align-items-center gap-2">                    <button class="btn btn-outline-primary btn-sm" (click)="toggleFilter()">                        <i class="fa" [ngClass]="showFilter ? \'fa-times\' : \'fa-filter\'"></i>                        {{ showFilter ? \'Close Filter\' : \'Filter\' }}                    </button>                    @if (showFilter) {                    <div class="d-flex gap-2 align-items-center">                        <select class="form-select form-select-sm w-25" [(ngModel)]="selectedCategory"                            (change)="customCategory = \'\'">                            <option value="">All Categories:</option>                            @for (category of categories; track category) {                            <option [value]="category">                                {{ category }}                            </option>                            }                        </select>                        <input type="search" class="form-control form-control-sm w-25" placeholder="Enter category..."                            [(ngModel)]="customCategory" (input)="selectedCategory = \'\'" />                    </div>                    }                </div>            </div>            <ul class="list-group list-group-flush">                @for (transaction of transactions | filter: effectiveCategory; track transaction._id) {                <li class="list-group-item d-flex justify-content-between transaction-item transaction-spacing"                    (click)="openTransaction(transaction._id)">                    <div class="d-flex align-items-center gap-2">                        <i class="fa" [ngClass]="utility.getCategoryMeta(transaction.category).icon"                            [style.color]="utility.getCategoryMeta(transaction.category).color"></i>                        <p class="mb-0">{{ transaction.category }} • {{ utility.formatTransactionDate(transaction.createdAt) }}</p>                    </div>                    <span [ngClass]="{                        \'text-success\': transaction.type === \'credit\',                        \'text-danger\': transaction.type === \'debit\'                    }">                        {{ transaction.amount | currency: defaultAccount.currency || \'GBP\' }}                    </span>                </li>                }            </ul>            }            @if (transactions.length === 0 && defaultAccount) {            <div class="d-flex justify-content-between align-items-center mt-5">                <div class="plus-minus">                    <p class="text-muted mt-3">No transactions found for this account. Add a transaction</p>                </div>            </div>            }        </div>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AccountDetails', 'selector': 'app-account-details'},{'name': 'Accounts', 'selector': 'app-accounts'},{'name': 'App', 'selector': 'app-root'},{'name': 'CreateAccount', 'selector': 'app-create-account'},{'name': 'Home', 'selector': 'app-home'},{'name': 'HorizontalBar', 'selector': 'app-horizontal-bar'},{'name': 'Line', 'selector': 'app-line'},{'name': 'Login', 'selector': 'app-login'},{'name': 'ManageAccounts', 'selector': 'app-manage-accounts'},{'name': 'Navigation', 'selector': 'app-navigation'},{'name': 'Payments', 'selector': 'app-payments'},{'name': 'Pie', 'selector': 'app-pie'},{'name': 'Spending', 'selector': 'app-spending'},{'name': 'TestUserService', 'selector': 'app-test-user-service'},{'name': 'TransactionDetails', 'selector': 'app-transaction-details'},{'name': 'UserDetails', 'selector': 'app-user'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Home'};
 </script>
