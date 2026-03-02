@@ -24,14 +24,6 @@ export class Accounts implements OnInit {
 
   menuOpen = false;
 
-  firstName: string = '';
-
-  lastName: string = '';
-
-  cardBrand: string = '';
-
-  cardComplete: boolean = false;
-
   showAddAccountForm: boolean = false;
 
   newAccountType: string = '';
@@ -58,17 +50,6 @@ export class Accounts implements OnInit {
     if (!userId) {
       return;
     }
-
-    this.userService.getUser(userId).subscribe({
-      next: (user) => {
-        this.firstName = user.firstName || '';
-        this.lastName = user.lastName || '';
-        this.cdr.detectChanges();
-      },
-      error: (err) => {
-        console.error('Failed to load user details', err);
-      }
-    });
 
     this.accountService.getAccounts(userId).subscribe({
       next: (accounts) => {

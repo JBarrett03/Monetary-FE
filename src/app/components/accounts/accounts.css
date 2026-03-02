@@ -51,9 +51,6 @@
   transform: translateY(-6px);
 }
 
-.stripe-card.complete {
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.1);
-}
 
 .chip {
   width: 42px;
@@ -69,11 +66,6 @@
   align-items: center;
 }
 
-.card-brand {
-  font-size: 14px;
-  letter-spacing: 1px;
-  opacity: 0.9;
-}
 
 .card-number {
   font-size: 20px;
