@@ -29,7 +29,7 @@ describe('AccountDetails', () => {
     await fixture.whenStable();
   });
 
-  it('should create', () => {
+    it('should create', () => {
     expect(component).toBeTruthy();
   });
 
@@ -125,6 +125,7 @@ describe('AccountDetails', () => {
   });
 
   it('should clear category filters when toggling filter off', () => {
+    component.showFilter = true;
     component.customCategory = 'Food';
     component.selectedCategory = 'Travel';
     component.toggleFilter();
