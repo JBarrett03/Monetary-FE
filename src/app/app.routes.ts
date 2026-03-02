@@ -9,10 +9,6 @@ import { TransactionDetails } from './components/transaction-details/transaction
 import { Payments } from './components/payments/payments';
 import { Spending } from './components/spending/spending';
 import { ManageAccounts } from './components/manage-accounts/manage-accounts';
-import { TestUserService } from './components/tests/test-user-service/test-user-service';
-import { TestUtilityService } from './components/tests/test-utility-service/test-utility-service';
-import { TestTransactionService } from './components/tests/test-transaction-service/test-transaction-service';
-import { TestAccountService } from './components/tests/test-account-service/test-account-service';
 
 export const routes: Routes = [
     {
@@ -54,21 +50,5 @@ export const routes: Routes = [
     {
         path: 'manage-accounts',
         component: ManageAccounts
-    },
-    {
-        path: 'test-user-service',
-        component: TestUserService
-    },
-    {
-        path: 'test-account-service',
-        component: TestAccountService
-    },
-    {
-        path: 'test-transaction-service',
-        component: TestTransactionService
-    },
-    {
-        path: 'test-utility-service',
-        component: TestUtilityService
     },
 ];
