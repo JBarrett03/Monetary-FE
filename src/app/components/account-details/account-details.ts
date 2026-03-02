@@ -77,10 +77,10 @@ export class AccountDetails implements OnInit {
 
         if (milestone) {
           const toastNotification: Record<number, string> = {
-            25: "🎉 Congratulations! You’ve reached 25% of your savings goal!",
-            50: "💪 Halfway there! 50% saved — keep going!",
-            75: "🔥 Amazing! 75% of your goal achieved!",
-            100: "🏆 Goal complete! You reached your savings target!"
+            25: "Congratulations! You've reached 25% of your savings goal!",
+            50: "Halfway there! 50% saved — keep going!",
+            75: "Amazing! 75% of your goal achieved!",
+            100: "Goal complete! You reached your savings target!"
           };
 
           this.snackBar.open(toastNotification[milestone], 'Nice!', {
@@ -221,10 +221,18 @@ export class AccountDetails implements OnInit {
 
     this.accountService.setDefaultAccount(userId, accountId).subscribe({
       next: () => {
-        // already updated locally
+        this.snackBar.open('Default account set successfully', 'Dismiss', {
+          duration: 3000,
+          panelClass: ['snackbar-success']
+        });
+        this.cdr.detectChanges();
       },
       error: () => {
-        this.error = 'Failed to set default account';
+        this.snackBar.open('Failed to set default account', 'Dismiss', {
+          duration: 3000,
+          panelClass: ['snackbar-error']
+        });
+        this.cdr.detectChanges();
       }
     })
   }
