@@ -156,7 +156,7 @@
             <div class="d-flex gap-2 align-items-center flex-wrap">
                 <select class="form-select form-select-sm w-auto" [(ngModel)]="selectedCategory"
                     (change)="customCategory = ''">
-                    <option value="">All Categories:</option>
+                    <option value="">All Categories</option>
                     @for (category of categories; track category) {
                     <option [value]="category">
                         {{ category }}
@@ -164,7 +164,7 @@
                     }
                 </select>
 
-                <input type="search" class="form-control form-control-sm w-25" placeholder="Enter category..."
+                <input type="search" class="form-control form-control-sm w-50" placeholder="Enter category..."
                     [(ngModel)]="customCategory" (input)="selectedCategory = ''" />
             </div>
             }
