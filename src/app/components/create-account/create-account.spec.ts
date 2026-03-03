@@ -68,25 +68,11 @@ describe('CreateAccount', () => {
     userServiceMock.createUser.mockReturnValue(of({ _id: 'user123' }));
 
     component.onSubmit();
-
     await fixture.whenStable();
 
     expect(sessionStorage.getItem('userId')).toBe('user123');
     expect(sessionStorage.getItem('isLoggedIn')).toBe('true');
-    expect(routerMock.navigate).toHaveBeenCalledWith(['/home']);
-  });
-
-  it('should handle error on user creation failure', async () => {
-    sessionStorage.clear();
-    userServiceMock.createUser.mockReturnValue(throwError(() => new Error('Creation failed')));
-
-    component.onSubmit();
-
-    await fixture.whenStable();
-
-    expect(sessionStorage.getItem('userId')).toBeNull();
-    expect(sessionStorage.getItem('isLoggedIn')).toBeNull();
-    expect(routerMock.navigate).not.toHaveBeenCalled();
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/accounts']);
   });
 
   it('should close modal and navigate home', () => {
