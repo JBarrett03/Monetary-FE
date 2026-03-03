@@ -55,6 +55,14 @@ export class AccountDetails implements OnInit {
 
   sortOptions: 'createdAtAsc' | 'createdAtDesc' | null = null;
 
+  showTransactionForm: boolean = false;
+
+  description: string = '';
+
+  merchant: string = '';
+
+  amount: number | null = null;
+
   protected snackBar = inject(MatSnackBar);
 
   constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef, public utility: UtilityService) { }
@@ -113,68 +121,77 @@ export class AccountDetails implements OnInit {
     this.router.navigate(['/accounts', accountId, 'transactions', transactionId]);
   }
 
+  openTransactionForm() {
+    this.showTransactionForm = true;
+  }
+
+  closeTransactionForm() {
+    this.showTransactionForm = false;
+    this.description = '';
+    this.merchant = '';
+    this.amount = null;
+  }
+
   addTransaction() {
     const userId = sessionStorage.getItem('userId');
     const accountId = sessionStorage.getItem('accountId');
 
     if (!userId || !accountId) return;
 
-    const description = prompt('Description:');
-    const amountInput = prompt('Amount:');
-    const merchant = prompt('Merchant:');
-
-    if (!description || !amountInput || !merchant) {
+    if (!this.description || !this.amount || !this.merchant) {
+      this.snackBar.open('Please fill in all fields', 'Dismiss', {
+        duration: 3000,
+        panelClass: ['snackbar-error']
+      });
       return;
     }
 
-    const amount = Math.abs(Number(amountInput));
+    const amount = Math.abs(Number(this.amount));
 
     if (isNaN(amount) || amount <= 0) {
-      alert('Please enter a valid positive number for the amount.');
+      this.snackBar.open('Please enter a valid positive number for the amount.', 'Dismiss', {
+        duration: 3000,
+        panelClass: ['snackbar-error']
+      });
       return;
     }
 
-    const transaction: {
-      direction: 'in' | 'out',
-      type: string,
-      amount: number,
-      description: string,
-      merchant: string
-    } = {
-      direction: 'out',
+    const transaction = {
+      direction: 'out' as 'in' | 'out',
       type: 'debit',
       amount: amount,
-      description,
-      merchant
+      description: this.description,
+      merchant: this.merchant,
     };
 
     this.accountService.addTransaction(userId, accountId, transaction).subscribe({
       next: () => {
-        this.accountService.getAccount(userId, accountId).subscribe({
-          next: (account) => {
-            this.account = account;
-
-            this.accountService.getAccountTransactions(userId, accountId).subscribe({
-              next: (transactions) => {
-                this.transactions = transactions;
-                this.snackBar.open('Transaction added successfully', 'Dismiss', {
-                  duration: 3000,
-                  panelClass: ['snackbar-success']
-                });
-                this.cdr.detectChanges();
-              },
-              error: () => {
-                this.snackBar.open('Failed to add transaction', 'Dismiss', {
-                  duration: 3000,
-                  panelClass: ['snackbar-error']
-                });
-                this.cdr.detectChanges();
-              }
-            })
-          }
-        })
+        this.refreshAccountData(userId, accountId);
+        this.snackBar.open('Transaction added successfully', 'Dismiss', {
+          duration: 3000,
+          panelClass: ['snackbar-success']
+        });
+        this.closeTransactionForm();
       },
+      error: () => {
+        this.snackBar.open('Failed to add transaction', 'Dismiss', {
+          duration: 3000,
+          panelClass: ['snackbar-error']
+        });
+      }
     });
+  }
+
+  refreshAccountData(userId: string, accountId: string) {
+    this.accountService.getAccount(userId, accountId).subscribe(account => {
+      this.account = account;
+      this.cdr.detectChanges();
+    })
+
+    this.accountService.getAccountTransactions(userId, accountId).subscribe(transaction => {
+      this.transactions = transaction;
+      this.cdr.detectChanges();
+    })
   }
 
   archiveAccount() {
