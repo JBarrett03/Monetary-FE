@@ -12,17 +12,19 @@
                 </button>
 
                 @if (menuOpen) {
-                    <div class="dropdown-menu show shadow-sm p-2 account-settings">
-                        <button class="dropdown-item" (click)="archiveAccount(); toggleMenu()" [disabled]="account?.balance > 0">
-                            Archive Account
-                        </button>
-                        <button class="dropdown-item" (click)="setAsDefault(); toggleMenu()" [disabled]="account?.isDefault">
-                            {{ account?.isDefault ? 'Default Account ✓' : 'Set as Default' }}
-                        </button>
-                        <button class="dropdown-item" (click)="addBudget(); toggleMenu()">
-                            {{ showBudgetForm ? 'Cancel Budget' : 'Set Budget' }}
-                        </button>
-                    </div>
+                <div class="dropdown-menu show shadow-sm p-2 account-settings">
+                    <button class="dropdown-item" (click)="archiveAccount(); toggleMenu()"
+                        [disabled]="account?.balance > 0">
+                        Archive Account
+                    </button>
+                    <button class="dropdown-item" (click)="setAsDefault(); toggleMenu()"
+                        [disabled]="account?.isDefault">
+                        {{ account?.isDefault ? 'Default Account ✓' : 'Set as Default' }}
+                    </button>
+                    <button class="dropdown-item" (click)="addBudget(); toggleMenu()">
+                        {{ showBudgetForm ? 'Cancel Budget' : 'Set Budget' }}
+                    </button>
+                </div>
                 }
             </div>
         </div>

@@ -3,6 +3,24 @@
     flex-direction: column;
 }
 
+.accounts-list.reordering {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+.archived-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 32px;
+}
+
 .clickable-card { 
     cursor: move;
 }

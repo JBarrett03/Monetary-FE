@@ -1,20 +1,21 @@
 <div class="container mt-5">
+    
     @if (error) {
     <p class="text-danger">{{ error }}</p>
     }
 
     @if (transaction) {
+    <div class="card-header text-center transaction-header">
+        Transaction Details
+    </div>
     <div class="card">
-        <div class="card-header">
-            Transaction Details
-        </div>
-
         <div class="card-body">
             <strong>Description:</strong> {{ transaction.description }}<br />
             <strong>Amount:</strong> {{ transaction.amount | currency }}<br />
             <strong>Status:</strong> {{ transaction.status ?? 'Completed' }}<br />
             <strong>Merchant:</strong> {{ transaction.merchant }}<br />
             <strong>Category:</strong> {{ transaction.category }}<br />
+            {{ transaction.createdAt | date: 'mediumDate' }}
         </div>
     </div>
     }

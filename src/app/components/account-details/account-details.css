@@ -65,10 +65,8 @@
     background-color: #ffffff;
     box-shadow: none;
     margin-bottom: 20px;
-
     display: flex;
     flex-direction: column;
-
     margin-left: auto;
     margin-right: auto;
 }
@@ -140,7 +138,6 @@
 .stripe-card:hover {
   transform: translateY(-6px);
 }
-
 
 .chip {
   width: 50px;

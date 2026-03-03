@@ -5,25 +5,29 @@
             <p>No accounts found</p>
             }
 
-            <h1>All Accounts</h1>
+            <h1>Account Overview</h1>
 
             <div class="row mb-3">
                 <div class="col-sm-12">
-                    <div class="d-flex align-items-center gap-2 flex-wrap" style="position: relative;">
+                    <div class="d-flex align-items-center gap-2 flex-wrap account-menu-flex">
                         <button class="btn btn-outline-primary btn-sm" (click)="toggleFilter()">
                             <i class="fa" [ngClass]="showFilter ? 'fa-times' : 'fa-filter'"></i>
                             {{ showFilter ? 'Close Filter' : 'Filter' }}
                         </button>
-                        <button class="kebab-btn ms-2" (click)="toggleMenu(); $event.stopPropagation()">
-                            <i class="fa fa-ellipsis-v"></i>
-                        </button>
-                        <div *ngIf="menuOpen" class="menu-dropdown position-absolute" style="top: 100%; right: 0; z-index: 10; min-width: 180px; background: #fff; border: 1px solid #ddd; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" (click)="$event.stopPropagation()">
-                            <button class="dropdown-item w-100" (click)="showAddAccountForm = true; toggleMenu(); $event.stopPropagation()">
-                                <i class="fa fa-plus"></i> Add Account
+                        <div class="account-menu-container position-relative">
+                            <button class="btn btn-light btn-sm" (click)="toggleMenu(); $event.stopPropagation()">
+                                ⚙️ Manage Accounts
                             </button>
-                            <button class="dropdown-item w-100" (click)="goToManageAccounts(); toggleMenu(); $event.stopPropagation()">
-                                <i class="fa fa-cog"></i> Manage
-                            </button>
+                            <div *ngIf="menuOpen" class="dropdown-menu show shadow-sm p-2 account-dropdown-menu" (click)="$event.stopPropagation()">
+                                <button class="dropdown-item" (click)="showAddAccountForm = true; toggleMenu()">
+                                    <i class="fa fa-plus me-2"></i>
+                                    Add New Account
+                                </button>
+                                <button class="dropdown-item" (click)="goToManageAccounts(); toggleMenu()">
+                                    <i class="fa fa-cog me-2"></i>
+                                    Manage Accounts
+                                </button>
+                            </div>
                         </div>
                     </div>
                     @if (showFilter) {

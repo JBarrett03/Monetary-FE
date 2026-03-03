@@ -15,43 +15,44 @@
     @if (archived_list.length === 0) {
     <p>No archived accounts found</p>
     } @else {
+        <div class="accounts-list archived-list" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 24px;">
+            @for (account of archived_list; track account._id) {
+            <div class="stripe-card mb-3 clickable-card">
+                <div class="kebab-wrapper">
+                    <button class="kebab-btn" (click)="toggleMenu(account._id); $event.stopPropagation()">
+                        <i class="fa fa-ellipsis-v"></i>
+                    </button>
 
-    @for (account of archived_list; track account._id) {
-    <div class="stripe-card mb-3 clickable-card">
-        <div class="kebab-wrapper">
-            <button class="kebab-btn" (click)="toggleMenu(account._id); $event.stopPropagation()">
-                <i class="fa fa-ellipsis-v"></i>
-            </button>
-
-            @if (openMenu === account._id) {
-            <div class="kebab-menu">
-                <button (click)="restoreArchivedAccount(account._id)">
-                    Restore Account
-                </button>
+                    @if (openMenu === account._id) {
+                    <div class="kebab-menu">
+                        <button (click)="restoreArchivedAccount(account._id)">
+                            Restore Account
+                        </button>
+                    </div>
+                    }
+                </div>
+                <div class="stripe-card-top">
+                    <div class="chip"></div>
+                    <div class="card-brand">
+                        {{ cardBrand | uppercase }}
+                    </div>
+                </div>
+                <div class="card-number">
+                    {{ utility.maskAccountNumber(account.accountNumber) }}
+                </div>
+                <div class="stripe-card-bottom">
+                    <div class="card-holder">
+                        {{ account.accountType | uppercase }}<br>
+                        {{ account.availableBalance | currency: (account.currency || 'GBP') }}<br>
+                        {{ firstName }} {{ lastName }}
+                    </div>
+                    <div class="expiry">
+                        MM / YY
+                    </div>
+                </div>
             </div>
             }
         </div>
-        <div class="stripe-card-top">
-            <div class="chip"></div>
-            <div class="card-brand">
-                {{ cardBrand | uppercase }}
-            </div>
-        </div>
-        <div class="card-number">
-            {{ utility.maskAccountNumber(account.accountNumber) }}
-        </div>
-        <div class="stripe-card-bottom">
-            <div class="card-holder">
-                {{ account.accountType | uppercase }}<br>
-                {{ account.availableBalance | currency: (account.currency || 'GBP') }}<br>
-                {{ firstName }} {{ lastName }}
-            </div>
-            <div class="expiry">
-                MM / YY
-            </div>
-        </div>
-    </div>
-    }
     }
     } @else {
     @if (isReordering) {
@@ -82,8 +83,9 @@
             }
         </div>
     </div>
+    
     <div cdkDropList [cdkDropListData]="accounts_list" [cdkDropListDisabled]="!isReordering"
-        (cdkDropListDropped)="drop($event)" class="accounts-list">
+        (cdkDropListDropped)="drop($event)" [ngClass]="{'accounts-list': true, 'reordering': isReordering}">
         @for (account of accounts_list; track account._id) {
         <div class="stripe-card mb-3 clickable-card" cdkDrag [cdkDragDisabled]="!isReordering">
             <div class="stripe-card-top">

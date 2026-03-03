@@ -51,7 +51,6 @@
   transform: translateY(-6px);
 }
 
-
 .chip {
   width: 42px;
   height: 30px;
@@ -65,7 +64,6 @@
   justify-content: space-between;
   align-items: center;
 }
-
 
 .card-number {
   font-size: 20px;
@@ -89,4 +87,15 @@
 .stripe-card .expiry {
   font-size: 14px;
   opacity: 0.85;
+}
+
+.account-menu-flex {
+    position: relative;
+}
+
+.account-dropdown-menu {
+    right: 0;
+    left: auto;
+    min-width: 200px;
+    position: absolute;
 }
