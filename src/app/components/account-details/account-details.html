@@ -6,27 +6,25 @@
     @if (account) {
     <div class="row mb-3">
         <div class="col-sm-12 d-flex justify-content-end">
-            <button class="kebab-btn" (click)="toggleMenu()">
-                <i class="fa fa-ellipsis-v"></i>
-            </button>
-            @if (menuOpen) {
-            <div class="menu-dropdown">
-                <div class="d-flex gap-2 mb-3">
-                    <button class="btn btn-outline-secondary" (click)="archiveAccount()"
-                        [disabled]="account?.balance > 0">
-                        Archive Account
-                    </button>
-                    <button class="btn" [ngClass]="account?.isDefault ? 'btn-success' : 'btn-outline-primary'"
-                        (click)="setAsDefault()" [disabled]="account?.isDefault">
-                        {{ account?.isDefault ? 'Default Account ✓' : 'Set as Default' }}
-                    </button>
+            <div class="account-menu-container position-relative">
+                <button class="btn btn-light" (click)="toggleMenu()">
+                    ⚙️ Account Settings
+                </button>
 
-                    <button class="btn btn-outline-secondary" (click)="addBudget()">
-                        {{ showBudgetForm ? 'Cancel' : 'Set Budget' }}
-                    </button>
-                </div>
+                @if (menuOpen) {
+                    <div class="dropdown-menu show shadow-sm p-2 account-settings">
+                        <button class="dropdown-item" (click)="archiveAccount(); toggleMenu()" [disabled]="account?.balance > 0">
+                            Archive Account
+                        </button>
+                        <button class="dropdown-item" (click)="setAsDefault(); toggleMenu()" [disabled]="account?.isDefault">
+                            {{ account?.isDefault ? 'Default Account ✓' : 'Set as Default' }}
+                        </button>
+                        <button class="dropdown-item" (click)="addBudget(); toggleMenu()">
+                            {{ showBudgetForm ? 'Cancel Budget' : 'Set Budget' }}
+                        </button>
+                    </div>
+                }
             </div>
-            }
         </div>
     </div>
 
@@ -134,7 +132,7 @@
 
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h5 class="mb-0">New Transaction</h5>
-                <i class="fa fa-times text-muted" style="cursor: pointer" (click)="closeTransactionForm()"></i>
+                <i class="fa fa-times text-muted close-transaction-icon" (click)="closeTransactionForm()"></i>
             </div>
 
             <div class="mb-2">
@@ -190,8 +188,7 @@
 
             @if (showFilter) {
             <div class="d-flex gap-2 align-items-center flex-wrap">
-                <select class="form-select form-select-sm w-auto" [(ngModel)]="selectedCategory"
-                    (change)="customCategory = ''">
+                <select class="form-select form-select-sm w-auto" [(ngModel)]="filterCategory">
                     <option value="">All Categories</option>
                     @for (category of categories; track category) {
                     <option [value]="category">
@@ -201,7 +198,7 @@
                 </select>
 
                 <input type="search" class="form-control form-control-sm w-50" placeholder="Enter category..."
-                    [(ngModel)]="customCategory" (input)="selectedCategory = ''" />
+                    [(ngModel)]="filterCategory" />
             </div>
             }
         </div>
@@ -212,7 +209,7 @@
 
     <ul class="list-group list-group-flush">
 
-        @for (transaction of transactions | filter: effectiveCategory; track transaction._id) {
+        @for (transaction of transactions | filter: filterCategory; track transaction._id) {
         <li class="list-group-item d-flex flex-column transaction-item transaction-spacing"
             (click)="openTransaction(transaction._id)">
 

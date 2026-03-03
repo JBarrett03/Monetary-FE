@@ -29,9 +29,7 @@ export class AccountDetails implements OnInit {
 
   categories = TRANSACTION_CATEGORIES;
 
-  customCategory: string = '';
-
-  selectedCategory: string = '';
+  filterCategory: string = '';
 
   showBudgetForm: boolean = false;
 
@@ -42,12 +40,6 @@ export class AccountDetails implements OnInit {
   startDate: string = '';
 
   endDate: string = '';
-
-  accounts_list: any[] = [];
-
-  cardComplete: boolean = false;
-
-  cardBrand: string = '';
 
   menuOpen = false;
 
@@ -63,26 +55,24 @@ export class AccountDetails implements OnInit {
 
   amount: number | null = null;
 
+  cardBrand: string = '';
+
   protected snackBar = inject(MatSnackBar);
 
   constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef, public utility: UtilityService) { }
 
   ngOnInit() {
-    const userId = sessionStorage.getItem('userId');
+    const userId = this.getUserId();
     const accountId = this.route.snapshot.paramMap.get('accountId');
-
     if (!userId || !accountId) {
       this.error = 'Invalid user or account ID';
       return;
     }
-
     sessionStorage.setItem('accountId', accountId);
-
     this.accountService.getAccount(userId, accountId).subscribe({
       next: (account) => {
         this.account = account;
         const milestone = this.utility.checkSavingsProgress(account);
-
         if (milestone) {
           const toastNotification: Record<number, string> = {
             25: "Congratulations! You've reached 25% of your savings goal!",
@@ -90,7 +80,6 @@ export class AccountDetails implements OnInit {
             75: "Amazing! 75% of your goal achieved!",
             100: "Goal complete! You reached your savings target!"
           };
-
           this.snackBar.open(toastNotification[milestone], 'Nice!', {
             duration: 5000,
             panelClass: ['snackbar-success']
@@ -103,7 +92,6 @@ export class AccountDetails implements OnInit {
         this.cdr.detectChanges();
       }
     });
-
     this.accountService.getAccountTransactions(userId, accountId).subscribe({
       next: (transactions) => {
         this.transactions = transactions;
@@ -114,6 +102,14 @@ export class AccountDetails implements OnInit {
         this.cdr.detectChanges();
       }
     });
+  }
+
+  private getUserId(): string | null {
+    return sessionStorage.getItem('userId');
+  }
+
+  private getAccountId(): string | null {
+    return sessionStorage.getItem('accountId');
   }
 
   openTransaction(transactionId: string) {
@@ -133,11 +129,9 @@ export class AccountDetails implements OnInit {
   }
 
   addTransaction() {
-    const userId = sessionStorage.getItem('userId');
-    const accountId = sessionStorage.getItem('accountId');
-
+    const userId = this.getUserId();
+    const accountId = this.getAccountId();
     if (!userId || !accountId) return;
-
     if (!this.description || !this.amount || !this.merchant) {
       this.snackBar.open('Please fill in all fields', 'Dismiss', {
         duration: 3000,
@@ -145,9 +139,7 @@ export class AccountDetails implements OnInit {
       });
       return;
     }
-
     const amount = Math.abs(Number(this.amount));
-
     if (isNaN(amount) || amount <= 0) {
       this.snackBar.open('Please enter a valid positive number for the amount.', 'Dismiss', {
         duration: 3000,
@@ -155,15 +147,14 @@ export class AccountDetails implements OnInit {
       });
       return;
     }
-
     const transaction = {
       direction: 'out' as 'in' | 'out',
       type: 'debit',
       amount: amount,
       description: this.description,
       merchant: this.merchant,
+      cardBrand: this.cardBrand,
     };
-
     this.accountService.addTransaction(userId, accountId, transaction).subscribe({
       next: () => {
         this.refreshAccountData(userId, accountId);
@@ -196,18 +187,13 @@ export class AccountDetails implements OnInit {
 
   archiveAccount() {
     const confirmArchive = confirm('Are you sure you want to archive this account?');
-    if (!confirmArchive) {
-      return;
-    }
-
-    const userId = sessionStorage.getItem('userId');
-    const accountId = sessionStorage.getItem('accountId');
-
+    if (!confirmArchive) return;
+    const userId = this.getUserId();
+    const accountId = this.getAccountId();
     if (!userId || !accountId) {
       this.error = 'Invalid user or account';
       return;
     }
-
     this.accountService.archiveAccount(userId, accountId).subscribe({
       next: () => {
         this.snackBar.open('Account archived successfully', 'Dismiss', {
@@ -227,15 +213,10 @@ export class AccountDetails implements OnInit {
   }
 
   setAsDefault() {
-    const userId = sessionStorage.getItem('userId');
-    const accountId = sessionStorage.getItem('accountId');
-
-    if (!userId || !accountId) {
-      return;
-    }
-
+    const userId = this.getUserId();
+    const accountId = this.getAccountId();
+    if (!userId || !accountId) return;
     this.account.isDefault = true;
-
     this.accountService.setDefaultAccount(userId, accountId).subscribe({
       next: () => {
         this.snackBar.open('Default account set successfully', 'Dismiss', {
@@ -256,15 +237,9 @@ export class AccountDetails implements OnInit {
 
   toggleFilter() {
     this.showFilter = !this.showFilter;
-
     if (!this.showFilter) {
-      this.selectedCategory = '';
-      this.customCategory = '';
+      this.filterCategory = '';
     }
-  }
-
-  get effectiveCategory(): string {
-    return this.customCategory || this.selectedCategory;
   }
 
   addBudget() {
@@ -276,28 +251,24 @@ export class AccountDetails implements OnInit {
   }
 
   submitBudget() {
-    const userId = sessionStorage.getItem('userId');
-    const accountId = sessionStorage.getItem('accountId');
-
+    const userId = this.getUserId();
+    const accountId = this.getAccountId();
     if (!userId || !accountId) {
       this.error = 'Invalid user or account';
       return;
     }
-
     const budget = {
       amount: this.budgetAmount,
       period: this.budgetPeriod,
       startDate: this.budgetPeriod === 'custom' ? this.startDate : null,
       endDate: this.budgetPeriod === 'custom' ? this.endDate : null
     };
-
     this.accountService.setBudget(userId, accountId, budget).subscribe({
       next: () => {
         this.showBudgetForm = false;
         this.budgetAmount = null;
         this.startDate = '';
         this.endDate = '';
-
         this.accountService.getAccount(userId, accountId).subscribe(account => {
           this.account = account;
           this.snackBar.open('Budget set successfully', 'Dismiss', {
@@ -345,14 +316,12 @@ export class AccountDetails implements OnInit {
 
   applySort(option: 'createdAtAsc' | 'createdAtDesc') {
     this.sortOptions = option;
-
     switch (option) {
       case 'createdAtAsc':
         this.transactions = [...this.transactions].sort(
           (a, b) => this.utility.toTime(a.createdAt) - this.utility.toTime(b.createdAt)
         );
         break;
-
       case 'createdAtDesc':
         this.transactions = [...this.transactions].sort(
           (a, b) => this.utility.toTime(b.createdAt) - this.utility.toTime(a.createdAt)

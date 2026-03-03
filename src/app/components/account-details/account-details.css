@@ -2,30 +2,6 @@
     margin-top: 70px;
 }
 
-.kebab-btn {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 8px 12px;
-  color: #333;
-}
-
-.kebab-btn:hover {
-  color: #666;
-}
-
-.menu-dropdown {
-  position: absolute;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 8px 0;
-  min-width: 150px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-}
-
 .transaction-item {
     cursor: pointer;
     padding: 30px !important;
@@ -36,10 +12,48 @@
     border: 1px solid #dee2e6 !important;
     border-radius: 4px !important;
     background-color: #f8f9fa !important;
+    min-width: 600px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.transaction-item strong {
+  font-size: 28px;
 }
 
 .transaction-item span {
-    font-size: 24px;
+  font-size: 24px;
+}
+
+.transaction-icon {
+  margin-right: 18px;
+}
+
+.transaction-date-small {
+  font-size: 1.1rem !important;
+  color: #888;
+  line-height: 1.1;
+}
+
+.account-menu-container {
+  position: relative;
+}
+
+.account-menu-container .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  display: block;
+}
+
+.dropdown-menu.account-settings {
+  right: 0;
+  left: auto;
+  min-width: 220px;
+}
+
+.close-transaction-icon {
+  cursor: pointer;
 }
 
 .balance-card {
@@ -172,115 +186,6 @@
   opacity: 0.85;
 }
 
-.container-top-margin {
-  margin-top: 70px;
-}
-
 .clickable-card {
   cursor: pointer;
 }
-
-.stripe-card {
-  width: 450px;
-  height: 280px;
-  padding: 28px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #1c1f3f, #2f3b87);
-  color: white;
-  font-family: 'Inter', system-ui, sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.08);
-  transition: transform 0.25s ease;
-  position: relative;
-  overflow: hidden;
-  margin: 0 auto;
-}
-
-.stripe-card:hover {
-  transform: translateY(-6px);
-}
-
-.stripe-card.complete {
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.1);
-}
-
-.chip {
-  width: 50px;
-  height: 36px;
-  border-radius: 6px;
-  background: linear-gradient(135deg, #d4af37, #f6e27f);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.stripe-card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.card-brand {
-  font-size: 16px;
-  letter-spacing: 1px;
-  opacity: 0.9;
-}
-
-.card-number {
-  font-size: 24px;
-  letter-spacing: 3px;
-  font-weight: 500;
-}
-
-.stripe-card-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
-.card-holder {
-  font-size: 15px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  opacity: 0.85;
-}
-
-.stripe-card .expiry {
-  font-size: 16px;
-  opacity: 0.85;
-}
-
-.transaction-item {
-  cursor: pointer;
-  padding: 30px !important;
-  font-size: 24px;
-  line-height: 2;
-  margin-top: 15px !important;
-  margin-bottom: 15px !important;
-  border: 1px solid #dee2e6 !important;
-  border-radius: 4px !important;
-  background-color: #f8f9fa !important;
-  min-width: 600px;
-  width: 100%;
-  max-width: 900px;
-}
-
-.transaction-item strong {
-  font-size: 28px;
-}
-
-.transaction-item span {
-  font-size: 24px;
-}
-
-.transaction-icon {
-  margin-right: 18px;
-}
-
-
-.transaction-date-small {
-  font-size: 1.1rem !important;
-  color: #888;
-  line-height: 1.1;
-}
-
