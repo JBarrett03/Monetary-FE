@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
-import { of, throwError } from 'rxjs';
+import { of } from 'rxjs';
 import { CreateAccount } from './create-account';
 import { UserService } from '../../services/user-service';
 import { Router } from '@angular/router';
