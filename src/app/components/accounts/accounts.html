@@ -1,4 +1,4 @@
-<div class="container container-top-margin">
+<div class="container container-top-margin" (click)="menuOpen = false">
     <div class="row">
         <div class="col-sm-12 d-flex flex-column align-items-center">
             @if (accounts_list.length === 0) {
@@ -9,14 +9,22 @@
 
             <div class="row mb-3">
                 <div class="col-sm-12">
-                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <div class="d-flex align-items-center gap-2 flex-wrap" style="position: relative;">
                         <button class="btn btn-outline-primary btn-sm" (click)="toggleFilter()">
                             <i class="fa" [ngClass]="showFilter ? 'fa-times' : 'fa-filter'"></i>
                             {{ showFilter ? 'Close Filter' : 'Filter' }}
                         </button>
-                        <button class="kebab-btn ms-2" (click)="toggleMenu()">
+                        <button class="kebab-btn ms-2" (click)="toggleMenu(); $event.stopPropagation()">
                             <i class="fa fa-ellipsis-v"></i>
                         </button>
+                        <div *ngIf="menuOpen" class="menu-dropdown position-absolute" style="top: 100%; right: 0; z-index: 10; min-width: 180px; background: #fff; border: 1px solid #ddd; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" (click)="$event.stopPropagation()">
+                            <button class="dropdown-item w-100" (click)="showAddAccountForm = true; toggleMenu(); $event.stopPropagation()">
+                                <i class="fa fa-plus"></i> Add Account
+                            </button>
+                            <button class="dropdown-item w-100" (click)="goToManageAccounts(); toggleMenu(); $event.stopPropagation()">
+                                <i class="fa fa-cog"></i> Manage
+                            </button>
+                        </div>
                     </div>
                     @if (showFilter) {
                     <div class="d-flex gap-2 align-items-center flex-wrap">
