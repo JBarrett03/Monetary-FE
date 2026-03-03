@@ -16,21 +16,29 @@ import html2pdf from 'html2pdf.js';
   templateUrl: './spending.html',
   styleUrl: './spending.css',
 })
+
 export class Spending {
+
   @ViewChild('chartContainer', { static: false }) chartContainer!: ElementRef;
 
   activeView: 'savings' | 'spent' | null = null;
+
   primaryValue = 0;
+
   remainingValue = 0;
+
   remainingPercentage = 0;
 
   period_list = ['Last Week', 'Last Month', 'Last Year', 'Custom'];
+
   selectedPeriod: string = 'Last Week';
 
   chart_type_list = ['Pie', 'Bar', 'Line'];
+
   selectedChartType: 'Pie' | 'Bar' | 'Line' | null = null;
 
   categoryData: { name: string; value: number }[] = [];
+
   accountAnalytics: {
     accountId: string;
     accountName: string;
@@ -39,6 +47,8 @@ export class Spending {
     categoryData: { name: string; value: number }[];
     remainingPercentage: number;
   }[] = [];
+
+  showExportDropdown = false;
 
   constructor(private accountService: AccountService, private transactionService: TransactionService) { }
 
@@ -167,7 +177,6 @@ export class Spending {
                     name: item.category,
                     value: Number(item.totalAmount)
                   }));
-                  console.log('categories for', account.nickname, formattedCategoryData);
 
                   this.accountAnalytics.push({
                     accountId: account._id,
@@ -208,6 +217,18 @@ export class Spending {
       this.loadCategoryData(direction);
       this.loadChartPerAccount();
     }
+  }
+
+  toggleView() {
+    if (this.activeView === 'savings') {
+      this.showSpent();
+    } else if (this.activeView === 'spent') {
+      this.showSavings();
+    }
+  }
+
+  toggleExportDropdown() {
+    this.showExportDropdown = !this.showExportDropdown;
   }
 
   loadCategoryData(direction: 'in' | 'out'): void {

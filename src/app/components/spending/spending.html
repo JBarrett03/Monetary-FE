@@ -3,9 +3,23 @@
     <button class="toggle-btn" [class.active]="activeView === 'spent'" (click)="showSpent()">Spending</button>
 </div>
 
-<div class="slide-panel" [class.open]="activeView !== null">
-    <div class="panel-header">
-        <button class="close-btn" (click)="closeView()">X</button>
+<div class="slide-panel" [class.open]="activeView !== null" (click)="showExportDropdown = false">
+    <div class="panel-header d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+            <button class="close-btn" (click)="closeView()">
+                <i class="fa fa-times"></i>
+            </button>
+            <h2 class="panel-title mb-0">
+                {{ activeView === 'savings' ? 'Savings Analytics' : 'Spending Analytics' }}
+            </h2>
+        </div>
+
+        <button class="switch-link" *ngIf="activeView" (click)="toggleView(); $event.stopPropagation();">
+            <i class="fa" [ngClass]="activeView === 'savings' ? 'fa-arrow-right' : 'fa-arrow-left'"></i>
+            <span>
+                {{ activeView === 'savings' ? 'Switch to Spending' : 'Switch to Savings' }}
+            </span>
+        </button>
     </div>
 
     @if (activeView) {
@@ -29,8 +43,24 @@
                 </mat-select>
             </mat-form-field>
 
-            <button class="btn btn-primary" (click)="generatePDF()">Export Data to PDF</button>
-            <button class="btn btn-primary" (click)="generateCSV()">Export Data to CSV</button>
+            <div class="export-menu-container position-relative" *ngIf="selectedChartType"
+                (click)="$event.stopPropagation()">
+                <button class="btn btn-light" (click)="toggleExportDropdown(); $event.stopPropagation()">
+                    <i class="fa fa-download download-icon"></i>
+                </button>
+
+                <div *ngIf="showExportDropdown" class="dropdown-menu show shadow-sm p-2"
+                    style="right: 0; left: auto; min-width: 200px;" (click)="$event.stopPropagation()">
+                    <button class="dropdown-item" (click)="generatePDF(); showExportDropdown = false">
+                        <i class="fa fa-file-pdf me-2"></i>
+                        Export as PDF
+                    </button>
+                    <button class="dropdown-item" (click)="generateCSV(); showExportDropdown = false">
+                        <i class="fa fa-file-csv me-2"></i>
+                        Export as CSV
+                    </button>
+                </div>
+            </div>
         </div>
 
         @if (!selectedChartType) {
@@ -38,14 +68,33 @@
         }
 
         @if (selectedChartType) {
+        <div class="analytics-summary">
+            <div class="summary-card">
+                <span class="summary-label">
+                    {{ activeView === 'savings' ? 'Total Saved' : 'Total Spent' }}
+                </span>
+                <span class="summary-value">
+                    {{ primaryValue | currency: 'GBP' }}
+                </span>
+            </div>
+            <div class="summary-card">
+                <span class="summary-label">Remaining</span>
+                <span class="summary-value">
+                    {{ remainingValue | currency: 'GBP' }}
+                </span>
+            </div>
+
+            @if (activeView === 'savings') {
+            <div class="summary-card">
+                <span class="summary-label">Remaining %</span>
+                <span class="summary-value">
+                    {{ remainingPercentage }}%
+                </span>
+            </div>
+            }
+        </div>
         <div #chartContainer class="export-wrapper">
-            <h2 class="panel-title">
-                {{ activeView === 'savings' ? 'Savings Analytics' : 'Spending Analytics' }}
-            </h2>
             <div class="main-chart">
-                @if (activeView === 'savings') {
-                <p class="percentage-label">{{ remainingPercentage }}% of budget remaining</p>
-                }
                 @switch (selectedChartType) {
                 @case ('Pie') {
                 <app-pie [mode]="activeView" [primaryValue]="primaryValue" [remainingValue]="remainingValue"></app-pie>
@@ -65,10 +114,31 @@
                 <h3 class="mt-4">Account Breakdown</h3>
                 @for (account of accountAnalytics; track account.accountId) {
                 <div class="account-chart-card">
-                    @if (activeView === 'savings') {
-                    <p class="percentage-label">{{ account.remainingPercentage }}% of budget remaining</p>
-                    }
                     <h4>{{ account.accountName }}</h4>
+                    <div class="analytics-summary">
+                        <div class="summary-card">
+                            <span class="summary-label">
+                                {{ activeView === 'savings' ? 'Total Saved' : 'Total Spent' }}
+                            </span>
+                            <span class="summary-value">
+                                {{ account.primaryValue | currency: 'GBP' }}
+                            </span>
+                        </div>
+                        <div class="summary-card">
+                            <span class="summary-label">Remaining</span>
+                            <span class="summary-value">
+                                {{ account.remainingValue | currency: 'GBP' }}
+                            </span>
+                        </div>
+                        @if (activeView === 'savings') {
+                        <div class="summary-card">
+                            <span class="summary-label">Remaining %</span>
+                            <span class="summary-value">
+                                {{ account.remainingPercentage }}%
+                            </span>
+                        </div>
+                        }
+                    </div>
                     @switch (selectedChartType) {
                     @case ('Pie') {
                     <app-pie [mode]="activeView" [primaryValue]="account.primaryValue"

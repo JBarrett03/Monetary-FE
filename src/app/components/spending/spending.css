@@ -1,3 +1,30 @@
+.export-menu-container .btn-light {
+  background-color: #fff !important;
+  border: none !important;
+}
+
+.period-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.period-selectors {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.export-menu-container {
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.download-icon {
+  font-size: 2.2rem;
+}
+
 .toggle-container {
   display: flex;
   justify-content: center;
@@ -72,8 +99,13 @@
 .period-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 40px;
+  gap: 18px;
+  margin-bottom: 24px;
+  justify-content: flex-start;
+}
+
+.export-menu-container {
+  margin-left: auto;
   flex-wrap: wrap;
 }
 
@@ -106,4 +138,46 @@
   margin-top: 8px;
   font-weight: 500;
   opacity: 0.85;
+}
+
+.switch-link {
+  background: none;
+  border: none;
+  color: black;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  text-transform: none !important;
+}
+
+.switch-link:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.analytics-summary {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem;
+}
+
+.summary-card {
+  flex: 1;
+  background: #f8f9f1;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-label {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.summary-value {
+  font-size: 1.4rem;
+  font-weight: 600;
 }
