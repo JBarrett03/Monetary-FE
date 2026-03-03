@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Deltha&display=swap');
 
+.navbar-nav {
+  display: flex;
+  gap: 32px;
+}
+
 .app-title {
   font-family: 'Deltha', sans-serif;
   font-size: 40px;
