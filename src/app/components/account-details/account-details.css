@@ -1,3 +1,40 @@
+/* Transactions header and controls row */
+.transactions-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 40px;
+  gap: 16px;
+}
+
+.transactions-title {
+  text-align: left;
+  width: auto;
+  margin: 0 16px 0 0;
+}
+
+.transactions-plus {
+  margin-left: 8px;
+}
+.transactions-plus .fa-plus {
+  cursor: pointer;
+}
+
+/* Transactions list centering */
+.transactions-list-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.transaction-list-item {
+  width: 500px;
+  max-width: 90%;
+  margin: 0 auto;
+}
 .container-top-margin {
     margin-top: 70px;
 }

@@ -164,83 +164,78 @@
         </div>
     </div>
     }
-    <div class="d-flex justify-content-between align-items-center mt-5">
-        <h5>Transactions:</h5>
-        <div class="d-flex align-items-center gap-2 flex-wrap">
-            <button class="btn btn-outline-primary btn-sm" (click)="toggleFilter()">
-                <i class="fa" [ngClass]="showFilter ? 'fa-times' : 'fa-filter'"></i>
-                {{ showFilter ? 'Close Filter' : 'Filter' }}
+    <div class="transactions-center">
+        <h5 class="transactions-title">Transactions:</h5>
+        <button class="btn btn-outline-primary btn-sm" (click)="toggleFilter()">
+            <i class="fa" [ngClass]="showFilter ? 'fa-times' : 'fa-filter'"></i>
+            {{ showFilter ? 'Close Filter' : 'Filter' }}
+        </button>
+
+        <button class="btn btn-outline-primary btn-sm" (click)="toggleSortOptions()">
+            <i class="fa fa-sort"></i>
+            {{ showSortOptions ? 'Hide Sort' : 'Sort' }}
+        </button>
+
+        <span class="transactions-plus"><i class="fa fa-plus" (click)="openTransactionForm()"></i></span>
+
+        @if (showSortOptions) {
+        <div class="d-flex gap-2">
+            <button class="btn btn-sm btn-outline-secondary" (click)="applySort('createdAtAsc')">
+                Created At ↑
             </button>
-
-            <button class="btn btn-outline-primary btn-sm" (click)="toggleSortOptions()">
-                <i class="fa fa-sort"></i>
-                {{ showSortOptions ? 'Hide Sort' : 'Sort' }}
+            <button class="btn btn-sm btn-outline-secondary" (click)="applySort('createdAtDesc')">
+                Created At ↓
             </button>
-
-            @if (showSortOptions) {
-            <div class="d-flex gap-2">
-                <button class="btn btn-sm btn-outline-secondary" (click)="applySort('createdAtAsc')">
-                    Created At ↑
-                </button>
-                <button class="btn btn-sm btn-outline-secondary" (click)="applySort('createdAtDesc')">
-                    Created At ↓
-                </button>
-            </div>
-            }
-
-            @if (showFilter) {
-            <div class="d-flex gap-2 align-items-center flex-wrap">
-                <select class="form-select form-select-sm w-auto" [(ngModel)]="filterCategory">
-                    <option value="">All Categories</option>
-                    @for (category of categories; track category) {
-                    <option [value]="category">
-                        {{ category }}
-                    </option>
-                    }
-                </select>
-
-                <input type="search" class="form-control form-control-sm w-50" placeholder="Enter category..."
-                    [(ngModel)]="filterCategory" />
-            </div>
-            }
         </div>
-        <div class="plus-minus">
-            <i class="fa fa-plus" (click)="openTransactionForm()"></i>
+        }
+
+        @if (showFilter) {
+        <div class="d-flex gap-2 align-items-center flex-wrap">
+            <select class="form-select form-select-sm w-auto" [(ngModel)]="filterCategory">
+                <option value="">All Categories</option>
+                @for (category of categories; track category) {
+                <option [value]="category">
+                    {{ category }}
+                </option>
+                }
+            </select>
+
+            <input type="search" class="form-control form-control-sm w-50" placeholder="Enter category..."
+                [(ngModel)]="filterCategory" />
         </div>
+        }
     </div>
 
     <ul class="list-group list-group-flush">
-
-        @for (transaction of transactions | filter: filterCategory; track transaction._id) {
-        <li class="list-group-item d-flex flex-column transaction-item transaction-spacing"
-            (click)="openTransaction(transaction._id)">
-
-            <div class="d-flex justify-content-between align-items-center w-100">
-                <div class="d-flex align-items-center gap-2">
-                    <i class="fa transaction-icon" [ngClass]="utility.getCategoryMeta(transaction.category).icon"
-                        [style.color]="utility.getCategoryMeta(transaction.category).color"></i>
-                    <p class="mb-0">{{ transaction.merchant }}</p>
+        <div class="transactions-list-center">
+            @for (transaction of transactions | filter: filterCategory; track transaction._id) {
+            <li class="list-group-item d-flex flex-column transaction-item transaction-spacing transaction-list-item"
+                (click)="openTransaction(transaction._id)">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="fa transaction-icon" [ngClass]="utility.getCategoryMeta(transaction.category).icon"
+                            [style.color]="utility.getCategoryMeta(transaction.category).color"></i>
+                        <p class="mb-0">{{ transaction.merchant }}</p>
+                    </div>
+                    <span [ngClass]="{
+                                'text-success': transaction.direction === 'in',
+                                'text-danger': transaction.direction === 'out'
+                            }">
+                        {{ transaction.direction === 'out' ? '-' : '+' }}
+                        {{ transaction.amount | currency: (account.currency || 'GBP') }}
+                    </span>
                 </div>
-                <span [ngClass]="{
-                            'text-success': transaction.direction === 'in',
-                            'text-danger': transaction.direction === 'out'
-                        }">
-                    {{ transaction.direction === 'out' ? '-' : '+' }}
-                    {{ transaction.amount | currency: (account.currency || 'GBP') }}
-                </span>
-            </div>
-
-            <div class="d-flex justify-content-between align-items-center w-100 mt-1">
-                <span class="transaction-date-small">
-                    {{ utility.getTransactionDate(transaction.createdAt) }}
-                </span>
-                <span class="transaction-date-small">
-                    {{ utility.getTransactionTime(transaction.createdAt) }} • {{ transaction.category }}
-                </span>
-            </div>
-
-        </li>
-        }
+                <div class="d-flex justify-content-between align-items-center w-100 mt-1">
+                    <span class="transaction-date-small">
+                        {{ utility.getTransactionDate(transaction.createdAt) }}
+                    </span>
+                    <span class="transaction-date-small">
+                        {{ utility.getTransactionTime(transaction.createdAt) }} • {{ transaction.category }}
+                    </span>
+                </div>
+            </li>
+            }
+        </div>
 
     </ul>
     }
