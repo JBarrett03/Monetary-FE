@@ -1,24 +1,26 @@
-<div class="payees-header-row" *ngIf="recentPayees.length > 0">
-    <h5 class="mt-4 mb-0">Recent Payees</h5>
-    <span class="view-all-link" (click)="showAllPayees()">
-        View All Payees
-    </span>
-</div>
-
 <div *ngIf="recentPayees.length > 0">
+    <div class="payees-header-row">
+        <h5 class="mt-4 mb-0">Recent Payees</h5>
+        <span class="view-all-link" (click)="showAllPayees()">
+            View All Payees
+        </span>
+    </div>
     <div class="card p-2 mb-2" *ngFor="let payee of recentPayees">
         <strong>{{ account.nickname }}</strong>
         Sort Code: {{ utility.formatSortCode(payee.sortCode) || '-' }}
     </div>
 </div>
 
-<button class="btn btn-success mt-3" (click)="openBalanceForm()">
-    Add Payee
-</button>
+<div class="add-payee-row">
+    <button class="btn btn-success mt-3" (click)="openBalanceForm()">
+        Add Payee
+    </button>
+</div>
 
 @if (showRecentPayees) {
 <div class="overlay" (click)="closeShowRecentPayees()">
     <div class="modal-card card p-3" (click)="$event.stopPropagation()">
+        <h5 class="mb-3 text-center">All Payees</h5>
         <div class="card p-2 mb-2" *ngFor="let payee of pagedPayees">
             <strong>{{ account.nickname }}</strong>
             Sort Code: {{ utility.formatSortCode(payee.sortCode) || '-' }}

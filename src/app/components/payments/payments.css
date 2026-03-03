@@ -77,22 +77,29 @@
 }
 
 .payees-header-row {
+    width: 600px;
+    max-width: 90%;
+    margin: 1.5rem auto 0.5rem auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
 }
 
 .view-all-link {
     color: #0d6efd;
     cursor: pointer;
     font-size: 0.9rem;
-    margin-left: auto;
-    margin-right: 12px;
     white-space: nowrap;
 }
 
 .view-all-link:hover {
     text-decoration: underline;
+}
+
+.add-payee-row {
+    width: 600px;
+    max-width: 90%;
+    margin: 1rem auto 0 auto;
+    display: flex;
+    justify-content: flex-end;
 }
