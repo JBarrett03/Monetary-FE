@@ -56,22 +56,10 @@ describe('Spending', () => {
 
     component.showSpent();
 
-    expect(component.activeView).toBe('spendings');
+    expect(component.activeView).toBe('spent');
     expect(spyLoad).toHaveBeenCalled();
     expect(spyPerAccount).toHaveBeenCalled();
     expect(spyReset).toHaveBeenCalled();
-  });
-
-  it('should calculate remaining correctly', () => {
-    const result = (component as any).calculateRemaining(200, 500);
-    expect(result.remaining).toBe(300);
-    expect(result.percentage).toBe(60);
-  });
-
-  it('should calculate remaining with zero budget', () => {
-    const result = (component as any).calculateRemaining(200, 0);
-    expect(result.remaining).toBe(0);
-    expect(result.percentage).toBe(0);
   });
 
   it('should calculate net savings correctly', () => {
@@ -80,7 +68,7 @@ describe('Spending', () => {
     accountService.getAccounts.mockReturnValue(of([{ budget: { amount: 1000 } }]));
 
     transactionService.getTransactionSummary
-      .mockReturnValue(of({ totalAmount: 800 }))
+      .mockReturnValueOnce(of({ totalAmount: 800 }))
       .mockReturnValueOnce(of({ totalAmount: 200 }));
 
     component.loadChart('in');

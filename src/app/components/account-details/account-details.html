@@ -191,7 +191,7 @@
 
         @if (showFilter) {
         <div class="d-flex gap-2 align-items-center flex-wrap">
-            <select class="form-select form-select-sm w-auto" [(ngModel)]="filterCategory">
+            <select class="form-select form-select-sm w-auto" [(ngModel)]="selectedCategory">
                 <option value="">All Categories</option>
                 @for (category of categories; track category) {
                 <option [value]="category">
@@ -201,14 +201,14 @@
             </select>
 
             <input type="search" class="form-control form-control-sm w-50" placeholder="Enter category..."
-                [(ngModel)]="filterCategory" />
+                [(ngModel)]="customCategory" />
         </div>
         }
     </div>
 
     <ul class="list-group list-group-flush">
         <div class="transactions-list-center">
-            @for (transaction of transactions | filter: filterCategory; track transaction._id) {
+            @for (transaction of transactions | filter: effectiveCategory; track transaction._id) {
             <li class="list-group-item d-flex flex-column transaction-item transaction-spacing transaction-list-item"
                 (click)="openTransaction(transaction._id)">
                 <div class="d-flex justify-content-between align-items-center w-100">

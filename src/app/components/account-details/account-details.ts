@@ -29,8 +29,6 @@ export class AccountDetails implements OnInit {
 
   categories = TRANSACTION_CATEGORIES;
 
-  filterCategory: string = '';
-
   showBudgetForm: boolean = false;
 
   budgetAmount: number | null = null;
@@ -56,6 +54,10 @@ export class AccountDetails implements OnInit {
   amount: number | null = null;
 
   cardBrand: string = '';
+
+  selectedCategory: string = '';
+
+  customCategory: string = '';
 
   protected snackBar = inject(MatSnackBar);
 
@@ -203,7 +205,8 @@ export class AccountDetails implements OnInit {
   toggleFilter() {
     this.showFilter = !this.showFilter;
     if (!this.showFilter) {
-      this.filterCategory = '';
+      this.customCategory = '';
+      this.selectedCategory = '';
     }
   }
 
@@ -286,5 +289,9 @@ export class AccountDetails implements OnInit {
         break;
     }
     this.cdr.detectChanges();
+  }
+
+  get effectiveCategory(): string {
+    return this.customCategory || this.selectedCategory;
   }
 }
