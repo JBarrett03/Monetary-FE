@@ -46,23 +46,23 @@
 
         <h5 class="mb-3">Add Payee</h5>
 
-        <div class="mb-3">
-            <label class="form-label me-2">Account Number</label>
-            <input type="text" [(ngModel)]="confirmAccountNumber"
+        <div class="form-group">
+            <label for="accountNumber">Account Number</label>
+            <input type="text" id="accountNumber" [(ngModel)]="confirmAccountNumber"
                 (input)="confirmAccountNumber = utility.formatAccountNumber(confirmAccountNumber)"
-                (keydown)="utility.numbersOnly($event)" maxlength="19" inputmode="numeric">
+                (keydown)="utility.numbersOnly($event)" maxlength="19" inputmode="numeric" placeholder="Enter account number">
         </div>
-        <div class="mb-3">
-            <label class="form-label me-2">Sort Code</label>
-            <input type="text" [(ngModel)]="confirmSortCode"
+        <div class="form-group">
+            <label for="sortCode">Sort Code</label>
+            <input type="text" id="sortCode" [(ngModel)]="confirmSortCode"
                 (input)="confirmSortCode = utility.formatSortCode(confirmSortCode)"
-                (keydown)="utility.numbersOnly($event)" maxlength="8" inputmode="numeric">
+                (keydown)="utility.numbersOnly($event)" maxlength="8" inputmode="numeric" placeholder="Enter sort code">
         </div>
-        <div class="mb-3">
-            <label class="form-label">Amount to add</label>
-            <input type="number" class="form-control" [(ngModel)]="amountToAdd" required>
+        <div class="form-group">
+            <label for="amountToAdd">Amount to add</label>
+            <input type="number" id="amountToAdd" class="form-control" [(ngModel)]="amountToAdd" placeholder="Enter amount to add" required>
         </div>
-        <button type="button" class="btn btn-primary w-100" (click)="addBalance()">
+        <button type="submit" (click)="addBalance()">
             Confirm Add Payee
         </button>
     </div>
@@ -75,10 +75,12 @@
         <ul class="list-group list-group-flush">
             <div class="transactions-list-center">
                 @for (transaction of recentActivity; track transaction._id) {
-                <li class="list-group-item d-flex flex-column transaction-item transaction-spacing transaction-list-item">
+                <li
+                    class="list-group-item d-flex flex-column transaction-item transaction-spacing transaction-list-item">
                     <div class="d-flex justify-content-between align-items-center w-100">
                         <div class="d-flex align-items-center gap-2">
-                            <i class="fa transaction-icon" [ngClass]="utility.getCategoryMeta(transaction.category).icon"
+                            <i class="fa transaction-icon"
+                                [ngClass]="utility.getCategoryMeta(transaction.category).icon"
                                 [style.color]="utility.getCategoryMeta(transaction.category).color"></i>
                             <p class="mb-0">{{ transaction.merchant }}</p>
                         </div>
