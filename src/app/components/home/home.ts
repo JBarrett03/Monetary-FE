@@ -36,6 +36,8 @@ export class Home implements OnInit {
 
   selectedCategory: string = '';
 
+  isLoggedIn: boolean = false;
+
   constructor(private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef, public utility: UtilityService) { }
 
   ngOnInit() {
@@ -43,6 +45,8 @@ export class Home implements OnInit {
     const accountId = sessionStorage.getItem('accountId');
 
     if (!userId || !accountId) return;
+
+    this.isLoggedIn = true;
 
     this.accountService.getDefaultAccount(userId).subscribe({
       next: (account) => {
