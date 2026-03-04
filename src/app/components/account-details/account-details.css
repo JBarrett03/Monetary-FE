@@ -78,9 +78,6 @@
 
 .account-menu-container .dropdown-menu {
   position: absolute;
-  top: 100%;
-  right: 0;
-  display: block;
 }
 
 .dropdown-menu.account-settings {

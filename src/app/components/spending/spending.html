@@ -1,3 +1,28 @@
+<div class="insights-hero">
+    <h2>Financial Insights</h2>
+    <p>
+        Analyse your saving progress and spending patterns across all accounts.
+    </p>
+</div>
+
+<div class="summary-container" *ngIf="summaryLoaded">
+    <div class="summary-card">
+        <span class="summary-label">Total Balance</span>
+        <span class="summary-value">{{ totalBalance | currency: 'GBP' }}</span>
+    </div>
+
+    <div class="summary-card">
+        <span class="summary-label">Active Accounts</span>
+        <span class="summary-value">{{ activeAccounts }}</span>
+    </div>
+
+    <div class="summary-card">
+        <span class="summary-label">This Week Net</span>
+        <span class="summary-value" [class.text-success]="weeklyNet >= 0" [class.text-danger]="weeklyNet < 0">{{
+            weeklyNet | currency: 'GBP' }}</span>
+    </div>
+</div>
+
 <div class="toggle-container">
     <button class="toggle-btn" [class.active]="activeView === 'savings'" (click)="showSavings()">Savings</button>
     <button class="toggle-btn" [class.active]="activeView === 'spent'" (click)="showSpent()">Spending</button>

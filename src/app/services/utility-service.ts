@@ -49,6 +49,27 @@ export class UtilityService {
     event.preventDefault();
   }
 
+  getUserId(): string | null {
+    return sessionStorage.getItem('userId');
+  }
+
+  getAccountId(): string | null {
+    return sessionStorage.getItem('accountId');
+  }
+
+  getTotalBudget(accounts: any[]): number {
+    return accounts
+      .filter(a => a?.budget?.amount)
+      .reduce((sum, a) => sum + Number(a.budget.amount || 0), 0);
+  }
+
+  calculateRemaining(spent: number, budget: number): { remaining: number; percentage: number } {
+    return {
+      remaining: Math.max(budget - spent, 0),
+      percentage: budget > 0 ? Math.round((Math.max(budget - spent, 0) / budget) * 100) : 0
+    };
+  }
+
   getCategoryMeta(category: string): { icon: string; color: string } {
     return TRANSACTION_CATEGORY_META[category as keyof typeof TRANSACTION_CATEGORY_META] || { icon: 'fa-question-circle', color: '#9E9E9E' };
   }
@@ -78,8 +99,8 @@ export class UtilityService {
     const day = date.getDate();
     const suffix =
       day % 10 === 1 && day !== 11 ? 'st' :
-      day % 10 === 2 && day !== 12 ? 'nd' :
-      day % 10 === 3 && day !== 13 ? 'rd' : 'th';
+        day % 10 === 2 && day !== 12 ? 'nd' :
+          day % 10 === 3 && day !== 13 ? 'rd' : 'th';
     const month = date.toLocaleString('en-GB', { month: 'long' });
     const year = date.getFullYear();
     return `${day}${suffix} ${month} ${year}`;

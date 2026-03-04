@@ -1,11 +1,16 @@
+<div class="accounts-hero">
+    <h2>Account Overview</h2>
+    <p>
+        Monitor balances, manage accounts and organise your finances
+    </p>
+</div>
+
 <div class="container container-top-margin" (click)="menuOpen = false">
     <div class="row">
         <div class="col-sm-12 d-flex flex-column align-items-center">
             @if (accounts_list.length === 0) {
             <p>No accounts found</p>
             }
-
-            <h1>Account Overview</h1>
 
             <div class="row mb-3">
                 <div class="col-sm-12">
@@ -18,7 +23,8 @@
                             <button class="btn btn-light btn-sm" (click)="toggleMenu(); $event.stopPropagation()">
                                 ⚙️ Manage Accounts
                             </button>
-                            <div *ngIf="menuOpen" class="dropdown-menu show shadow-sm p-2 account-dropdown-menu" (click)="$event.stopPropagation()">
+                            <div *ngIf="menuOpen" class="dropdown-menu show shadow-sm p-2 account-dropdown-menu"
+                                (click)="$event.stopPropagation()">
                                 <button class="dropdown-item" (click)="showAddAccountForm = true; toggleMenu()">
                                     <i class="fa fa-plus me-2"></i>
                                     Add New Account

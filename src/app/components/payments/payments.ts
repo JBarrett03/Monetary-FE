@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AccountService } from '../../services/account-service';
 import { UtilityService } from '../../services/utility-service';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { TransactionService } from '../../services/transaction-service';
 
 @Component({
   selector: 'app-payments',
@@ -15,7 +16,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 export class Payments implements OnInit {
 
-  constructor(private accountService: AccountService, private cdr: ChangeDetectorRef, public utility: UtilityService) { }
+  constructor(private accountService: AccountService, private cdr: ChangeDetectorRef, public utility: UtilityService, private transactionService: TransactionService) { }
 
   account: any | null = null;
 
@@ -39,6 +40,8 @@ export class Payments implements OnInit {
 
   pageIndex = 0;
 
+  recentActivity: any[] = [];
+
   ngOnInit() {
     const userId = sessionStorage.getItem('userId');
     const accountId = sessionStorage.getItem('accountId');
@@ -46,6 +49,8 @@ export class Payments implements OnInit {
     if (!userId || !accountId) {
       return;
     }
+
+    this.loadRecentActivity();
 
     const storedPayees = localStorage.getItem(`recentPayees_${userId}`);
     if (storedPayees) {
@@ -148,5 +153,14 @@ export class Payments implements OnInit {
   showAllPayees() {
     this.pageIndex = 0;
     this.showRecentPayees = true;
+  }
+
+  loadRecentActivity() {
+    const userId = sessionStorage.getItem('userId');
+    if (!userId) return;
+
+    this.transactionService.getRecentTransactions(userId, 5).subscribe(data => {
+      this.recentActivity = data;
+    });
   }
 }

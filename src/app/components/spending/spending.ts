@@ -1,8 +1,9 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { forkJoin } from 'rxjs';
 import { AccountService } from '../../services/account-service';
 import { TransactionService } from '../../services/transaction-service';
+import { UtilityService } from '../../services/utility-service';
 import { Pie } from '../charts/pie/pie';
 import { HorizontalBar } from '../charts/horizontal-bar/horizontal-bar';
 import { MatSelectModule } from '@angular/material/select';
@@ -17,7 +18,7 @@ import html2pdf from 'html2pdf.js';
   styleUrl: './spending.css',
 })
 
-export class Spending {
+export class Spending implements OnInit{
 
   @ViewChild('chartContainer', { static: false }) chartContainer!: ElementRef;
 
@@ -39,6 +40,14 @@ export class Spending {
 
   categoryData: { name: string; value: number }[] = [];
 
+  totalBalance = 0;
+
+  activeAccounts = 0;
+
+  weeklyNet = 0;
+
+  summaryLoaded = false;
+
   accountAnalytics: {
     accountId: string;
     accountName: string;
@@ -50,7 +59,15 @@ export class Spending {
 
   showExportDropdown = false;
 
-  constructor(private accountService: AccountService, private transactionService: TransactionService) { }
+  constructor(
+    private accountService: AccountService,
+    private transactionService: TransactionService,
+    public utility: UtilityService
+  ) { }
+
+  ngOnInit() {
+    this.loadSummary();
+  }
 
   generatePDF(): void {
     if (!this.chartContainer?.nativeElement) return;
@@ -86,25 +103,12 @@ export class Spending {
     this.activeView = null;
   }
 
-  private getTotalBudget(accounts: any[]): number {
-    return accounts
-      .filter(a => a?.budget?.amount)
-      .reduce((sum, a) => sum + Number(a.budget.amount || 0), 0);
-  }
-
-  private calculateRemaining(spent: number, budget: number): { remaining: number; percentage: number } {
-    return {
-      remaining: Math.max(budget - spent, 0),
-      percentage: budget > 0 ? Math.round((Math.max(budget - spent, 0) / budget) * 100) : 0
-    };
-  }
-
   loadChart(direction: 'in' | 'out'): void {
     const userId = sessionStorage.getItem('userId');
     if (!userId) return;
 
     this.accountService.getAccounts(userId).subscribe(accounts => {
-      const totalBudget = this.getTotalBudget(accounts);
+      const totalBudget = this.utility.getTotalBudget(accounts);
 
       if (direction === 'in') {
         forkJoin({
@@ -112,7 +116,7 @@ export class Spending {
           out: this.transactionService.getTransactionSummary(userId, 'out', this.selectedPeriod)
         }).subscribe(({ in: inResult, out: outResult }) => {
           const netSavings = Number(inResult.totalAmount || 0) - Number(outResult.totalAmount || 0);
-          const calc = this.calculateRemaining(netSavings, totalBudget);
+          const calc = this.utility.calculateRemaining(netSavings, totalBudget);
           this.primaryValue = netSavings;
           this.remainingValue = calc.remaining;
           this.remainingPercentage = calc.percentage;
@@ -120,7 +124,7 @@ export class Spending {
       } else {
         this.transactionService.getTransactionSummary(userId, 'out', this.selectedPeriod).subscribe(result => {
           const totalSpent = Number(result.totalAmount || 0);
-          const calc = this.calculateRemaining(totalSpent, totalBudget);
+          const calc = this.utility.calculateRemaining(totalSpent, totalBudget);
           this.primaryValue = totalSpent;
           this.remainingValue = calc.remaining;
           this.remainingPercentage = calc.percentage;
@@ -148,7 +152,7 @@ export class Spending {
           }).subscribe(({ in: inResult, out: outResult, categories }) => {
             const netSavings = Number(inResult.totalAmount || 0) - Number(outResult.totalAmount || 0);
             const budget = Number(account.budget?.amount || 0);
-            const calc = this.calculateRemaining(netSavings, budget);
+            const calc = this.utility.calculateRemaining(netSavings, budget);
 
             const formattedCategoryData = categories.map((item: any) => ({
               name: item.category,
@@ -169,7 +173,7 @@ export class Spending {
             .subscribe(result => {
               const total = Number(result.totalAmount || 0);
               const budget = Number(account.budget?.amount || 0);
-              const calc = this.calculateRemaining(total, budget);
+              const calc = this.utility.calculateRemaining(total, budget);
 
               this.transactionService.getCategorySummary(userId, account._id, direction, this.selectedPeriod)
                 .subscribe(categoryResult => {
@@ -299,5 +303,27 @@ export class Spending {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  }
+
+  loadSummary() {
+    const userId = sessionStorage.getItem('userId');
+    if (!userId) return;
+
+    this.accountService.getAccounts(userId).subscribe(accounts => {
+      this.totalBalance = accounts.reduce((sum: number, acc: any) => sum + Number(acc.balance || 0), 0);
+      
+      this.activeAccounts = accounts.length;
+
+      this.transactionService.getTransactionSummary(userId, 'in', 'Last Week').subscribe(income => {
+        this.transactionService.getTransactionSummary(
+          userId, 'out', 'Last Week').subscribe(spending => {
+            const totalIn = Number(income.totalAmount || 0);
+            const totalOut = Number(spending.totalAmount || 0);
+
+            this.weeklyNet = totalIn - totalOut;
+            this.summaryLoaded = true;
+          });
+      });
+    });
   }
 }

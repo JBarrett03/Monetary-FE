@@ -59,13 +59,25 @@ export class AccountDetails implements OnInit {
 
   protected snackBar = inject(MatSnackBar);
 
+  private showSnackBar(message: string, panelClass: string = '', duration: number = 3000) {
+    this.snackBar.open(message, 'Dismiss', {
+      duration,
+      panelClass: panelClass ? [panelClass] : undefined
+    });
+  }
+
+  private handleError(message: string) {
+    this.error = message;
+    this.cdr.detectChanges();
+  }
+
   constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService, private cdr: ChangeDetectorRef, public utility: UtilityService) { }
 
   ngOnInit() {
-    const userId = this.getUserId();
+    const userId = this.utility.getUserId();
     const accountId = this.route.snapshot.paramMap.get('accountId');
     if (!userId || !accountId) {
-      this.error = 'Invalid user or account ID';
+      this.handleError('Invalid user or account ID');
       return;
     }
     sessionStorage.setItem('accountId', accountId);
@@ -80,37 +92,22 @@ export class AccountDetails implements OnInit {
             75: "Amazing! 75% of your goal achieved!",
             100: "Goal complete! You reached your savings target!"
           };
-          this.snackBar.open(toastNotification[milestone], 'Nice!', {
-            duration: 5000,
-            panelClass: ['snackbar-success']
-          });
+          this.showSnackBar(toastNotification[milestone], 'snackbar-success', 5000);
         }
         this.cdr.detectChanges();
       },
-      error: () => {
-        this.error = 'Account not found';
-        this.cdr.detectChanges();
-      }
+      error: () => this.handleError('Account not found')
     });
     this.accountService.getAccountTransactions(userId, accountId).subscribe({
       next: (transactions) => {
         this.transactions = transactions;
         this.cdr.detectChanges();
       },
-      error: () => {
-        this.error = 'Could not load transactions';
-        this.cdr.detectChanges();
-      }
+      error: () => this.handleError('Could not load transactions')
     });
   }
 
-  private getUserId(): string | null {
-    return sessionStorage.getItem('userId');
-  }
 
-  private getAccountId(): string | null {
-    return sessionStorage.getItem('accountId');
-  }
 
   openTransaction(transactionId: string) {
     const accountId = this.route.snapshot.paramMap.get('accountId');
@@ -129,22 +126,16 @@ export class AccountDetails implements OnInit {
   }
 
   addTransaction() {
-    const userId = this.getUserId();
-    const accountId = this.getAccountId();
+    const userId = this.utility.getUserId();
+    const accountId = this.utility.getAccountId();
     if (!userId || !accountId) return;
     if (!this.description || !this.amount || !this.merchant) {
-      this.snackBar.open('Please fill in all fields', 'Dismiss', {
-        duration: 3000,
-        panelClass: ['snackbar-error']
-      });
+      this.showSnackBar('Please fill in all fields', 'snackbar-error');
       return;
     }
     const amount = Math.abs(Number(this.amount));
     if (isNaN(amount) || amount <= 0) {
-      this.snackBar.open('Please enter a valid positive number for the amount.', 'Dismiss', {
-        duration: 3000,
-        panelClass: ['snackbar-error']
-      });
+      this.showSnackBar('Please enter a valid positive number for the amount.', 'snackbar-error');
       return;
     }
     const transaction = {
@@ -158,18 +149,10 @@ export class AccountDetails implements OnInit {
     this.accountService.addTransaction(userId, accountId, transaction).subscribe({
       next: () => {
         this.refreshAccountData(userId, accountId);
-        this.snackBar.open('Transaction added successfully', 'Dismiss', {
-          duration: 3000,
-          panelClass: ['snackbar-success']
-        });
+        this.showSnackBar('Transaction added successfully', 'snackbar-success');
         this.closeTransactionForm();
       },
-      error: () => {
-        this.snackBar.open('Failed to add transaction', 'Dismiss', {
-          duration: 3000,
-          panelClass: ['snackbar-error']
-        });
-      }
+      error: () => this.showSnackBar('Failed to add transaction', 'snackbar-error')
     });
   }
 
@@ -188,50 +171,32 @@ export class AccountDetails implements OnInit {
   archiveAccount() {
     const confirmArchive = confirm('Are you sure you want to archive this account?');
     if (!confirmArchive) return;
-    const userId = this.getUserId();
-    const accountId = this.getAccountId();
+    const userId = this.utility.getUserId();
+    const accountId = this.utility.getAccountId();
     if (!userId || !accountId) {
-      this.error = 'Invalid user or account';
+      this.handleError('Invalid user or account');
       return;
     }
     this.accountService.archiveAccount(userId, accountId).subscribe({
       next: () => {
-        this.snackBar.open('Account archived successfully', 'Dismiss', {
-          duration: 3000,
-          panelClass: ['snackbar-success']
-        });
+        this.showSnackBar('Account archived successfully', 'snackbar-success');
         this.router.navigate(['/accounts']);
       },
-      error: () => {
-        this.snackBar.open('Failed to archive account', 'Dismiss', {
-          duration: 3000,
-          panelClass: ['snackbar-error']
-        });
-        this.cdr.detectChanges();
-      }
+      error: () => this.handleError('Failed to archive account')
     });
   }
 
   setAsDefault() {
-    const userId = this.getUserId();
-    const accountId = this.getAccountId();
+    const userId = this.utility.getUserId();
+    const accountId = this.utility.getAccountId();
     if (!userId || !accountId) return;
     this.account.isDefault = true;
     this.accountService.setDefaultAccount(userId, accountId).subscribe({
       next: () => {
-        this.snackBar.open('Default account set successfully', 'Dismiss', {
-          duration: 3000,
-          panelClass: ['snackbar-success']
-        });
+        this.showSnackBar('Default account set successfully', 'snackbar-success');
         this.cdr.detectChanges();
       },
-      error: () => {
-        this.snackBar.open('Failed to set default account', 'Dismiss', {
-          duration: 3000,
-          panelClass: ['snackbar-error']
-        });
-        this.cdr.detectChanges();
-      }
+      error: () => this.handleError('Failed to set default account')
     })
   }
 
@@ -251,10 +216,10 @@ export class AccountDetails implements OnInit {
   }
 
   submitBudget() {
-    const userId = this.getUserId();
-    const accountId = this.getAccountId();
+    const userId = this.utility.getUserId();
+    const accountId = this.utility.getAccountId();
     if (!userId || !accountId) {
-      this.error = 'Invalid user or account';
+      this.handleError('Invalid user or account');
       return;
     }
     const budget = {
@@ -271,19 +236,11 @@ export class AccountDetails implements OnInit {
         this.endDate = '';
         this.accountService.getAccount(userId, accountId).subscribe(account => {
           this.account = account;
-          this.snackBar.open('Budget set successfully', 'Dismiss', {
-            duration: 3000,
-            panelClass: ['snackbar-success']
-          });
+          this.showSnackBar('Budget set successfully', 'snackbar-success');
           this.cdr.detectChanges();
         });
       },
-      error: () => {
-        this.snackBar.open('Failed to set budget', 'Dismiss', {
-          duration: 3000,
-          panelClass: ['snackbar-error']
-        });
-      }
+      error: () => this.showSnackBar('Failed to set budget', 'snackbar-error')
     });
   }
 

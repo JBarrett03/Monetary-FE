@@ -90,12 +90,24 @@
 }
 
 .account-menu-flex {
-    position: relative;
+  position: relative;
 }
 
 .account-dropdown-menu {
-    right: 0;
-    left: auto;
-    min-width: 200px;
-    position: absolute;
+  right: 0;
+  left: auto;
+  min-width: 200px;
+  position: absolute;
+}
+
+.accounts-hero {
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+.accounts-hero p {
+  color: #6c757d;
+  max-width: 500px;
+  margin: 0 auto;
 }

@@ -48,4 +48,8 @@ export class TransactionService {
 
     return this.http.get<any>(url);
   }
+
+  getRecentTransactions(userId: string, limit: number) {
+    return this.http.get<any[]>(`${this.baseUrl}/users/${userId}/transactions/recent?limit=${limit}`);
+  }
 }
