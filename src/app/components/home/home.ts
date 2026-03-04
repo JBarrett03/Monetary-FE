@@ -44,9 +44,9 @@ export class Home implements OnInit {
     const userId = sessionStorage.getItem('userId');
     const accountId = sessionStorage.getItem('accountId');
 
-    if (!userId || !accountId) return;
+    this.isLoggedIn = !!userId;
 
-    this.isLoggedIn = true;
+    if (!userId || !accountId) return;
 
     this.accountService.getDefaultAccount(userId).subscribe({
       next: (account) => {
