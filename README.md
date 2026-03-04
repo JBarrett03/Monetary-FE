@@ -2,6 +2,17 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.3.
 
+## Installing Dependencies
+
+The `node_modules` folder is not included in this repository to keep the project size small.  
+Before running the application, you must install the required dependencies.
+
+Run the following command in the project root directory:
+
+```bash
+npm install
+```
+
 ## Development server
 
 To start a local development server, run:
