@@ -294,4 +294,8 @@ export class AccountDetails implements OnInit {
   get effectiveCategory(): string {
     return this.customCategory || this.selectedCategory;
   }
+
+  goBackToAccounts() {
+    this.router.navigate(['/accounts']);
+  }
 }

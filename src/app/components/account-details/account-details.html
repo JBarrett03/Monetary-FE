@@ -4,6 +4,13 @@
     }
 
     @if (account) {
+    <div class="col-4">
+        <button class="btn btn-outline-dark btn-sm" (click)="goBackToAccounts()">
+            <i class="fa fa-arrow-left me-2"></i>
+            <span>Back to Accounts</span>
+        </button>
+    </div>
+
     <div class="row mb-3">
         <div class="col-sm-12 d-flex justify-content-end">
             <div class="account-menu-container position-relative">
