@@ -1,22 +1,52 @@
-<div class="container mt-5">
-    
-    @if (error) {
-    <p class="text-danger">{{ error }}</p>
-    }
+<div class="container mt-4" *ngIf="transaction">
 
-    @if (transaction) {
-    <div class="card-header text-center transaction-header">
-        Transaction Details
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <strong>Description:</strong> {{ transaction.description }}<br />
-            <strong>Amount:</strong> {{ transaction.amount | currency }}<br />
-            <strong>Status:</strong> {{ transaction.status ?? 'Completed' }}<br />
-            <strong>Merchant:</strong> {{ transaction.merchant }}<br />
-            <strong>Category:</strong> {{ transaction.category }}<br />
-            {{ transaction.createdAt | date: 'mediumDate' }}
+    <div class="row align-items-center mb-4">
+
+        <div class="col-4">
+            <button class="btn btn-outline-dark btn-sm" (click)="goBackToAccount()">
+                <i class="fa fa-arrow-left me-2"></i>
+                <span>Back to Account</span>
+            </button>
+        </div>
+
+        <div class="col-12">
+            <h4 class="mb-0 fw-semibold text-center">Transaction Details</h4>
+            <small class="text-muted d-block text-center">
+                Transaction ID: {{ transaction._id }}
+            </small>
+        </div>
+
+        <div class="card shadow-sm mt-4">
+            <div class="card-body p-4">
+
+                <p><strong>Account: </strong>{{ accountName }}</p>
+                <hr>
+
+                <p><strong>Description: </strong>{{ transaction.description }}</p>
+                <p><strong>Merchant: </strong>{{ transaction.merchant }}</p>
+                <p>
+                    <strong>Category: </strong>
+                    <i class="fa me-1" [ngClass]="utility.getCategoryMeta(transaction.category).icon"></i>
+                    {{ transaction.category }}
+                </p>
+                <p>
+                    <strong>Amount: </strong>
+                    <span class="transaction-amount" [ngClass]="transaction.direction">
+                        {{ transaction.amount | currency: 'GBP' }}
+                    </span>
+                </p>
+                <p>
+                    <strong>Status: </strong>
+                    <span class="badge"
+                        [ngClass]="{'bg-success': transaction.status?.toLowerCase() === 'completed', 'bg-warning text-dark': transaction.status?.toLowerCase() === 'pending', 'bg-danger': transaction.status?.toLowerCase() === 'failed', 'bg-secondary': transaction.status?.toLowerCase() === 'cancelled'}">
+                        {{ transaction.status }}
+                    </span>
+                </p>
+                <p class="mb-0">
+                    <strong>Date: </strong>
+                    {{ utility.getTransactionDate(transaction.createdAt) }}
+                    {{ utility.getTransactionTime(transaction.createdAt) }}
+                </p>
+            </div>
         </div>
     </div>
-    }
-</div>

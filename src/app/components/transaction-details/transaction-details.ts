@@ -1,7 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TransactionService } from '../../services/transaction-service';
+import { UtilityService } from '../../services/utility-service';
+import { AccountService } from '../../services/account-service';
 
 @Component({
   standalone: true,
@@ -13,9 +15,12 @@ import { TransactionService } from '../../services/transaction-service';
 export class TransactionDetails implements OnInit {
 
   transaction: any | null = null;
+  
   error: string | null = null;
 
-  constructor(private route: ActivatedRoute, private transactionService: TransactionService, private cdr: ChangeDetectorRef) { }
+  accountName: string | null = null;
+
+  constructor(private route: ActivatedRoute, private router: Router, private transactionService: TransactionService, private cdr: ChangeDetectorRef, public utility: UtilityService, private accountService: AccountService) { }
 
   ngOnInit() {
     const userId = sessionStorage.getItem('userId');
@@ -36,6 +41,18 @@ export class TransactionDetails implements OnInit {
         return;
       }
 
+      sessionStorage.setItem('accountId', accountId);
+      this.accountService.getAccount(userId, accountId).subscribe({
+        next: (account) => {
+          this.accountName = account.nickname;
+          this.cdr.detectChanges();
+        },
+        error: () => {
+          this.accountName = accountId;
+          this.cdr.detectChanges();
+        }
+      });
+
       this.transactionService.getTransaction(userId, accountId, transactionId).subscribe({
         next: (transaction) => {
           this.transaction = transaction;
@@ -47,5 +64,12 @@ export class TransactionDetails implements OnInit {
         }
       });
     });
+  }
+
+  goBackToAccount() {
+    const accountId = sessionStorage.getItem('accountId');
+    if (!accountId) return;
+
+    this.router.navigate(['/accounts', accountId]);
   }
 }
