@@ -93,32 +93,32 @@
         }
 
         @if (selectedChartType) {
-        <div class="analytics-summary">
-            <div class="summary-card">
-                <span class="summary-label">
-                    {{ activeView === 'savings' ? 'Total Saved' : 'Total Spent' }}
-                </span>
-                <span class="summary-value">
-                    {{ primaryValue | currency: 'GBP' }}
-                </span>
-            </div>
-            <div class="summary-card">
-                <span class="summary-label">Remaining</span>
-                <span class="summary-value">
-                    {{ remainingValue | currency: 'GBP' }}
-                </span>
-            </div>
-
-            @if (activeView === 'savings') {
-            <div class="summary-card">
-                <span class="summary-label">Remaining %</span>
-                <span class="summary-value">
-                    {{ remainingPercentage }}%
-                </span>
-            </div>
-            }
-        </div>
         <div #chartContainer class="export-wrapper">
+            <div class="analytics-summary">
+                <div class="summary-card">
+                    <span class="summary-label">
+                        {{ activeView === 'savings' ? 'Total Saved' : 'Total Spent' }}
+                    </span>
+                    <span class="summary-value">
+                        {{ primaryValue | currency: 'GBP' }}
+                    </span>
+                </div>
+                <div class="summary-card">
+                    <span class="summary-label">Remaining</span>
+                    <span class="summary-value">
+                        {{ remainingValue | currency: 'GBP' }}
+                    </span>
+                </div>
+
+                @if (activeView === 'savings') {
+                <div class="summary-card">
+                    <span class="summary-label">Remaining %</span>
+                    <span class="summary-value">
+                        {{ remainingPercentage }}%
+                    </span>
+                </div>
+                }
+            </div>
             <div class="main-chart">
                 @switch (selectedChartType) {
                 @case ('Pie') {
@@ -185,3 +185,4 @@
         }
     </div>
     }
+</div>
